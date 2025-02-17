@@ -43,7 +43,7 @@ export function About() {
               <a
                 href="/documents/cv.pdf"
                 download="cv.pdf"
-                className="border-blue-500 border-2 rounded-full px-4 py-2 inline-flex items-center justify-center text-blue-500 font-bold
+                className="border-blue-500 border-2 rounded-full px-4 py-3 inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300"
               >
                 Download CV <Download size={18} className="ml-2" />
