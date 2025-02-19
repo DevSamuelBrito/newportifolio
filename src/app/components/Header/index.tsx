@@ -27,15 +27,14 @@ export const Navbar = () => {
           </button>
 
           <div
-            className={`${
-              isOpen ? "block" : "hidden"
-            } lg:flex justify-between items-center w-full lg:w-auto`}
+            className={`${isOpen ? "block" : "hidden"
+              } lg:flex justify-between items-center w-full lg:w-auto`}
           >
             <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 font-medium ">
               <li>
                 <Link
                   href="#home"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200  lg:p-0"
+                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200  lg:p-0"
                 >
                   Home
                 </Link>
@@ -43,7 +42,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#home"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200 lg:p-0 "
+                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
                   About me
                 </Link>
@@ -51,7 +50,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#home"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200 lg:p-0 "
+                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
                   Projects
                 </Link>
@@ -59,7 +58,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#home"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200 lg:p-0 "
+                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
                   Stack
                 </Link>
@@ -67,7 +66,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#home"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200 lg:p-0 "
+                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
                   Contact
                 </Link>
@@ -76,7 +75,7 @@ export const Navbar = () => {
                 <li>
                   <Link
                     href="/signup"
-                    className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-[#778da9] hover:font-bold transition-all duration-200 lg:p-0 "
+                    className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                   >
                     Eng/Pt
                   </Link>
@@ -85,12 +84,27 @@ export const Navbar = () => {
             </ul>
           </div>
 
+
           <div className="hidden lg:flex items-center">
             <Link
               href="/signup"
-              className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+              className="text-white  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2"
             >
-              Eng/Pt
+              <img
+                src="https://flagcdn.com/w40/us.png"
+                alt="Bandeira dos EUA"
+                className="w-7 h-7 rounded-full"
+              />
+            </Link>
+            <Link
+              href="/signup"
+              className="text-white :ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2"
+            >
+              <img
+                src="https://flagcdn.com/w40/br.png"
+                alt="Bandeira do Brasil"
+                className="w-8 h-7 rounded-full"
+              />
             </Link>
           </div>
         </div>
