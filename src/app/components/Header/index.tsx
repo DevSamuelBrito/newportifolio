@@ -9,7 +9,7 @@ export const Navbar = () => {
   return (
     <header className="fixed top-0 w-full z-50 h-14 lg:h-auto">
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#0d1b2a]">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl lg:max-w-screen-lg">
           <Link
             href="https://www.linkedin.com/in/samuel-fava-de-brito"
             className="flex items-center"
