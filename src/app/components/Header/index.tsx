@@ -1,15 +1,22 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import brasilFlag from "@/assets/images/BR-flag.png";
+import usaFlag from "@/assets/images/USA-flag.png";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isEng, setIsEng] = useState(true);
+  const [isPt, setIsPt] = useState(false);
+
+
 
   return (
     <header className="fixed top-0 w-full z-50 h-14 lg:h-auto">
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#0d1b2a]">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl lg:max-w-screen-lg xl:max-w-screen-xl">
+        <div className="flex flex-wrap justify-between items-center mx-auto md:max-w-screen-md lg:max-w-screen-lg max-w-screen-xl">
           <Link
             href="https://www.linkedin.com/in/samuel-fava-de-brito"
             className="flex items-center"
@@ -72,13 +79,35 @@ export const Navbar = () => {
                 </Link>
               </li>
               {isOpen && (
-                <li>
-                  <Link
-                    href="/signup"
-                    className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
+                <li className="flex flex-col gap-2">
+                  <button
+                    className="px-2 py-2"
+                    onClick={() => {
+                      console.log('click inglês')
+                    }}
                   >
-                    Eng/Pt
-                  </Link>
+                    <Image
+                      src={usaFlag}
+                      alt="Usa Flag"
+                      className="w-8 h-8 rounded-full"
+                      width={28}
+                      height={28}
+                    />
+                  </button>
+                  <button
+                    className="px-2 py-2"
+                    onClick={() => {
+                      console.log("click português")
+                    }}
+                  >
+                    <Image
+                      src={brasilFlag}
+                      alt="Brasil Flag"
+                      className="w-8 h-8 rounded-full"
+                      width={28}
+                      height={28}
+                    />
+                  </button>
                 </li>
               )}
             </ul>
@@ -86,26 +115,34 @@ export const Navbar = () => {
 
 
           <div className="hidden lg:flex items-center">
-            <Link
-              href="/signup"
-              className="text-white  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2"
+            <button
+              className="px-2 py-2"
+              onClick={() => {
+                console.log('click inglês')
+              }}
             >
-              <img
-                src="https://flagcdn.com/w40/us.png"
-                alt="Bandeira dos EUA"
-                className="w-7 h-7 rounded-full"
+              <Image
+                src={usaFlag}
+                alt="Usa Flag"
+                className="w-8 h-8 rounded-full"
+                width={28}
+                height={28}
               />
-            </Link>
-            <Link
-              href="/signup"
-              className="text-white :ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2"
+            </button>
+            <button
+              className="px-2 py-2"
+              onClick={() => {
+                console.log("click português")
+              }}
             >
-              <img
-                src="https://flagcdn.com/w40/br.png"
-                alt="Bandeira do Brasil"
-                className="w-8 h-7 rounded-full"
+              <Image
+                src={brasilFlag}
+                alt="Brasil Flag"
+                className="w-8 h-8 rounded-full"
+                width={28}
+                height={28}
               />
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
