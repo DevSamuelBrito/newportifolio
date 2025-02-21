@@ -9,8 +9,8 @@ export function About() {
   return (
     <div>
       <section className="bg-gray-900 min-h-screen flex items-center pt-16">
-        <div className="grid px-4 md:px-0 lg:max-w-screen-lg max-w-screen-xl py-8 mx-auto lg:grid-cols-12 w-full">
-          <div className="lg:col-span-6 flex flex-col justify-center  mb-8 lg:mb-0">
+        <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">
+          <div className="lg:col-span-6 flex flex-col justify-center mb-8 lg:mb-0 sm:px-2 md:px-4 xl:px-0">
             <h1 className="font-bold text-white text-lg">
               Full Stack Developer
             </h1>
@@ -27,8 +27,8 @@ export function About() {
               </span>
             </h1>
             <p className="mt-4 text-lg text-gray-500 ">
-              I'm a full stack developer specialized in Next.js, React,
-              TypeScript, MongoDB and Prisma. With a degree in Systems Analysis
+              I'm a full stack developer specialized in 
+              <span className="font-bold text-blue-500"> Next.js, React,Typescript, MongoDB</span> and Prisma. With a degree in Systems Analysis
               and Development from Fatec Rio Preto, I'm always looking for
               challenges that allow me to evolve and create elegant digital
               experiences.
