@@ -13,6 +13,7 @@ const translation = {
   en: {
     hello: "Hello I'm",
     role: "Developer Full Stack",
+    cv:"Get Resume",
     introducation: (
       <>
         I'm a developer specialized in
@@ -34,6 +35,7 @@ const translation = {
   pt: {
     hello: "Olá, eu sou",
     role: "Desenvolvedor Full Stack",
+    cv:"Baixar Curriculo",
     introducation: (
       <>
         Sou um desenvolvedor especializado em
@@ -87,7 +89,7 @@ export function About() {
                 className="border-blue-500 border-2 rounded-full px-4 py-3 inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300"
               >
-                Download CV <Download size={18} className="ml-2" />
+                {translation[language].cv}<Download size={18} className="ml-2" />
               </a>
               <Link
                 href="https://github.com/DevSamuelBrito"
