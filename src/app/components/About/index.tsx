@@ -87,7 +87,7 @@ export function About() {
                 href="/documents/cv.pdf"
                 download="cv.pdf"
                 className="border-blue-500 border-2 rounded-full px-4 py-3 inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300"
+      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
               >
                 {translation[language].cv}<Download size={18} className="ml-2" />
               </a>
@@ -95,7 +95,7 @@ export function About() {
                 href="https://github.com/DevSamuelBrito"
                 target="_blank"
                 className="border-blue-500 border-2 rounded-full p-3 inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300"
+      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-110"
               >
                 <FaGithub size={18} />
               </Link>
@@ -103,7 +103,7 @@ export function About() {
                 href="https://www.linkedin.com/in/samuel-fava-de-brito/"
                 target="_blank"
                 className="border-blue-500 border-2 rounded-full p-3 inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300"
+      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-110"
               >
                 <FaLinkedin size={18} />
               </Link>
