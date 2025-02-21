@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ButtonTranslate } from "./components/ButtonTranslate";
 import { Menu, X } from "lucide-react";
 import brasilFlag from "@/assets/images/BR-flag.png";
 import usaFlag from "@/assets/images/USA-flag.png";
@@ -97,36 +98,8 @@ export const Navbar = () => {
               </li>
               {isOpen && (
                 <li className="flex flex-col gap-2">
-                  <button
-                    title="Switch to USA"
-                    className="px-2 py-2"
-                    onClick={() => {
-                      console.log('click inglês')
-                    }}
-                  >
-                    <Image
-                      src={usaFlag}
-                      alt="Usa Flag"
-                      className="w-8 h-8 rounded-full"
-                      width={28}
-                      height={28}
-                    />
-                  </button>
-                  <button
-                    title="Switch to BR"
-                    className="px-2 py-2"
-                    onClick={() => {
-                      console.log("click português")
-                    }}
-                  >
-                    <Image
-                      src={brasilFlag}
-                      alt="Brasil Flag"
-                      className="w-8 h-8 rounded-full"
-                      width={28}
-                      height={28}
-                    />
-                  </button>
+                  <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English"/>
+                  <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português"/>
                 </li>
               )}
             </ul>
@@ -134,39 +107,8 @@ export const Navbar = () => {
 
 
           <div className="hidden lg:flex items-center">
-            <button
-              title="Switch to USA"
-
-              className="px-2 py-2"
-              onClick={() => setLanguage("en")
-              }
-            >
-              <Image
-                src={usaFlag}
-                alt="Usa Flag"
-                className={`${language === "en" ? "opacity-50" : "opacity-100"} w-8 h-8 rounded-full`}
-                width={28}
-                height={28}
-              />
-            </button>
-            <button
-              title="Switch to BR"
-              className="px-2 py-2"
-              onClick={() => setLanguage("pt")
-              }
-            >
-              <Image
-                src={brasilFlag}
-                alt="Brasil Flag"
-                className={
-                  `${language === "pt" ? "opacity-50" : "opacity-100"} w-8 h-8 rounded-full`
-                }
-                // className={`${isOpen ? "block" : "hidden"
-                //   } lg:flex justify-between items-center w-full lg:w-auto`}
-                width={28}
-                height={28}
-              />
-            </button>
+            <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English"/>
+            <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português"/>
           </div>
         </div>
       </nav>

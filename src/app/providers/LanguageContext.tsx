@@ -2,7 +2,7 @@
 import { createContext, useState, useEffect, ReactNode, useContext } from "react";
 
 // Criando tipagem para provedor
-type Language = "en" | "pt";
+export type Language = "en" | "pt";
 
 interface LanguageContextProps {
   language: Language;
