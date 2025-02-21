@@ -5,11 +5,28 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import brasilFlag from "@/assets/images/BR-flag.png";
 import usaFlag from "@/assets/images/USA-flag.png";
+import { useLanguage } from "@/app/providers/LanguageContext";
+
+const translation = {
+  en: {
+    home: "Home",
+    about: "About me",
+    projects: "Projects",
+    stack: "Stack",
+    contact: "Contact",
+  },
+  pt: {
+    home: "Inicio",
+    about: "Sobre mim",
+    projects: "Projetos",
+    stack: "Tecnologias",
+    contact: "Contato",
+  }
+}
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isEng, setIsEng] = useState(true);
-  const [isPt, setIsPt] = useState(false);
+  const { language, setLanguage } = useLanguage(); // aqui eu pego o contexto do idioma
 
 
 
@@ -43,7 +60,7 @@ export const Navbar = () => {
                   href="#home"
                   className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200  lg:p-0"
                 >
-                  Home
+                  {translation[language].home}
                 </Link>
               </li>
               <li>
@@ -51,7 +68,7 @@ export const Navbar = () => {
                   href="#home"
                   className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
-                  About me
+                  {translation[language].about}
                 </Link>
               </li>
               <li>
@@ -59,7 +76,7 @@ export const Navbar = () => {
                   href="#home"
                   className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
-                  Projects
+                  {translation[language].projects}
                 </Link>
               </li>
               <li>
@@ -67,7 +84,7 @@ export const Navbar = () => {
                   href="#home"
                   className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
-                  Stack
+                  {translation[language].stack}
                 </Link>
               </li>
               <li>
@@ -75,12 +92,13 @@ export const Navbar = () => {
                   href="#home"
                   className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
                 >
-                  Contact
+                  {translation[language].contact}
                 </Link>
               </li>
               {isOpen && (
                 <li className="flex flex-col gap-2">
                   <button
+                    title="Switch to USA"
                     className="px-2 py-2"
                     onClick={() => {
                       console.log('click inglês')
@@ -95,6 +113,7 @@ export const Navbar = () => {
                     />
                   </button>
                   <button
+                    title="Switch to BR"
                     className="px-2 py-2"
                     onClick={() => {
                       console.log("click português")
@@ -116,29 +135,34 @@ export const Navbar = () => {
 
           <div className="hidden lg:flex items-center">
             <button
+              title="Switch to USA"
+
               className="px-2 py-2"
-              onClick={() => {
-                console.log('click inglês')
-              }}
+              onClick={() => setLanguage("en")
+              }
             >
               <Image
                 src={usaFlag}
                 alt="Usa Flag"
-                className="w-8 h-8 rounded-full"
+                className={`${language === "en" ? "opacity-50" : "opacity-100"} w-8 h-8 rounded-full`}
                 width={28}
                 height={28}
               />
             </button>
             <button
+              title="Switch to BR"
               className="px-2 py-2"
-              onClick={() => {
-                console.log("click português")
-              }}
+              onClick={() => setLanguage("pt")
+              }
             >
               <Image
                 src={brasilFlag}
                 alt="Brasil Flag"
-                className="w-8 h-8 rounded-full"
+                className={
+                  `${language === "pt" ? "opacity-50" : "opacity-100"} w-8 h-8 rounded-full`
+                }
+                // className={`${isOpen ? "block" : "hidden"
+                //   } lg:flex justify-between items-center w-full lg:w-auto`}
                 width={28}
                 height={28}
               />
