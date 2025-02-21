@@ -1,21 +1,37 @@
+"use client"
 import Image from "next/image";
 import { HyperText } from "./components/HyperText";
 import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import img from "@/assets/images/profile-pic.png";
 import Link from "next/link";
+import { useLanguage } from "@/app/providers/LanguageContext";
+
+const translation = {
+  en: {
+    hello: "Hello I'm",
+    fullstack: "Full Stack Developer",
+
+  },
+  pt: {
+    hello: "Olá, eu sou",
+    fullstack: "Desenvolvedor Full Stack",
+  }
+}
 
 export function About() {
+
+  const { language, setLanguage } = useLanguage();
   return (
     <div>
       <section className="bg-gray-900 min-h-screen flex items-center pt-16">
         <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">
           <div className="lg:col-span-6 flex flex-col justify-center mb-8 lg:mb-0 sm:px-2 md:px-4 xl:px-0">
             <h1 className="font-bold text-white text-lg">
-              Full Stack Developer
+              {translation[language].fullstack}
             </h1>
             <h1 className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
-              Hello I'm <br />
+              {translation[language].hello} <br />
               <span className="text-blue-500">
                 <HyperText
                   duration={1000}
@@ -27,7 +43,7 @@ export function About() {
               </span>
             </h1>
             <p className="mt-4 text-lg text-gray-500 ">
-              I'm a full stack developer specialized in 
+              I'm a full stack developer specialized in
               <span className="font-bold text-blue-500"> Next.js, React,Typescript, MongoDB</span> and Prisma. With a degree in Systems Analysis
               and Development from Fatec Rio Preto, I'm always looking for
               challenges that allow me to evolve and create elegant digital
