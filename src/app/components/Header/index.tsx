@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ButtonTranslate } from "./components/ButtonTranslate";
 import { Menu, X } from "lucide-react";
 import brasilFlag from "@/assets/images/BR-flag.png";

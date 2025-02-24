@@ -66,7 +66,7 @@ export function About() {
     <div>
       <section className="bg-gray-900 min-h-screen flex items-center pt-16">
         <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">
-          <div className="lg:col-span-6 flex flex-col justify-center mb-8 lg:mb-0 sm:px-2 md:px-4 xl:px-0">
+          <div className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0">
             <h1 className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
               {translation[language].hello} <br />
               <span className="text-blue-500">

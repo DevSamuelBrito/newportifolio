@@ -7,8 +7,7 @@ export default function Home() {
     <>
       <Navbar />
       <About />
-      <About />
-      {/* <Projects /> */}
+      <Projects />
     </>
   );
 }
