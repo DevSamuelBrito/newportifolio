@@ -37,7 +37,13 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
             <div
                 className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative:"
             >
-                <Image src={src} alt="Project 1" className="w-full h-auto rounded-lg" width={400} height={300} />
+                <Image
+                    src={src}
+                    alt={title}
+                    className="w-full h-48 object-cover rounded-lg"
+                    width={400}
+                    height={300}
+                />
                 <h3 className="text-xl font-semibold text-white mt-3">{title}</h3>
 
                 <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
@@ -51,7 +57,7 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
                     {translation[language].button}
                 </button>
             </div>
-            <ModalCard description={translation[language].description} src={src} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)} title="Teste Dev controle" stack={stack} repository={repository} post={post} />
+            <ModalCard description={translation[language].description} src={src} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)} title={title} stack={stack} repository={repository} post={post} />
         </>
     )
 }
