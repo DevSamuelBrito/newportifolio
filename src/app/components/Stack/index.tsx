@@ -1,16 +1,21 @@
 "use client";
 import { useLanguage } from "@/app/providers/LanguageContext";
-import { DiFirebase } from "react-icons/di";
-import { FaAws } from "react-icons/fa";
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql } from "react-icons/si";
+import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices } from "react-icons/si";
+import { StackCard } from "./components/StackCard";
 
 
 const translation = {
     en: {
         Stack: "Stack",
+        currently: "Currently working",
+        worked: "I've already worked",
+        studying: "I am studying",
     },
     pt: {
         Stack: "Tecnologias",
+        currently: "Trabalhando Atualmente",
+        worked: "Já trabalhei",
+        studying: "Estou Estudando",
     },
 };
 
@@ -29,102 +34,38 @@ export function Stack() {
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     {/* Trabalhando Atualmente */}
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-blue-500">Trabalhando Atualmente</h3>
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 rounded-full"></span>
-                        <ul className="mt-6 text-white grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiReact size={64} />
-                                <p>React</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiNextdotjs size={64} />
-                                <p>Next Js</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiTailwindcss size={64} />
-                                <p>TailwindCSS</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiTypescript size={64} />
-                                <p>Typescript</p>
-                            </li>
-                        </ul>
-                    </div>
+
+                    <StackCard situation={translation[language].currently} technologies={[
+                        { icon: SiReact, name: "React" },
+                        { icon: SiNextdotjs, name: "Next Js" },
+                        { icon: SiTailwindcss, name: "TailwindCSS" },
+                        { icon: SiTypescript, name: "Typescript" },
+                    ]} />
 
                     {/* Já Trabalhei */}
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-blue-500">Já Trabalhei</h3>
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 rounded-full"></span>
 
-                        <ul className="mt-6 text-white grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiDotnet size={64} />
-                                <p>Dotnet</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiPython size={64} />
-                                <p>Python</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiUnity size={64} />
-                                <p>Unity</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiFirebase size={64} />
-                                <p>Firebase</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiFlutter size={64} />
-                                <p>Flutter</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiMysql size={64} />
-                                <p>MySQL</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <FaAws size={64} />
-                                <p>AWS</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiOracle size={64} />
-                                <p>Oracle</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <StackCard situation={translation[language].worked} technologies={[
+                        { icon: SiDotnet, name: "Dotnet" },
+                        { icon: SiPython, name: "Python" },
+                        { icon: SiUnity, name: "Unity" },
+                        { icon: SiFirebase, name: "Firebase" },
+                        { icon: SiStyledcomponents, name: "Style in Js" },
+                        { icon: SiFlutter, name: "Flutter" },
+                        { icon: SiMysql, name: "MySQL" },
+                        { icon: SiAmazonwebservices, name: "AWS" },
+                        { icon: SiOracle, name: "Oracle" },
+                    ]} />
 
                     {/* Estou Estudando */}
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-blue-500">Estou Estudando</h3>
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 rounded-full"></span>
 
-                        <ul className="mt-6 text-white grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiMongodb size={64} />
-                                <p>MongoDB</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiPrisma size={64} />
-                                <p>Prisma</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiDocker size={64} />
-                                <p>Docker</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiNextdotjs size={64} />
-                                <p>Next JS</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiNodedotjs size={64} />
-                                <p>Node JS</p>
-                            </li>
-                            <li className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                                <SiPostgresql size={64} />
-                                <p>PostgreeSql</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <StackCard situation={translation[language].studying} technologies={[
+                        { icon: SiMongodb, name: "MongoDB" },
+                        { icon: SiPrisma, name: "Prisma" },
+                        { icon: SiDocker, name: "Docker" },
+                        { icon: SiNextdotjs, name: "Next JS" },
+                        { icon: SiNodedotjs, name: "Node JS" },
+                        { icon: SiPostgresql, name: "PostgreeSql" },
+                    ]} />
                 </div>
             </div>
         </section>
