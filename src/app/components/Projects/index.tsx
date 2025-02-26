@@ -35,7 +35,6 @@ export function Projects() {
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
 
           <ProjectCard title="Dev Controle" src={DevControle} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss, SiMongodb, SiPrisma]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7295234873252888576-0_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/Dev_Controle.git" descriptionBr={`Dev_Controle é uma aplicação full-stack desenvolvida com Next.js para gerenciamento de usuários e chamados.
-          import DalyGames from "@/assets/images/dalygames.png";
           O projeto inclui autenticação de usuários, cadastro e gerenciamento de clientes e criação de chamados vinculados.Além disso, qualquer pessoa pode abrir um chamado informando apenas o e-mail do cliente.
 
           💡 Criado para estudo de MongoDB, rotas de API e deploy de aplicações full-stack.`} descriptionEn={`Dev_Controle is a full-stack application developed with Next.js for user and ticket management.
