@@ -1,6 +1,6 @@
 "use client";
 import { useLanguage } from "@/app/providers/LanguageContext";
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiJasmine, SiGit, SiGithub } from "react-icons/si";
+import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiJasmine, SiGit, SiGithub, SiSass, SiExpo } from "react-icons/si";
 import { StackCard } from "./components/StackCard";
 
 
@@ -57,6 +57,8 @@ export function Stack() {
                         { icon: SiAmazonwebservices, name: "AWS" },
                         { icon: SiOracle, name: "Oracle" },
                         { icon: SiJasmine, name: "Jasmine" },
+                        { icon: SiSass, name: "SASS" },                    
+                        { icon: SiExpo, name: "Expo" },
                     ]} />
 
                     {/* Estou Estudando */}
