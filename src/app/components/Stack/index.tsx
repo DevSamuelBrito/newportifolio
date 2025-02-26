@@ -31,7 +31,7 @@ export function Stack() {
                         <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
                     </h2>
                 </div>
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     {/* Trabalhando Atualmente */}
 
