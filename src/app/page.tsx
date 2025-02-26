@@ -3,6 +3,7 @@ import { Navbar } from "./components/Header";
 import { Projects } from "./components/Projects";
 import { Stack } from "./components/Stack";
 import { About } from "./components/About";
+import { Services } from "./components/Services";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <About />
       <Projects />
       <Stack />
+      <Services />
     </>
   );
 }
