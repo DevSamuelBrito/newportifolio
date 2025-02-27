@@ -9,6 +9,7 @@ const translation = {
         title: "Services",
         question: "How can I help?",
         anwser: "Although I am not yet offering services formally, I am always ready to collaborate on challenging projects and learn from new experiences.",
+        anwser2:"In addition to web and backend development, I am also interested in exploring areas such as DevOps, automation, and best practices to make applications more efficient and scalable.",
         titleWeb: "Web Development",
         titleBack: "Back-End",
         titleTargets: "Goals and Objectives",
@@ -20,6 +21,7 @@ const translation = {
         title: "Serviços",
         question: "Como posso ajudar?",
         anwser: "Embora eu ainda não esteja oferecendo serviços de forma formal, estou sempre pronto para colaborar em projetos desafiadores e aprender com novas experiências.",
+        anwser2: "Além do desenvolvimento web e back-end, também estou interessado em explorar áreas como DevOps, automação e melhores práticas para tornar aplicações mais eficientes e escaláveis.",
         titleWeb: "Desenvolvimento Web",
         titleBack: "Back-End",
         titleTargets: "Objetivos e Metas",
@@ -51,6 +53,10 @@ export function Services() {
                     <ServiceCardBack title={translation[language].titleBack} description={translation[language].descriptionBack} />
                     <ServiceCard icon={FaCode} title={translation[language].titleTargets} description={translation[language].descriptionTargets} />
                 </div>
+                <div className="text-center mt-8 max-w-3xl mx-auto">
+                    <p className="text-xl text-gray-400 mt-3">{translation[language].anwser2}</p>
+                </div>
+                
             </div>
         </section>
 
