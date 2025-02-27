@@ -20,7 +20,7 @@ export function Projects() {
   const { language } = useLanguage();
 
   return (
-    <section className="bg-gray-900 min-h-screen pt-14">
+    <section id="projects"className="bg-gray-900 min-h-screen pt-14">
       <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit" >
 
 

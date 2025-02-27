@@ -5,6 +5,7 @@ import { Stack } from "./components/Stack";
 import { About } from "./components/About";
 import { Services } from "./components/Services";
 import { Contact } from "./components/Contact";
+import ScrollToTopButton from "./components/ScrollTopButton";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Stack />
       <Services />
       <Contact />
+      <ScrollToTopButton />
     </>
   );
 }
