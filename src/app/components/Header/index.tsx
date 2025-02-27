@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ButtonTranslate } from "./components/ButtonTranslate";
 import { Menu, X } from "lucide-react";
@@ -28,6 +28,33 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage(); // aqui eu pego o contexto do idioma
 
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    const links = document.querySelectorAll("nav a");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const link = document.querySelector(`a[href="#${entry.target.id}"]`);
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            link?.classList.add("text-blue-600", "font-bold");
+          } else {
+            link?.classList.remove("text-blue-600", "font-bold");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
 
   return (
@@ -64,24 +91,27 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#about"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
+                  className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "about" ? "text-blue-600 font-bold" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("about");
                     element?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection("about"); 
                   }}
                 >
                   {translation[language].about}
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="#projects"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
+                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "projects" ? "text-blue-600 font-bold" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("projects");
                     element?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection("projects");
                   }}
                 >
                   {translation[language].projects}
@@ -90,11 +120,12 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#stack"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 "
+                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "stack" ? "text-blue-600 font-bold" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("stack");
                     element?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection("stack");
                   }}
 
                 >
@@ -104,11 +135,12 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#services"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200  lg:p-0"
+                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "services" ? "text-blue-600 font-bold" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("services");
                     element?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection("services");
                   }}
                 >
                   {translation[language].services}
@@ -117,11 +149,12 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#contact"
-                  className="block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0"
+                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "contact" ? "text-blue-600 font-bold" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("contact");
                     element?.scrollIntoView({ behavior: "smooth" });
+                    setActiveSection("contact");
                   }}
                 >
                   {translation[language].contact}
@@ -129,7 +162,7 @@ export const Navbar = () => {
 
               </li>
               {isOpen && (
-                <li className="flex flex-col gap-2">
+                <li className="flex flex-row  gap-2">
                   <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English" />
                   <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português" />
                 </li>
