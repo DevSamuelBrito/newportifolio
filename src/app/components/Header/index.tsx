@@ -31,8 +31,8 @@ export const Navbar = () => {
 
 
   return (
-    <header className="fixed top-0 w-full z-50 h-14 lg:h-auto">
-      <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#0d1b2a]">
+    <header className="fixed top-0 w-full z-50 h-14 lg:h-auto shadow-lg">
+      <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#13202e]">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
           <Link
             href="https://www.linkedin.com/in/samuel-fava-de-brito"
