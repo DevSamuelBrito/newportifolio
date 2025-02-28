@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
         isVisible && (
             <button
                 onClick={scrollToTop}
-                className="fixed bottom-4 right-4 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 w-12 h-12 flex items-center justify-center"
+                className="motion-safe:animate-[bounce_5s_infinite] fixed bottom-4 right-4 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-700 w-12 h-12 flex items-center justify-center"
             >
                 <span className="text-2xl">↑</span>
             </button>

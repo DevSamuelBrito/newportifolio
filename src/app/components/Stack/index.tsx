@@ -37,7 +37,7 @@ export function Stack() {
 
                     <StackCard situation={translation[language].currently} technologies={[
                         { icon: SiReact, name: "React" },
-                        { icon: SiNextdotjs, name: "Next Js" },
+                        { icon: SiNextdotjs, name: "Next JS 14" },
                         { icon: SiTailwindcss, name: "TailwindCSS" },
                         { icon: SiTypescript, name: "Typescript" },
                         { icon: SiGit, name: "Git" },
@@ -67,7 +67,7 @@ export function Stack() {
                         { icon: SiMongodb, name: "MongoDB" },
                         { icon: SiPrisma, name: "Prisma" },
                         { icon: SiDocker, name: "Docker" },
-                        { icon: SiNextdotjs, name: "Next JS" },
+                        { icon: SiNextdotjs, name: "Next JS 14" },
                         { icon: SiNodedotjs, name: "Node JS" },
                         { icon: SiPostgresql, name: "PostgreeSql" },
                         { icon: SiZod, name: "Zod" },
