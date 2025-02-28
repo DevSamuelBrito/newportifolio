@@ -40,9 +40,9 @@ export const Navbar = () => {
           const link = document.querySelector(`a[href="#${entry.target.id}"]`);
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            link?.classList.add("text-blue-600", "font-bold");
+            link?.classList.add("text-blue-700");
           } else {
-            link?.classList.remove("text-blue-600", "font-bold");
+            link?.classList.remove("text-blue-700");
           }
         });
       },
@@ -91,7 +91,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#about"
-                  className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "about" ? "text-blue-600 font-bold" : ""}`}
+                  className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "about" ? "text-blue-700 " : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("about");
@@ -106,7 +106,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#projects"
-                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "projects" ? "text-blue-600 font-bold" : ""}`}
+                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "projects" ? "text-blue-700 " : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("projects");
@@ -120,7 +120,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#stack"
-                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "stack" ? "text-blue-600 font-bold" : ""}`}
+                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "stack" ? "text-blue-700 " : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("stack");
@@ -135,7 +135,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#services"
-                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "services" ? "text-blue-600 font-bold" : ""}`}
+                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "services" ? "text-blue-700 " : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("services");
@@ -149,7 +149,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   href="#contact"
-                    className={`block py-2 px-4 text-white rounded-lg hover:text-lg hover:text-blue-500 hover:font-bold transition-all duration-200 lg:p-0 ${activeSection === "contact" ? "text-blue-600 font-bold" : ""}`}
+                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "contact" ? "text-blue-700 " : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById("contact");
