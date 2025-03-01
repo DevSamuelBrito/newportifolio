@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { ButtonTranslate } from "./components/ButtonTranslate";
 import { Menu, X } from "lucide-react";
 import brasilFlag from "@/assets/images/BR-flag.png";
 import usaFlag from "@/assets/images/USA-flag.png";
 import { useLanguage } from "@/app/providers/LanguageContext";
+import { HeroItem, NavBarItem } from "./components/NavBarItem";
 
 const translation = {
   en: {
@@ -32,7 +32,6 @@ export const Navbar = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
-    const links = document.querySelectorAll("nav a");
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -61,19 +60,8 @@ export const Navbar = () => {
     <header className="fixed top-0 w-full z-50 h-14 lg:h-auto shadow-lg">
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#13202e]">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
-          <Link
-            href="#hero"
-            className="flex items-center"
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.getElementById("hero");
-              element?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            <span className="self-center text-xl text-white font-semibold whitespace-nowrap">
-              Samuel Brito
-            </span>
-          </Link>
+
+          <HeroItem />
 
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -88,79 +76,12 @@ export const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 font-medium ">
 
-              <li>
-                <Link
-                  href="#about"
-                  className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "about" ? "text-blue-700 " : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById("about");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection("about"); 
-                  }}
-                >
-                  {translation[language].about}
-                </Link>
-              </li>
+              <NavBarItem href="#about" id="about" label={translation[language].about} activeSection="about" setActiveSection={setActiveSection} />
+              <NavBarItem href="#projects" id="projects" label={translation[language].projects} activeSection="projects" setActiveSection={setActiveSection} />
+              <NavBarItem href="#stack" id="stack" label={translation[language].stack} activeSection="stack" setActiveSection={setActiveSection} />
+              <NavBarItem href="#services" id="services" label={translation[language].services} activeSection="services" setActiveSection={setActiveSection} />
+              <NavBarItem href="#contact" id="contact" label={translation[language].contact} activeSection="contact" setActiveSection={setActiveSection} />
 
-              <li>
-                <Link
-                  href="#projects"
-                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "projects" ? "text-blue-700 " : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById("projects");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection("projects");
-                  }}
-                >
-                  {translation[language].projects}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#stack"
-                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "stack" ? "text-blue-700 " : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById("stack");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection("stack");
-                  }}
-
-                >
-                  {translation[language].stack}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#services"
-                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "services" ? "text-blue-700 " : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById("services");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection("services");
-                  }}
-                >
-                  {translation[language].services}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                    className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === "contact" ? "text-blue-700 " : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById("contact");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection("contact");
-                  }}
-                >
-                  {translation[language].contact}
-                </Link>
-
-              </li>
               {isOpen && (
                 <li className="flex flex-row  gap-2">
                   <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English" />
@@ -175,6 +96,7 @@ export const Navbar = () => {
             <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English" />
             <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português" />
           </div>
+
         </div>
       </nav>
     </header>
