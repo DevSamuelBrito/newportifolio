@@ -20,9 +20,6 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
-      react-devicon:
-        specifier: ^0.1.9
-        version: 0.1.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
@@ -661,11 +658,6 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-devicon@0.1.9:
-    resolution: {integrity: sha512-lPVhGqNotSTEmAW15PgEvWr/5YSbQuDNO/hgAenFdFQUQH0abKZI4FwYywBI6ATDi+v7saNbWymB15txqznuGQ==}
-    peerDependencies:
-      react: '>= 15.3.0 < 16 || 16.x'
-      react-dom: '>= 15.3.0 < 16 || 16.x'
 
   react-dom@19.0.0:
     resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
@@ -1353,14 +1345,6 @@ snapshots:
       react-is: 16.13.1
 
   queue-microtask@1.2.3: {}
-
-  react-devicon@0.1.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      normalize-css-unit: 1.0.1
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-svg-inline: 2.1.1(react@19.0.0)
 
   react-dom@19.0.0(react@19.0.0):
     dependencies:
