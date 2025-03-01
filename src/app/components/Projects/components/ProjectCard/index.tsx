@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { useState } from "react";
 import ModalCard from "../ModalCard";
+import { motion } from "framer-motion";
 
 interface ProjectCardProps {
     title: string,
@@ -13,11 +14,13 @@ interface ProjectCardProps {
     descriptionBr: string,
     repository: string;
     post: string;
+    index: number;
 
 }
 
 
-export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, post, repository }: ProjectCardProps) {
+export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, post, repository, index
+}: ProjectCardProps) {
 
 
     const translation = {
@@ -33,7 +36,13 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
     const [isOpen, setIsOpen] = useState(false);
     const { language } = useLanguage();
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }} 
+        >
+
             <div
                 className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative:"
             >
@@ -58,7 +67,7 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
                 </button>
             </div>
             <ModalCard description={translation[language].description} src={src} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)} title={title} stack={stack} repository={repository} post={post} />
-        </>
+        </motion.div>
     )
 }
 

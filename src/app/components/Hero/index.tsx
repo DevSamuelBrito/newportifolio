@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
 
 const translation = {
@@ -65,9 +66,18 @@ export function Hero() {
   return (
     <div>
       <section id="hero" className="bg-gray-900 min-h-screen flex items-center pt-16">
+
         <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">
-          <div className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0">
-            <h1 className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
+
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0"
+          >
+
+            <p className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
               {translation[language].hello} <br />
               <span className="text-blue-500">
 
@@ -75,7 +85,7 @@ export function Hero() {
                   cursorStyle="|" typeSpeed={50} delaySpeed={2000} deleteSpeed={100} />
 
               </span>
-            </h1>
+            </p>
             <p className="mt-4 text-lg text-gray-500 ">
               {translation[language].introducation}
             </p>
@@ -107,10 +117,17 @@ export function Hero() {
               >
                 <FaLinkedin size={18} />
               </Link>
-            </div>
-          </div>
 
-          <div className="hidden lg:col-span-6 lg:flex justify-center items-center">
+            </div>
+
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: +100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="hidden lg:col-span-6 lg:flex justify-center items-center">
             <Image
               src={img}
               alt="Profile Picture"
@@ -118,9 +135,9 @@ export function Hero() {
               width={512}
               height={512}
             />
-          </div>
+          </motion.div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 }

@@ -15,7 +15,7 @@ export function StackCard({ situation, technologies }: StackCardProps) {
         <motion.div
             initial={{ opacity: 0, y: 50 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.8, ease: "linear" }} 
+            transition={{ duration: 1.0, ease: "linear" }} 
             viewport={{once: true}}
             className="bg-gray-800 p-6 rounded-lg shadow-lg"
         >
