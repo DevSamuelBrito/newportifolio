@@ -2,6 +2,7 @@
 import { useLanguage } from "@/app/providers/LanguageContext";
 import Image from "next/image";
 import img from "@/assets/images/developer.gif";
+import { motion } from "framer-motion";
 
 
 const translation = {
@@ -31,27 +32,41 @@ export function About() {
 
                 <div className="grid px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12 w-full">
 
-                    <div className="lg:col-span-12 text-center">
+                    <motion.div initial={{ y: 50, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-12 text-center">
                         <p className="text-3xl font-bold text-white relative inline-block">
                             {translation[language].title}
                             <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-6 flex justify-center items-center">
+                    <motion.div
+                        initial={{ x: -100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-6 flex justify-center items-center">
                         <Image
                             src={img}
                             alt="Profile Picture"
                             width={490}
                             height={490}
                         />
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0">
+                    <motion.div
+                        initial={{ x: 100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0">
                         <p className="mt-4 text-lg text-gray-500 ">
                             {translation[language].about}
                         </p>
-                    </div>
+                    </motion.div>
 
                 </div>
 

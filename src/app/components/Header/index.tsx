@@ -6,6 +6,7 @@ import brasilFlag from "@/assets/images/BR-flag.png";
 import usaFlag from "@/assets/images/USA-flag.png";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { HeroItem, NavBarItem } from "./components/NavBarItem";
+import { motion } from "framer-motion";
 
 const translation = {
   en: {
@@ -57,7 +58,10 @@ export const Navbar = () => {
 
 
   return (
-    <header className="fixed top-0 w-full z-50 h-14 lg:h-auto shadow-lg">
+    <motion.header initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-0 w-full z-50 h-14 lg:h-auto shadow-lg">
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#13202e]">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
 
@@ -65,7 +69,7 @@ export const Navbar = () => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-500 rounded-lg hover:bg-blue-900 focus:outline-none"
+            className="lg:hidden p-2 text-gray-500 rounded-lg focus:outline-none"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -99,6 +103,6 @@ export const Navbar = () => {
 
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 };
