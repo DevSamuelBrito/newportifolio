@@ -1,13 +1,14 @@
 "use client"
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaGoogle, FaLinkedin } from "react-icons/fa";
 import img from "@/assets/images/profile-pic.png";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
+import { SocialMediaButton } from "../Header/components/SocialMediaButton";
 
 
 const translation = {
@@ -86,37 +87,25 @@ export function Hero() {
 
               </span>
             </p>
-            <p className="mt-4 text-lg text-gray-500 ">
+            <p className="mt-4 text-lg text-gray-400 2xl:text-xl ">
               {translation[language].introducation}
             </p>
-            <p className="mt-2 text-lg text-gray-500 ">
+            <p className="mt-2 text-lg text-gray-400 2xl:text-xl">
               {translation[language].introducation2}
             </p>
             <div className="flex flex-row mt-6 items-center gap-3">
+
               <a
                 href="/documents/cv.pdf"
                 download="cv.pdf"
-                className="border-blue-500 border-2 rounded-full px-4 py-3 inline-flex items-center justify-center text-blue-500 font-bold
+                className="border-blue-500 border-2 rounded-full px-4 py-3 text-lg  inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
               >
                 {translation[language].cv}<Download size={18} className="ml-2" />
               </a>
-              <Link
-                href="https://github.com/DevSamuelBrito"
-                target="_blank"
-                className="border-blue-500 border-2 rounded-full p-3 inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-              >
-                <FaGithub size={18} />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/samuel-fava-de-brito/"
-                target="_blank"
-                className="border-blue-500 border-2 rounded-full p-3 inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-110"
-              >
-                <FaLinkedin size={18} />
-              </Link>
+
+              <SocialMediaButton href="https://github.com/DevSamuelBrito" Icon={FaGithub} />
+              <SocialMediaButton href="https://www.linkedin.com/in/samuel-fava-de-brito/" Icon={FaLinkedin} />
 
             </div>
 
@@ -131,7 +120,7 @@ export function Hero() {
             <Image
               src={img}
               alt="Profile Picture"
-              className="rounded-full w-64 h-64 object-cover shadow-xl"
+              className="rounded-full w-64 h-64 object-cover shadow-2xl 2xl:h-80 2xl:w-80"
               width={512}
               height={512}
             />
