@@ -24,7 +24,7 @@ const translations = {
         description2: "Adoro aprender com novas experiências e desafios. Seja para compartilhar ideias, pedir conselhos ou discutir projetos futuros, estou à disposição. Vamos trocar ideias e explorar novas possibilidades juntos!",
         description3: "Fique a Vontade para explorar meus repositorios, contribuir  com novas feautures, se conectar comigo no Linkedin, me mandar um email ou até mesmo me chamar para um café virtual.",
         developer: "Desenvolvido por Samuel Brito",
-        rights: "© 2025 Samuel Brito. Todos os direitos resevardo.",
+        rights: "© 2025 Samuel Brito. Todos os direitos reservado.",
         title2: "Entre em contato comigo"
 
     }
