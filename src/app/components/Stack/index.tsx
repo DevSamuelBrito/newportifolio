@@ -70,7 +70,7 @@ export function Stack() {
                         { icon: SiDocker, name: "Docker" },
                         { icon: SiNextdotjs, name: "Next JS 14" },
                         { icon: SiNodedotjs, name: "Node JS" },
-                        { icon: SiPostgresql, name: "PostgreeSql" },
+                        { icon: SiPostgresql, name: "Postgresql" },
                         { icon: SiZod, name: "Zod" },
                         { icon: SiLinux, name: "Linux" },
                     ]} />
