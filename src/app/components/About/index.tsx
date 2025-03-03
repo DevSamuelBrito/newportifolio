@@ -26,13 +26,16 @@ export function About() {
 
     return (
         <div>
+
             <section id="about" className="bg-gray-900 min-h-screen flex flex-col items-center pt-16">
+
                 <div className="grid px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12 w-full">
+
                     <div className="lg:col-span-12 text-center">
-                        <h2 className="text-3xl font-bold text-white relative inline-block">
+                        <p className="text-3xl font-bold text-white relative inline-block">
                             {translation[language].title}
                             <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
-                        </h2>
+                        </p>
                     </div>
 
                     <div className="lg:col-span-6 flex justify-center items-center">
@@ -43,13 +46,17 @@ export function About() {
                             height={490}
                         />
                     </div>
+
                     <div className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0">
                         <p className="mt-4 text-lg text-gray-500 ">
                             {translation[language].about}
                         </p>
                     </div>
+
                 </div>
+
             </section>
+
         </div>
     );
 }
