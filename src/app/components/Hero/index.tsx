@@ -1,9 +1,8 @@
 "use client"
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { FaGithub, FaGoogle, FaLinkedin } from "react-icons/fa";
-import img from "@/assets/images/profile-pic.png";
-import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import img from "@/assets/images/fotoEspelho.webp";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
@@ -120,7 +119,7 @@ export function Hero() {
             <Image
               src={img}
               alt="Profile Picture"
-              className="rounded-full w-64 h-64 object-cover shadow-2xl 2xl:h-80 2xl:w-80"
+              className=" w-96 h-96 rounded-md object-cover shadow-2xl"
               width={512}
               height={512}
             />
