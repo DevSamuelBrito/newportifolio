@@ -24,7 +24,7 @@ const translations = {
         description2: "Adoro aprender com novas experiências e desafios. Seja para compartilhar ideias, pedir conselhos ou discutir projetos futuros, estou à disposição. Vamos trocar ideias e explorar novas possibilidades juntos!",
         description3: "Fique a Vontade para explorar meus repositorios, contribuir  com novas feautures, se conectar comigo no Linkedin, me mandar um email ou até mesmo me chamar para um café virtual.",
         developer: "Desenvolvido por Samuel Brito",
-        rights: "© 2025 Samuel Brito. Todos os direitos resevador.",
+        rights: "© 2025 Samuel Brito. Todos os direitos resevardo.",
         title2: "Entre em contato comigo"
 
     }
@@ -41,12 +41,12 @@ export function Contact() {
                         <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
                     </p>
                     <div className="mt-5 my-auto">
-                        <p className="font-bold py-2 text-white text-xl 2xl:text-4xl">{translations[language].title2}</p>
-                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 2xl:text-xl 2xl:pt-6">{translations[language].description}</p>
-                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 2xl:text-xl 2xl:pt-6">
+                        <p className="font-bold py-2 text-white text-xl 2xl:text-2xl">{translations[language].title2}</p>
+                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 text-xl 2xl:pt-6">{translations[language].description}</p>
+                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 text-xl 2xl:pt-6">
                             {translations[language].description2}
                         </p>
-                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 2xl:text-xl 2xl:pt-6">
+                        <p className="text-gray-400 py-2 px-4 sm:px-12 md:px-32 text-xl 2xl:pt-6">
                             {translations[language].description3}
                         </p>
 
