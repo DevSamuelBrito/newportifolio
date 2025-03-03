@@ -13,7 +13,7 @@ export function NavBarItem({ href, id, label, activeSection, setActiveSection }:
         <li>
             <Link
                 href={href}
-                className={`block py-2 px-4 text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === id ? "text-blue-700 " : ""}`}
+                className={`block py-2 px-4 text-base 2xl:text-lg text-white rounded-lg font-bold hover:text-blue-500  transition-all duration-200 lg:p-0 ${activeSection === id ? "text-blue-700 " : ""}`}
                 onClick={(e) => {
                     e.preventDefault();
                     const element = document.getElementById(id);
@@ -54,7 +54,7 @@ export function HeroItem() {
                 element?.scrollIntoView({ behavior: "smooth" });
             }}
         >
-            <span className="self-center text-xl text-white font-semibold whitespace-nowrap">
+            <span className="self-center text-xl 2xl:text-2xl text-white font-semibold whitespace-nowrap">
                 Samuel Brito
             </span>
         </Link>
