@@ -5,8 +5,7 @@ import "./globals.css";
 const imageUrl = `${process.env.NEXT_PUBLIC_URL}/portifolio.png`;
 
 export const metadata: Metadata = {
-  title: "Samuel | Desenvolvedor Full-Stack",
-  icons:"",
+  title: "Portifolio | Samuel Brito",
   description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, MongoDB, Node.js, Prisma e PostgreSQL.",
   keywords: [
     "Samuel", "desenvolvedor", "portfólio", "Next.js", "TypeScript",
