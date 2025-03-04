@@ -1,22 +1,29 @@
 import type { Metadata } from "next";
 import { LanguageProvider } from "./providers/LanguageContext";
 import "./globals.css";
-import { useLanguage } from "./providers/LanguageContext";
+
+const imageUrl = `${process.env.NEXT_PUBLIC_URL}/portifolio.png`;
 
 export const metadata: Metadata = {
-  title: "Samuel - Portfólio",
-  description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, Next.js, TypeScript, Tailwind CSS, MongoDB, Node.js, Prisma, Postgresql",
-  keywords: ["Samuel", "desenvolvedor", "portfólio", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Prisma", "Postgresql", "front-end", "back-end", "full-stack"],
+  title: "Samuel | Desenvolvedor Full-Stack",
+  icons:"",
+  description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, MongoDB, Node.js, Prisma e PostgreSQL.",
+  keywords: [
+    "Samuel", "desenvolvedor", "portfólio", "Next.js", "TypeScript",
+    "Tailwind CSS", "Node.js", "MongoDB", "Prisma", "PostgreSQL",
+    "front-end", "back-end", "full-stack", "programador", "desenvolvimento web"
+  ],
   openGraph: {
-    title: "Portfólio de Samuel",
-    description: "Portfólio de Samuel, desenvolvedor full-stack, para você me conhecer e também os projetos desenvolvidos",
-    images: [`${process.env.NEXT_PUBLIC_URL}/profile-image.jpg`],
+    title: "Samuel | Desenvolvedor Full-Stack",
+    description: "Portfólio de Samuel, desenvolvedor full-stack. Conheça meus projetos e minha trajetória na área de tecnologia.",
+    type: "website",
+    images: [{ url: imageUrl, width: 1200, height: 600, alt: "Samuel | Desenvolvedor Full-Stack" }],
     url: "https://www.seusite.com"
   },
   robots: {
     index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -27,19 +34,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const { language } = useLanguage();
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-
-    <html lang={language}>
-      <meta name="description" content={metadata.description ?? ""} />
-      <meta name="keywords" content={Array.isArray(metadata.keywords) ? metadata.keywords.join(", ") : metadata.keywords ?? ""} />
-      <meta property="og:title" content={metadata.openGraph?.title } />
-      <meta property="og:description" content={metadata.openGraph?.description } />
-      <meta property="og:image" content={metadata.openGraph?.images[0]} />
-      <meta property="og:url" content={metadata.openGraph?.url?.toString() ?? ""} />
+    <html lang="pt-br">
       <body>
         <LanguageProvider>
           {children}
@@ -48,3 +45,4 @@ export default function RootLayout({
     </html>
   );
 }
+
