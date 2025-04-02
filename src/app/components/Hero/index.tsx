@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import { SocialMediaButton } from "../Header/components/SocialMediaButton";
+import { Photo } from "./components/Photo";
 
 
 const translation = {
@@ -116,14 +117,15 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
             className="hidden lg:col-span-6 lg:flex justify-center items-center">
-            <Image
+            <Photo />
+            {/* <Image
               src={img}
               alt="Profile Picture"
               className=" w-96 h-96 rounded-md object-cover shadow-2xl"
               width={512}
               height={512}
-            />
-          </motion.div>
+            /> */}
+          </motion.div> 
         </div>
       </section >
     </div >
