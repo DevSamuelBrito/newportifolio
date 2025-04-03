@@ -51,7 +51,7 @@ export function Services() {
                     <p className="text-3xl text-white font-bold">{translation[language].question}</p>
                     <p className="text-xl text-gray-400 mt-3">{translation[language].anwser}</p>
                 </div>
-                <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}

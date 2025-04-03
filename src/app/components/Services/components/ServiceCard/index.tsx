@@ -16,7 +16,7 @@ interface ServiceCardBackProps {
 }
 export function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
     return (
-        <div className="bg-gray-800 h-[450px] p-6 rounded-lg shadow-lg flex flex-col items-center ">
+        <div className="bg-gray-800 h-full flex-grow p-6 rounded-lg shadow-lg flex flex-col items-center ">
             <div className="h-24 w-32 flex items-center justify-center  ">
                 <Icon size={60} className="text-blue-500 mt-2" />
 
@@ -38,7 +38,7 @@ export function ServiceCard({ icon: Icon, title, description }: ServiceCardProps
 
 export function ServiceCardBack({ title, description }: ServiceCardBackProps) {
     return (
-        <div className="bg-gray-800 h-[450px] p-6 rounded-lg shadow-lg flex flex-col items-center ">
+        <div className="bg-gray-800 h-full flex-grow p-6 rounded-lg shadow-lg flex flex-col items-center ">
             <div className="flex gap-4 w-32 h-24 items-center justify-center">
                 <TbApi size={50} className="text-blue-500" />
                 <FaExchangeAlt size={30} className="text-blue-500" />
