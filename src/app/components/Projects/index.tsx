@@ -9,8 +9,9 @@ import webRepositorio from "@/assets/images/webRepositorios.png"
 import portifolio from "@/assets/images/portifolio.png";
 import portifolio1 from "@/assets/images/portifolio1.png";
 import calculator from "@/assets/images/calculator.png";
-import { FaReact } from "react-icons/fa";
-import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet } from "react-icons/si";
+import nextAuth from "@/assets/images/next-auth.png";
+import { FaReact, FaServer } from "react-icons/fa";
+import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet, SiAuth0, SiPostgresql, SiShadcnui, SiPostman } from "react-icons/si";
 import { ProjectCard } from "./components/ProjectCard";
 import { useLanguage } from "@/app/providers/LanguageContext";
 
@@ -39,8 +40,25 @@ export function Projects() {
 
 
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+          
+          <ProjectCard index={0} src={nextAuth} stack={[SiTypescript, SiNextdotjs, SiPostgresql,SiPrisma, SiTailwindcss, SiShadcnui, SiPostman]} post="" repository="https://github.com/DevSamuelBrito/next_auth.git" title="Next-Auth + Upload Images" descriptionBr={`Em Desenvolvimento!
 
-          <ProjectCard index={0} title="Portifolio" src={portifolio} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} post="https://www.linkedin.com/in/samuel-fava-de-brito/" repository="https://github.com/DevSamuelBrito/newportifolio.git" descriptionBr={`Este portfólio foi criado para demonstrar minhas habilidades como desenvolvedor full-stack, com foco em tecnologias modernas como Next.js, TypeScript, Tailwind CSS e Framer-Motion. Ao longo do desenvolvimento, utilizei componentes reutilizáveis, animações interativas e design responsivo para garantir uma ótima experiência de usuário, seja no desktop ou dispositivos móveis.
+          Estou trabalhando em um sistema com Next.js, NextAuth, Tailwind CSS, ShadCN UI e PostgreSQL para autenticação e armazenamento de usuários. A ideia é criar uma plataforma onde os usuários poderão fazer upload de imagens e publicar conteúdos.
+
+          Além disso, estou implementando um painel administrativo com controle de permissões, permitindo que administradores tenham acesso a dashboards exclusivos e funcionalidades específicas.
+
+          Em breve, trarei mais atualizações sobre o projeto! `}
+          descriptionEn={`
+            In Development!
+
+          I'm working on a system with Next.js, NextAuth, Tailwind CSS, ShadCN UI and PostgreSQL for user authentication and storage. The idea is to create a platform where users can upload images and publish content.
+
+          In addition, I'm implementing an administrative panel with permissions control, allowing administrators to have access to exclusive dashboards and specific features.
+
+          I'll be bringing more updates on the project soon!
+          `}/>
+
+          <ProjectCard index={1} title="Portifolio" src={portifolio} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} post="https://www.linkedin.com/in/samuel-fava-de-brito/" repository="https://github.com/DevSamuelBrito/newportifolio.git" descriptionBr={`Este portfólio foi criado para demonstrar minhas habilidades como desenvolvedor full-stack, com foco em tecnologias modernas como Next.js, TypeScript, Tailwind CSS e Framer-Motion. Ao longo do desenvolvimento, utilizei componentes reutilizáveis, animações interativas e design responsivo para garantir uma ótima experiência de usuário, seja no desktop ou dispositivos móveis.
 
           Futuramente também busco melhorar o design e a performance, garantindo uma interface intuitiva e otimizada com dados vindo diretamente de APIs.
 
@@ -50,7 +68,7 @@ export function Projects() {
 
           Feel free to explore the projects and, if you want to get in touch, use one of the social media options below.`} />
 
-          <ProjectCard index={1} title="Dev Controle" src={DevControle} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss, SiMongodb, SiPrisma, SiNodedotjs]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7295234873252888576-0_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/Dev_Controle.git" descriptionBr={`Dev_Controle é uma aplicação full-stack desenvolvida com Next.js para gerenciamento de usuários e chamados.
+          <ProjectCard index={2} title="Dev Controle" src={DevControle} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss, SiMongodb, SiPrisma, SiNodedotjs]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7295234873252888576-0_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/Dev_Controle.git" descriptionBr={`Dev_Controle é uma aplicação full-stack desenvolvida com Next.js para gerenciamento de usuários e chamados.
           O projeto inclui autenticação de usuários, cadastro e gerenciamento de clientes e criação de chamados vinculados.Além disso, qualquer pessoa pode abrir um chamado informando apenas o e-mail do cliente.
 
           💡 Criado para estudo de MongoDB, rotas de API e deploy de aplicações full-stack.`} descriptionEn={`Dev_Controle is a full-stack application developed with Next.js for user and ticket management.
@@ -58,7 +76,7 @@ export function Projects() {
 
           💡 Created for studying MongoDB, API routes, and deploying full-stack applications.`} />
 
-          <ProjectCard index={2} src={devmotors} stack={[SiTypescript, SiNextdotjs, SiReact, SiStyledcomponents]} title="Dev Motors" post="" repository="https://github.com/DevSamuelBrito/Dev_Motors" descriptionBr={`O DevMotors é um projeto desenvolvido para uma oficina especializada em manutenção de carros, localizada em São Paulo. Esse site foi construído utilizando Next.js e outras tecnologias modernas, garantindo uma aplicação rápida, responsiva e otimizada.Diferente de um site estático, o DevMotors consome informações diretamente do Cosmic JS, um CMS headless que permite gerenciar o conteúdo do site de forma dinâmica, sem precisar modificar o código. Principais Funcionalidades:
+          <ProjectCard index={3} src={devmotors} stack={[SiTypescript, SiNextdotjs, SiReact, SiStyledcomponents]} title="Dev Motors" post="" repository="https://github.com/DevSamuelBrito/Dev_Motors" descriptionBr={`O DevMotors é um projeto desenvolvido para uma oficina especializada em manutenção de carros, localizada em São Paulo. Esse site foi construído utilizando Next.js e outras tecnologias modernas, garantindo uma aplicação rápida, responsiva e otimizada.Diferente de um site estático, o DevMotors consome informações diretamente do Cosmic JS, um CMS headless que permite gerenciar o conteúdo do site de forma dinâmica, sem precisar modificar o código. Principais Funcionalidades:
 
           -  Página Inicial: Banner interativo com informações principais e chamada para ação.
           -  Seção de Serviços: Lista dos serviços oferecidos, com imagens ilustrativas.
@@ -80,11 +98,11 @@ export function Projects() {
 
           This project helped me understand how to connect a CMS to a dynamic website and the importance of separating application logic from content, allowing the site to be easily updated without code changes.`} />
 
-          <ProjectCard index={3} title="DalyGames" src={DalyGames} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} descriptionBr={`DalyGames é uma aplicação web desenvolvida com Next.js para explorar e gerenciar jogos. O projeto consome uma API REST para exibir detalhes dos jogos, incluindo título, descrição, imagem, plataformas e categorias. Algumas das principais funcionalidades incluem pesquisa de jogos, exibição de um jogo do dia e a possibilidade de favoritar títulos no perfil do usuário. Durante o desenvolvimento, foquei na criação de componentes reutilizáveis e no uso de renderização server-side e client-side para otimizar a experiência do usuário.`} descriptionEn={`DalyGames is a web application developed with Next.js for exploring and managing games. The project uses a REST API to display game details, including title, description, image, platforms, and categories. Some of the main features include searching for games, displaying a game of the day, and the ability to favorite titles on the user's profile. During development, I focused on creating reusable components and using server-side and client-side rendering to optimize the user experience. This project was a great opportunity to improve my knowledge of Next.js, TypeScript, REST APIs, and Tailwind CSS.`} post="https://www.linkedin.com/posts/samuel-fava-de-brito_boa-tarde-pessoal-hoje-quero-compartilhar-activity-7281731227349319680-TPVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/DalyGames.git" />
+          <ProjectCard index={4} title="DalyGames" src={DalyGames} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} descriptionBr={`DalyGames é uma aplicação web desenvolvida com Next.js para explorar e gerenciar jogos. O projeto consome uma API REST para exibir detalhes dos jogos, incluindo título, descrição, imagem, plataformas e categorias. Algumas das principais funcionalidades incluem pesquisa de jogos, exibição de um jogo do dia e a possibilidade de favoritar títulos no perfil do usuário. Durante o desenvolvimento, foquei na criação de componentes reutilizáveis e no uso de renderização server-side e client-side para otimizar a experiência do usuário.`} descriptionEn={`DalyGames is a web application developed with Next.js for exploring and managing games. The project uses a REST API to display game details, including title, description, image, platforms, and categories. Some of the main features include searching for games, displaying a game of the day, and the ability to favorite titles on the user's profile. During development, I focused on creating reusable components and using server-side and client-side rendering to optimize the user experience. This project was a great opportunity to improve my knowledge of Next.js, TypeScript, REST APIs, and Tailwind CSS.`} post="https://www.linkedin.com/posts/samuel-fava-de-brito_boa-tarde-pessoal-hoje-quero-compartilhar-activity-7281731227349319680-TPVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/DalyGames.git" />
 
-          <ProjectCard index={4} title="Tarefas NextJs" src={tarefasNextJs} stack={[SiTypescript, SiStyledcomponents, SiFirebase, SiReact, SiNextdotjs]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_ol%C3%A1-pessoal-espero-que-estejam-bem-recentemente-activity-7237147758741094404-m2mZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/Tarefas_NextJS.git" descriptionBr={`Este projeto é uma aplicação de lista de tarefas (To-Do List) desenvolvida com Next.js, focada em gerenciamento e compartilhamento de tarefas. A autenticação é feita via Google usando NextAuth, permitindo que usuários criem, editem e compartilhem tarefas com outras pessoas. Caso um usuário queira interagir com tarefas compartilhadas, ele também precisa estar autenticado. O sistema conta com um painel de controle, onde os usuários podem gerenciar suas tarefas e definir se elas serão públicas ou privadas. Além disso, implementei endpoints para gerenciar tarefas e comentários, utilizando Firebase para armazenar os dados. Esse projeto foi uma ótima oportunidade para aprofundar meus conhecimentos em Next.js, autenticação com NextAuth e integração com Firebase.`} descriptionEn={`This project is a To-Do List application developed with Next.js, focused on task management and sharing. Authentication is done via Google using NextAuth, allowing users to create, edit and share tasks with others. If a user wants to interact with shared tasks, he/she also needs to be authenticated. The system has a control panel, where users can manage their tasks and define whether they are public or private. In addition, I implemented endpoints to manage tasks and comments, using Firebase to store the data. This project was a great opportunity to deepen my knowledge of Next.js, authentication with NextAuth and integration with Firebase.`} />
+          <ProjectCard index={5} title="Tarefas NextJs" src={tarefasNextJs} stack={[SiTypescript, SiStyledcomponents, SiFirebase, SiReact, SiNextdotjs]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_ol%C3%A1-pessoal-espero-que-estejam-bem-recentemente-activity-7237147758741094404-m2mZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/Tarefas_NextJS.git" descriptionBr={`Este projeto é uma aplicação de lista de tarefas (To-Do List) desenvolvida com Next.js, focada em gerenciamento e compartilhamento de tarefas. A autenticação é feita via Google usando NextAuth, permitindo que usuários criem, editem e compartilhem tarefas com outras pessoas. Caso um usuário queira interagir com tarefas compartilhadas, ele também precisa estar autenticado. O sistema conta com um painel de controle, onde os usuários podem gerenciar suas tarefas e definir se elas serão públicas ou privadas. Além disso, implementei endpoints para gerenciar tarefas e comentários, utilizando Firebase para armazenar os dados. Esse projeto foi uma ótima oportunidade para aprofundar meus conhecimentos em Next.js, autenticação com NextAuth e integração com Firebase.`} descriptionEn={`This project is a To-Do List application developed with Next.js, focused on task management and sharing. Authentication is done via Google using NextAuth, allowing users to create, edit and share tasks with others. If a user wants to interact with shared tasks, he/she also needs to be authenticated. The system has a control panel, where users can manage their tasks and define whether they are public or private. In addition, I implemented endpoints to manage tasks and comments, using Firebase to store the data. This project was a great opportunity to deepen my knowledge of Next.js, authentication with NextAuth and integration with Firebase.`} />
 
-          <ProjectCard index={5} title="Web Repositorios" src={webRepositorio} stack={[SiReact, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/web-repositorios" descriptionBr={`Esse foi meu primeiro projeto completo usando React, criado para entender melhor a ferramenta e sua dinâmica com componentes, estados e rotas.
+          <ProjectCard index={6} title="Web Repositorios" src={webRepositorio} stack={[SiReact, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/web-repositorios" descriptionBr={`Esse foi meu primeiro projeto completo usando React, criado para entender melhor a ferramenta e sua dinâmica com componentes, estados e rotas.
 
           Com essa aplicação, você pode pesquisar por um repositório do GitHub e visualizar todas as issues abertas e fechadas associadas a ele. O projeto utiliza o React Router para navegação entre páginas e a API do GitHub para buscar os dados em tempo real.
           Principais funcionalidades:
@@ -107,7 +125,7 @@ export function Projects() {
 
           This project was a great learning experience for me, as it helped me understand how React, React Router and integration with external APIs work. 🚀`} />
 
-          <ProjectCard index={6} title="Pedra Papel e Tesoura JS" src={rockPaper} stack={[SiHtml5, SiCss3, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/Paper-Rock-Scissors" descriptionBr={`Esse projeto foi uma forma divertida de praticar JavaScript, onde desenvolvi um jogo clássico de Pedra, Papel e Tesoura que registra o placar do jogador contra a máquina.
+          <ProjectCard index={7} title="Pedra Papel e Tesoura JS" src={rockPaper} stack={[SiHtml5, SiCss3, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/Paper-Rock-Scissors" descriptionBr={`Esse projeto foi uma forma divertida de praticar JavaScript, onde desenvolvi um jogo clássico de Pedra, Papel e Tesoura que registra o placar do jogador contra a máquina.
 
           O diferencial desse projeto é que ele utiliza o LocalStorage do navegador para armazenar o número de vitórias, derrotas e empates, garantindo que o progresso do jogador não seja perdido ao recarregar a página.
           Principais funcionalidades:
@@ -130,7 +148,7 @@ export function Projects() {
 
           This project was a great exercise to deepen my knowledge of DOM manipulation, click events, and local storage in the browser.`} />
 
-          <ProjectCard index={7} title="Calculadora JS" src={calculator} stack={[SiHtml5, SiCss3, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/Calculator-JS" descriptionBr={`Essa calculadora foi um dos meus primeiros projetos ao começar a aprender JavaScript. Desenvolvida com HTML, CSS e JavaScript, ela me ajudou a entender conceitos fundamentais como manipulação do DOM, eventos de clique e lógica de programação.
+          <ProjectCard index={8} title="Calculadora JS" src={calculator} stack={[SiHtml5, SiCss3, SiJavascript]} post="" repository="https://github.com/DevSamuelBrito/Calculator-JS" descriptionBr={`Essa calculadora foi um dos meus primeiros projetos ao começar a aprender JavaScript. Desenvolvida com HTML, CSS e JavaScript, ela me ajudou a entender conceitos fundamentais como manipulação do DOM, eventos de clique e lógica de programação.
 
           Com uma interface simples e responsiva, a calculadora permite realizar operações matemáticas básicas, como adição, subtração, multiplicação e divisão, diretamente no navegador.
           Principais funcionalidades:
@@ -163,7 +181,7 @@ export function Projects() {
           It is worth mentioning that, at that time, we were in the LEARNING phase of these technologies, which is why the page is so ugly and this also made the project challenging, but also an excellent opportunity to consolidate and apply the knowledge acquired.`} />
 
 
-          <ProjectCard index={9} title="Portifolio" src={portifolio1} stack={[SiHtml5, SiCss3]} post="" repository="https://github.com/DevSamuelBrito/portfolio.git" descriptionBr={`Esse foi o meu primeiro portfólio, desenvolvido apenas com HTML e CSS, quando comecei a explorar o mundo do desenvolvimento web. O objetivo desse projeto era criar uma página simples e estruturada para apresentar um pouco sobre mim e meus primeiros trabalhos.
+          <ProjectCard index={8} title="Portifolio" src={portifolio1} stack={[SiHtml5, SiCss3]} post="" repository="https://github.com/DevSamuelBrito/portfolio.git" descriptionBr={`Esse foi o meu primeiro portfólio, desenvolvido apenas com HTML e CSS, quando comecei a explorar o mundo do desenvolvimento web. O objetivo desse projeto era criar uma página simples e estruturada para apresentar um pouco sobre mim e meus primeiros trabalhos.
           O que aprendi com esse projeto?
 
           -  Estruturação de páginas com HTML
