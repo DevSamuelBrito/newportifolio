@@ -58,7 +58,7 @@ export function Projects() {
           I'll be bringing more updates on the project soon!
           `}/>
 
-          <ProjectCard index={1} title="Portifolio" src={portifolio} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} post="https://www.linkedin.com/in/samuel-fava-de-brito/" repository="https://github.com/DevSamuelBrito/newportifolio.git" descriptionBr={`Este portfólio foi criado para demonstrar minhas habilidades como desenvolvedor full-stack, com foco em tecnologias modernas como Next.js, TypeScript, Tailwind CSS e Framer-Motion. Ao longo do desenvolvimento, utilizei componentes reutilizáveis, animações interativas e design responsivo para garantir uma ótima experiência de usuário, seja no desktop ou dispositivos móveis.
+          <ProjectCard index={1} title="Portifolio" src={portifolio} stack={[SiTypescript, FaReact, SiNextdotjs, SiTailwindcss]} post="https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-tailwindcss-framermotion-activity-7313680203027771392-L90L?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY" repository="https://github.com/DevSamuelBrito/newportifolio.git" descriptionBr={`Este portfólio foi criado para demonstrar minhas habilidades como desenvolvedor full-stack, com foco em tecnologias modernas como Next.js, TypeScript, Tailwind CSS e Framer-Motion. Ao longo do desenvolvimento, utilizei componentes reutilizáveis, animações interativas e design responsivo para garantir uma ótima experiência de usuário, seja no desktop ou dispositivos móveis.
 
           Futuramente também busco melhorar o design e a performance, garantindo uma interface intuitiva e otimizada com dados vindo diretamente de APIs.
 
