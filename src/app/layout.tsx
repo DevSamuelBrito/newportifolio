@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Portifolio | Samuel Brito",
   description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, MongoDB, Node.js, Prisma e PostgreSQL.",
   keywords: [
-    "Samuel", "desenvolvedor", "portfólio", "Next.js", "TypeScript",
+    "Samuel","Samuel Fava de Brito","DevSamuelBrito","Dev Samuel Fava de Brito","desenvolvedor", "portfólio", "Next.js", "TypeScript",
     "Tailwind CSS", "Node.js", "MongoDB", "Prisma", "PostgreSQL",
     "front-end", "back-end", "full-stack", "programador", "desenvolvimento web"
   ],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: "Portfólio de Samuel, desenvolvedor full-stack. Conheça meus projetos e minha trajetória na área de tecnologia.",
     type: "website",
     images: [{ url: imageUrl, width: 1200, height: 600, alt: "Samuel | Desenvolvedor Full-Stack" }],
-    url: "https://www.seusite.com"
+    url: "https://www.devsamuelbrito.com.br/"
   },
   robots: {
     index: true,
