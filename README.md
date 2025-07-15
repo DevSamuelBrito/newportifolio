@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfolio - Samuel Brito
 
-## Getting Started
+A place on the internet to call my own — welcome to my portfolio! 😁
 
-First, run the development server:
+##  Features
+
+   - 🌐 Internationalization – Supports both Portuguese and English
+   - 📱 Responsive Design – Works seamlessly across all devices
+   - ⚡ Optimized Performance – Built with Next.js 15 and Turbopack
+   - 🎨 Smooth Animations – Powered by Framer Motion for fluid transitions
+   - 🎯 Typewriter Effect – Typing animation on the hero section
+   - 📄 CV Download – Easily download my resume
+   - 🎨 Modern UI – Styled with Tailwind CSS
+
+## 🛠️ Technologies Used
+   -  Framework: Next.js 15 (App Router)
+   - Language: TypeScript
+   - Styling: Tailwind CSS + TailwindCSS Animated
+   - Animations: Framer Motion
+   - Icons: React Icons + Lucide React
+   - Effects: React Simple Typewriter
+   - Package Manager: pnpm
+
+## 📦 Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── About/           # About me section
+│   │   ├── Contact/         # Contact options
+│   │   ├── Header/          # Navbar with language toggle
+│   │   ├── Hero/            # Main hero section
+│   │   ├── Projects/        # Project showcase
+│   │   ├── Services/        # Services offered
+│   │   └── Stack/           # My tech stack
+│   └── providers/
+│       └── LanguageContext.tsx  # Context for internationalization
+├── assets/
+│   └── images/              # Images and assets
+└── lib/
+    └── utils.ts             # Utility functions
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+   -  Node.js 18+
+   - npm (recommended)
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/DevSamuelBrito/newportifolio.git
+cd newportifolio
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📱 Portfolio Sections
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **🏠 Hero** – Intro section with photo and basic info
+- **👨‍💻 About** - My background and journey
+- **🚀 Projects** - Projects I've built with detailed modals
+- **⚙️ Stack** - Technologies I master, have used, or am learning
+- **🛠️ Services** - Services I offer
+- **📞 Contact** - Contact details and social media links
 
-## Learn More
+## 🌐 Feautres
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Language Toggle:** Switch between English and Portuguese
+- **Smooth Scrolling:** Seamless navigation between sections
+- **Scroll to Top Button:** Quickly return to the top
+- **Project Modal:** Detailed project views
+- **CV Download:** Direct PDF resume download
+- **Social Links:** Easy access to my social platforms
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📊 Performance
 
-## Deploy on Vercel
+- ⚡ Next.js 15 with Turbopack for ultra-fast development
+- 🔄 App Router for optimized navigation
+- 📦 Automatic code splitting
+- 🖼️ Built-in image optimization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project is live! Check it out at:
+
+- **URL:** https://www.devsamuelbrito.com.br
+
+
+## 📝 License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## 📞 Contact
+
+- **GitHub:** [@DevSamuelBrito](https://github.com/DevSamuelBrito)
+- **LinkedIn:** [Samuel Fava de Brito](https://www.linkedin.com/in/samuel-fava-de-brito/)
+- **Email:** samuelbrito.dev@gmail.com
+
+---
+
