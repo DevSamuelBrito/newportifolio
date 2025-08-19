@@ -7,7 +7,7 @@ import { Services } from "./components/Services";
 import { Contact } from "./components/Contact";
 import ScrollToTopButton from "./components/ScrollTopButton";
 
-export default function Home() {
+export default function App() {
   return (
     <>
       <Navbar />

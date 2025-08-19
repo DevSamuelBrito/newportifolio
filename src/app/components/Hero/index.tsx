@@ -19,7 +19,7 @@ const translation = {
     introducation: (
       <>
         I'm a developer specialized in
-        <span className="font-bold text-blue-500"> Next.js, React, Typescript, MongoDB</span> and <span className="font-bold text-blue-500"> Prisma.</span> With a degree in <span className="font-bold text-blue-500"> Systems Analysis
+        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> With a degree in <span className="font-bold text-blue-500"> Systems Analysis
           and Development </span>from<span className="font-bold text-blue-500"> Fatec Rio Preto, </span> I'm always looking for
         challenges that allow me to evolve and create elegant digital
         experiences.
@@ -41,7 +41,7 @@ const translation = {
     introducation: (
       <>
         Sou um desenvolvedor especializado em
-        <span className="font-bold text-blue-500"> Next.js, React, Typescript, MongoDB</span> and <span className="font-bold text-blue-500"> Prisma.</span> Formado em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela <span className="font-bold text-blue-500"> Fatec Rio Preto,</span> estou sempre em busca de
+        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> Formado em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela <span className="font-bold text-blue-500"> Fatec Rio Preto,</span> estou sempre em busca de
         desafios que me permitam evoluir e criar modelos digitais elegantes
       </>
     ),

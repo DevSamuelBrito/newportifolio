@@ -89,7 +89,7 @@ export function Projects() {
 
           Unlike a static website, DevMotors consumes information directly from Cosmic JS, a headless CMS that allows you to manage the website content dynamically, without having to modify the code.Main Features:
 
-          -  Home Page: Interactive banner with main information and call to action.
+          -  App Page: Interactive banner with main information and call to action.
           -  Services Section: List of services offered, with illustrative images.
           -  Dynamic Post Page: Displays details of a specific post based on the URL slug.
           -  Contact: Displays phone number, email, address and opening hours.

@@ -1,7 +1,9 @@
 "use client";
 import { useLanguage } from "@/app/providers/LanguageContext";
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiJasmine, SiGit, SiGithub, SiSass, SiExpo,SiZod, SiLinux, SiJavascript, SiNestjs, SiAngular } from "react-icons/si";
+import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit,  SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiNestjs, SiExpress, SiJest,  SiVite,  } from "react-icons/si";
 import { StackCard } from "./components/StackCard";
+import { CSharpIcon } from "./components/Icons/csharpIcon";
+import { VscAzureDevops } from "react-icons/vsc";
 
 
 const translation = {
@@ -36,31 +38,31 @@ export function Stack() {
                     {/* Trabalhando Atualmente */}
 
                     <StackCard situation={translation[language].currently} technologies={[
-                        { icon: SiReact, name: "React" },
-                        { icon: SiNextdotjs, name: "Next JS 14" },
-                        { icon: SiTailwindcss, name: "TailwindCSS" },
                         { icon: SiTypescript, name: "Typescript" },
-                        { icon: SiPostgresql, name: "Postgresql" },
+                        { icon: SiReact, name: "React" },
+                        { icon: SiVite, name: "Vite" },
+                        { icon: SiTailwindcss, name: "TailwindCSS" },
+                        { icon: CSharpIcon, name: "C#" },
+                        { icon: SiDotnet, name: "Dotnet" },
+                        { icon: VscAzureDevops, name: "AzureDevOps" },
                         { icon: SiGit, name: "Git" },
-                        { icon: SiGithub, name: "GitHub" },
+
                     ]} />
 
+          
                     {/* Já Trabalhei */}
 
                     <StackCard situation={translation[language].worked} technologies={[
                         { icon: SiJavascript, name: "JavaScript" },
                         { icon: SiStyledcomponents, name: "Style in Js" },
-                        { icon: SiSass, name: "SASS" },                    
-                        { icon: SiJasmine, name: "Jasmine" },
-                        { icon: SiAngular, name: "Angular" },
-                        { icon: SiNestjs, name: "NestJs" },
+                        { icon: SiSass, name: "SASS" },
                         { icon: SiPython, name: "Python" },
-                        { icon: SiDotnet, name: "Dotnet" },
                         { icon: SiUnity, name: "Unity" },
                         { icon: SiExpo, name: "Expo" },
                         { icon: SiFlutter, name: "Flutter" },
                         { icon: SiFirebase, name: "Firebase" },
                         { icon: SiMysql, name: "MySQL" },
+                        { icon: SiMongodb, name: "MongoDB" },
                         { icon: SiAmazonwebservices, name: "AWS" },
                         { icon: SiOracle, name: "Oracle" },
                     ]} />
@@ -68,15 +70,17 @@ export function Stack() {
                     {/* Estou Estudando */}
 
                     <StackCard situation={translation[language].studying} technologies={[
-                        { icon: SiPrisma, name: "Prisma" },
-                        { icon: SiPostgresql, name: "Postgresql" },
-                        { icon: SiMongodb, name: "MongoDB" },
                         { icon: SiNextdotjs, name: "Next JS 14" },
                         { icon: SiNodedotjs, name: "Node JS" },
+                        { icon: SiExpress, name: "Express JS" },
+                        { icon: SiPostgresql, name: "Postgresql" },
+                        { icon: SiPrisma, name: "Prisma" },
                         { icon: SiZod, name: "Zod" },
-                        { icon: SiLinux, name: "Linux" },
+                        { icon: SiJest, name: "Jest" },
+                        { icon: SiLinux, name: "Linux/Wsl2" },
                         { icon: SiDocker, name: "Docker" },
                     ]} />
+                    
                 </div>
             </div>
         </section>
