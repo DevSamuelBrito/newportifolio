@@ -96,7 +96,7 @@ export function Hero() {
             <div className="flex flex-row mt-6 items-center gap-3">
 
               <a
-                href="/documents/cvSamuelBrito.pdf"
+                href="cvSamuelBrito.pdf"
                 download="cvSamuelBrito.pdf"
                 className="border-blue-500 border-2 rounded-full px-4 py-3 text-lg  inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
