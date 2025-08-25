@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import { LanguageProvider } from "./providers/LanguageContext";
 import "./globals.css";
 
-const imageUrl = `${process.env.NEXT_PUBLIC_URL}/portifolio.png`;
+const imageUrl = "https://www.devsamuelbrito.com.br/portifolio.png";
 
 export const metadata: Metadata = {
   title: "Portifolio | Samuel Brito",
-  description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, MongoDB, Node.js, Prisma e PostgreSQL.",
+  description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, Node.js, Prisma e PostgreSQL.",
   keywords: [
-    "Samuel","Samuel Fava de Brito","DevSamuelBrito","Dev Samuel Fava de Brito","desenvolvedor", "portfólio", "Next.js", "TypeScript",
-    "Tailwind CSS", "Node.js", "MongoDB", "Prisma", "PostgreSQL",
-    "front-end", "back-end", "full-stack", "programador", "desenvolvimento web"
+    "Samuel", "Samuel Fava de Brito", "DevSamuelBrito", "Dev Samuel Fava de Brito", "desenvolvedor", "portfólio", "Next.js", "TypeScript", "React", "JavaScript", "Tailwind CSS", "Node.js", "Prisma", "PostgreSQL",
+    "front-end", "back-end", "full-stack", "programador", "desenvolvimento web", "developer", "portfolio", "web developer", "software engineer", "coding",
+    "React developer", "JavaScript developer", "TypeScript expert", "frontend engineer",
+    "backend engineer", "full-stack developer", "web programming", "software development",
+    "hire developer", "remote developer", "Brazilian developer", "tech professional",
+    "code portfolio", "web solutions", "modern web apps", "React applications",
+    "responsive websites", "web services", "API specialist", "UI developer"
   ],
+
   openGraph: {
     title: "Samuel | Desenvolvedor Full-Stack",
     description: "Portfólio de Samuel, desenvolvedor full-stack. Conheça meus projetos e minha trajetória na área de tecnologia.",
