@@ -1,6 +1,6 @@
 "use client";
 import { useLanguage } from "@/app/providers/LanguageContext";
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit,  SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiNestjs, SiExpress, SiJest,  SiVite,  } from "react-icons/si";
+import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit,  SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiExpress, SiJest,  SiVite,  } from "react-icons/si";
 import { StackCard } from "./components/StackCard";
 import { CSharpIcon } from "./components/Icons/csharpIcon";
 import { VscAzureDevops } from "react-icons/vsc";
