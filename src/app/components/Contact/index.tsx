@@ -51,11 +51,11 @@ export function Contact() {
                         </p>
 
                         <div className="flex justify-center gap-8 sm:gap-10 mt-8 flex-wrap">
-                            <ContactIcon title={translations[language].location} Icon={MdLocationOn} href="https://g.co/kgs/aLZQvv8" />
+                            <ContactIcon title="Linkedin" Icon={FaLinkedin} href="https://www.linkedin.com/in/samuel-fava-de-brito/" />
+                            <ContactIcon title="WhatsApp" Icon={FaWhatsapp} href="https://api.whatsapp.com/send/?phone=5517982299393&text=Oi!+Vi+o+seu+portfólio+e+estou+curioso(a)+para+saber+mais+sobre+você+e+seus+projetos.+Vamos+conversar%3F+&type=phone_number&app_absent=0" />
                             <ContactIcon title="Github" Icon={FaGithub} href="https://github.com/DevSamuelBrito" />
                             <ContactIcon title="Email" Icon={MdEmail} href="mailto:samuelbrito.dev@gmail.com" />
-                            <ContactIcon title="WhatsApp" Icon={FaWhatsapp} href="https://api.whatsapp.com/send/?phone=5517982299393&text=Oi!+Vi+o+seu+portfólio+e+estou+curioso(a)+para+saber+mais+sobre+você+e+seus+projetos.+Vamos+conversar%3F+&type=phone_number&app_absent=0" />
-                            <ContactIcon title="Linkedin" Icon={FaLinkedin} href="https://www.linkedin.com/in/samuel-fava-de-brito/" />
+                            <ContactIcon title={translations[language].location} Icon={MdLocationOn} href="https://g.co/kgs/aLZQvv8" />
                         </div>
                     </div>
                 </div>
