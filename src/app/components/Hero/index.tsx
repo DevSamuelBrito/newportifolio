@@ -1,8 +1,6 @@
 "use client"
-import Image from "next/image";
 import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import img from "@/assets/images/fotoEspelho.webp";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
@@ -55,7 +53,11 @@ const translation = {
   }
 }
 
-export function Hero() {
+interface HeroProps {
+  onDownloadClick: () => void;
+}
+
+export function Hero({ onDownloadClick }: HeroProps) {
 
   const { language } = useLanguage();
   const [key, setKey] = useState(0);
@@ -100,6 +102,7 @@ export function Hero() {
                 download="cvSamuelBrito.pdf"
                 className="border-blue-500 border-2 rounded-full px-4 py-3 text-lg  inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
+                onClick={onDownloadClick}
               >
                 {translation[language].cv}<Download size={18} className="ml-2" />
               </a>
@@ -125,7 +128,7 @@ export function Hero() {
               width={512}
               height={512}
             /> */}
-          </motion.div> 
+          </motion.div>
         </div>
       </section >
     </div >
