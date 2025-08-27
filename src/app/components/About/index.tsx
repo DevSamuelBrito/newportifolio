@@ -9,21 +9,48 @@ const translation = {
     en: {
         title: "About Me",
         about: (
-            <>Throughout my journey, I graduated in <span className="font-bold text-blue-500"> Systems Analysis and Development</span> from Fatec Rio Preto and in parallel to that I took several complementary courses focused on technologies to improve myself more and more in this area. 
-            Currently I am developing in the web area mainly focusing on <span className="font-bold text-blue-500"> TypeScript, React, Next.js</span> and in addition, I am very focused on <span className="font-bold text-blue-500">backend</span> studying <span className="font-bold text-blue-500">Node.js</span> and <span className="font-bold text-blue-500">databases</span> such as <span className="font-bold text-blue-500">MongoDB + Prisma and Postgresql</span> to build complete applications. I am currently improving my skills through personal projects and constant study. <br></br>
-            My <span className="font-bold text-blue-500">goal</span> is to finally enter this market and <span className="font-bold text-blue-500">learn</span> from more experienced people so that they can help me evolve and apply knowledge that I see on the internet in practice.
-            My <span className="font-bold text-blue-500">dream</span> career is to collaborate on innovative projects, where I can apply my knowledge and continue to evolve as a developer.
+            <>
+                Throughout my journey, I graduated in
+                <span className="font-bold text-blue-500"> Systems Analysis and Development </span>
+                from Fatec Rio Preto and also took several additional courses to expand my knowledge of modern technologies used in the actual market. <br></br>
+                I currently work as a developer focusing on web applications using
+                <span className="font-bold text-blue-500"> TypeScript, React, and Next.js</span> on the front end,
+                in addition to working on the
+                <span className="font-bold text-blue-500"> back end</span> with
+                <span className="font-bold text-blue-500"> Node.js</span>,
+                <span className="font-bold text-blue-500"> ASP.NET</span>, and databases such as
+                <span className="font-bold text-blue-500"> PostgreSQL + Prisma</span> and
+                <span className="font-bold text-blue-500"> Firebird</span>,
+                building complete systems with a focus on performance and scalability. <br></br>
+                I'm constantly learning and evolving, striving to hone my skills through new projects, ongoing studies, and best development practices.
+                <br></br>
+                My <span className="font-bold text-blue-500">carrer goal</span> is to grow as a full-stack developer, applying my knowledge in projects that challenge me and contribute to my ongoing development.
             </>
         )
     },
     pt: {
         title: "Sobre mim",
         about: (
-            <>Ao longo da minha jornada, me formei em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela Fatec Rio Preto e em paralelo a isso fiz diversos cursos complementares voltados a tecnologias para me aprimorar cada vez mais nessa área. 
-            Atualmente estou me desenvolvendo na área web principalmente com foco <span className="font-bold text-blue-500"> TypeScript, React, Next.js</span> e além disso, estou com bastante foco no <span className="font-bold text-blue-500">backend</span> estudando <span className="font-bold text-blue-500">Node.js</span> e <span className="font-bold text-blue-500">bancos de dados</span> como <span className="font-bold text-blue-500">MongoDB + Prisma e Postgresql</span> para construir aplicações completas. Atualmente, estou aprimorando minhas habilidades por meio de projetos pessoais e estudo constante. <br></br> 
-            Meu <span className="font-bold text-blue-500">objetivo</span> é finalmente entrar para esse mercado e <span className="font-bold text-blue-500">aprender</span> com pessoas mais experientes para que eles possam me ajudar a evoluir e aplicar conhecimentos que vejo na internet em prática.
-            Meu <span className="font-bold text-blue-500">sonho</span> de carreira é colaborar em projetos inovadores, onde eu possa aplicar meus conhecimentos e continuar evoluindo como desenvolvedor.
+            <>
+                Ao longo da minha jornada, me formei em
+                <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas </span>
+                pela Fatec Rio Preto e também realizei diversos cursos complementares para expandir meu conhecimento em tecnologias modernas e utilizadas pelo mercado.
+                <br></br>
+                Atualmente trabalho como desenvolvedor com foco em aplicações web utilizando
+                <span className="font-bold text-blue-500"> TypeScript, React e Next.js</span> no front-end,
+                além de atuar no
+                <span className="font-bold text-blue-500"> back-end</span> com
+                <span className="font-bold text-blue-500"> Node.js</span>,
+                <span className="font-bold text-blue-500"> ASP.NET</span> e bancos de dados como
+                <span className="font-bold text-blue-500"> PostgreSQL + Prisma</span> e
+                <span className="font-bold text-blue-500"> Firebird</span>,
+                construindo sistemas completos, com foco em performance e escalabilidade.
+                <br></br>
+                Estou sempre em constante aprendizado e evolução, buscando aprimorar minhas habilidades por meio de novos projetos, estudos contínuos e boas práticas de desenvolvimento.
+                <br></br>
+                Meu <span className="font-bold text-blue-500">objetivo</span> de carreira é crescer como desenvolvedor full-stack, colocando meus conhecimentos em prática em projetos que me desafiem e contribuam para minha evolução constante.
             </>
+
         )
     }
 }

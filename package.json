@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.4.10",
     "lucide-react": "^0.475.0",
     "motion": "^12.4.3",
