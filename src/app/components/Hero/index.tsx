@@ -18,16 +18,12 @@ const translation = {
       <>
         I'm a developer specialized in
         <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> With a degree in <span className="font-bold text-blue-500"> Systems Analysis
-          and Development </span>from<span className="font-bold text-blue-500"> Fatec Rio Preto, </span> I'm always looking for
-        challenges that allow me to evolve and create elegant digital
-        experiences.
+          and Development </span>from<span className="font-bold text-blue-500"> Fatec Rio Preto, </span> I constantly seek challenges that make me grow and create high-impact digital applications.
       </>
     ),
     introducation2: (
       <>
-        Currently, I am dedicating myself to studies and personal projects
-        in search of new <span className="font-bold text-blue-500"> challenges</span> to improve my skills and become an
-        increasingly better developer.
+        Currently, I've been honing my <span className="font-bold text-blue-500">skills</span> through hands-on projects and ongoing <span className="font-bold text-blue-500">experiences</span>, always striving to evolve as a <span className="font-bold text-blue-500">Full-Stack Developer.</span>
       </>
     )
 
@@ -39,15 +35,12 @@ const translation = {
     introducation: (
       <>
         Sou um desenvolvedor especializado em
-        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> Formado em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela <span className="font-bold text-blue-500"> Fatec Rio Preto,</span> estou sempre em busca de
-        desafios que me permitam evoluir e criar modelos digitais elegantes
+        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> Formado em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela <span className="font-bold text-blue-500"> Fatec Rio Preto,</span> busco constantemente desafios que me façam crescer e criar aplicações digitais de alto impacto.
       </>
     ),
     introducation2: (
       <>
-        Atualmente, estou me dedicando aos estudos e projetos pessoais
-        em busca de novos <span className="font-bold text-blue-500"> desafios</span> para aprimorar minhas habilidades e me tornar um
-        desenvolvedor cada vez melhor.
+        Atualmente, venho aprimorando minhas <span className="font-bold text-blue-500">habilidades</span> por meio de projetos práticos e <span className="font-bold text-blue-500">experiências</span> contínuas, sempre buscando evoluir como <span className="font-bold text-blue-500"> Desenvolvedor Full-Stack.</span>
       </>
     )
   }
