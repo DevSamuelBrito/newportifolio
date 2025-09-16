@@ -1,3 +1,4 @@
+import packageJson from '../../../../package.json';
 interface FooterProps {
     rights: string;
     developer: string;
@@ -10,6 +11,7 @@ export function Footer({ rights, developer }: FooterProps) {
             <div className="max-w-screen-xl mx-auto px-4 text-center">
                 <p className="text-gray-400 mb-4 mt-1">{rights}</p>
                 <p className="text-gray-400">{developer}</p>
+                <p className="text-gray-400">v.{packageJson.version}</p>
             </div>
         </footer>
     );
