@@ -112,7 +112,7 @@ export function Hero({ onDownloadClick }: HeroProps) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
-            className="hidden lg:col-span-6 lg:flex justify-center items-center">
+            className="hidden lg:col-span-6 lg:flex justify-center items-center xl:justify-end">
             <Photo />
             {/* <Image
               src={img}
