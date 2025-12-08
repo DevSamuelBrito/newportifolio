@@ -89,6 +89,7 @@ export function About() {
                         alt="Profile Picture"
                         width={512}
                         height={512}
+                        unoptimized
                     />
                 </motion.div>
 
