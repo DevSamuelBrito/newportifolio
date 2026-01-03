@@ -1,6 +1,6 @@
 "use client"
 import { Hero } from "./components/Hero";
-import { Navbar } from "./components/Header";
+import { Navbar } from "./components/Navbar";
 import { Projects } from "./components/Projects";
 import { Stack } from "./components/Stack";
 import { About } from "./components/About";

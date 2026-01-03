@@ -27,7 +27,7 @@ const translation = {
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { language } = useLanguage(); // aqui eu pego o contexto do idioma
+  const { language } = useLanguage(); 
 
   const [activeSection, setActiveSection] = useState<string>("");
 

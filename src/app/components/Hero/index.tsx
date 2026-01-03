@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
-import { SocialMediaButton } from "../Header/components/SocialMediaButton";
+import { SocialMediaButton } from "../Navbar/components/SocialMediaButton";
 import { Photo } from "./components/Photo";
 
 
