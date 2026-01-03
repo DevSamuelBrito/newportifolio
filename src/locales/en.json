@@ -1,4 +1,12 @@
 {
+  "hero": {
+    "hello": "Hello I'm",
+    "role": "Developer Full Stack",
+    "cv": "Get Resume",
+    "introducation": " I'm a developer specialized in {{ Next.js, React, Typescript, Postgres }} and  {{ Prisma. }} With a degree in  {{ Systems Analysis and Development  }}from {{ Fatec Rio Preto,  }} I constantly seek challenges that make me grow and create high-impact digital applications.",
+    "introducation2": " Currently, I've been honing my {{ skills }} through hands-on projects and ongoing {{ experiences }}, always striving to evolve as a {{ Full-Stack Developer. }}"
+  },
+
   "navbar": {
     "services": "Services",
     "about": "About me",

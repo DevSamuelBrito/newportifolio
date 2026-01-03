@@ -1,4 +1,11 @@
 {
+  "hero": {
+    "hello": "Olá, eu sou",
+    "role": "Desenvolvedor Full Stack",
+    "cv": "Baixar Curriculo",
+    "introducation": "Sou um desenvolvedor especializado em {{ Next.js, React, Typescript, Postgres}} and {{ Prisma.}} Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto, }} busco constantemente desafios que me façam crescer e criar aplicações digitais de alto impacto.",
+    "introducation2": "Atualmente, venho aprimorando minhas {{ habilidades }} por meio de projetos práticos e {{ experiências }} contínuas, sempre buscando evoluir como {{ Desenvolvedor Full-Stack. }}"
+  },
   "navbar": {
     "services": "Serviços",
     "about": "Sobre mim",

@@ -1,50 +1,32 @@
 "use client"
-import { Download } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+//react
 import { useEffect, useState } from "react";
+
+//icons
+import { Download } from "lucide-react";
+
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+//context
 import { useLanguage } from "@/providers/LanguageContext";
+
+//typewriter
 import { Typewriter } from "react-simple-typewriter";
+
+//animation
 import { motion } from "framer-motion";
+
+//components
 import { SocialMediaButton } from "../Navbar/components/SocialMediaButton";
+
 import { Photo } from "./components/Photo";
 
+//utils
+import { parseHighlight } from "@/utils/parseHighlight";
 
-const translation = {
-  en: {
-    hello: "Hello I'm",
-    role: "Developer Full Stack",
-    cv: "Get Resume",
-    introducation: (
-      <>
-        I'm a developer specialized in
-        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> With a degree in <span className="font-bold text-blue-500"> Systems Analysis
-          and Development </span>from<span className="font-bold text-blue-500"> Fatec Rio Preto, </span> I constantly seek challenges that make me grow and create high-impact digital applications.
-      </>
-    ),
-    introducation2: (
-      <>
-        Currently, I've been honing my <span className="font-bold text-blue-500">skills</span> through hands-on projects and ongoing <span className="font-bold text-blue-500">experiences</span>, always striving to evolve as a <span className="font-bold text-blue-500">Full-Stack Developer.</span>
-      </>
-    )
-
-  },
-  pt: {
-    hello: "Olá, eu sou",
-    role: "Desenvolvedor Full Stack",
-    cv: "Baixar Curriculo",
-    introducation: (
-      <>
-        Sou um desenvolvedor especializado em
-        <span className="font-bold text-blue-500"> Next.js, React, Typescript, Postgres</span> and <span className="font-bold text-blue-500"> Prisma.</span> Formado em <span className="font-bold text-blue-500"> Análise e Desenvolvimento de Sistemas</span> pela <span className="font-bold text-blue-500"> Fatec Rio Preto,</span> busco constantemente desafios que me façam crescer e criar aplicações digitais de alto impacto.
-      </>
-    ),
-    introducation2: (
-      <>
-        Atualmente, venho aprimorando minhas <span className="font-bold text-blue-500">habilidades</span> por meio de projetos práticos e <span className="font-bold text-blue-500">experiências</span> contínuas, sempre buscando evoluir como <span className="font-bold text-blue-500"> Desenvolvedor Full-Stack.</span>
-      </>
-    )
-  }
-}
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface HeroProps {
   onDownloadClick: () => void;
@@ -54,6 +36,8 @@ export function Hero({ onDownloadClick }: HeroProps) {
 
   const { language } = useLanguage();
   const [key, setKey] = useState(0);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     setKey(prevKey => prevKey + 1);
@@ -74,19 +58,19 @@ export function Hero({ onDownloadClick }: HeroProps) {
           >
 
             <p className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
-              {translation[language].hello} <br />
+              {t.hero.hello} <br />
               <span className="text-blue-500">
 
-                <Typewriter key={key} words={["Samuel Brito", translation[language].role]} loop={true} cursor
+                <Typewriter key={key} words={["Samuel Brito", t.hero.role]} loop={true} cursor
                   cursorStyle="|" typeSpeed={50} delaySpeed={2000} deleteSpeed={100} />
 
               </span>
             </p>
             <p className="mt-4 text-lg text-gray-400 2xl:text-xl ">
-              {translation[language].introducation}
+              {parseHighlight(t.hero.introducation)}
             </p>
             <p className="mt-2 text-lg text-gray-400 2xl:text-xl">
-              {translation[language].introducation2}
+              {parseHighlight(t.hero.introducation2)}
             </p>
             <div className="flex flex-row mt-6 items-center gap-3">
 
@@ -97,11 +81,17 @@ export function Hero({ onDownloadClick }: HeroProps) {
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
                 onClick={onDownloadClick}
               >
-                {translation[language].cv}<Download size={18} className="ml-2" />
+                {t.hero.cv}<Download size={18} className="ml-2" />
               </a>
 
-              <SocialMediaButton href="https://github.com/DevSamuelBrito" Icon={FaGithub} />
-              <SocialMediaButton href="https://www.linkedin.com/in/samuel-fava-de-brito/" Icon={FaLinkedin} />
+              <SocialMediaButton
+                href="https://github.com/DevSamuelBrito"
+                Icon={FaGithub}
+              />
+              <SocialMediaButton
+                href="https://www.linkedin.com/in/samuel-fava-de-brito/"
+                Icon={FaLinkedin}
+              />
 
             </div>
 
@@ -112,16 +102,11 @@ export function Hero({ onDownloadClick }: HeroProps) {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
-            className="hidden lg:col-span-6 lg:flex justify-center items-center xl:justify-end">
+            className="hidden lg:col-span-6 lg:flex justify-center items-center xl:justify-end"
+          >
             <Photo />
-            {/* <Image
-              src={img}
-              alt="Profile Picture"
-              className=" w-96 h-96 rounded-md object-cover shadow-2xl"
-              width={512}
-              height={512}
-            /> */}
           </motion.div>
+
         </div>
       </section >
     </div >
