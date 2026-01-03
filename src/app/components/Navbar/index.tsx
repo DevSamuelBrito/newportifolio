@@ -23,9 +23,9 @@ import { motion } from "framer-motion";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export const Navbar = () => {
- 
+
   const [isOpen, setIsOpen] = useState(false);
- 
+
 
   const { t } = useTranslation();
 
@@ -37,12 +37,8 @@ export const Navbar = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const link = document.querySelector(`a[href="#${entry.target.id}"]`);
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            link?.classList.add("text-blue-700");
-          } else {
-            link?.classList.remove("text-blue-700");
           }
         });
       },
@@ -95,11 +91,11 @@ export const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 font-medium ">
 
-              <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection="about" setActiveSection={setActiveSection} />
-              <NavBarItem href="#projects" id="projects" label={t.navbar.projects} activeSection="projects" setActiveSection={setActiveSection} />
-              <NavBarItem href="#stack" id="stack" label={t.navbar.stack} activeSection="stack" setActiveSection={setActiveSection} />
-              <NavBarItem href="#services" id="services" label={t.navbar.services} activeSection="services" setActiveSection={setActiveSection} />
-              <NavBarItem href="#contact" id="contact" label={t.navbar.contact} activeSection="contact" setActiveSection={setActiveSection} />
+              <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#projects" id="projects" label={t.navbar.projects} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#stack" id="stack" label={t.navbar.stack} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#services" id="services" label={t.navbar.services} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#contact" id="contact" label={t.navbar.contact} activeSection={activeSection} setActiveSection={setActiveSection} />
 
               {renderFlags()}
 
