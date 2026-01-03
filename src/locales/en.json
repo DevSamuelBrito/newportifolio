@@ -1,4 +1,11 @@
 {
+  "navbar": {
+    "services": "Services",
+    "about": "About me",
+    "projects": "Projects",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
   "contact": {
     "title": "Contact",
     "description": "I’m always open to new connections and opportunities. If you have any questions, would like to discuss an idea, or are looking for a partnership, I’d be happy to chat. Feel free to message me on my social media channels below, and I’ll do my best to respond promptly.",

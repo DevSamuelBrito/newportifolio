@@ -1,4 +1,11 @@
 {
+  "navbar": {
+    "services": "Serviços",
+    "about": "Sobre mim",
+    "projects": "Projetos",
+    "stack": "Tecnologias",
+    "contact": "Contato"
+  },
   "contact": {
     "title": "Contato",
     "description": "Estou sempre aberto a novas conexões e oportunidades. Se você tem alguma dúvida, gostaria de discutir uma ideia ou está em busca de uma parceria, ficarei feliz em conversar. Sinta-se à vontade para me mandar uma mensagem pelas minhas redes sociais abaixo, e farei o possível para responder rapidamente.",
