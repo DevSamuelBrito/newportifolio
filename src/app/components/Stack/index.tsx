@@ -1,43 +1,40 @@
 "use client";
-import { useLanguage } from "@/providers/LanguageContext";
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit, SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiExpress, SiJest, SiVite, } from "react-icons/si";
+
+//components
 import { StackCard } from "./components/StackCard";
-import { CSharpIcon } from "./components/Icons/csharpIcon";
+
+//icons
+import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit, SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiExpress, SiJest, SiVite, } from "react-icons/si";
+
 import { VscAzureDevops } from "react-icons/vsc";
 
+import { CSharpIcon } from "./components/Icons/csharpIcon";
 
-const translation = {
-    en: {
-        Stack: "Stack",
-        currently: "Currently working",
-        worked: "I've already worked",
-        studying: "I am studying",
-    },
-    pt: {
-        Stack: "Tecnologias",
-        currently: "Trabalhando Atualmente",
-        worked: "Já trabalhei",
-        studying: "Estou Estudando",
-    },
-};
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
+
 
 export function Stack() {
-    const { language } = useLanguage();
+
+    const { t } = useTranslation();
 
     return (
         <section id="stack" className="bg-gray-900 min-h-screen pt-14">
+
             <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit">
+
                 <div className="text-center">
                     <h2 className="text-3xl font-bold text-white relative inline-block">
-                        {translation[language].Stack}
+                        {t.stack.title}
                         <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
                     </h2>
                 </div>
+
                 <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     {/* Trabalhando Atualmente */}
 
-                    <StackCard situation={translation[language].currently} technologies={[
+                    <StackCard situation={t.stack.currently} technologies={[
                         { icon: SiTypescript, name: "Typescript" },
                         { icon: SiReact, name: "React" },
                         { icon: SiVite, name: "Vite" },
@@ -52,7 +49,7 @@ export function Stack() {
 
                     {/* Já Trabalhei */}
 
-                    <StackCard situation={translation[language].worked} technologies={[
+                    <StackCard situation={t.stack.worked} technologies={[
                         { icon: SiJavascript, name: "JavaScript" },
                         { icon: SiStyledcomponents, name: "Style in Js" },
                         { icon: SiSass, name: "SASS" },
@@ -69,7 +66,7 @@ export function Stack() {
 
                     {/* Estou Estudando */}
 
-                    <StackCard situation={translation[language].studying} technologies={[
+                    <StackCard situation={t.stack.studying} technologies={[
                         { icon: SiNextdotjs, name: "Next JS 14" },
                         { icon: SiNodedotjs, name: "Node JS" },
                         { icon: SiExpress, name: "Express JS" },
@@ -83,6 +80,7 @@ export function Stack() {
 
                 </div>
             </div>
+
         </section>
     );
 }

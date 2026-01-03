@@ -25,6 +25,12 @@
     "showMore": "Show more projects",
     "showLess": "Show less"
   },
+  "stack": {
+    "title": "Stack",
+    "currently": "Currently working",
+    "worked": "I've already worked",
+    "studying": "I am studying"
+  },
   "contact": {
     "title": "Contact",
     "description": "I’m always open to new connections and opportunities. If you have any questions, would like to discuss an idea, or are looking for a partnership, I’d be happy to chat. Feel free to message me on my social media channels below, and I’ll do my best to respond promptly.",
