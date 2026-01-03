@@ -2,7 +2,7 @@
 import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import { SocialMediaButton } from "../Header/components/SocialMediaButton";

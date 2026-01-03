@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LanguageProvider } from "./providers/LanguageContext";
+import { LanguageProvider } from "../providers/LanguageContext";
 import "./globals.css";
 
 const imageUrl = "https://www.devsamuelbrito.com.br/portifolio.png";

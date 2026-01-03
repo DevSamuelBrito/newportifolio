@@ -2,7 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import { IconType } from "react-icons";
 import { IoCloseCircle } from "react-icons/io5";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

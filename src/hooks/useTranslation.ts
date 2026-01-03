@@ -1,12 +1,11 @@
 //providers
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 
 //en
 import enTranslations from "@/locales/en.json";
 
 //pt br
 import ptTranslations from "@/locales/pt.json";
-
 
 const translations = {
   en: enTranslations,
@@ -15,8 +14,8 @@ const translations = {
 
 export function useTranslation() {
   const { language } = useLanguage();
-  
-  const t = translations[language]; 
-  
+
+  const t = translations[language];
+
   return { t, language };
 }

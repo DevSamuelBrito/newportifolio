@@ -1,6 +1,6 @@
 "use client"
 import { ProjectCard } from "./components/ProjectCard";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { ProjectsData } from "./data/projectsData";

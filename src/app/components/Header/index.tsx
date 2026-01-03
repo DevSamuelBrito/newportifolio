@@ -4,7 +4,7 @@ import { ButtonTranslate } from "./components/ButtonTranslate";
 import { Menu, X } from "lucide-react";
 import brasilFlag from "@/assets/images/BR-flag.png";
 import usaFlag from "@/assets/images/USA-flag.png";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import { HeroItem, NavBarItem } from "./components/NavBarItem";
 import { motion } from "framer-motion";
 

@@ -1,5 +1,5 @@
 "use client"
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import { FaLaptopCode, FaCode, } from "react-icons/fa";
 import { ServiceCard, ServiceCardBack } from "./components/ServiceCard";
 import { motion } from "framer-motion";
@@ -56,7 +56,7 @@ export function Services() {
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }} 
+                        viewport={{ once: true }}
                     >
                         <ServiceCard icon={FaLaptopCode} title={translation[language].titleWeb} description={translation[language].descriptionWeb} />
                     </motion.div>
@@ -65,7 +65,7 @@ export function Services() {
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }} 
+                        viewport={{ once: true }}
                     >
                         <ServiceCardBack title={translation[language].titleBack} description={translation[language].descriptionBack} />
                     </motion.div>
@@ -74,7 +74,7 @@ export function Services() {
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }} 
+                        viewport={{ once: true }}
                     >
                         <ServiceCard icon={FaCode} title={translation[language].titleTargets} description={translation[language].descriptionTargets} />
                     </motion.div>

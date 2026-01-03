@@ -1,5 +1,5 @@
 "use client"
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import Image from "next/image";
 import img from "@/assets/images/developer.gif";
 import { motion } from "framer-motion";

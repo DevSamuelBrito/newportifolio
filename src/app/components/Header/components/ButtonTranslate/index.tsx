@@ -1,5 +1,5 @@
 "use client";
-import { Language, useLanguage } from "@/app/providers/LanguageContext";
+import { Language, useLanguage } from "@/providers/LanguageContext";
 import Image, { StaticImageData } from "next/image";
 
 
