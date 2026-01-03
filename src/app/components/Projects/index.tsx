@@ -1,29 +1,27 @@
 "use client"
-import { ProjectCard } from "./components/ProjectCard";
-import { useLanguage } from "@/providers/LanguageContext";
+
+//react
 import { useState } from "react";
+
+//icons
 import { ChevronDown, ChevronUp } from "lucide-react";
+
+//data
 import { ProjectsData } from "./data/projectsData";
 
-const translation = {
-  en: {
-    projects: "Projects",
-    showMore: "Show more projects",
-    showLess: "Show less"
-  },
-  pt: {
-    projects: "Projetos",
-    showMore: "Ver mais projetos",
-    showLess: "Ver menos"
-  }
-}
+//components
+import { ProjectCard } from "./components/ProjectCard";
+
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
 
 export function Projects() {
-  const { language } = useLanguage();
+
   const [showAll, setShowAll] = useState(false);
 
-  const projectsData = ProjectsData;
+  const { t } = useTranslation();
 
+  const projectsData = ProjectsData;
 
   const displayedProjects = showAll
     ? projectsData.map(project => (
@@ -60,7 +58,7 @@ export function Projects() {
 
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white relative inline-block">
-            {translation[language].projects}
+            {t.projects.title}
             <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
           </h2>
         </div>
@@ -69,13 +67,14 @@ export function Projects() {
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {displayedProjects}
         </div>
+
         {projectsData.length > 6 && (
           <div key={projectsData.length} className="flex justify-center mt-10">
             <button
               onClick={() => setShowAll(!showAll)}
               className="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 flex items-center gap-2"
             >
-              {showAll ? translation[language].showLess : translation[language].showMore}
+              {showAll ? t.projects.showLess : t.projects.showMore}
               {showAll ? (
                 <ChevronUp size={20} className="text-current" />
               ) : (
@@ -85,6 +84,7 @@ export function Projects() {
             </button>
           </div>
         )}
+
       </div>
     </section>
   );

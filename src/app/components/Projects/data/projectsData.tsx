@@ -1,16 +1,31 @@
+//images
 import DevControle from "@/assets/images/devcontrole.png";
+
 import DalyGames from "@/assets/images/dalyGames.jpg";
+
 import tarefasNextJs from "@/assets/images/tarefasNextJs.jpg";
-import devmotors from "@/assets/images/devmotors.png"
+
+import devmotors from "@/assets/images/devmotors.png";
+
 import intergeek from "@/assets/images/intergeek.png";
+
 import rockPaper from "@/assets/images/paperTrouserRock.png";
-import webRepositorio from "@/assets/images/webRepositorios.png"
+
+import webRepositorio from "@/assets/images/webRepositorios.png";
+
 import portifolio from "@/assets/images/portifolio.png";
+
 import portifolio1 from "@/assets/images/portifolio1.png";
+
 import calculator from "@/assets/images/calculator.png";
+
 import nextAuth from "@/assets/images/next-auth.png";
+
+//icons
 import { FaReact } from "react-icons/fa";
+
 import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet, SiPostgresql, SiShadcnui, SiPostman } from "react-icons/si";
+
 export const ProjectsData = [
     {
         id: "nextAuth",

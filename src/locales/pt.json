@@ -1,4 +1,11 @@
 {
+  "navbar": {
+    "services": "Serviços",
+    "about": "Sobre mim",
+    "projects": "Projetos",
+    "stack": "Tecnologias",
+    "contact": "Contato"
+  },
   "hero": {
     "hello": "Olá, eu sou",
     "role": "Desenvolvedor Full Stack",
@@ -13,12 +20,10 @@
     "about3": "Estou sempre em constante aprendizado e evolução, buscando aprimorar minhas habilidades por meio de novos projetos, estudos contínuos e boas práticas de desenvolvimento.",
     "about4": "Meu {{ objetivo }} de carreira é crescer como desenvolvedor full-stack, colocando meus conhecimentos em prática em projetos que me desafiem e contribuam para minha evolução constante."
   },
-  "navbar": {
-    "services": "Serviços",
-    "about": "Sobre mim",
-    "projects": "Projetos",
-    "stack": "Tecnologias",
-    "contact": "Contato"
+  "projects": {
+    "title": "Projetos",
+    "showMore": "Ver mais projetos",
+    "showLess": "Ver menos"
   },
   "contact": {
     "title": "Contato",

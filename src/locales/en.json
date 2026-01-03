@@ -1,4 +1,11 @@
 {
+  "navbar": {
+    "services": "Services",
+    "about": "About me",
+    "projects": "Projects",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
   "hero": {
     "hello": "Hello I'm",
     "role": "Developer Full Stack",
@@ -13,12 +20,10 @@
     "about3": "I'm constantly learning and evolving, striving to hone my skills through new projects, ongoing studies, and best development practices.",
     "about4": "My {{ career goal }} is to grow as a full-stack developer, applying my knowledge in projects that challenge me and contribute to my ongoing development."
   },
-  "navbar": {
-    "services": "Services",
-    "about": "About me",
-    "projects": "Projects",
-    "stack": "Stack",
-    "contact": "Contact"
+  "projects": {
+    "title": "Projects",
+    "showMore": "Show more projects",
+    "showLess": "Show less"
   },
   "contact": {
     "title": "Contact",
