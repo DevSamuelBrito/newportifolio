@@ -6,7 +6,13 @@
     "introducation": " I'm a developer specialized in {{ Next.js, React, Typescript, Postgres }} and  {{ Prisma. }} With a degree in  {{ Systems Analysis and Development  }}from {{ Fatec Rio Preto,  }} I constantly seek challenges that make me grow and create high-impact digital applications.",
     "introducation2": " Currently, I've been honing my {{ skills }} through hands-on projects and ongoing {{ experiences }}, always striving to evolve as a {{ Full-Stack Developer. }}"
   },
-
+  "about": {
+    "title": "About Me",
+    "about": "Throughout my journey, I graduated in {{ Systems Analysis and Development }} from Fatec Rio Preto and also took several additional courses to expand my knowledge of modern technologies used in the actual market.",
+    "about2": "I currently work as a developer focusing on web applications using {{ TypeScript, React, and Next.js }} on the front end, in addition to working on the {{ back end }} with {{ Node.js }}, {{ ASP.NET }}, and databases such as {{ PostgreSQL + Prisma }} and {{ Firebird }}, building complete systems with a focus on performance and scalability.",
+    "about3": "I'm constantly learning and evolving, striving to hone my skills through new projects, ongoing studies, and best development practices.",
+    "about4": "My {{ career goal }} is to grow as a full-stack developer, applying my knowledge in projects that challenge me and contribute to my ongoing development."
+  },
   "navbar": {
     "services": "Services",
     "about": "About me",
