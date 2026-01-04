@@ -13,13 +13,6 @@
     "introducation": "Sou um desenvolvedor especializado em {{ Next.js, React, Typescript, Postgres}} and {{ Prisma.}} Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto, }} busco constantemente desafios que me façam crescer e criar aplicações digitais de alto impacto.",
     "introducation2": "Atualmente, venho aprimorando minhas {{ habilidades }} por meio de projetos práticos e {{ experiências }} contínuas, sempre buscando evoluir como {{ Desenvolvedor Full-Stack. }}"
   },
-  "about": {
-    "title": "Sobre mim",
-    "about": "Ao longo da minha jornada, me formei em {{ Análise e Desenvolvimento de Sistemas  }} pela Fatec Rio Preto e também realizei diversos cursos complementares para expandir meu conhecimento em tecnologias modernas e utilizadas pelo mercado.",
-    "about2": "Atualmente trabalho como desenvolvedor com foco em aplicações web utilizando {{ TypeScript, React e Next.js }} no front-end, além de atuar no {{ back-end }} com {{ Node.js }}, {{ ASP.NET }} e bancos de dados como {{ PostgreSQL + Prisma }} e {{ Firebird }}, construindo sistemas completos, com foco em performance e escalabilidade.",
-    "about3": "Estou sempre em constante aprendizado e evolução, buscando aprimorar minhas habilidades por meio de novos projetos, estudos contínuos e boas práticas de desenvolvimento.",
-    "about4": "Meu {{ objetivo }} de carreira é crescer como desenvolvedor full-stack, colocando meus conhecimentos em prática em projetos que me desafiem e contribuam para minha evolução constante."
-  },
   "projects": {
     "title": "Projetos",
     "showMore": "Ver mais projetos",
@@ -130,6 +123,13 @@
   "stack": {
     "title": "Tecnologias",
     "column": "Ferramentas & DevOps"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "about": "Ao longo da minha jornada, me formei em {{ Análise e Desenvolvimento de Sistemas  }} pela Fatec Rio Preto e também realizei diversos cursos complementares para expandir meu conhecimento em tecnologias modernas e utilizadas pelo mercado.",
+    "about2": "Atualmente trabalho como desenvolvedor com foco em aplicações web utilizando {{ TypeScript, React e Next.js }} no front-end, além de atuar no {{ back-end }} com {{ ASP.NET }} e bancos de dados como {{ PostgreSQL + Prisma }} e {{ Firebird }}, construindo sistemas completos, com foco em performance e escalabilidade.",
+    "about3": "Estou sempre em constante aprendizado e evolução, buscando aprimorar minhas habilidades por meio de novos projetos, estudos contínuos e boas práticas de desenvolvimento.",
+    "about4": "Meu {{ objetivo }} de carreira é crescer como desenvolvedor full-stack, colocando meus conhecimentos em prática em projetos que me desafiem e contribuam para minha evolução constante."
   },
   "contact": {
     "title": "Contato",
