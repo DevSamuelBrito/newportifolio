@@ -30,6 +30,8 @@
   },
   "experience": {
     "title": "Experiência",
+    "showMore": "Veja mais",
+    "showLess": "Veja menos",
     "data": [
       {
         "role": "Desenvolvedor Full Stack",
