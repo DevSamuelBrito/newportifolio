@@ -4,7 +4,7 @@
 import { StackCard } from "./components/StackCard";
 
 //icons
-import { SiOracle, SiFirebase, SiMysql, SiFlutter, SiMongodb, SiPrisma, SiReact, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiNodedotjs, SiDotnet, SiPython, SiUnity, SiPostgresql, SiStyledcomponents, SiAmazonwebservices, SiGit, SiSass, SiExpo, SiZod, SiLinux, SiJavascript, SiExpress, SiJest, SiVite, } from "react-icons/si";
+import { SiPrisma, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiDotnet, SiPostgresql, SiGit, SiZod, SiLinux, SiJest, SiVite, SiReact, SiGithub } from "react-icons/si";
 
 import { VscAzureDevops } from "react-icons/vsc";
 
@@ -32,50 +32,37 @@ export function Stack() {
 
                 <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    {/* Trabalhando Atualmente */}
+                    {/* Front */}
 
-                    <StackCard situation={t.stack.currently} technologies={[
-                        { icon: SiTypescript, name: "Typescript" },
+                    <StackCard area={"Front-end"} technologies={[
+                        { icon: SiTypescript, name: "TypeScript" },
                         { icon: SiReact, name: "React" },
                         { icon: SiVite, name: "Vite" },
-                        { icon: SiTailwindcss, name: "TailwindCSS" },
-                        { icon: CSharpIcon, name: "C#" },
-                        { icon: SiDotnet, name: "Dotnet" },
-                        { icon: VscAzureDevops, name: "AzureDevOps" },
-                        { icon: SiGit, name: "Git" },
-
-                    ]} />
-
-
-                    {/* Já Trabalhei */}
-
-                    <StackCard situation={t.stack.worked} technologies={[
-                        { icon: SiJavascript, name: "JavaScript" },
-                        { icon: SiStyledcomponents, name: "Style in Js" },
-                        { icon: SiSass, name: "SASS" },
-                        { icon: SiPython, name: "Python" },
-                        { icon: SiUnity, name: "Unity" },
-                        { icon: SiExpo, name: "Expo" },
-                        { icon: SiFlutter, name: "Flutter" },
-                        { icon: SiFirebase, name: "Firebase" },
-                        { icon: SiMysql, name: "MySQL" },
-                        { icon: SiMongodb, name: "MongoDB" },
-                        { icon: SiAmazonwebservices, name: "AWS" },
-                        { icon: SiOracle, name: "Oracle" },
-                    ]} />
-
-                    {/* Estou Estudando */}
-
-                    <StackCard situation={t.stack.studying} technologies={[
-                        { icon: SiNextdotjs, name: "Next JS 14" },
-                        { icon: SiNodedotjs, name: "Node JS" },
-                        { icon: SiExpress, name: "Express JS" },
-                        { icon: SiPostgresql, name: "Postgresql" },
-                        { icon: SiPrisma, name: "Prisma" },
+                        { icon: SiNextdotjs, name: "Next.js" },
+                        { icon: SiTailwindcss, name: "Tailwind CSS" },
                         { icon: SiZod, name: "Zod" },
                         { icon: SiJest, name: "Jest" },
-                        { icon: SiLinux, name: "Linux/Wsl2" },
+                    ]} />
+
+
+                    {/* Back */}
+
+                    <StackCard area={"Back-end"} technologies={[
+
+                        { icon: CSharpIcon, name: "C#" },
+                        { icon: SiDotnet, name: ".NET" },
+                        { icon: SiPrisma, name: "Prisma" },
+                        { icon: SiPostgresql, name: "PostgreSQL" },
+                    ]} />
+
+                    {/* Outros */}
+
+                    <StackCard area={t.stack.column} technologies={[
+                        { icon: SiGit, name: "Git" },
+                        { icon: SiGithub, name: "GitHub" },
                         { icon: SiDocker, name: "Docker" },
+                        { icon: SiLinux, name: "Linux / WSL2" },
+                        { icon: VscAzureDevops, name: "Azure DevOps" },
                     ]} />
 
                 </div>

@@ -129,9 +129,7 @@
   },
   "stack": {
     "title": "Tecnologias",
-    "currently": "Trabalhando Atualmente",
-    "worked": "Já trabalhei",
-    "studying": "Estou Estudando"
+    "column": "Ferramentas & DevOps"
   },
   "contact": {
     "title": "Contato",

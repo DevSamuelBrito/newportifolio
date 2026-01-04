@@ -133,9 +133,7 @@
   },
   "stack": {
     "title": "Stack",
-    "currently": "Currently working",
-    "worked": "I've already worked",
-    "studying": "I am studying"
+    "column": "Tools & DevOps"
   },
   "contact": {
     "title": "Contact",
