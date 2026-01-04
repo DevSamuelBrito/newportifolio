@@ -23,7 +23,10 @@
   "projects": {
     "title": "Projetos",
     "showMore": "Ver mais projetos",
-    "showLess": "Ver menos"
+    "showLess": "Ver menos",
+    "checkPost": "Verificar Post",
+    "buttonGithub": "Acessar Repositorio",
+    "close": "Fechar"
   },
   "stack": {
     "title": "Tecnologias",

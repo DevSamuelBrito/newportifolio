@@ -23,7 +23,10 @@
   "projects": {
     "title": "Projects",
     "showMore": "Show more projects",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "checkPost": "Check Post",
+    "buttonGithub": "Access Repository",
+    "close": "Close"
   },
   "stack": {
     "title": "Stack",
