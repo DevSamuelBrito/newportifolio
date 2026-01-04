@@ -91,10 +91,10 @@ export const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 font-medium ">
 
-              <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#projects" id="projects" label={t.navbar.projects} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#stack" id="stack" label={t.navbar.stack} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#services" id="services" label={t.navbar.services} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#experience" id="experience" label={t.navbar.experience} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#contact" id="contact" label={t.navbar.contact} activeSection={activeSection} setActiveSection={setActiveSection} />
 
               {renderFlags()}

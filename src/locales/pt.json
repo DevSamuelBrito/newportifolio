@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "services": "Serviços",
+    "experience": "Experiência",
     "about": "Sobre mim",
     "projects": "Projetos",
     "stack": "Tecnologias",
@@ -27,6 +27,103 @@
     "checkPost": "Verificar Post",
     "buttonGithub": "Acessar Repositorio",
     "close": "Fechar"
+  },
+  "experience": {
+    "title": "Experiência",
+    "data": [
+      {
+        "role": "Desenvolvedor Full Stack",
+        "company": "Gráfica Canastra",
+        "period": "Jun 2025 – Atual",
+        "activities": [
+          "Desenvolvimento e manutenção de aplicações web",
+          "Criação de APIs REST com ASP.NET Core",
+          "Integração entre front-end e back-end",
+          "Migração de sistema desktop para web"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Vite",
+          "Next.js",
+          "ZOD",
+          "MUI",
+          "C#",
+          "ASP.NET Core",
+          "EF Core",
+          "Firebird",
+          "Nginx",
+          "Azure DevOps",
+          "Scrum"
+        ]
+      },
+      {
+        "role": "Desenvolvedor Full Stack (Freelancer)",
+        "company": "Autônomo / Freelance",
+        "period": "2024 – Atual",
+        "activities": [
+          "Desenvolvimento de aplicações web personalizadas",
+          "Criação de APIs REST e integrações de sistemas",
+          "Análise de requisitos e comunicação direta com clientes",
+          "Implantação e manutenção de aplicações em produção"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "ZOD",
+          "ASP.NET Core",
+          "PostgreSQL",
+          "Prisma",
+          "Docker",
+          "Vercel"
+        ]
+      },
+      {
+        "role": "Responsável pelo Setor de TI",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2025 – Mai 2025",
+        "activities": [
+          "Gestão completa do setor de TI e infraestrutura tecnológica",
+          "Suporte técnico aos usuários e administração de Windows Server",
+          "Implementação e gerenciamento de redes, VPNs, DNS e domínios",
+          "Automação de processos e implantação de softwares corporativos",
+          "Apoio na implementação e otimização de sistemas CRM e ERP"
+        ],
+        "technologies": ["Windows Server", "Redes", "VPNs", "DNS", "CRM", "ERP"]
+      },
+      {
+        "role": "Estagiário de TI",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2024 – Dez 2024",
+        "activities": [
+          "Suporte técnico aos usuários internos e resolução de problemas sistêmicos",
+          "Apoio na manutenção e otimização da infraestrutura de TI",
+          "Configuração e preparação de máquinas e equipamentos para colaboradores",
+          "Manutenções preventivas e atualizações para garantir estabilidade dos sistemas"
+        ],
+        "technologies": ["Windows Server", "Redes", "VPNs"]
+      },
+      {
+        "role": "Jovem Aprendiz – Eletricista de Manutenção Eletroeletrônica",
+        "company": "TRUSS Professional / SENAI",
+        "period": "Jan 2022 – Dez 2023",
+        "activities": [
+          "Programação básica de CLPs aplicados a automação industrial",
+          "Desenvolvimento de projetos e protótipos utilizando Arduino",
+          "Instalação e manutenção de circuitos elétricos industriais",
+          "Aplicação de normas de segurança e boas práticas no ambiente industrial"
+        ],
+        "technologies": [
+          "CLP",
+          "Arduino",
+          "Automação Industrial",
+          "Eletricidade Industrial",
+          "Eletrônica",
+          "AutoCAD"
+        ]
+      }
+    ]
   },
   "stack": {
     "title": "Tecnologias",

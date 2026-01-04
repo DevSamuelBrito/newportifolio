@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "services": "Services",
+    "experience": "Experience",
     "about": "About me",
     "projects": "Projects",
     "stack": "Stack",
@@ -27,6 +27,107 @@
     "checkPost": "Check Post",
     "buttonGithub": "Access Repository",
     "close": "Close"
+  },
+  "experience": {
+    "title": "Experience",
+    "data": [
+      {
+        "role": "Full Stack Developer",
+        "company": "Gráfica Canastra",
+        "period": "Jun 2025 – Present",
+        "activities": [
+          "Development and maintenance of web applications",
+          "Creation of REST APIs with ASP.NET Core",
+          "Integration between front-end and back-end",
+          "Migration of desktop system to web"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Vite",
+          "Next.js",
+          "ZOD",
+          "MUI",
+          "C#",
+          "ASP.NET Core",
+          "EF Core",
+          "Firebird",
+          "Nginx",
+          "Azure DevOps",
+          "Scrum"
+        ]
+      },
+      {
+        "role": "Full Stack Developer (Freelancer)",
+        "company": "Autônomo / Freelance",
+        "period": "2024 – Atual",
+        "activities": [
+          "Development of custom web applications",
+          "Creation of REST APIs and system integrations",
+          "Requirement analysis and direct communication with clients",
+          "Deployment and maintenance of applications in production"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "ZOD",
+          "ASP.NET Core",
+          "PostgreSQL",
+          "Prisma",
+          "Docker",
+          "Vercel"
+        ]
+      },
+      {
+        "role": "IT Sector Manager",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2025 – May 2025",
+        "activities": [
+          "Complete management of the IT sector and technological infrastructure",
+          "Technical support to users and Windows Server administration",
+          "Implementation and management of networks, VPNs, DNS, and domains"
+        ],
+        "technologies": [
+          "Windows Server",
+          "Networking",
+          "VPN",
+          "DNS",
+          "Domain Management"
+        ]
+      },
+      {
+        "role": "IT Intern",
+        "company": "Bebedouros Cânovas",
+        "period": "January 2024 – December 2024",
+        "activities": [
+          "Technical support to internal users and resolution of system problems",
+          "Support in the maintenance and optimization of the IT infrastructure",
+          "Configuration and preparation of machines and equipment for employees",
+          "Preventive maintenance and updates to ensure system stability"
+        ],
+        "technologies": ["Windows Server", "Networks", "VPNs"]
+      },
+      {
+        "role": "Young Apprentice – Electromechanical Maintenance Electrician",
+        "company": "TRUSS Profissional/SENAI",
+        "period": "January 2022 – December 2023",
+        "activities": [
+          "Basic PLC programming applied to industrial automation",
+          "Development of projects and prototypes using Arduino",
+          "Installation and maintenance of industrial electrical circuits",
+          "Application of safety standards and best practices in the industrial environment"
+        ],
+        "technologies": [
+          "PLC",
+          "Arduino",
+          "Industrial Automation",
+          "Industrial Electricity",
+          "Electronics",
+          "AutoCAD"
+        ]
+      }
+    ]
   },
   "stack": {
     "title": "Stack",

@@ -1,14 +1,28 @@
 "use client"
-import { Hero } from "./components/Hero";
-import { Navbar } from "./components/Navbar";
-import { Projects } from "./components/Projects";
-import { Stack } from "./components/Stack";
-import { About } from "./components/About";
-import { Services } from "./components/Services";
-import { Contact } from "./components/Contact";
-import ScrollToTopButton from "./components/ScrollTopButton";
-import AlertDownload from "./components/AlertDownload";
+
+//react
 import { useState } from "react";
+
+//components
+import { Hero } from "./components/Hero";
+
+import { Navbar } from "./components/Navbar";
+
+import { Projects } from "./components/Projects";
+
+import { Stack } from "./components/Stack";
+
+import { About } from "./components/About";
+
+import { Experience } from "./components/Experience";
+
+import { Contact } from "./components/Contact";
+
+import ScrollToTopButton from "./components/ScrollTopButton";
+
+import AlertDownload from "./components/AlertDownload";
+
+//animation
 import { AnimatePresence } from "framer-motion";
 
 
@@ -24,10 +38,10 @@ export default function App() {
     <>
       <Navbar />
       <Hero onDownloadClick={handleDownloadClick} />
-      <About />
       <Projects />
       <Stack />
-      <Services />
+      <Experience />
+      <About />
       <Contact />
       <ScrollToTopButton />
       <AnimatePresence>
