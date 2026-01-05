@@ -19,42 +19,148 @@ import portifolio1 from "@/assets/images/portifolio1.png";
 
 import calculator from "@/assets/images/calculator.png";
 
-import nextAuth from "@/assets/images/next-auth.png";
+import portifolIo from "@/assets/images/portifol-io.png";
+
+import crudAspNet from "@/assets/images/crudaspnet.png"; 
 
 //icons
 import { FaReact } from "react-icons/fa";
 
-import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet, SiPostgresql, SiShadcnui, SiPostman } from "react-icons/si";
+import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet, SiPostgresql, SiShadcnui, SiPostman, SiResend, SiCloudinary, SiDocker, } from "react-icons/si";
+
+import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
+
 
 export const ProjectsData = [
     {
-        id: "nextAuth",
+        id: "crudAspNet",
         index: 0,
-        src: nextAuth,
-        stack: [SiTypescript, SiNextdotjs, SiPostgresql, SiPrisma, SiTailwindcss, SiShadcnui, SiPostman],
+        src: crudAspNet,
+        stack: [CSharpIcon, SiDotnet, SiPostgresql, SiDocker],
         post: "",
-        repository: "https://github.com/DevSamuelBrito/next_auth.git",
-        title: "Next-Auth + Upload Images",
-        descriptionBr: `Em Desenvolvimento!
+        repository: "https://github.com/DevSamuelBrito/CRUD_ASPNET",
+        title: "CRUD ASP.NET Core API",
+        descriptionBr: `Projeto de estudo de uma API RESTful completa para gerenciamento de tarefas desenvolvida com ASP.NET Core 9.0, seguindo os princípios de Clean Architecture e melhores práticas de desenvolvimento. Este projeto foi criado para aprofundar conhecimentos em arquitetura de software e desenvolvimento back-end com .NET.
   
-            Estou trabalhando em um sistema com Next.js, NextAuth, Tailwind CSS, ShadCN UI e PostgreSQL para autenticação e armazenamento de usuários. A ideia é criar uma plataforma onde os usuários poderão fazer upload de imagens e publicar conteúdos.
+            🏗️ Arquitetura e Padrões
+            - Clean Architecture com camadas bem separadas (API, Application, Domain, Infrastructure)
+            - DTOs para separação de responsabilidades
+            - Repository Pattern para acesso a dados
+            - AutoMapper para mapeamento de objetos
+            - Validações automáticas com Data Annotations
   
-            Além disso, estou implementando um painel administrativo com controle de permissões, permitindo que administradores tenham acesso a dashboards exclusivos e funcionalidades específicas.
+            ✨ Funcionalidades Principais
+            - CRUD completo de tarefas (Create, Read, Update, Delete)
+            - Sistema de paginação com filtros por título e status
+            - Tratamento global de exceções com respostas padronizadas
+            - Rate limiting (limitação de requisições por IP)
+            - Logging estruturado com ILogger
+            - Documentação automática com Swagger/OpenAPI
   
-            Em breve, trarei mais atualizações sobre o projeto! `,
-        descriptionEn: `
-              In Development!
+            🚀 Tecnologias e Ferramentas
+            - Entity Framework Core 9.0 com PostgreSQL
+            - Docker e Docker Compose para containerização
+            - Migrações automáticas no startup
+            - Testes unitários com xUnit
+            - CI/CD com GitHub Actions
+            - CORS configurado para integração com frontend
   
-            I'm working on a system with Next.js, NextAuth, Tailwind CSS, ShadCN UI and PostgreSQL for user authentication and storage. The idea is to create a platform where users can upload images and publish content.
+            Este projeto demonstra conhecimentos sólidos em arquitetura de software, desenvolvimento de APIs REST, integração com banco de dados e práticas de DevOps.`,
+        descriptionEn: `Study project of a complete RESTful API for task management built with ASP.NET Core 9.0, following Clean Architecture principles and development best practices. This project was created to deepen knowledge in software architecture and back-end development with .NET.
   
-            In addition, I'm implementing an administrative panel with permissions control, allowing administrators to have access to exclusive dashboards and specific features.
+            🏗️ Architecture and Patterns
+            - Clean Architecture with well-separated layers (API, Application, Domain, Infrastructure)
+            - DTOs for separation of concerns
+            - Repository Pattern for data access
+            - AutoMapper for object mapping
+            - Automatic validation with Data Annotations
   
-            I'll be bringing more updates on the project soon!
-            `
+            ✨ Main Features
+            - Complete CRUD operations for tasks (Create, Read, Update, Delete)
+            - Pagination system with filters by title and status
+            - Global exception handling with standardized responses
+            - Rate limiting (request limitation per IP)
+            - Structured logging with ILogger
+            - Automatic documentation with Swagger/OpenAPI
+  
+            🚀 Technologies and Tools
+            - Entity Framework Core 9.0 with PostgreSQL
+            - Docker and Docker Compose for containerization
+            - Automatic migrations on startup
+            - Unit tests with xUnit
+            - CI/CD with GitHub Actions
+            - CORS configured for frontend integration
+  
+            This project demonstrates solid knowledge in software architecture, REST API development, database integration, and DevOps practices.`
+    },
+    {
+        id: "Portifol.io",
+        index: 1,
+        src: portifolIo,
+        stack: [SiTypescript, SiNextdotjs, SiPostgresql, SiPrisma, SiTailwindcss, SiShadcnui, SiResend, SiCloudinary],
+        post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7389254768482762752-Asl3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
+        repository: "https://github.com/DevSamuelBrito/Portifol.io",
+        title: "Portifol.io",
+        descriptionBr: `Portifol.io é uma aplicação completa desenvolvida em Next.js que demonstra um sistema de autenticação e gerenciamento de imagens. Este projeto de estudo foi criado para aprofundar conhecimentos em Next.js (App Router e API Routes), integração com serviços externos e gerenciamento de estado.
+  
+            Principais Funcionalidades:
+  
+            🔐 Sistema de Autenticação Completo
+            - Registro e login com credenciais usando NextAuth.js
+            - Criptografia de senhas com bcrypt
+            - Recuperação de senha via email (integração com Resend)
+            - Gerenciamento de sessões seguro
+  
+            👤 Gerenciamento de Perfil
+            - Upload e edição de foto de perfil
+            - Alteração de nome, username e senha
+            - Exclusão de conta
+  
+            📸 Galeria de Imagens Avançada
+            - Upload de imagens para Cloudinary com preview
+            - Marcação de fotos como favoritas
+            - Controle de privacidade (fotos públicas/privadas)
+            - Exclusão de imagens
+  
+            📊 Feed Interativo
+            - Visualização de todas as fotos públicas
+            - Sistema de busca de fotos
+            - Galeria de favoritos
+            - Interface responsiva e moderna
+  
+            Este projeto utiliza tecnologias modernas como Prisma para gerenciamento do banco de dados PostgreSQL, Cloudinary para armazenamento de imagens, Tailwind CSS e shadcn UI para uma interface elegante, além de Sonner para notificações toast. Ideal para demonstrar habilidades em desenvolvimento full-stack com Next.js.`,
+        descriptionEn: `Portifol.io is a complete application developed in Next.js that demonstrates a authentication and image management system. This study project was created to deepen knowledge in Next.js (App Router and API Routes), integration with external services, and state management.
+  
+            Main Features:
+  
+            🔐 Complete Authentication System
+            - Registration and login with credentials using NextAuth.js
+            - Password encryption with bcrypt
+            - Password recovery via email (Resend integration)
+            - Secure session management
+  
+            👤 Profile Management
+            - Upload and edit profile picture
+            - Change name, username, and password
+            - Account deletion
+  
+            📸 Advanced Image Gallery
+            - Upload images to Cloudinary with preview
+            - Mark photos as favorites
+            - Privacy control (public/private photos)
+            - Image deletion
+
+            📊 Interactive Feed
+            - View all public photos
+            - Photo search system
+            - Favorites gallery
+            - Responsive and modern interface
+  
+            This project uses modern technologies such as Prisma for PostgreSQL database management, Cloudinary for image storage, Tailwind CSS and shadcn UI for an elegant interface, plus Sonner for toast notifications. Ideal for demonstrating full-stack development skills with Next.js.`
     },
     {
         id: "portfolio",
-        index: 1,
+        index: 2,
         src: portifolio,
         stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
         post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-tailwindcss-framermotion-activity-7313680203027771392-L90L?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -73,7 +179,7 @@ export const ProjectsData = [
     },
     {
         id: "devControle",
-        index: 2,
+        index: 3,
         src: DevControle,
         stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss, SiMongodb, SiPrisma, SiNodedotjs],
         post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7295234873252888576-0_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -90,7 +196,7 @@ export const ProjectsData = [
     },
     {
         id: "devMotors",
-        index: 3,
+        index: 4,
         src: devmotors,
         stack: [SiTypescript, SiNextdotjs, SiReact, SiStyledcomponents],
         post: "",
@@ -121,7 +227,7 @@ export const ProjectsData = [
     },
     {
         id: "dalyGames",
-        index: 4,
+        index: 5,
         src: DalyGames,
         stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
         post: "https://www.linkedin.com/posts/samuel-fava-de-brito_boa-tarde-pessoal-hoje-quero-compartilhar-activity-7281731227349319680-TPVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -132,7 +238,7 @@ export const ProjectsData = [
     },
     {
         id: "tarefasNextJs",
-        index: 5,
+        index: 6,
         src: tarefasNextJs,
         stack: [SiTypescript, SiStyledcomponents, SiFirebase, SiReact, SiNextdotjs],
         post: "https://www.linkedin.com/posts/samuel-fava-de-brito_ol%C3%A1-pessoal-espero-que-estejam-bem-recentemente-activity-7237147758741094404-m2mZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -143,7 +249,7 @@ export const ProjectsData = [
     },
     {
         id: "webRepositorios",
-        index: 6,
+        index: 7,
         src: webRepositorio,
         stack: [SiReact, SiJavascript],
         post: "",
@@ -175,7 +281,7 @@ export const ProjectsData = [
     },
     {
         id: "rockPaper",
-        index: 7,
+        index: 8,
         src: rockPaper,
         stack: [SiHtml5, SiCss3, SiJavascript],
         post: "",
@@ -207,7 +313,7 @@ export const ProjectsData = [
     },
     {
         id: "calculator",
-        index: 8,
+        index: 9,
         src: calculator,
         stack: [SiHtml5, SiCss3, SiJavascript],
         post: "",
@@ -239,7 +345,7 @@ export const ProjectsData = [
     },
     {
         id: "intergeek",
-        index: 9,
+        index: 10,
         src: intergeek,
         stack: [SiHtml5, SiCss3, SiDotnet, SiMysql],
         post: "",
@@ -257,7 +363,7 @@ export const ProjectsData = [
     },
     {
         id: "portfolioAntigo",
-        index: 10,
+        index: 11,
         src: portifolio1,
         stack: [SiHtml5, SiCss3],
         post: "",
