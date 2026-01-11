@@ -14,6 +14,7 @@ import { ProjectCard } from "./components/ProjectCard";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
+import { motion } from "framer-motion";
 
 export function Projects() {
 
@@ -69,7 +70,14 @@ export function Projects() {
         </div>
 
         {projectsData.length > 6 && (
-          <div key={projectsData.length} className="flex justify-center mt-10">
+          <motion.div
+            key={projectsData.length}
+            className="flex justify-center mt-10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <button
               onClick={() => setShowAll(!showAll)}
               className="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 flex items-center gap-2"
@@ -82,7 +90,7 @@ export function Projects() {
               )}
 
             </button>
-          </div>
+          </motion.div>
         )}
 
       </div>
