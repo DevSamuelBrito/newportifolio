@@ -16,6 +16,8 @@ import { About } from "./components/About";
 
 import { Experience } from "./components/Experience";
 
+import { Certifications } from "./components/Certifications";
+
 import { Contact } from "./components/Contact";
 
 import ScrollToTopButton from "./components/ScrollTopButton";
@@ -41,6 +43,7 @@ export default function App() {
       <Projects />
       <Stack />
       <Experience />
+      <Certifications />
       <About />
       <Contact />
       <ScrollToTopButton />

@@ -3,6 +3,7 @@
     "experience": "Experience",
     "about": "About me",
     "projects": "Projects",
+    "certifications": "Certifications",
     "stack": "Stack",
     "contact": "Contact"
   },
@@ -124,6 +125,28 @@
       }
     ]
   },
+
+  "certifications": {
+    "title": "Certifications",
+    "button": "View Certification",
+    "data": [
+      {
+        "name": "Essential ASP.NET Core Web API Course (.NET 8 / .NET 9)",
+        "issuer": "Udemy",
+        "description": "Creating Web APIs with ASP.NET Core (.NET 8/9), covering REST, JWT authentication, validation, documentation with Swagger, API consumption, and best practices for scalable backend applications.",
+        "date": "Aug 2025",
+        "link": "https://www.udemy.com/certificate/UC-5f223689-d6c3-44ba-848e-bb207f6ee88f/"
+      },
+      {
+        "name": "NextJS from beginner to advanced in practice 2025",
+        "issuer": "Udemy",
+        "description": "Practical Next.js course from beginner to advanced, focused on creating modern and professional web applications.Development of real projects using React, Next.js, and TypeScript, with essential concepts such as SSR, SSG, authentication, API consumption, and deployment.",
+        "date": "Feb 2025",
+        "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
+      }
+    ]
+  },
+
   "stack": {
     "title": "Stack",
     "column": "Tools & DevOps"

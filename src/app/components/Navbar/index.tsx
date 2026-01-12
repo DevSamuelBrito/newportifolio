@@ -94,6 +94,7 @@ export const Navbar = () => {
               <NavBarItem href="#projects" id="projects" label={t.navbar.projects} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#stack" id="stack" label={t.navbar.stack} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#experience" id="experience" label={t.navbar.experience} activeSection={activeSection} setActiveSection={setActiveSection} />
+              <NavBarItem href="#certifications" id="certifications" label={t.navbar.certifications} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection={activeSection} setActiveSection={setActiveSection} />
               <NavBarItem href="#contact" id="contact" label={t.navbar.contact} activeSection={activeSection} setActiveSection={setActiveSection} />
 
