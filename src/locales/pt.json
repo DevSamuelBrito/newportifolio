@@ -138,6 +138,13 @@
         "description": "Curso prático de Next.js do zero ao avançado, focado na criação de aplicações web modernas e profissionais. Desenvolvimento de projetos reais utilizando React, Next.js e TypeScript, com conceitos essenciais como SSR, SSG, autenticação, consumo de APIs e deploy.",
         "date": "Fev 2025",
         "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
+      },
+      {
+        "name":"Curso Inglês Mairo Vergara",
+        "issuer":"Plataforma Mairo Vergara",
+        "description":"Curso completo de inglês online com método progressivo em várias etapas, focado em compreensão auditiva, vocabulário e desenvolvimento natural do idioma, desde a base até níveis mais avançados, com estudo de textos, áudio e imersão no idioma",
+        "date":"Dez 2023",
+        "link":"https://www.mairovergara.com/certificado/9fc6"
       }
     ]
   },
