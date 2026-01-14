@@ -3,7 +3,7 @@
     "experience": "Experience",
     "about": "About me",
     "projects": "Projects",
-    "certifications": "Certifications",
+    "certifications": "Graduations and Certifications",
     "stack": "Stack",
     "contact": "Contact"
   },
@@ -140,9 +140,40 @@
       {
         "name": "NextJS from beginner to advanced in practice 2025",
         "issuer": "Udemy",
-        "description": "Practical Next.js course from beginner to advanced, focused on creating modern and professional web applications.Development of real projects using React, Next.js, and TypeScript, with essential concepts such as SSR, SSG, authentication, API consumption, and deployment.",
+        "description": "Practical Next.js course from beginner to advanced, focused on creating modern web applications. Covers Next.js and TypeScript with essential concepts such as SSR, SSG, authentication, API consumption, and deployment.",
         "date": "Feb 2025",
         "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
+      },
+      {
+        "name": "Mairo Vergara English Course",
+        "issuer": "Mairo Vergara",
+        "description": "Comprehensive English course focusing on fluency and practical communication skills. Covers grammar, vocabulary, listening, speaking, reading, and writing through interactive lessons and real-life scenarios.",
+        "date": "Sep 2025",
+        "link": "https://drive.google.com/file/d/1F9TvOInM9UxEXzLxTGTT7wzLcDM3RiXr/view"
+      },
+      {
+        "name": "TOEIC B1 English Proficiency Certification",
+        "issuer": "ETS",
+        "description": "B1 level English proficiency certification, with a score of 610 points on the TOEIC, demonstrating the ability to communicate in English in a professional context.",
+        "date": "Nov 2024",
+        "link": "https://drive.google.com/file/d/18tbiNt5c4IK-VQWGT4-4W17U3ZnN2oIk/view"
+      },
+      {
+        "name": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        "issuer": "AWS Academy",
+        "description": "Fundamental concepts of cloud computing and AWS services, including core AWS services, security, architecture, pricing, and support. Prepares students for the AWS Certified Cloud Practitioner exam.",
+        "date": "Jun 2024",
+        "link": "https://www.credly.com/badges/8f6f3fba-1e1e-4d3e-9f3a-2e3b8a5f4c6d/public_url"
+      }
+    ],
+    "graduationTitle": "Graduation",
+    "graduation": [
+      {
+        "name": "Systems Analysis and Development",
+        "institution": "Fatec Rio Preto",
+        "description": "Undergraduate degree focused on software development, systems analysis, databases, and web application development.",
+        "date": "Dec 2024",
+        "link": ""
       }
     ]
   },

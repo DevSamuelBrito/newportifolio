@@ -3,7 +3,7 @@
     "experience": "Experiência",
     "about": "Sobre mim",
     "projects": "Projetos",
-    "certifications": "Certificações",
+    "certifications": "Graduações e Certificações",
     "stack": "Tecnologias",
     "contact": "Contato"
   },
@@ -135,16 +135,40 @@
       {
         "name": "NextJS do zero ao avançado na pratica 2025",
         "issuer": "Udemy",
-        "description": "Curso prático de Next.js do zero ao avançado, focado na criação de aplicações web modernas e profissionais. Desenvolvimento de projetos reais utilizando React, Next.js e TypeScript, com conceitos essenciais como SSR, SSG, autenticação, consumo de APIs e deploy.",
+        "description": "Curso prático de Next.js do zero ao avançado, focado na criação de aplicações web modernas. Com Next.js e TypeScript e conceitos essenciais como SSR, SSG, autenticação, consumo de APIs e deploy.",
         "date": "Fev 2025",
         "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
       },
       {
-        "name":"Curso Inglês Mairo Vergara",
-        "issuer":"Plataforma Mairo Vergara",
-        "description":"Curso completo de inglês online com método progressivo em várias etapas, focado em compreensão auditiva, vocabulário e desenvolvimento natural do idioma, desde a base até níveis mais avançados, com estudo de textos, áudio e imersão no idioma",
-        "date":"Dez 2023",
-        "link":"https://www.mairovergara.com/certificado/9fc6"
+        "name": "Curso Inglês Mairo Vergara",
+        "issuer": "Plataforma Mairo Vergara",
+        "description": "Curso completo de inglês com foco em fluência e habilidades práticas de comunicação. Abrange gramática, vocabulário, compreensão auditiva, expressão oral, leitura e escrita por meio de aulas interativas e situações da vida real.",
+        "date": "Set 2025",
+        "link": "https://drive.google.com/file/d/1F9TvOInM9UxEXzLxTGTT7wzLcDM3RiXr/view"
+      },
+      {
+        "name": "Certificação de Proficiência em Inglês – TOEIC B1",
+        "issuer": "ETS",
+        "description": "Certificação de proficiência em inglês – nível B1, com pontuação de 610 pontos no TOEIC, comprovando capacidade de comunicação em inglês em contexto profissional.",
+        "date": "Nov 2024",
+        "link": "https://drive.google.com/file/d/18tbiNt5c4IK-VQWGT4-4W17U3ZnN2oIk/view"
+      },
+      {
+        "name": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        "issuer": "AWS Academy",
+        "description": "Fundamentos de computação em nuvem com AWS, abordando serviços essenciais como EC2, S3, IAM, VPC, segurança, arquitetura, modelos de custo e boas práticas da AWS.",
+        "date": "Nov 2024",
+        "link": "https://www.credly.com/badges/c3d26e59-c5bf-4567-b51a-44996d52d5a4/public_url"
+      }
+    ],
+    "graduationTitle": "Graduação",
+    "graduation": [
+      {
+        "name": "Análise e Desenvolvimento de Sistemas",
+        "institution": "Fatec Rio Preto",
+        "description": "Curso superior focado em desenvolvimento de software, programação, bancos de dados, engenharia de software e sistemas web.",
+        "date": "Dez 2024",
+        "link": ""
       }
     ]
   },
