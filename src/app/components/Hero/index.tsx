@@ -44,7 +44,7 @@ export function Hero({ onDownloadClick }: HeroProps) {
   }, [language]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <section id="hero" className="bg-gray-900 min-h-screen flex items-center pt-16">
 
         <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">

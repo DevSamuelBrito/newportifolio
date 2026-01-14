@@ -17,6 +17,7 @@ export function Photo() {
                         priority
                         quality={100}
                         fill
+                        sizes="(max-width: 1280px) 288px, 320px"
                         className="object-contain"
                     />
                 </div>
