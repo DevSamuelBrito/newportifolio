@@ -11,8 +11,8 @@
     "hello": "Hello I'm",
     "role": "Developer Full Stack",
     "cv": "Get Resume",
-    "introducation": " I'm a developer specialized in {{ Next.js, React, Typescript, Postgres }} and  {{ Prisma. }} With a degree in  {{ Systems Analysis and Development  }}from {{ Fatec Rio Preto,  }} I constantly seek challenges that make me grow and create high-impact digital applications.",
-    "introducation2": " Currently, I've been honing my {{ skills }} through hands-on projects and ongoing {{ experiences }}, always striving to evolve as a {{ Full-Stack Developer. }}"
+    "introducation": "I am a Full Stack Developer focused on building modern web applications, working on the front-end with {{ React, Next.js, and TypeScript }} and on the back-end with {{ ASP.NET Core }}, using databases such as {{ PostgreSQL, Prisma, and Firebird }}. I hold a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto }}.",
+    "introducation2": "I have hands-on experience developing {{ REST APIs }}, integrating systems, and {{ migrating desktop applications to the web }}, working on real projects and production environments aligned with best practices."
   },
   "projects": {
     "title": "Projects",
