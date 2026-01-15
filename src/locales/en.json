@@ -1,0 +1,202 @@
+{
+  "navbar": {
+    "experience": "Experience",
+    "about": "About me",
+    "projects": "Projects",
+    "certifications": "Graduations and Certifications",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
+  "hero": {
+    "hello": "Hello I'm",
+    "role": "Developer Full Stack",
+    "cv": "Get Resume",
+    "introducation": "I am a Full Stack Developer focused on building modern web applications, working on the front-end with {{ React, Next.js, and TypeScript }} and on the back-end with {{ ASP.NET Core }}, using databases such as {{ PostgreSQL, Prisma, and Firebird }}. I hold a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto }}.",
+    "introducation2": "I have hands-on experience developing {{ REST APIs }}, integrating systems, and {{ migrating desktop applications to the web }}, working on real projects and production environments aligned with best practices."
+  },
+  "projects": {
+    "title": "Projects",
+    "showMore": "Show more projects",
+    "showLess": "Show less",
+    "checkPost": "Check Post",
+    "buttonGithub": "Access Repository",
+    "close": "Close"
+  },
+  "experience": {
+    "title": "Experience",
+    "showMore": "See more",
+    "showLess": "See less",
+    "data": [
+      {
+        "role": "Full Stack Developer",
+        "company": "Gráfica Canastra",
+        "period": "Jun 2025 – Present",
+        "activities": [
+          "Development and maintenance of web applications",
+          "Creation of REST APIs with ASP.NET Core",
+          "Integration between front-end and back-end",
+          "Migration of desktop system to web"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Vite",
+          "Next.js",
+          "ZOD",
+          "MUI",
+          "C#",
+          "ASP.NET Core",
+          "EF Core",
+          "Firebird",
+          "Nginx",
+          "Azure DevOps",
+          "Scrum"
+        ]
+      },
+      {
+        "role": "Full Stack Developer (Freelancer)",
+        "company": "Autônomo / Freelance",
+        "period": "2024 – Atual",
+        "activities": [
+          "Development of custom web applications",
+          "Creation of REST APIs and system integrations",
+          "Requirement analysis and direct communication with clients",
+          "Deployment and maintenance of applications in production"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "ZOD",
+          "ASP.NET Core",
+          "PostgreSQL",
+          "Prisma",
+          "Docker",
+          "Vercel"
+        ]
+      },
+      {
+        "role": "IT Sector Manager",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2025 – May 2025",
+        "activities": [
+          "Complete management of the IT sector and technological infrastructure",
+          "Technical support to users and Windows Server administration",
+          "Implementation and management of networks, VPNs, DNS, and domains"
+        ],
+        "technologies": [
+          "Windows Server",
+          "Networking",
+          "VPN",
+          "DNS",
+          "Domain Management"
+        ]
+      },
+      {
+        "role": "IT Intern",
+        "company": "Bebedouros Cânovas",
+        "period": "January 2024 – December 2024",
+        "activities": [
+          "Technical support to internal users and resolution of system problems",
+          "Support in the maintenance and optimization of the IT infrastructure",
+          "Configuration and preparation of machines and equipment for employees",
+          "Preventive maintenance and updates to ensure system stability"
+        ],
+        "technologies": ["Windows Server", "Networks", "VPNs"]
+      },
+      {
+        "role": "Young Apprentice – Electromechanical Maintenance Electrician",
+        "company": "TRUSS Profissional/SENAI",
+        "period": "January 2022 – December 2023",
+        "activities": [
+          "Basic PLC programming applied to industrial automation",
+          "Development of projects and prototypes using Arduino",
+          "Installation and maintenance of industrial electrical circuits",
+          "Application of safety standards and best practices in the industrial environment"
+        ],
+        "technologies": [
+          "PLC",
+          "Arduino",
+          "Industrial Automation",
+          "Industrial Electricity",
+          "Electronics",
+          "AutoCAD"
+        ]
+      }
+    ]
+  },
+
+  "certifications": {
+    "title": "Certifications",
+    "button": "View Certification",
+    "data": [
+      {
+        "name": "Essential ASP.NET Core Web API Course (.NET 8 / .NET 9)",
+        "issuer": "Udemy",
+        "description": "Creating Web APIs with ASP.NET Core (.NET 8/9), covering REST, JWT authentication, validation, documentation with Swagger, API consumption, and best practices for scalable backend applications.",
+        "date": "Aug 2025",
+        "link": "https://www.udemy.com/certificate/UC-5f223689-d6c3-44ba-848e-bb207f6ee88f/"
+      },
+      {
+        "name": "NextJS from beginner to advanced in practice 2025",
+        "issuer": "Udemy",
+        "description": "Practical Next.js course from beginner to advanced, focused on creating modern web applications. Covers Next.js and TypeScript with essential concepts such as SSR, SSG, authentication, API consumption, and deployment.",
+        "date": "Feb 2025",
+        "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
+      },
+      {
+        "name": "Mairo Vergara English Course",
+        "issuer": "Mairo Vergara",
+        "description": "Comprehensive English course focusing on fluency and practical communication skills. Covers grammar, vocabulary, listening, speaking, reading, and writing through interactive lessons and real-life scenarios.",
+        "date": "Sep 2025",
+        "link": "https://drive.google.com/file/d/1F9TvOInM9UxEXzLxTGTT7wzLcDM3RiXr/view"
+      },
+      {
+        "name": "TOEIC B1 English Proficiency Certification",
+        "issuer": "ETS",
+        "description": "B1 level English proficiency certification, with a score of 610 points on the TOEIC, demonstrating the ability to communicate in English in a professional context.",
+        "date": "Nov 2024",
+        "link": "https://drive.google.com/file/d/18tbiNt5c4IK-VQWGT4-4W17U3ZnN2oIk/view"
+      },
+      {
+        "name": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        "issuer": "AWS Academy",
+        "description": "Fundamental concepts of cloud computing and AWS services, including core AWS services, security, architecture, pricing, and support. Prepares students for the AWS Certified Cloud Practitioner exam.",
+        "date": "Jun 2024",
+        "link": "https://www.credly.com/badges/c3d26e59-c5bf-4567-b51a-44996d52d5a4/public_url"
+      }
+    ],
+    "graduationTitle": "Graduation",
+    "graduation": [
+      {
+        "name": "Systems Analysis and Development",
+        "institution": "Fatec Rio Preto",
+        "description": "Undergraduate degree focused on software development, systems analysis, databases, and web application development.",
+        "date": "Dec 2024",
+        "link": ""
+      }
+    ]
+  },
+
+  "stack": {
+    "title": "Stack",
+    "column": "Tools & DevOps"
+  },
+  "about": {
+    "title": "About Me",
+    "about": "Throughout my journey, I graduated in {{ Systems Analysis and Development }} from Fatec Rio Preto and also took several additional courses to expand my knowledge of modern technologies used in the actual market.",
+    "about2": "I currently work as a developer focusing on web applications using {{ TypeScript, React, and Next.js }} on the front end, in addition to working on the {{ back end }} with {{ ASP.NET }}, and databases such as {{ PostgreSQL + Prisma }} and {{ Firebird }}, building complete systems with a focus on performance and scalability.",
+    "about3": "I'm constantly learning and evolving, striving to hone my skills through new projects, ongoing studies, and best development practices.",
+    "about4": "My {{ career goal }} is to grow as a full-stack developer, applying my knowledge in projects that challenge me and contribute to my ongoing development."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "I’m always open to new connections and opportunities. If you have any questions, would like to discuss an idea, or are looking for a partnership, I’d be happy to chat. Feel free to message me on my social media channels below, and I’ll do my best to respond promptly.",
+    "location": "Location",
+    "description2": "I love learning from new experiences and challenges. Whether it's to share ideas, ask for advice or discuss future projects, I'm here to help. Let's exchange ideas and explore new possibilities together!",
+    "description3": "Feel free to explore my repositories, contribute new features, connect with me on Linkedin, send me an email or even invite me for a virtual coffee.",
+    "developer": "Developed by Samuel Brito",
+    "rights": "© 2025 Samuel Brito. All rights reserved.",
+    "title2": "Let's Connect"
+  }
+}

@@ -1,0 +1,65 @@
+export const experienceData = [
+  {
+    title: "Desenvolvedor Full Stack",
+    company: "Gráfica Canastra",
+    period: "Jun 2025 – Atual",
+    activities: [
+      "Desenvolvimento e manutenção de aplicações web",
+      "Criação de APIs REST com ASP.NET Core",
+      "Integração entre front-end e back-end",
+      "Migração de sistema desktop para web",
+    ],
+    technologies: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "ASP.NET Core",
+      "PostgreSQL",
+      "Firebird",
+    ],
+  },
+  {
+    title: "Responsável pelo Setor de TI",
+    company: "Bebedouros Cânovas",
+    period: "Jan 2025 – Mai 2025",
+    activities: [
+      "Gestão completa do setor de TI e infraestrutura tecnológica",
+      "Suporte técnico aos usuários e administração de Windows Server",
+      "Implementação e gerenciamento de redes, VPNs, DNS e domínios",
+      "Automação de processos e implantação de softwares corporativos",
+      "Apoio na implementação e otimização de sistemas CRM e ERP",
+    ],
+    technologies: ["Windows Server", "Redes", "VPNs", "DNS", "CRM", "ERP"],
+  },
+  {
+    title: "Estagiário de TI",
+    company: "Bebedouros Cânovas",
+    period: "Jan 2024 – Dez 2024",
+    activities: [
+      "Suporte técnico aos usuários internos e resolução de problemas sistêmicos",
+      "Apoio na manutenção e otimização da infraestrutura de TI",
+      "Configuração e preparação de máquinas e equipamentos para colaboradores",
+      "Manutenções preventivas e atualizações para garantir estabilidade dos sistemas",
+    ],
+    technologies: ["Windows Server", "Redes", "VPNs"],
+  },
+  {
+    title: "Jovem Aprendiz – Eletricista de Manutenção Eletroeletrônica",
+    company: "TRUSS Professional / SENAI",
+    period: "Jan 2022 – Dez 2023",
+    activities: [
+      "Programação básica de CLPs aplicados a automação industrial",
+      "Desenvolvimento de projetos e protótipos utilizando Arduino",
+      "Instalação e manutenção de circuitos elétricos industriais",
+      "Aplicação de normas de segurança e boas práticas no ambiente industrial",
+    ],
+    technologies: [
+      "CLP",
+      "Arduino",
+      "Automação Industrial",
+      "Eletricidade Industrial",
+      "Eletrônica",
+      "AutoCAD",
+    ],
+  },
+];

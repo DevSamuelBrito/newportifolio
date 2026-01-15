@@ -1,0 +1,197 @@
+{
+  "navbar": {
+    "experience": "Experiência",
+    "about": "Sobre mim",
+    "projects": "Projetos",
+    "certifications": "Graduações e Certificações",
+    "stack": "Tecnologias",
+    "contact": "Contato"
+  },
+  "hero": {
+    "hello": "Olá, eu sou",
+    "role": "Desenvolvedor Full Stack",
+    "cv": "Baixar Curriculo",
+    "introducation": "Sou desenvolvedor Full Stack com foco em aplicações web modernas, atuando no front-end com {{ React, Next.js e TypeScript }} e no back-end com {{ ASP.NET Core }}, bancos de dados {{ PostgreSQL, Prisma e Firebird }}. Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}.",
+    "introducation2": "Tenho experiência prática no desenvolvimento de {{ APIs REST }}, integração entre sistemas e {{ migração de aplicações desktop para web }}, atuando em projetos reais e ambientes de produção alinhados às boas práticas."
+  },
+  "projects": {
+    "title": "Projetos",
+    "showMore": "Ver mais projetos",
+    "showLess": "Ver menos",
+    "checkPost": "Verificar Post",
+    "buttonGithub": "Acessar Repositorio",
+    "close": "Fechar"
+  },
+  "experience": {
+    "title": "Experiência",
+    "showMore": "Veja mais",
+    "showLess": "Veja menos",
+    "data": [
+      {
+        "role": "Desenvolvedor Full Stack",
+        "company": "Gráfica Canastra",
+        "period": "Jun 2025 – Atual",
+        "activities": [
+          "Desenvolvimento e manutenção de aplicações web",
+          "Criação de APIs REST com ASP.NET Core",
+          "Integração entre front-end e back-end",
+          "Migração de sistema desktop para web"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Vite",
+          "Next.js",
+          "ZOD",
+          "MUI",
+          "C#",
+          "ASP.NET Core",
+          "EF Core",
+          "Firebird",
+          "Nginx",
+          "Azure DevOps",
+          "Scrum"
+        ]
+      },
+      {
+        "role": "Desenvolvedor Full Stack (Freelancer)",
+        "company": "Autônomo / Freelance",
+        "period": "2024 – Atual",
+        "activities": [
+          "Desenvolvimento de aplicações web personalizadas",
+          "Criação de APIs REST e integrações de sistemas",
+          "Análise de requisitos e comunicação direta com clientes",
+          "Implantação e manutenção de aplicações em produção"
+        ],
+        "technologies": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "ZOD",
+          "ASP.NET Core",
+          "PostgreSQL",
+          "Prisma",
+          "Docker",
+          "Vercel"
+        ]
+      },
+      {
+        "role": "Responsável pelo Setor de TI",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2025 – Mai 2025",
+        "activities": [
+          "Gestão completa do setor de TI e infraestrutura tecnológica",
+          "Suporte técnico aos usuários e administração de Windows Server",
+          "Implementação e gerenciamento de redes, VPNs, DNS e domínios",
+          "Automação de processos e implantação de softwares corporativos",
+          "Apoio na implementação e otimização de sistemas CRM e ERP"
+        ],
+        "technologies": ["Windows Server", "Redes", "VPNs", "DNS", "CRM", "ERP"]
+      },
+      {
+        "role": "Estagiário de TI",
+        "company": "Bebedouros Cânovas",
+        "period": "Jan 2024 – Dez 2024",
+        "activities": [
+          "Suporte técnico aos usuários internos e resolução de problemas sistêmicos",
+          "Apoio na manutenção e otimização da infraestrutura de TI",
+          "Configuração e preparação de máquinas e equipamentos para colaboradores",
+          "Manutenções preventivas e atualizações para garantir estabilidade dos sistemas"
+        ],
+        "technologies": ["Windows Server", "Redes", "VPNs"]
+      },
+      {
+        "role": "Jovem Aprendiz – Eletricista de Manutenção Eletroeletrônica",
+        "company": "TRUSS Professional / SENAI",
+        "period": "Jan 2022 – Dez 2023",
+        "activities": [
+          "Programação básica de CLPs aplicados a automação industrial",
+          "Desenvolvimento de projetos e protótipos utilizando Arduino",
+          "Instalação e manutenção de circuitos elétricos industriais",
+          "Aplicação de normas de segurança e boas práticas no ambiente industrial"
+        ],
+        "technologies": [
+          "CLP",
+          "Arduino",
+          "Automação Industrial",
+          "Eletricidade Industrial",
+          "Eletrônica",
+          "AutoCAD"
+        ]
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Certificações",
+    "button": "Ver Certificação",
+    "data": [
+      {
+        "name": "Curso Web API ASP .NET Core Essencial (.NET 8 / .NET 9)",
+        "issuer": "Udemy",
+        "description": "Criação de Web APIs com ASP.NET Core (.NET 8/9), abordando REST, autenticação JWT, validação, documentação com Swagger, consumo de APIs e boas práticas para aplicações backend escaláveis.",
+        "date": "Ago 2025",
+        "link": "https://www.udemy.com/certificate/UC-5f223689-d6c3-44ba-848e-bb207f6ee88f/"
+      },
+      {
+        "name": "NextJS do zero ao avançado na pratica 2025",
+        "issuer": "Udemy",
+        "description": "Curso prático de Next.js do zero ao avançado, focado na criação de aplicações web modernas. Com Next.js e TypeScript e conceitos essenciais como SSR, SSG, autenticação, consumo de APIs e deploy.",
+        "date": "Fev 2025",
+        "link": "https://www.udemy.com/certificate/UC-fefaf2d1-0909-4468-98c0-e6ce660c65a1/"
+      },
+      {
+        "name": "Curso Inglês Mairo Vergara",
+        "issuer": "Plataforma Mairo Vergara",
+        "description": "Curso completo de inglês com foco em fluência e habilidades práticas de comunicação. Abrange gramática, vocabulário, compreensão auditiva, expressão oral, leitura e escrita por meio de aulas interativas e situações da vida real.",
+        "date": "Set 2025",
+        "link": "https://drive.google.com/file/d/1F9TvOInM9UxEXzLxTGTT7wzLcDM3RiXr/view"
+      },
+      {
+        "name": "Certificação de Proficiência em Inglês – TOEIC B1",
+        "issuer": "ETS",
+        "description": "Certificação de proficiência em inglês – nível B1, com pontuação de 610 pontos no TOEIC, comprovando capacidade de comunicação em inglês em contexto profissional.",
+        "date": "Nov 2024",
+        "link": "https://drive.google.com/file/d/18tbiNt5c4IK-VQWGT4-4W17U3ZnN2oIk/view"
+      },
+      {
+        "name": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        "issuer": "AWS Academy",
+        "description": "Fundamentos de computação em nuvem com AWS, abordando serviços essenciais como EC2, S3, IAM, VPC, segurança, arquitetura, modelos de custo e boas práticas da AWS.",
+        "date": "Nov 2024",
+        "link": "https://www.credly.com/badges/c3d26e59-c5bf-4567-b51a-44996d52d5a4/public_url"
+      }
+    ],
+    "graduationTitle": "Graduação",
+    "graduation": [
+      {
+        "name": "Análise e Desenvolvimento de Sistemas",
+        "institution": "Fatec Rio Preto",
+        "description": "Curso superior focado em desenvolvimento de software, programação, bancos de dados, engenharia de software e sistemas web.",
+        "date": "Dez 2024",
+        "link": ""
+      }
+    ]
+  },
+
+  "stack": {
+    "title": "Tecnologias",
+    "column": "Ferramentas & DevOps"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
+    "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, Prisma e Firebird }}, sempre com foco em performance, escalabilidade e qualidade de código.",
+    "about3": "Tenho experiência na criação de {{ APIs REST }}, integração entre sistemas e {{ migração de aplicações desktop para web }}, participando ativamente de todas as etapas do desenvolvimento, desde o levantamento de requisitos até a entrega em produção.",
+    "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio."
+  },
+  "contact": {
+    "title": "Contato",
+    "description": "Estou sempre aberto a novas conexões e oportunidades. Se você tem alguma dúvida, gostaria de discutir uma ideia ou está em busca de uma parceria, ficarei feliz em conversar. Sinta-se à vontade para me mandar uma mensagem pelas minhas redes sociais abaixo, e farei o possível para responder rapidamente.",
+    "location": "Localização",
+    "description2": "Adoro aprender com novas experiências e desafios. Seja para compartilhar ideias, pedir conselhos ou discutir projetos futuros, estou à disposição. Vamos trocar ideias e explorar novas possibilidades juntos!",
+    "description3": "Fique a Vontade para explorar meus repositorios, contribuir  com novas feautures, se conectar comigo no Linkedin, me mandar um email ou até mesmo me chamar para um café virtual.",
+    "developer": "Desenvolvido por Samuel Brito",
+    "rights": "© 2025 Samuel Brito. Todos os direitos reservado.",
+    "title2": "Entre em contato comigo"
+  }
+}

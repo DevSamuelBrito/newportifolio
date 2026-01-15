@@ -2,9 +2,12 @@ import Image, { StaticImageData } from "next/image";
 import { IconType } from "react-icons";
 import { IoCloseCircle } from "react-icons/io5";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
 
 const translation = {
     en: {
@@ -31,6 +34,9 @@ interface ModalCardProps {
 }
 
 export default function ModalCard({ isOpen, onClose, title, src, description, stack, repository, post }: ModalCardProps) {
+
+    const { t } = useTranslation();
+
     const { language } = useLanguage();
     const [mounted, setMounted] = useState(false);
 
@@ -91,14 +97,14 @@ export default function ModalCard({ isOpen, onClose, title, src, description, st
                             <Link href={repository}
                                 target="_blank" className="flex border-blue-500 bg-white text-blue-500  items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
                                 <FaGithub size={18} />
-                                {translation[language].buttonGithub}
+                                {t.projects.buttonGithub}
                             </Link>
                             {
                                 post && (
                                     <Link href={post}
                                         target="_blank" className="flex border-blue-500 bg-white text-blue-500  items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
                                         <FaExternalLinkAlt size={16} />
-                                        {translation[language].checkPost}
+                                        {t.projects.checkPost}
                                     </Link>
                                 )
                             }

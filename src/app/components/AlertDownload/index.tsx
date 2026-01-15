@@ -2,14 +2,14 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 
 
 const translation = {
     en: {
         download: "Download started",
         descriptionCV: "The CV is being downloaded...",
-        
+
     },
     pt: {
         download: "Download iniciado",

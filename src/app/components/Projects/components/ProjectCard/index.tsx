@@ -1,7 +1,7 @@
 "use client"
 import Image, { StaticImageData } from "next/image";
 import { IconType } from "react-icons";
-import { useLanguage } from "@/app/providers/LanguageContext";
+import { useLanguage } from "@/providers/LanguageContext";
 import { useState } from "react";
 import ModalCard from "../ModalCard";
 import { motion } from "framer-motion";
@@ -40,7 +40,7 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }} 
+            viewport={{ once: true, amount: 0.2 }}
         >
 
             <div

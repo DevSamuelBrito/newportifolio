@@ -1,5 +1,10 @@
+//next
 import type { Metadata } from "next";
-import { LanguageProvider } from "./providers/LanguageContext";
+
+//context providers
+import { LanguageProvider } from "../providers/LanguageContext";
+
+//css
 import "./globals.css";
 
 const imageUrl = "https://www.devsamuelbrito.com.br/portifolio.png";
@@ -40,7 +45,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" suppressHydrationWarning>
       <body>
         <LanguageProvider>
           {children}
