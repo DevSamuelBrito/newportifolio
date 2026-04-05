@@ -22,24 +22,18 @@ import { Contact } from "./components/Contact";
 
 import ScrollToTopButton from "./components/ScrollTopButton";
 
-import AlertDownload from "./components/AlertDownload";
-
-//animation
-import { AnimatePresence } from "framer-motion";
-
+import DownloadNotification from "./components/DownloadNotification/page";
 
 export default function App() {
 
   const [showAlert, setShowAlert] = useState(false)
 
-  const handleDownloadClick = () => {
-    setShowAlert(true)
-    setTimeout(() => setShowAlert(false), 5000)
-  }
   return (
     <>
       <Navbar />
-      <Hero onDownloadClick={handleDownloadClick} />
+      <Hero
+        setShowAlert={setShowAlert}
+      />
       <Projects />
       <Stack />
       <Experience />
@@ -47,11 +41,7 @@ export default function App() {
       <About />
       <Contact />
       <ScrollToTopButton />
-      <AnimatePresence>
-        {
-          showAlert && <AlertDownload />
-        }
-      </AnimatePresence>
+     <DownloadNotification showAlert={showAlert} />
     </>
   );
 }

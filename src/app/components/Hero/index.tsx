@@ -29,15 +29,25 @@ import { parseHighlight } from "@/utils/parseHighlight";
 import { useTranslation } from "@/hooks/useTranslation";
 
 interface HeroProps {
-  onDownloadClick: () => void;
+  setShowAlert: (show: boolean) => void;
 }
 
-export function Hero({ onDownloadClick }: HeroProps) {
+export function Hero({ setShowAlert }: HeroProps) {
 
   const { language } = useLanguage();
   const [key, setKey] = useState(0);
-
   const { t } = useTranslation();
+  const downloadFile = language === "en"
+    ? "/samuel-brito-resume.pdf"
+    : "/samuel-brito-curriculo.pdf"
+  const downloadName = language === "en"
+    ? "samuel-brito-resume.pdf"
+    : "samuel-brito-curriculo.pdf"
+
+  const handleDownloadClick = () => {
+    setShowAlert(true)
+    setTimeout(() => setShowAlert(false), 5000)
+  }
 
   useEffect(() => {
     setKey(prevKey => prevKey + 1);
@@ -75,11 +85,11 @@ export function Hero({ onDownloadClick }: HeroProps) {
             <div className="flex flex-row mt-6 items-center gap-3">
 
               <a
-                href="cvSamuelBrito.pdf"
-                download="cvSamuelBrito.pdf"
+                href={downloadFile}
+                download={downloadName}
                 className="border-blue-500 border-2 rounded-full px-4 py-3 text-lg  inline-flex items-center justify-center text-blue-500 font-bold
       hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
-                onClick={onDownloadClick}
+                onClick={handleDownloadClick}
               >
                 {t.hero.cv}<Download size={18} className="ml-2" />
               </a>
