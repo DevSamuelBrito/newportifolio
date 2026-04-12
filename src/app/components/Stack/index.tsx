@@ -3,6 +3,8 @@
 //components
 import { StackCard } from "./components/StackCard";
 
+import DefaultSection from "@/components/shared/DefaultSection";
+
 //icons
 import { SiPrisma, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiDotnet, SiPostgresql, SiGit, SiZod, SiLinux, SiJest, SiVite, SiReact, SiGithub } from "react-icons/si";
 
@@ -19,8 +21,8 @@ export function Stack() {
     const { t } = useTranslation();
 
     return (
-        <section id="stack" className="bg-gray-900 min-h-screen pt-14">
 
+        <DefaultSection section="stack" >
             <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit">
 
                 <div className="text-center">
@@ -67,7 +69,6 @@ export function Stack() {
 
                 </div>
             </div>
-
-        </section>
+        </DefaultSection>
     );
 }
