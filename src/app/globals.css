@@ -66,3 +66,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .experience-card {
+    @apply bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:border-blue-500 relative w-full;
+  }
+  .experience-card .experience-card-title {
+    @apply text-xl;
+  }
+  .experience-card .tech-pill {
+    @apply text-xs;
+  }
+
+  @media (orientation: landscape) {
+    .experience-card {
+      @apply p-6;
+    }
+    .experience-card .experience-card-title {
+      @apply text-2xl;
+    }
+    .experience-card .tech-pill {
+      @apply text-sm;
+    }
+  }
+}

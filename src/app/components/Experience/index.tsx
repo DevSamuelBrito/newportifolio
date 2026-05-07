@@ -29,7 +29,7 @@ export function Experience() {
     return (
 
         <DefaultSection section="experience">
-            <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit">
+            <div className="px-4 md:px-0 w-full max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit  ">
                 <div className="text-center">
                     <p className="text-3xl font-bold text-white relative inline-block">
                         {t.experience.title}
@@ -47,12 +47,12 @@ export function Experience() {
                         {dataToRender.map((item, index) => (
                             <div
                                 key={index}
-                                className={`relative flex items-center ${index % 2 === 0
+                                className={` relative flex items-center ${index % 2 === 0
                                     ? 'md:flex-row flex-col'
                                     : 'md:flex-row-reverse flex-col'
                                     }`}
                             >
-                                <div className="w-full md:w-5/12">
+                                <div className="w-full md:w-5/12 px-4 md:px-4">
                                     <ExperienceCard
                                         index={index}
                                         role={item.role}
