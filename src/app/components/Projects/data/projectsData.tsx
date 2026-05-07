@@ -21,17 +21,31 @@ import calculator from "@/assets/images/calculator.png";
 
 import portifolIo from "@/assets/images/portifol-io.png";
 
-import crudAspNet from "@/assets/images/crudaspnet.png"; 
+import crudAspNet from "@/assets/images/crudaspnet.png";
+
+import lpMaintanceLp from '@/assets/images/lp-maintenance-drinking-fountains.png'
 
 //icons
 import { FaReact } from "react-icons/fa";
 
-import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss3, SiMysql, SiJavascript, SiDotnet, SiPostgresql, SiShadcnui, SiPostman, SiResend, SiCloudinary, SiDocker, } from "react-icons/si";
+import { SiNextdotjs, SiMongodb, SiPrisma, SiTypescript, SiTailwindcss, SiStyledcomponents, SiFirebase, SiReact, SiNodedotjs, SiHtml5, SiCss, SiMysql, SiJavascript, SiDotnet, SiPostgresql, SiShadcnui, SiResend, SiCloudinary, SiDocker, SiVercel, } from "react-icons/si";
 
 import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
 
 
 export const ProjectsData = [
+    {
+        id: 'lpMaintanceLp',
+        index: -1,
+        src: lpMaintanceLp,
+        stack: [SiReact, SiNextdotjs, SiTailwindcss, SiVercel],
+        post: "",
+        repository: "https://github.com/DevSamuelBrito/lp-maintenance-drinking-fountains.git",
+        title: "LP Maintenance Drinking Fountains",
+        descriptionBr: ``,
+        descriptionEn: `This project was a simple landing page created for a maintenance company specializing in drinking fountains. The page was developed using HTML and CSS, with the goal of providing a clean and professional online presence for the business. The design focuses on showcasing the company's services, contact information, and a call to action for potential customers to get in touch. This project was an opportunity to practice basic web development skills and create a functional website for a local business.`
+
+    },
     {
         id: "crudAspNet",
         index: 0,
@@ -283,7 +297,7 @@ export const ProjectsData = [
         id: "rockPaper",
         index: 8,
         src: rockPaper,
-        stack: [SiHtml5, SiCss3, SiJavascript],
+        stack: [SiHtml5, SiCss, SiJavascript],
         post: "",
         repository: "https://github.com/DevSamuelBrito/Paper-Rock-Scissors",
         title: "Pedra Papel e Tesoura JS",
@@ -315,7 +329,7 @@ export const ProjectsData = [
         id: "calculator",
         index: 9,
         src: calculator,
-        stack: [SiHtml5, SiCss3, SiJavascript],
+        stack: [SiHtml5, SiCss, SiJavascript],
         post: "",
         repository: "https://github.com/DevSamuelBrito/Calculator-JS",
         title: "Calculadora JS",
@@ -347,7 +361,7 @@ export const ProjectsData = [
         id: "intergeek",
         index: 10,
         src: intergeek,
-        stack: [SiHtml5, SiCss3, SiDotnet, SiMysql],
+        stack: [SiHtml5, SiCss, SiDotnet, SiMysql],
         post: "",
         repository: "https://github.com/DevSamuelBrito/Projeto-Interdisciplinar-InterGeek.git",
         title: "InterGeek - Fatec",
@@ -365,7 +379,7 @@ export const ProjectsData = [
         id: "portfolioAntigo",
         index: 11,
         src: portifolio1,
-        stack: [SiHtml5, SiCss3],
+        stack: [SiHtml5, SiCss],
         post: "",
         repository: "https://github.com/DevSamuelBrito/portfolio.git",
         title: "Portifolio",
