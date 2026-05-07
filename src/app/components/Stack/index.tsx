@@ -32,7 +32,7 @@ export function Stack() {
                     </h2>
                 </div>
 
-                <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:px-4 ">
 
                     {/* Front */}
 
