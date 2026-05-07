@@ -41,10 +41,11 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
+            className="h-full"
         >
 
             <div
-                className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative:"
+                className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative h-full flex flex-col justify-between"
             >
                 <Image
                     src={src}
