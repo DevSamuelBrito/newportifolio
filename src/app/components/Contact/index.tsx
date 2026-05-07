@@ -20,12 +20,12 @@ export function Contact() {
     const { t } = useTranslation();
 
     return (
-        <DefaultSection section="contact" >
+        <DefaultSection section="contact">
             <div
-                className="flex flex-col items-center pt-16 justify-between overflow-x-hidden"
+                className="flex flex-col items-center pt-16 justify-between overflow-x-hidden mx-auto"
             >
 
-                <div className="grid px-4 sm:px-6 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12 w-full">
+                <div className="grid px-4 sm:px-6 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12">
                     <div className="lg:col-span-12 text-center">
                         <p className="text-3xl font-bold text-white relative inline-block">
                             {t.contact.title}

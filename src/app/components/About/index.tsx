@@ -29,7 +29,7 @@ export function About() {
 
         <DefaultSection section="about">
 
-            <div className="grid px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12 w-full">
+            <div className="grid px-4 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto lg:grid-cols-12 w-full">
 
                 <motion.div initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
