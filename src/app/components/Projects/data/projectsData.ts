@@ -63,6 +63,7 @@ export const ProjectsData: Project[] = [
     src: lpMaintanceLp,
     stack: [SiReact, SiNextdotjs, SiTailwindcss, SiVercel],
     post: "",
+    website:'asd',
     repository:
       "https://github.com/DevSamuelBrito/lp-maintenance-drinking-fountains.git",
     title: "LP Maintenance Drinking Fountains",

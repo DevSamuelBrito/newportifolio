@@ -73,14 +73,9 @@ export function ProjectCard({ data, index }: ProjectCardProps) {
                 </button>
             </div>
             <ModalCard
-                description={translation[language].description}
-                src={data.src}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(!isOpen)}
-                title={data.title}
-                stack={data.stack}
-                repository={data.repository}
-                post={data.post ?? ""}
+                data={data}
             />
         </motion.div>
     )

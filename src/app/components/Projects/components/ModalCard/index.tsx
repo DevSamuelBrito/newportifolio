@@ -1,44 +1,53 @@
-import Image, { StaticImageData } from "next/image";
-import { IconType } from "react-icons";
-import { IoCloseCircle } from "react-icons/io5";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { useLanguage } from "@/providers/LanguageContext";
-import Link from "next/link";
+//react
 import { useEffect, useState } from "react";
+
+//next
+import Image from "next/image";
+
+import Link from "next/link";
+
+//icons
+import { IoCloseCircle } from "react-icons/io5";
+
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+
+import { TbWorld } from "react-icons/tb";
+
+//providers
+import { useLanguage } from "@/providers/LanguageContext";
+
+//types
+import type { Project } from "../../types";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
-const translation = {
-    en: {
-        checkPost: "Check Post",
-        buttonGithub: "Access Repository",
-        close: "Close"
-    },
-    pt: {
-        checkPost: "Verificar Post",
-        buttonGithub: "Acessar Repositorio",
-        close: "Fechar"
-    }
-}
-
 interface ModalCardProps {
     isOpen: boolean;
     onClose: () => void;
-    title: string;
-    description: string[];
-    stack: IconType[];
-    src: string | StaticImageData;
-    repository: string;
-    post: string;
+    data: Project;
 }
 
-export default function ModalCard({ isOpen, onClose, title, src, description, stack, repository, post }: ModalCardProps) {
+export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
 
     const { t } = useTranslation();
 
     const { language } = useLanguage();
     const [mounted, setMounted] = useState(false);
+
+    const description = language === "en" ? data.descriptionEn : data.descriptionBr;
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
 
     useEffect(() => {
         setMounted(true);
@@ -73,61 +82,88 @@ export default function ModalCard({ isOpen, onClose, title, src, description, st
             window.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isOpen, onClose]);
-    if (!mounted) return null; // Impede renderização no servidor (SSG/SSR)
+
+    if (!mounted) return null;
 
     return (
         <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4 
             ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'} 
             transition-all duration-300 ease-in-out`}>
-            <div className={`bg-white p-8 rounded-lg shadow-lg max-w-6xl xl:max-w-7xl w-full max-h-[90vh] overflow-y-auto relative 
+
+            <div className={`bg-white p-8 rounded-lg shadow-lg max-w-6xl xl:max-w-7xl w-full max-h-[90vh] relative flex flex-col
                 ${isOpen ? 'transform scale-100' : 'transform scale-90'} 
                 transition-all duration-300 ease-in-out`}>
 
-                <button onClick={onClose} className="absolute top-5 right-3 hover:text-gray-500 text-red-700" aria-label={translation[language].close}>
+                <button onClick={onClose} className="absolute top-5 right-3 hover:text-gray-500 text-red-700" aria-label={t.projects.close}>
                     <IoCloseCircle size={34} />
                 </button>
 
-                <div className="flex flex-col md:flex-row items-center md:items-center gap-5">
+                <div className="flex flex-col md:flex-row gap-5 flex-1 overflow-hidden">
 
-                    <div className="flex flex-col items-center">
+                    {/* Coluna esquerda — fixa */}
+                    <div className="flex flex-col items-center md:w-6/12 w-full flex-shrink-0 gap-6 justify-center">
 
-                        <Image src={src} width={500} height={400} alt={title} className="rounded-md max-w-full" />
-                        <div className="flex gap-7 mt-10 justify-center w-full">
+                        <div className="w-full h-[240px] sm:h-[280px] md:h-[420px] xl:h-[500px] relative flex-shrink-0">
+                            <Image
+                                src={data.src}
+                                alt={data.title}
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
 
-                            <Link href={repository}
-                                target="_blank" className="flex border-blue-500 bg-white text-blue-500  items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
+                        <div className="flex gap-7 justify-center w-full">
+                            <Link href={data.repository}
+                                target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
                                 <FaGithub size={18} />
                                 {t.projects.buttonGithub}
                             </Link>
+
+                            {data.post && (
+                                <Link href={data.post}
+                                    target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
+                                    <FaExternalLinkAlt size={16} />
+                                    {t.projects.checkPost}
+                                </Link>
+                            )}
                             {
-                                post && (
-                                    <Link href={post}
-                                        target="_blank" className="flex border-blue-500 bg-white text-blue-500  items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                        <FaExternalLinkAlt size={16} />
-                                        {t.projects.checkPost}
+                                data.website && (
+                                    <Link href={data.website}
+                                        target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
+                                        <TbWorld size={16} />
+                                        {t.projects.websiteLink}
                                     </Link>
                                 )
                             }
                         </div>
                     </div>
 
-                    <div className="flex flex-col pl-5 max-w-full md:max-w-2xl">
-                        <h1 className="text-xl font-semibold pb-3 text-gray-800 md:text-xl xl:text-2xl">{title}</h1>
-                        <div className="space-y-4 text-gray-500 text-base break-words xl:text-xl">
-                            {description.map((paragraph, index) => (
-                                <p key={index} className="whitespace-pre-line">
-                                    {paragraph}
-                                </p>
+                    {/* Coluna direita — título fixo, descrição rola, stack fixo */}
+                    <div className="flex flex-col pl-5 md:w-6/12 flex-1 min-h-0">
+
+                        {/* Título fixo */}
+                        <h1 className="text-xl font-semibold pb-3 text-gray-800 md:text-xl xl:text-2xl flex-shrink-0 border-b border-gray-200">
+                            {data.title}
+                        </h1>
+
+                        {/* Descrição com scroll */}
+                        <div className="flex-1 overflow-y-auto min-h-0 pr-2">
+                            <div className="min-h-full flex flex-col justify-center space-y-4 text-gray-500 text-base break-words xl:text-xl">
+                                {description.map((paragraph, index) => (
+                                    <p key={index} className="whitespace-pre-line">
+                                        {paragraph}
+                                    </p>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Stack fixo no rodapé */}
+                        <div className="flex items-center gap-2 pt-3 mt-2 border-t border-gray-200 flex-shrink-0">
+                            {data.stack.map((Icon, i) => (
+                                <Icon key={i} size={24} className="text-blue-500" />
                             ))}
                         </div>
-                        <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
 
-                            {
-                                stack.map((Icon, i) => (
-                                    <Icon key={i} size={24} className="text-blue-500" />
-                                ))
-                            }
-                        </div>
                     </div>
                 </div>
             </div>

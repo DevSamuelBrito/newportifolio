@@ -10,6 +10,7 @@ export type Project = {
   src: StaticImageData;
   stack: IconType[];
   post?: string;
+  website?: string;
   repository: string;
   title: string;
   descriptionBr: string[];
