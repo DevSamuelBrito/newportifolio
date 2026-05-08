@@ -1,40 +1,45 @@
 "use client"
-import Image, { StaticImageData } from "next/image";
-import { IconType } from "react-icons";
-import { useLanguage } from "@/providers/LanguageContext";
+
+//react
 import { useState } from "react";
-import ModalCard from "../ModalCard";
+
+//next
+import Image from "next/image";
+
+//framer-motion
 import { motion } from "framer-motion";
 
-interface ProjectCardProps {
-    title: string,
-    src: StaticImageData,
-    stack: IconType[],
-    descriptionEn: string,
-    descriptionBr: string,
-    repository: string;
-    post: string;
-    index: number;
+//providers
+import { useLanguage } from "@/providers/LanguageContext";
 
+//components
+import ModalCard from "../ModalCard";
+
+//types
+import type { Project } from "../../types";
+
+interface ProjectCardProps {
+    data: Project;
+    index: number;
 }
 
-
-export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, post, repository, index
-}: ProjectCardProps) {
-
+export function ProjectCard({ data, index }: ProjectCardProps) {
 
     const translation = {
         en: {
             button: "Details",
-            description: descriptionEn,
+            description: data.descriptionEn,
         }, pt: {
             button: "Detalhes",
-            description: descriptionBr
+            description: data.descriptionBr
         }
     }
 
     const [isOpen, setIsOpen] = useState(false);
+
     const { language } = useLanguage();
+
+
     return (
         <motion.div
             initial={{ opacity: 0, x: -100 }}
@@ -48,17 +53,17 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
                 className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative h-full flex flex-col justify-between"
             >
                 <Image
-                    src={src}
-                    alt={title}
+                    src={data.src}
+                    alt={data.title}
                     className="w-full h-48 object-cover rounded-lg"
                     width={400}
                     height={300}
                 />
-                <h3 className="text-xl font-semibold text-white mt-3">{title}</h3>
+                <h3 className="text-xl font-semibold text-white mt-3">{data.title}</h3>
 
                 <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
                     {
-                        stack.map((Icon, i) => (
+                        data.stack.map((Icon, i) => (
                             <Icon key={i} size={24} className="text-blue-500" />
                         ))
                     }
@@ -67,7 +72,16 @@ export function ProjectCard({ title, src, stack, descriptionEn, descriptionBr, p
                     {translation[language].button}
                 </button>
             </div>
-            <ModalCard description={translation[language].description} src={src} isOpen={isOpen} onClose={() => setIsOpen(!isOpen)} title={title} stack={stack} repository={repository} post={post} />
+            <ModalCard
+                description={translation[language].description}
+                src={data.src}
+                isOpen={isOpen}
+                onClose={() => setIsOpen(!isOpen)}
+                title={data.title}
+                stack={data.stack}
+                repository={data.repository}
+                post={data.post ?? ""}
+            />
         </motion.div>
     )
 }

@@ -6,6 +6,9 @@ import { useState } from "react";
 //icons
 import { ChevronDown, ChevronUp } from "lucide-react";
 
+//framer-motion
+import { motion } from "framer-motion";
+
 //data
 import { ProjectsData } from "./data/projectsData";
 
@@ -14,7 +17,8 @@ import { ProjectCard } from "./components/ProjectCard";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
-import { motion } from "framer-motion";
+
+//components
 import DefaultSection from "@/components/shared/DefaultSection";
 
 export function Projects() {
@@ -25,33 +29,15 @@ export function Projects() {
 
   const projectsData = ProjectsData;
 
+  const sortedProjects = [...projectsData].sort((a, b) => b.index - a.index);
+
   const displayedProjects = showAll
-    ? projectsData.map(project => (
-      <ProjectCard
-        key={project.id}
-        index={project.index}
-        src={project.src}
-        stack={project.stack}
-        post={project.post}
-        repository={project.repository}
-        title={project.title}
-        descriptionBr={project.descriptionBr}
-        descriptionEn={project.descriptionEn}
-      />
-    ))
-    : projectsData.slice(0, 6).map(project => (
-      <ProjectCard
-        key={project.id}
-        index={project.index}
-        src={project.src}
-        stack={project.stack}
-        post={project.post}
-        repository={project.repository}
-        title={project.title}
-        descriptionBr={project.descriptionBr}
-        descriptionEn={project.descriptionEn}
-      />
-    ));
+    ? sortedProjects.map((project, i) => (
+        <ProjectCard key={project.id} data={project}  index={i} />
+      ))
+    : sortedProjects.slice(0, 6).map((project, i) => (
+        <ProjectCard key={project.id} data={project}  index={i}/>
+      ));
 
   return (
 

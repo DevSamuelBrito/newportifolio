@@ -26,7 +26,7 @@ interface ModalCardProps {
     isOpen: boolean;
     onClose: () => void;
     title: string;
-    description: string;
+    description: string[];
     stack: IconType[];
     src: string | StaticImageData;
     repository: string;
@@ -113,9 +113,13 @@ export default function ModalCard({ isOpen, onClose, title, src, description, st
 
                     <div className="flex flex-col pl-5 max-w-full md:max-w-2xl">
                         <h1 className="text-xl font-semibold pb-3 text-gray-800 md:text-xl xl:text-2xl">{title}</h1>
-                        <p className="text-gray-500 text-base break-words whitespace-pre-line xl:text-xl">
-                            {description}
-                        </p>
+                        <div className="space-y-4 text-gray-500 text-base break-words xl:text-xl">
+                            {description.map((paragraph, index) => (
+                                <p key={index} className="whitespace-pre-line">
+                                    {paragraph}
+                                </p>
+                            ))}
+                        </div>
                         <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
 
                             {
