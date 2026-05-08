@@ -109,6 +109,8 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
                                 alt={data.title}
                                 fill
                                 className="object-contain"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                priority={data.index <= 2}
                             />
                         </div>
 
