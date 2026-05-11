@@ -100,10 +100,12 @@ export function Hero({ setShowAlert }: HeroProps) {
             <SocialMediaButton
               href="https://github.com/DevSamuelBrito"
               Icon={FaGithub}
+              ariaLabel="Open GitHub profile"
             />
             <SocialMediaButton
               href="https://www.linkedin.com/in/samuel-fava-de-brito/"
               Icon={FaLinkedin}
+              ariaLabel="Open LinkedIn profile"
             />
 
           </div>

@@ -19,7 +19,7 @@ export function ButtonTranslate({ title, languageDefault, src }: ButtonTranslate
     return (
         <button
             title={title}
-            aria-label={`Mudar idioma para ${title}`}
+            aria-label={languageDefault === "en" ? "Switch language to English" : "Switch language to Portuguese"}
             className="px-2 py-2"
             onClick={() => setLanguage(languageDefault)
             }
