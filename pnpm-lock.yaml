@@ -30,7 +30,7 @@ importers:
         specifier: ^19.2.1
         version: 19.2.1(react@19.2.1)
       react-icons:
-        specifier: ^5.4.0
+        specifier: 5.4.0
         version: 5.4.0(react@19.2.1)
       react-simple-typewriter:
         specifier: ^5.0.1

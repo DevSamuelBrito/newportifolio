@@ -26,11 +26,11 @@ const ExperienceCard = ({ role, company, period, activities, technologies, index
             className="w-full"
         >
 
-            <div className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative:">
+            <div className="experience-card group">
 
                 {/* Cabeçalho */}
                 <div className="mb-4">
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="experience-card-title text-xl font-semibold text-white">
                         {role}
                     </h3>
                     <p className="text-sm text-gray-400">
@@ -54,7 +54,7 @@ const ExperienceCard = ({ role, company, period, activities, technologies, index
                         {technologies.map((tech) => (
                             <span
                                 key={tech}
-                                className="px-3 py-1 text-xs bg-gray-700 text-gray-200 rounded-full"
+                                className="tech-pill px-3 py-1 text-xs bg-gray-700 text-gray-200 rounded-full"
                             >
                                 {tech}
                             </span>

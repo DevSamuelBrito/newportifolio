@@ -6,6 +6,9 @@ import { useState } from "react";
 //icons
 import { ChevronDown, ChevronUp } from "lucide-react";
 
+//framer-motion
+import { motion } from "framer-motion";
+
 //data
 import { ProjectsData } from "./data/projectsData";
 
@@ -14,7 +17,9 @@ import { ProjectCard } from "./components/ProjectCard";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
-import { motion } from "framer-motion";
+
+//components
+import DefaultSection from "@/components/shared/DefaultSection";
 
 export function Projects() {
 
@@ -24,39 +29,20 @@ export function Projects() {
 
   const projectsData = ProjectsData;
 
+  const sortedProjects = [...projectsData].sort((a, b) => b.index - a.index);
+
   const displayedProjects = showAll
-    ? projectsData.map(project => (
-      <ProjectCard
-        key={project.id}
-        index={project.index}
-        src={project.src}
-        stack={project.stack}
-        post={project.post}
-        repository={project.repository}
-        title={project.title}
-        descriptionBr={project.descriptionBr}
-        descriptionEn={project.descriptionEn}
-      />
-    ))
-    : projectsData.slice(0, 6).map(project => (
-      <ProjectCard
-        key={project.id}
-        index={project.index}
-        src={project.src}
-        stack={project.stack}
-        post={project.post}
-        repository={project.repository}
-        title={project.title}
-        descriptionBr={project.descriptionBr}
-        descriptionEn={project.descriptionEn}
-      />
-    ));
+    ? sortedProjects.map((project, i) => (
+        <ProjectCard key={project.id} data={project}  index={i} />
+      ))
+    : sortedProjects.slice(0, 6).map((project, i) => (
+        <ProjectCard key={project.id} data={project}  index={i}/>
+      ));
 
   return (
-    <section id="projects" className="bg-gray-900 min-h-screen pt-14">
+
+    <DefaultSection section="projects" >
       <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit" >
-
-
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white relative inline-block">
             {t.projects.title}
@@ -65,7 +51,7 @@ export function Projects() {
         </div>
 
 
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:px-4">
           {displayedProjects}
         </div>
 
@@ -94,6 +80,8 @@ export function Projects() {
         )}
 
       </div>
-    </section>
+    </DefaultSection>
+
+
   );
 }
