@@ -1,4 +1,6 @@
+//package.json 
 import packageJson from '../../../../package.json';
+
 interface FooterProps {
     rights: string;
     developer: string;
