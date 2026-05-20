@@ -39,6 +39,7 @@ export function ProjectCard({ data, index }: ProjectCardProps) {
 
     const { language } = useLanguage();
 
+    const title = language === "en" ? data.titleEn : data.titleBr;
 
     return (
         <motion.div
@@ -54,12 +55,12 @@ export function ProjectCard({ data, index }: ProjectCardProps) {
             >
                 <Image
                     src={data.src}
-                    alt={data.title}
+                    alt={title}
                     className="w-full h-48 object-cover rounded-lg"
                     width={400}
                     height={300}
                 />
-                <h3 className="text-xl font-semibold text-white mt-3">{data.title}</h3>
+                <h3 className="text-xl font-semibold text-white mt-3">{title}</h3>
 
                 <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
                     {
