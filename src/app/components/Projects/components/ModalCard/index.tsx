@@ -36,6 +36,7 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
     const [mounted, setMounted] = useState(false);
 
     const description = language === "en" ? data.descriptionEn : data.descriptionBr;
+    const title = language === "en" ? data.titleEn : data.titleBr;
 
     useEffect(() => {
         if (isOpen) {
@@ -106,7 +107,7 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
                         <div className="w-full h-[240px] sm:h-[280px] md:h-[420px] xl:h-[500px] relative flex-shrink-0">
                             <Image
                                 src={data.src}
-                                alt={data.title}
+                                alt={title}
                                 fill
                                 className="object-contain"
                                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -145,7 +146,7 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
 
                         {/* Título fixo */}
                         <h1 className="text-xl font-semibold pb-3 text-gray-800 md:text-xl xl:text-2xl flex-shrink-0 border-b border-gray-200">
-                            {data.title}
+                            {title}
                         </h1>
 
                         {/* Descrição com scroll */}

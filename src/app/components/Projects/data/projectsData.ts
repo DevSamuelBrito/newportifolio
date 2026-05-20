@@ -66,7 +66,8 @@ export const ProjectsData: Project[] = [
     website: "https://benevitta-lp.vercel.app/",
     repository:
       "https://github.com/DevSamuelBrito/lp-maintenance-drinking-fountains.git",
-    title: "LP Maintenance Drinking Fountains",
+    titleEn: "LP Maintenance Drinking Fountains",
+    titleBr: "LP Manutenção de Bebedouros",
     descriptionBr: [
       "A Manutenção de Bebedouros Landing Page é um projeto desenvolvido para estabelecer uma presença online forte, profissional e moderna para uma empresa especializada em manutenção de bebedouros.",
       "Esta Single-Page Application (SPA) foi construída com foco em alta performance, SEO otimizado e uma excelente experiência de usuário (UX), garantindo uma navegação fluida e o direcionamento eficiente de visitantes para a conversão em leads.",
@@ -95,7 +96,8 @@ export const ProjectsData: Project[] = [
     stack: [CSharpIcon, SiDotnet, SiPostgresql, SiDocker],
     post: "",
     repository: "https://github.com/DevSamuelBrito/CRUD_ASPNET",
-    title: "CRUD ASP.NET Core API",
+    titleEn: "CRUD ASP.NET Core API",
+    titleBr: "CRUD API ASP.NET Core",
     descriptionBr: [
       "Projeto de estudo de uma API RESTful completa para gerenciamento de tarefas desenvolvida com ASP.NET Core 9.0, seguindo os princípios de Clean Architecture e melhores práticas de desenvolvimento. Este projeto foi criado para aprofundar conhecimentos em arquitetura de software e desenvolvimento back-end com .NET.",
       "🏗️ Arquitetura e Padrões - Clean Architecture com camadas bem separadas (API, Application, Domain, Infrastructure) - DTOs para separação de responsabilidades - Repository Pattern para acesso a dados - AutoMapper para mapeamento de objetos - Validações automáticas com Data Annotations .",
@@ -127,7 +129,8 @@ export const ProjectsData: Project[] = [
     ],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7389254768482762752-Asl3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/Portifol.io",
-    title: "Portifol.io",
+    titleEn: "Portifol.io",
+    titleBr: "Portifol.io",
     descriptionBr: [
       "Portifol.io é uma aplicação completa desenvolvida em Next.js que demonstra um sistema de autenticação e gerenciamento de imagens.",
       "Este projeto de estudo foi criado para aprofundar conhecimentos em Next.js (App Router e API Routes), integração com serviços externos e gerenciamento de estado.",
@@ -186,7 +189,8 @@ export const ProjectsData: Project[] = [
     stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-tailwindcss-framermotion-activity-7313680203027771392-L90L?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/newportifolio.git",
-    title: "Portifolio",
+    titleEn: "Portifolio",
+    titleBr: "Portfólio",
     descriptionBr: [
       "Este portfólio foi criado para demonstrar minhas habilidades como desenvolvedor full-stack, com foco em tecnologias modernas como Next.js, TypeScript, Tailwind CSS e Framer-Motion.",
       "Ao longo do desenvolvimento, utilizei componentes reutilizáveis, animações interativas e design responsivo para garantir uma ótima experiência de usuário, seja no desktop ou dispositivos móveis.",
@@ -215,7 +219,8 @@ export const ProjectsData: Project[] = [
     ],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-react-typescript-activity-7295234873252888576-0_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/Dev_Controle.git",
-    title: "Dev Controle",
+    titleEn: "Dev Controle",
+    titleBr: "Dev Controle",
     descriptionBr: [
       "Dev_Controle é uma aplicação full-stack desenvolvida com Next.js para gerenciamento de usuários e chamados.",
       "O projeto inclui autenticação de usuários, cadastro e gerenciamento de clientes e criação de chamados vinculados.Além disso, qualquer pessoa pode abrir um chamado informando apenas o e-mail do cliente.",
@@ -234,7 +239,8 @@ export const ProjectsData: Project[] = [
     stack: [SiTypescript, SiNextdotjs, SiReact, SiStyledcomponents],
     post: "",
     repository: "https://github.com/DevSamuelBrito/Dev_Motors",
-    title: "Dev Motors",
+    titleEn: "Dev Motors",
+    titleBr: "Dev Motors",
     descriptionBr: [
       "O DevMotors é um projeto desenvolvido para uma oficina especializada em manutenção de carros, localizada em São Paulo.",
       "Esse site foi construído utilizando Next.js e outras tecnologias modernas, garantindo uma aplicação rápida, responsiva e otimizada.Diferente de um site estático, o DevMotors consome informações diretamente do Cosmic JS, um CMS headless que permite gerenciar o conteúdo do site de forma dinâmica, sem precisar modificar o código.",
@@ -268,7 +274,8 @@ export const ProjectsData: Project[] = [
     stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_boa-tarde-pessoal-hoje-quero-compartilhar-activity-7281731227349319680-TPVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/DalyGames.git",
-    title: "DalyGames",
+    titleEn: "DalyGames",
+    titleBr: "DalyGames",
     descriptionBr: [
       "DalyGames é uma aplicação web desenvolvida com Next.js para explorar e gerenciar jogos.",
       "O projeto consome uma API REST para exibir detalhes dos jogos, incluindo título, descrição, imagem, plataformas e categorias.",
@@ -290,7 +297,8 @@ export const ProjectsData: Project[] = [
     stack: [SiTypescript, SiStyledcomponents, SiFirebase, SiReact, SiNextdotjs],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_ol%C3%A1-pessoal-espero-que-estejam-bem-recentemente-activity-7237147758741094404-m2mZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/Tarefas_NextJS.git",
-    title: "Tarefas NextJs",
+    titleEn: "Tasks NextJs",
+    titleBr: "Tarefas NextJs",
     descriptionBr: [
       "Este projeto é uma aplicação de lista de tarefas (To-Do List) desenvolvida com Next.js, focada em gerenciamento e compartilhamento de tarefas.",
       "A autenticação é feita via Google usando NextAuth, permitindo que usuários criem, editem e compartilhem tarefas com outras pessoas.",
@@ -315,7 +323,8 @@ export const ProjectsData: Project[] = [
     stack: [SiReact, SiJavascript],
     post: "",
     repository: "https://github.com/DevSamuelBrito/web-repositorios",
-    title: "Web Repositorios",
+    titleEn: "Web Repositories",
+    titleBr: "Web Repositórios",
     descriptionBr: [
       "Esse foi meu primeiro projeto completo usando React, criado para entender melhor a ferramenta e sua dinâmica com componentes, estados e rotas.",
       "Com essa aplicação, você pode pesquisar por um repositório do GitHub e visualizar todas as issues abertas e fechadas associadas a ele.",
@@ -346,7 +355,8 @@ export const ProjectsData: Project[] = [
     stack: [SiHtml5, SiCss3, SiJavascript],
     post: "",
     repository: "https://github.com/DevSamuelBrito/Paper-Rock-Scissors",
-    title: "Pedra Papel e Tesoura JS",
+    titleEn: "Rock Paper Scissors JS",
+    titleBr: "Pedra Papel e Tesoura JS",
     descriptionBr: [
       "Esse projeto foi uma forma divertida de praticar JavaScript, onde desenvolvi um jogo clássico de Pedra, Papel e Tesoura que registra o placar do jogador contra a máquina.",
       "O diferencial desse projeto é que ele utiliza o LocalStorage do navegador para armazenar o número de vitórias, derrotas e empates, garantindo que o progresso do jogador não seja perdido ao recarregar a página.",
@@ -375,7 +385,8 @@ export const ProjectsData: Project[] = [
     stack: [SiHtml5, SiCss3, SiJavascript],
     post: "",
     repository: "https://github.com/DevSamuelBrito/Calculator-JS",
-    title: "Calculadora JS",
+    titleEn: "Calculator JS",
+    titleBr: "Calculadora JS",
     descriptionBr: [
       "Essa calculadora foi um dos meus primeiros projetos ao começar a aprender JavaScript.",
       "Desenvolvida com HTML, CSS e JavaScript, ela me ajudou a entender conceitos fundamentais como manipulação do DOM, eventos de clique e lógica de programação.",
@@ -407,7 +418,8 @@ export const ProjectsData: Project[] = [
     post: "",
     repository:
       "https://github.com/DevSamuelBrito/Projeto-Interdisciplinar-InterGeek.git",
-    title: "InterGeek - Fatec",
+    titleEn: "InterGeek - Fatec",
+    titleBr: "InterGeek - Fatec",
     descriptionBr: [
       "Durante meu tempo na Fatec Rio Preto, participei de um projeto acadêmico em grupo onde desenvolvemos um site completo para gerenciamento de produtos e usuários.",
       "O projeto envolvia a criação da documentação, além do desenvolvimento do site utilizando tecnologias como HTML, CSS, MySQL, C#, .NET e ASP.NET para implementar o padrão MVC.",
@@ -430,7 +442,8 @@ export const ProjectsData: Project[] = [
     stack: [SiHtml5, SiCss3],
     post: "",
     repository: "https://github.com/DevSamuelBrito/portfolio.git",
-    title: "Portifolio",
+    titleEn: "Portifolio",
+    titleBr: "Portfólio",
     descriptionBr: [
       "Esse foi o meu primeiro portfólio, desenvolvido apenas com HTML e CSS, quando comecei a explorar o mundo do desenvolvimento web.",
       "O objetivo desse projeto era criar uma página simples e estruturada para apresentar um pouco sobre mim e meus primeiros trabalhos.",

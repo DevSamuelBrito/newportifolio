@@ -12,7 +12,8 @@ export type Project = {
   post?: string;
   website?: string;
   repository: string;
-  title: string;
+  titleEn: string;
+  titleBr: string;
   descriptionBr: string[];
   descriptionEn: string[];
 };
