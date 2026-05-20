@@ -1,6 +1,9 @@
 //next
 import type { Metadata } from "next";
 
+//analytics
+import { Analytics } from '@vercel/analytics/next';
+
 //context providers
 import { LanguageProvider } from "../providers/LanguageContext";
 
@@ -50,6 +53,7 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
