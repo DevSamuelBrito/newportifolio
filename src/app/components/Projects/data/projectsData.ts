@@ -25,6 +25,8 @@ import crudAspNet from "@/assets/images/crudaspnet.png";
 
 import lpMaintanceLp from "@/assets/images/lp-maintenance-drinking-fountains.png";
 
+import smartBudgetPro from "@/assets/images/smartbudgetPRO.png";
+
 //icons
 import { FaReact } from "react-icons/fa";
 
@@ -49,6 +51,8 @@ import {
   SiCloudinary,
   SiDocker,
   SiVercel,
+  SiReacthookform,
+  SiZod,
 } from "react-icons/si";
 
 import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
@@ -57,6 +61,36 @@ import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
 import type { Project } from "../types";
 
 export const ProjectsData: Project[] = [
+  {
+    id: "smartBudgetPro",
+    index: 14,
+    src: smartBudgetPro,
+    stack: [
+      CSharpIcon,
+      SiDotnet,
+      SiPostgresql,
+      SiNextdotjs,
+      FaReact,
+      SiTypescript,
+      SiTailwindcss,
+      SiReacthookform,
+      SiZod,
+    ],
+    post: "",
+    repository: "https://github.com/DevSamuelBrito/SmartBudget",
+    titleEn: "SmartBudget PRO (Under Development)",
+    titleBr: "SmartBudget PRO (Em Desenvolvimento)",
+    descriptionBr: [
+      "Aplicacao full-stack de controle financeiro pessoal em desenvolvimento, construida do zero com foco em arquitetura profissional e regras de dominio consistentes.",
+      "No backend, utiliza C# e ASP.NET com Clean Architecture, Domain rico com validacoes encapsuladas nas entidades, Use Cases, Repository Pattern e PostgreSQL.",
+      "No frontend, foi desenvolvido em Next.js com React Query para cache e busca server-side, Zod + React Hook Form para validacao de formularios e dashboard com metricas de gastos por categoria e budget mensal.",
+    ],
+    descriptionEn: [
+      "Full-stack personal finance control application in development, built from scratch with a focus on professional architecture and consistent domain rules.",
+      "On the backend, it uses C# and ASP.NET with Clean Architecture, a rich Domain with validations encapsulated in entities, Use Cases, Repository Pattern, and PostgreSQL.",
+      "On the frontend, it is built with Next.js using React Query for cache and server-side search, Zod + React Hook Form for form validation, and a dashboard with category spending metrics and monthly budget tracking.",
+    ],
+  },
   {
     id: "lpMaintanceLp",
     index: 13,
