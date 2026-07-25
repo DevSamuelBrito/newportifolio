@@ -25,7 +25,19 @@ import crudAspNet from "@/assets/images/crudaspnet.png";
 
 import lpMaintanceLp from "@/assets/images/lp-maintenance-drinking-fountains.png";
 
-import smartBudgetPro from "@/assets/images/smartbudgetPRO.png";
+import smartBudgetPro1 from "@/assets/images/smartbudget1.png";
+
+import smartBudgetPro2 from "@/assets/images/smartbudget2.png";
+
+import smartBudgetPro3 from "@/assets/images/smartbudget3.png";
+
+import smartBudgetPro4 from "@/assets/images/smartbudget4.png";
+
+import smartBudgetPro5 from "@/assets/images/smartbudget5.png";
+
+import smartBudgetPro6 from "@/assets/images/smartbudget6.png";
+
+import smartBudgetPro7 from "@/assets/images/smartbudget7.png";
 
 //icons
 import { FaReact } from "react-icons/fa";
@@ -53,6 +65,8 @@ import {
   SiVercel,
   SiReacthookform,
   SiZod,
+  SiRedis,
+  SiJest,
 } from "react-icons/si";
 
 import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
@@ -64,31 +78,48 @@ export const ProjectsData: Project[] = [
   {
     id: "smartBudgetPro",
     index: 14,
-    src: smartBudgetPro,
+    src: smartBudgetPro1,
+    images: [
+      smartBudgetPro1,
+      smartBudgetPro2,
+      smartBudgetPro3,
+      smartBudgetPro4,
+      smartBudgetPro5,
+      smartBudgetPro6,
+      smartBudgetPro7,
+    ],
     stack: [
       CSharpIcon,
       SiDotnet,
       SiPostgresql,
+      SiRedis,
+      SiDocker,
       SiNextdotjs,
-      FaReact,
-      SiTypescript,
-      SiTailwindcss,
-      SiReacthookform,
       SiZod,
+      SiReacthookform,
+      SiTypescript,
+      SiJest,
+      SiTailwindcss,
     ],
-    post: "",
+
+    post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nos-%C3%BAltimos-meses-venho-evoluindo-minhas-ugcPost-7486065626067681280-vn0O/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
     repository: "https://github.com/DevSamuelBrito/SmartBudget",
-    titleEn: "SmartBudget PRO (Under Development)",
-    titleBr: "SmartBudget PRO (Em Desenvolvimento)",
+    website: "https://www.smartbudget-app.com/",
+    titleEn: "SmartBudget",
+    titleBr: "SmartBudget",
     descriptionBr: [
-      "Aplicacao full-stack de controle financeiro pessoal em desenvolvimento, construida do zero com foco em arquitetura profissional e regras de dominio consistentes.",
-      "No backend, utiliza C# e ASP.NET com Clean Architecture, Domain rico com validacoes encapsuladas nas entidades, Use Cases, Repository Pattern e PostgreSQL.",
-      "No frontend, foi desenvolvido em Next.js com React Query para cache e busca server-side, Zod + React Hook Form para validacao de formularios e dashboard com metricas de gastos por categoria e budget mensal.",
+      "SmartBudget é uma aplicação full-stack de controle financeiro pessoal construída do zero com foco em arquitetura profissional e regras de domínio consistentes, já em produção e acessível publicamente.",
+      "No backend, utiliza C# e ASP.NET Core (.NET 10) com Clean Architecture, Domain rico com validações encapsuladas nas entidades e criação via factory methods, Use Cases, Repository Pattern, PostgreSQL via Entity Framework Core, autenticação JWT em cookies HttpOnly com rotação de refresh token via Redis, e recuperação de senha por e-mail transacional.",
+      "No frontend, foi desenvolvido em Next.js (App Router) com React Query para cache e busca server-side, Zod + React Hook Form para validação de formulários, e um dashboard customizável com métricas de gastos por categoria, budgets mensais com indicadores de gasto em tempo real e widgets premium (taxa de poupança, comparativo mensal, fluxo de caixa, saúde do orçamento).",
+      "O projeto ainda conta com geração de relatórios em PDF e Excel, sistema de planos premium, internacionalização completa (inglês e português), tema claro/escuro e testes automatizados (xUnit, Jest, Playwright).",
+      "Todo o fluxo de desenvolvimento segue um pipeline de CI/CD com GitHub Actions, incluindo análise de qualidade de código com SonarCloud, varredura de vulnerabilidades de dependências com Snyk e revisão automatizada de cada Pull Request pelo CodeRabbit — garantindo um processo de entrega próximo ao padrão usado em times profissionais.",
     ],
     descriptionEn: [
-      "Full-stack personal finance control application in development, built from scratch with a focus on professional architecture and consistent domain rules.",
-      "On the backend, it uses C# and ASP.NET with Clean Architecture, a rich Domain with validations encapsulated in entities, Use Cases, Repository Pattern, and PostgreSQL.",
-      "On the frontend, it is built with Next.js using React Query for cache and server-side search, Zod + React Hook Form for form validation, and a dashboard with category spending metrics and monthly budget tracking.",
+      "SmartBudget is a full-stack personal finance control application built from scratch with a focus on professional architecture and consistent domain rules, already live and publicly accessible.",
+      "On the backend, it uses C# and ASP.NET Core (.NET 10) with Clean Architecture, a rich Domain with validations encapsulated in entities and factory-method creation, Use Cases, Repository Pattern, PostgreSQL via Entity Framework Core, JWT authentication in HttpOnly cookies with refresh token rotation backed by Redis, and password recovery via transactional email.",
+      "On the frontend, it is built with Next.js (App Router) using React Query for cache and server-side data fetching, Zod + React Hook Form for form validation, and a customizable dashboard with category spending metrics, monthly budgets with real-time spending indicators, and premium widgets (savings rate, monthly comparison, cash flow, budget health).",
+      "The project also includes PDF and Excel report generation, a premium subscription plan system, full internationalization (English and Portuguese), light/dark theming, and automated tests (xUnit, Jest, Playwright).",
+      "The entire development flow runs through a CI/CD pipeline with GitHub Actions, including code quality analysis with SonarCloud, dependency vulnerability scanning with Snyk, and automated Pull Request review via CodeRabbit — keeping the delivery process close to what professional engineering teams use.",
     ],
   },
   {
