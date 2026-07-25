@@ -8,6 +8,7 @@ export type Project = {
   id: string;
   index: number;
   src: StaticImageData;
+  images?: StaticImageData[];
   stack: IconType[];
   post?: string;
   website?: string;
