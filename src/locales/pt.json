@@ -87,7 +87,14 @@
           "Automação de processos e implantação de softwares corporativos",
           "Apoio na implementação e otimização de sistemas CRM e ERP"
         ],
-        "technologies": ["Windows Server", "Redes", "VPNs", "DNS", "CRM", "ERP"]
+        "technologies": [
+          "Windows Server",
+          "Redes",
+          "VPNs",
+          "DNS",
+          "CRM",
+          "ERP"
+        ]
       },
       {
         "role": "Estagiário de TI",
@@ -99,7 +106,11 @@
           "Configuração e preparação de máquinas e equipamentos para colaboradores",
           "Manutenções preventivas e atualizações para garantir estabilidade dos sistemas"
         ],
-        "technologies": ["Windows Server", "Redes", "VPNs"]
+        "technologies": [
+          "Windows Server",
+          "Redes",
+          "VPNs"
+        ]
       },
       {
         "role": "Jovem Aprendiz – Eletricista de Manutenção Eletroeletrônica",
@@ -126,6 +137,13 @@
     "title": "Certificações",
     "button": "Ver Certificação",
     "data": [
+      {
+        "name": "Arquitetura de Software e Design de Sistemas Modernos de Grande Escala",
+        "issuer": "Udemy",
+        "description": "Curso de arquitetura de software e design de sistemas, abordando System Design, microsserviços, Event-Driven Architecture (EDA), padrões de resiliência, escalabilidade, alta disponibilidade, estratégias de deployment e boas práticas para sistemas distribuídos modernos.",
+        "date": "Jun 2026",
+        "link": "https://www.udemy.com/certificate/UC-f62f04e5-04ae-48e5-8487-56d5cff873e8/"
+      },
       {
         "name": "Curso Web API ASP .NET Core Essencial (.NET 8 / .NET 9)",
         "issuer": "Udemy",
@@ -173,7 +191,6 @@
       }
     ]
   },
-
   "stack": {
     "title": "Tecnologias",
     "column": "Ferramentas & DevOps"
