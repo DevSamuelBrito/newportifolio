@@ -23,7 +23,17 @@ import portifolIo from "@/assets/images/portifol-io.png";
 
 import crudAspNet from "@/assets/images/crudaspnet.png";
 
-import lpMaintanceLp from "@/assets/images/lp-maintenance-drinking-fountains.png";
+import lpMaintanceLp1 from "@/assets/images/lp-maintenance-drinking-fountains1.png";
+
+import lpMaintanceLp2 from "@/assets/images/lp-maintenance-drinking-fountains2.png";
+
+import lpMaintanceLp3 from "@/assets/images/lp-maintenance-drinking-fountains3.png";
+
+import lpMaintanceLp4 from "@/assets/images/lp-maintenance-drinking-fountains4.png";
+
+import lpMaintanceLp5 from "@/assets/images/lp-maintenance-drinking-fountains5.png";
+
+import lpMaintanceLp6 from "@/assets/images/lp-maintenance-drinking-fountains6.png";
 
 import smartBudgetPro1 from "@/assets/images/smartbudget1.png";
 
@@ -158,7 +168,15 @@ export const ProjectsData: Project[] = [
   {
     id: "lpMaintanceLp",
     index: 13,
-    src: lpMaintanceLp,
+    src: lpMaintanceLp1,
+    images: [
+      lpMaintanceLp1,
+      lpMaintanceLp2,
+      lpMaintanceLp3,
+      lpMaintanceLp4,
+      lpMaintanceLp5,
+      lpMaintanceLp6,
+    ],
     stack: [SiReact, SiNextdotjs, SiTailwindcss, SiVercel],
     post: "",
     website: "https://benevitta-lp.vercel.app/",
