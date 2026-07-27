@@ -12,7 +12,7 @@ export type Project = {
   stack: IconType[];
   post?: string;
   website?: string;
-  repository: string;
+  repository?: string;
   titleEn: string;
   titleBr: string;
   descriptionBr: string[];

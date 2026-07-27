@@ -11,8 +11,8 @@
     "hello": "Olá, eu sou",
     "role": "Desenvolvedor Full Stack",
     "cv": "Baixar Curriculo",
-    "introducation": "Sou desenvolvedor Full Stack com foco em aplicações web modernas, atuando no front-end com {{ React, Next.js e TypeScript }} e no back-end com {{ ASP.NET Core }}, bancos de dados {{ PostgreSQL, Prisma e Firebird }}. Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}.",
-    "introducation2": "Tenho experiência prática no desenvolvimento de {{ APIs REST }}, integração entre sistemas e {{ migração de aplicações desktop para web }}, atuando em projetos reais e ambientes de produção alinhados às boas práticas."
+    "introducation": "Sou desenvolvedor Full Stack com foco em aplicações web modernas, atuando no front-end com {{ React, Next.js e TypeScript }} e no back-end com {{ ASP.NET Core }}, bancos de dados {{ PostgreSQL, Prisma e Firebird}}. Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}.",
+    "introducation2": "Tenho experiência prática no desenvolvimento de {{ APIs REST}}, integração entre sistemas e {{ migração de aplicações desktop para web}}, atuando em projetos reais e ambientes de produção alinhados às boas práticas."
   },
   "projects": {
     "title": "Projetos",
@@ -33,24 +33,31 @@
         "company": "Gráfica Canastra",
         "period": "Jun 2025 – Atual",
         "activities": [
-          "Desenvolvimento e manutenção de aplicações web",
-          "Criação de APIs REST com ASP.NET Core",
-          "Integração entre front-end e back-end",
-          "Migração de sistema desktop para web"
+          "Arquitetei e entreguei sozinho um módulo de manutenção industrial completo, do zero ao deploy em produção",
+          "Liderei a migração do ERP interno de React/Vite para Next.js, padronizando toda a base de código",
+          "Projetei dezenas de endpoints RESTful em Clean Architecture, incluindo módulo de OS com máquina de estados",
+          "Refatorei o backend e otimizei queries críticas, reduzindo tempo de resposta de 2,8s para ~150ms",
+          "Automatizei relatórios operacionais integrando o sistema corporativo com N8N via API própria"
         ],
         "technologies": [
           "TypeScript",
           "React",
-          "Vite",
           "Next.js",
-          "ZOD",
+          "Redux",
+          "React Query",
+          "Zod",
           "MUI",
           "C#",
           "ASP.NET Core",
           "EF Core",
           "Firebird",
+          "SQL Server",
+          "Docker",
+          "Azure Blob Storage",
           "Nginx",
           "Azure DevOps",
+          "GitHub Actions",
+          "N8N",
           "Scrum"
         ]
       },
@@ -197,9 +204,9 @@
   },
   "about": {
     "title": "Sobre mim",
-    "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
-    "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, Prisma e Firebird }}, sempre com foco em performance, escalabilidade e qualidade de código.",
-    "about3": "Tenho experiência na criação de {{ APIs REST }}, integração entre sistemas e {{ migração de aplicações desktop para web }}, participando ativamente de todas as etapas do desenvolvimento, desde o levantamento de requisitos até a entrega em produção.",
+    "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto}}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
+    "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, Prisma e Firebird}}, sempre com foco em performance, escalabilidade e qualidade de código.",
+    "about3": "Tenho experiência na criação de {{ APIs REST}}, integração entre sistemas e {{ migração de aplicações desktop para web}}, participando ativamente de todas as etapas do desenvolvimento, desde o levantamento de requisitos até a entrega em produção.",
     "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio."
   },
   "contact": {

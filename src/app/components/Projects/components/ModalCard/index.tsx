@@ -112,11 +112,13 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
                         />
 
                         <div className="flex gap-7 justify-center w-full">
-                            <Link href={data.repository}
-                                target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                <FaGithub size={18} />
-                                {t.projects.buttonGithub}
-                            </Link>
+                            {data.repository && (
+                                <Link href={data.repository}
+                                    target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
+                                    <FaGithub size={18} />
+                                    {t.projects.buttonGithub}
+                                </Link>
+                            )}
 
                             {data.post && (
                                 <Link href={data.post}

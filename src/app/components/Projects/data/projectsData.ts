@@ -39,6 +39,8 @@ import smartBudgetPro6 from "@/assets/images/smartbudget6.png";
 
 import smartBudgetPro7 from "@/assets/images/smartbudget7.png";
 
+import elecDocs from "@/assets/images/elecDocs.png";
+
 //icons
 import { FaReact } from "react-icons/fa";
 
@@ -75,6 +77,37 @@ import { CSharpIcon } from "../../Stack/components/Icons/csharpIcon";
 import type { Project } from "../types";
 
 export const ProjectsData: Project[] = [
+  {
+    id: "ElecDocs",
+    index: 15,
+    src: elecDocs,
+    stack: [SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql],
+    post: "",
+    repository: "",
+    website: "",
+    titleEn: "ElecDocs (Under Development)",
+    titleBr: "ElecDocs (Em Desenvolvimento)",
+    descriptionBr: [
+      "ElecDocs é um sistema de gestão desenvolvido para empresas e pessoas de engenharia elétrica que atuam com projetos fotovoltaicos e homologação junto a concessionárias de energia.",
+      "A aplicação centraliza o cadastro de clientes, unidades consumidoras (UCs), padrões de entrada por concessionária, materiais fotovoltaicos (módulos e inversores), instalações e empresas integradoras parceiras.",
+      "✨ Principais Funcionalidades",
+      "- 📋 Kanban de Acompanhamento: acompanhamento visual do fluxo de homologação de cada UC, do cadastro até a finalização, com marcação de Fast Track.",
+      "- ⚡ Homologação CPFL: upload dos templates oficiais (Anexo E e Anexo F) e preenchimento automático dos campos com os dados da instalação, gerando os documentos finais prontos para envio.",
+      "- 📄 Geração de Documentos: emissão de Ordens de Serviço, Memoriais Descritivos, Solicitações de Homologação e Propostas Comerciais, com apoio de IA para geração de conteúdo.",
+      "- 🗂️ Banco de Materiais e Padrões: catálogo de módulos e inversores com especificações técnicas, além de padrões de entrada por concessionária.",
+      "Atualmente é um MVP em evolução, servindo como base para levantamento de requisitos e validação do fluxo com o cliente antes da reconstrução com uma stack completa (Next.js, TypeScript, PostgreSQL), aplicando boas práticas de arquitetura, performance e segurança.",
+    ],
+    descriptionEn: [
+      "ElecDocs is a management system built for electrical engineering companies and professionals working with photovoltaic projects and grid connection approval (homologation) with power utility companies.",
+      "The application centralizes client registration, consumer units (UCs), utility-specific entry standards, photovoltaic materials (modules and inverters), installations, and partner integrator companies.",
+      "✨ Main Features",
+      "- 📋 Tracking Kanban: visual tracking of each UC's homologation flow, from registration to completion, with Fast Track flagging.",
+      "- ⚡ CPFL Homologation: upload of the utility's official templates (Attachments E and F) with automatic field filling from installation data, generating the final documents ready for submission.",
+      "- 📄 Document Generation: creation of Service Orders, Descriptive Reports, Homologation Requests, and Commercial Proposals, with AI-assisted content generation.",
+      "- 🗂️ Materials and Standards Database: catalog of modules and inverters with technical specs, plus utility-specific entry standards.",
+      "Currently an evolving MVP, serving as a base for requirements gathering and workflow validation with the client before a rebuild on a full stack (Next.js, TypeScript, PostgreSQL) applying solid architecture, performance, and security practices.",
+    ],
+  },
   {
     id: "smartBudgetPro",
     index: 14,
