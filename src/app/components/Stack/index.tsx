@@ -6,7 +6,7 @@ import { StackCard } from "./components/StackCard";
 import DefaultSection from "@/components/shared/DefaultSection";
 
 //icons
-import { SiPrisma, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiDotnet, SiPostgresql, SiGit, SiZod, SiLinux, SiJest, SiVite, SiReact, SiGithub } from "react-icons/si";
+import { SiPrisma, SiNextdotjs, SiTailwindcss, SiDocker, SiTypescript, SiDotnet, SiPostgresql, SiGit, SiZod, SiLinux, SiJest, SiVite, SiReact, SiGithub, SiReacthookform } from "react-icons/si";
 
 import { VscAzureDevops } from "react-icons/vsc";
 
@@ -43,6 +43,7 @@ export function Stack() {
                         { icon: SiNextdotjs, name: "Next.js" },
                         { icon: SiTailwindcss, name: "Tailwind CSS" },
                         { icon: SiZod, name: "Zod" },
+                        { icon: SiReacthookform, name: "React Hook Form" },
                         { icon: SiJest, name: "Jest" },
                     ]} />
 
