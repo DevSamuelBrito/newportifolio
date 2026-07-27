@@ -11,8 +11,8 @@
     "hello": "Hello I'm",
     "role": "Developer Full Stack",
     "cv": "Get Resume",
-    "introducation": "I am a Full Stack Developer focused on building modern web applications, working on the front-end with {{ React, Next.js, and TypeScript }} and on the back-end with {{ ASP.NET Core }}, using databases such as {{ PostgreSQL, Prisma, and Firebird }}. I hold a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto }}.",
-    "introducation2": "I have hands-on experience developing {{ REST APIs }}, integrating systems, and {{ migrating desktop applications to the web }}, working on real projects and production environments aligned with best practices."
+    "introducation": "I am a Full Stack Developer focused on building modern web applications, working on the front-end with {{ React, Next.js, and TypeScript }} and on the back-end with {{ ASP.NET Core }}, using databases such as {{ PostgreSQL, Prisma, and Firebird}}. I hold a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto }}.",
+    "introducation2": "I have hands-on experience developing {{ REST APIs}}, integrating systems, and {{ migrating desktop applications to the web}}, working on real projects and production environments aligned with best practices."
   },
   "projects": {
     "title": "Projects",
@@ -103,7 +103,11 @@
           "Configuration and preparation of machines and equipment for employees",
           "Preventive maintenance and updates to ensure system stability"
         ],
-        "technologies": ["Windows Server", "Networks", "VPNs"]
+        "technologies": [
+          "Windows Server",
+          "Networks",
+          "VPNs"
+        ]
       },
       {
         "role": "Young Apprentice – Electromechanical Maintenance Electrician",
@@ -126,11 +130,17 @@
       }
     ]
   },
-
   "certifications": {
     "title": "Certifications",
     "button": "View Certification",
     "data": [
+      {
+        "name": "Software Architecture and Modern Large-Scale Systems Design",
+        "issuer": "Udemy",
+        "description": "Course on software architecture and system design, covering System Design, microservices, Event-Driven Architecture (EDA), resilience patterns, scalability, high availability, deployment strategies, and best practices for modern distributed systems.",
+        "date": "Jun 2026",
+        "link": "https://www.udemy.com/certificate/UC-f62f04e5-04ae-48e5-8487-56d5cff873e8/"
+      },
       {
         "name": "Essential ASP.NET Core Web API Course (.NET 8 / .NET 9)",
         "issuer": "Udemy",
@@ -178,17 +188,16 @@
       }
     ]
   },
-
   "stack": {
     "title": "Stack",
     "column": "Tools & DevOps"
   },
   "about": {
     "title": "About Me",
-    "about": "Throughout my journey, I graduated in {{ Systems Analysis and Development }} from Fatec Rio Preto and also took several additional courses to expand my knowledge of modern technologies used in the actual market.",
-    "about2": "I currently work as a developer focusing on web applications using {{ TypeScript, React, and Next.js }} on the front end, in addition to working on the {{ back end }} with {{ ASP.NET }}, and databases such as {{ PostgreSQL + Prisma }} and {{ Firebird }}, building complete systems with a focus on performance and scalability.",
-    "about3": "I'm constantly learning and evolving, striving to hone my skills through new projects, ongoing studies, and best development practices.",
-    "about4": "My {{ career goal }} is to grow as a full-stack developer, applying my knowledge in projects that challenge me and contribute to my ongoing development."
+    "about": "I am a Full Stack Developer with a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto}}, with experience building web applications and enterprise systems used in production environments.",
+    "about2": "I develop end-to-end solutions using {{ TypeScript, React, and Next.js }} on the front end and {{ ASP.NET Core }} on the back end, integrating databases such as {{ PostgreSQL, Prisma, and Firebird}}, with a strong focus on performance, scalability, and clean code.",
+    "about3": "I have experience building {{ REST APIs}}, integrating systems, and {{ migrating desktop applications to the web}}, actively participating in every stage of the development process, from requirements gathering to production deployment.",
+    "about4": "My {{ career goal }} is to continuously grow as a Full Stack Developer by working on challenging projects that create real business impact while expanding my technical expertise."
   },
   "contact": {
     "title": "Contact",

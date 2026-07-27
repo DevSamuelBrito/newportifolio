@@ -8,10 +8,11 @@ export type Project = {
   id: string;
   index: number;
   src: StaticImageData;
+  images?: StaticImageData[];
   stack: IconType[];
   post?: string;
   website?: string;
-  repository: string;
+  repository?: string;
   titleEn: string;
   titleBr: string;
   descriptionBr: string[];

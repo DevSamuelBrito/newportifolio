@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 
 //next
-import Image from "next/image";
-
 import Link from "next/link";
 
 //icons
@@ -15,6 +13,9 @@ import { TbWorld } from "react-icons/tb";
 
 //providers
 import { useLanguage } from "@/providers/LanguageContext";
+
+//components
+import { ImageCarousel } from "./components/ImageCarousel";
 
 //types
 import type { Project } from "../../types";
@@ -104,23 +105,20 @@ export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
                     {/* Coluna esquerda — fixa */}
                     <div className="flex flex-col items-center md:w-6/12 w-full flex-shrink-0 gap-6 justify-center">
 
-                        <div className="w-full h-[240px] sm:h-[280px] md:h-[420px] xl:h-[500px] relative flex-shrink-0">
-                            <Image
-                                src={data.src}
-                                alt={title}
-                                fill
-                                className="object-contain"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                priority={data.index <= 2}
-                            />
-                        </div>
+                        <ImageCarousel
+                            images={data.images && data.images.length > 0 ? data.images : [data.src]}
+                            alt={title}
+                            priority={data.index <= 2}
+                        />
 
                         <div className="flex gap-7 justify-center w-full">
-                            <Link href={data.repository}
-                                target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                <FaGithub size={18} />
-                                {t.projects.buttonGithub}
-                            </Link>
+                            {data.repository && (
+                                <Link href={data.repository}
+                                    target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
+                                    <FaGithub size={18} />
+                                    {t.projects.buttonGithub}
+                                </Link>
+                            )}
 
                             {data.post && (
                                 <Link href={data.post}

@@ -26,7 +26,7 @@ export function StackCard({ area, technologies }: StackCardProps) {
                     technologies.map(({ icon: Icon, name }) => (
                         <li key={name} className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
                             <Icon size={48} className="sm:size-16 md:size-16" />
-                            <p>{name}</p>
+                            <p className="text-center">{name}</p>
                         </li>
                     ))
                 }
