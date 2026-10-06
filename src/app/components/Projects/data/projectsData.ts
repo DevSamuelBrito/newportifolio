@@ -59,6 +59,14 @@ import thumbPreview3 from "@/assets/images/thumbPreview3.png";
 
 import thumbPreview4 from "@/assets/images/thumbPreview4.png";
 
+import overmaps1 from "@/assets/images/overmaps1.png";
+
+import overmaps2 from "@/assets/images/overmaps2.png";
+
+import overmaps3 from "@/assets/images/overmaps3.png";
+
+import overmaps4 from "@/assets/images/overmaps4.png";
+
 //icons
 import { FaReact } from "react-icons/fa";
 
@@ -97,7 +105,7 @@ import type { Project } from "../types";
 export const ProjectsData: Project[] = [
   {
     id: "ElecDocs",
-    index: 15,
+    index: 16,
     src: elecDocs,
     stack: [SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql],
     post: "",
@@ -127,8 +135,43 @@ export const ProjectsData: Project[] = [
     ],
   },
   {
-    id: "thumbPreview",
+    id: "overmaps",
     index: 14,
+    src: overmaps1,
+    images: [overmaps1, overmaps2, overmaps3, overmaps4],
+    stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
+    post: "",
+    repository: "",
+    titleEn: "Overmaps (Fan Project)",
+    titleBr: "Overmaps (Projeto de Fã)",
+    descriptionBr: [
+      "Overmaps é um mapa-múndi interativo no estilo Overwatch, onde cada país com mapas do jogo cadastrados fica destacado no globo. Passar o mouse mostra os mapas daquele país e clicar abre um painel lateral com os detalhes de cada um.",
+      "⚠️ Projeto de fã, fechado e feito para a comunidade fechada de Overwatch. Não é oficial, não tem fins lucrativos e não possui qualquer afiliação com a Blizzard Entertainment. Overwatch, seus mapas e todo o conteúdo relacionado são © Blizzard Entertainment, Inc., com todos os direitos reservados a ela.",
+      "✨ Principais Funcionalidades",
+      "- 🌍 Mapa-múndi interativo: pan e zoom com arrastar e rodinha do mouse, no estilo Google Maps, com países que possuem mapas destacados em azul.",
+      "- 🖱️ Tooltip e painel lateral: ao passar o mouse, uma prévia dos mapas do país; ao clicar, um painel com thumbnails e detalhes de cada mapa.",
+      "- 🧭 Filtro por continente: legenda e painel de filtro para focar em uma região específica.",
+      "- 🌙 Mapas lunares: painel dedicado para os mapas ambientados na Lua.",
+      "- ⌨️ Acessibilidade: navegação completa pelo teclado.",
+      "- ✨ Animações de carregamento e de revelação dos países, para uma entrada mais fluida.",
+      "O projeto foi construído com Next.js (App Router), React, TypeScript e Tailwind CSS, usando d3-geo e d3-zoom para projeção e pan/zoom do mapa em SVG, com dados em GeoJSON estático e sem backend ou CMS.",
+    ],
+    descriptionEn: [
+      "Overmaps is an interactive Overwatch-style world map where every country with registered game maps is highlighted on the globe. Hovering shows that country's maps, and clicking opens a side panel with details for each one.",
+      "⚠️ A closed fan project made for the closed Overwatch community. It is unofficial, non-profit, and has no affiliation with Blizzard Entertainment. Overwatch, its maps, and all related content are © Blizzard Entertainment, Inc., with all rights reserved to them.",
+      "✨ Main Features",
+      "- 🌍 Interactive world map: pan and zoom by dragging and mouse wheel, Google Maps style, with countries that have maps highlighted in blue.",
+      "- 🖱️ Tooltip and side panel: a preview of the country's maps on hover; on click, a panel with thumbnails and details for each map.",
+      "- 🧭 Continent filter: legend and filter panel to focus on a specific region.",
+      "- 🌙 Lunar maps: a dedicated panel for the maps set on the Moon.",
+      "- ⌨️ Accessibility: full keyboard navigation.",
+      "- ✨ Loading and country reveal animations for a smoother entrance.",
+      "The project was built with Next.js (App Router), React, TypeScript and Tailwind CSS, using d3-geo and d3-zoom for projection and pan/zoom on the SVG map, with static GeoJSON data and no backend or CMS.",
+    ],
+  },
+  {
+    id: "thumbPreview",
+    index: 15,
     src: thumbPreview1,
     images: [thumbPreview1, thumbPreview2, thumbPreview3, thumbPreview4],
     stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
