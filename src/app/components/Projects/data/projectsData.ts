@@ -51,6 +51,14 @@ import smartBudgetPro7 from "@/assets/images/smartbudget7.png";
 
 import elecDocs from "@/assets/images/elecDocs.png";
 
+import thumbPreview1 from "@/assets/images/thumbPreview1.png";
+
+import thumbPreview2 from "@/assets/images/thumbPreview2.png";
+
+import thumbPreview3 from "@/assets/images/thumbPreview3.png";
+
+import thumbPreview4 from "@/assets/images/thumbPreview4.png";
+
 //icons
 import { FaReact } from "react-icons/fa";
 
@@ -119,8 +127,42 @@ export const ProjectsData: Project[] = [
     ],
   },
   {
-    id: "smartBudgetPro",
+    id: "thumbPreview",
     index: 14,
+    src: thumbPreview1,
+    images: [thumbPreview1, thumbPreview2, thumbPreview3, thumbPreview4],
+    stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
+    post: "",
+    repository: "https://github.com/DevSamuelBrito/youtubethumbpreview",
+    website: "https://youtubethumbpreview.vercel.app/",
+    titleEn: "ThumbPreview",
+    titleBr: "ThumbPreview",
+    descriptionBr: [
+      "ThumbPreview é uma ferramenta para criadores de conteúdo testarem como uma thumbnail vai ficar dentro do YouTube antes de publicar o vídeo. Você sobe a imagem, preenche título e nome do canal, e vê o resultado renderizado dentro de uma réplica fiel da interface do YouTube — Início, Busca e página de Canal.",
+      "100% client-side: nenhuma imagem ou dado sai do navegador, sem backend, banco de dados ou login — tudo roda em memória e localStorage durante a sessão.",
+      "✨ Principais Funcionalidades",
+      "- 🖥️ Réplica fiel do YouTube: Início (grid de vídeos), Busca (lista de resultados) e página de Canal (banner, avatar, abas, vídeo em destaque), com tema claro/escuro e visualização desktop/mobile independentes do restante da ferramenta.",
+      "- 📤 Painel de controle completo: upload de várias thumbnails, edição de título/nome do canal/descrição de cada uma, e configuração da identidade do canal (nome, avatar, banner, inscritos, descrição).",
+      "- 🔌 Integração com a YouTube Data API v3: com uma chave gratuita, os vídeos ao redor da sua thumbnail deixam de ser mockados e passam a ser vídeos reais em alta no YouTube; informando o @ de um canal real, os últimos vídeos dele (e nome, avatar, inscritos e descrição via um botão de preenchimento automático) entram como preenchimento. Sem chave configurada, o app cai automaticamente para dados mockados (faker + picsum).",
+      "- 🎲 Embaralhar: sorteia a posição das suas thumbs entre todos os vídeos da tela, pra testar como elas se destacam misturadas a um feed real, com botão de desfazer.",
+      "- ✏️ Modo de edição: edita título, canal e imagem diretamente em cima de qualquer card da réplica, inclusive nos vídeos de preenchimento, sem afetar a lista principal do painel.",
+      "O projeto foi construído com Next.js (App Router), TypeScript e Tailwind CSS, usando React Context e hooks como camada central de estado (sem backend/API própria), com bastante atenção à fidelidade visual com o YouTube real nos dois temas e nos dois formatos de tela.",
+    ],
+    descriptionEn: [
+      "ThumbPreview is a tool for content creators to test how a thumbnail will look inside YouTube before publishing the video. You upload the image, fill in a title and channel name, and see the result rendered inside a faithful replica of the YouTube UI — Home, Search and the Channel page.",
+      "100% client-side: no image or data ever leaves the browser, no backend, database or login — everything runs in memory and localStorage during the session.",
+      "✨ Main Features",
+      "- 🖥️ Faithful YouTube replica: Home (video grid), Search (results list) and Channel page (banner, avatar, tabs, featured video), with light/dark theme and desktop/mobile preview independent from the rest of the tool.",
+      "- 📤 Full control panel: upload multiple thumbnails, edit each one's title/channel name/description, and configure the channel identity (name, avatar, banner, subscriber count, description).",
+      "- 🔌 YouTube Data API v3 integration: with a free key, the videos surrounding your thumbnail stop being mocked and become real trending YouTube videos; entering a real channel's @handle pulls its latest videos as filler (plus name, avatar, subscriber count and description via a one-click autofill button). Without a key, the app automatically falls back to mocked data (faker + picsum).",
+      "- 🎲 Shuffle: randomizes where your thumb(s) land among all the videos on screen, to test how they stand out mixed into a real feed, with an undo button.",
+      "- ✏️ Edit mode: edit title, channel name and image directly on top of any card in the replica, including filler videos, without touching the main list in the control panel.",
+      "The project was built with Next.js (App Router), TypeScript and Tailwind CSS, using React Context and hooks as the central state layer (no backend/own API), with close attention to visual fidelity with real YouTube across both themes and both screen formats.",
+    ],
+  },
+  {
+    id: "smartBudgetPro",
+    index: 13,
     src: smartBudgetPro1,
     images: [
       smartBudgetPro1,
@@ -167,7 +209,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "lpMaintanceLp",
-    index: 13,
+    index: 12,
     src: lpMaintanceLp1,
     images: [
       lpMaintanceLp1,
@@ -207,7 +249,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "crudAspNet",
-    index: 12,
+    index: 11,
     src: crudAspNet,
     stack: [CSharpIcon, SiDotnet, SiPostgresql, SiDocker],
     post: "",
@@ -231,7 +273,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "Portifol.io",
-    index: 11,
+    index: 10,
     src: portifolIo,
     stack: [
       SiTypescript,
@@ -300,7 +342,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "portfolio",
-    index: 10,
+    index: 9,
     src: portifolio,
     stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_nextjs-tailwindcss-framermotion-activity-7313680203027771392-L90L?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -322,7 +364,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "devControle",
-    index: 9,
+    index: 8,
     src: DevControle,
     stack: [
       SiTypescript,
@@ -350,7 +392,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "devMotors",
-    index: 8,
+    index: 7,
     src: devmotors,
     stack: [SiTypescript, SiNextdotjs, SiReact, SiStyledcomponents],
     post: "",
@@ -385,7 +427,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "dalyGames",
-    index: 7,
+    index: 6,
     src: DalyGames,
     stack: [SiTypescript, FaReact, SiNextdotjs, SiTailwindcss],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_boa-tarde-pessoal-hoje-quero-compartilhar-activity-7281731227349319680-TPVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -408,7 +450,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "tarefasNextJs",
-    index: 6,
+    index: 5,
     src: tarefasNextJs,
     stack: [SiTypescript, SiStyledcomponents, SiFirebase, SiReact, SiNextdotjs],
     post: "https://www.linkedin.com/posts/samuel-fava-de-brito_ol%C3%A1-pessoal-espero-que-estejam-bem-recentemente-activity-7237147758741094404-m2mZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD44OtcB71SEienB1BwQGiG7Hy58WIX10wY",
@@ -434,7 +476,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "webRepositorios",
-    index: 5,
+    index: 4,
     src: webRepositorio,
     stack: [SiReact, SiJavascript],
     post: "",
@@ -466,7 +508,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "rockPaper",
-    index: 4,
+    index: 3,
     src: rockPaper,
     stack: [SiHtml5, SiCss3, SiJavascript],
     post: "",
@@ -496,7 +538,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "calculator",
-    index: 3,
+    index: 2,
     src: calculator,
     stack: [SiHtml5, SiCss3, SiJavascript],
     post: "",
@@ -528,7 +570,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "intergeek",
-    index: 2,
+    index: 1,
     src: intergeek,
     stack: [SiHtml5, SiCss3, SiDotnet, SiMysql],
     post: "",
@@ -553,7 +595,7 @@ export const ProjectsData: Project[] = [
   },
   {
     id: "portfolioAntigo",
-    index: 1,
+    index: 0,
     src: portifolio1,
     stack: [SiHtml5, SiCss3],
     post: "",
