@@ -1,61 +1,95 @@
 //next
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+import { cookies } from "next/headers";
+
+import { Geist, Geist_Mono } from "next/font/google";
 
 //analytics
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 
 //context providers
 import { LanguageProvider } from "../providers/LanguageContext";
 
+import { DEFAULT_LANGUAGE, LANGUAGE_COOKIE, isLanguage } from "@/lib/language";
+
 //css
 import "./globals.css";
 
-const imageUrl = "https://www.devsamuelbrito.com.br/portifolio.png";
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
+
+const siteUrl = "https://www.devsamuelbrito.com.br";
+
+const imageUrl = `${siteUrl}/portifolio.png`;
 
 export const metadata: Metadata = {
-  title: "Portifolio | Samuel Brito",
-  description: "Portfólio de Samuel, desenvolvedor full-stack, com foco em Next.js, TypeScript, Tailwind CSS, Node.js, Prisma e PostgreSQL.",
+  metadataBase: new URL(siteUrl),
+  title: "Samuel Brito | Desenvolvedor Full Stack",
+  description:
+    "Portfólio de Samuel Brito, desenvolvedor full stack com foco em React, Next.js, TypeScript, ASP.NET Core e PostgreSQL.",
   keywords: [
-    "Samuel", "Samuel Fava de Brito", "DevSamuelBrito", "Dev Samuel Fava de Brito", "desenvolvedor", "portfólio", "Next.js", "TypeScript", "React", "JavaScript", "Tailwind CSS", "Node.js", "Prisma", "PostgreSQL",
-    "front-end", "back-end", "full-stack", "programador", "desenvolvimento web", "developer", "portfolio", "web developer", "software engineer", "coding",
-    "React developer", "JavaScript developer", "TypeScript expert", "frontend engineer",
-    "backend engineer", "full-stack developer", "web programming", "software development",
-    "hire developer", "remote developer", "Brazilian developer", "tech professional",
-    "code portfolio", "web solutions", "modern web apps", "React applications",
-    "responsive websites", "web services", "API specialist", "UI developer"
+    "Samuel Brito",
+    "Samuel Fava de Brito",
+    "DevSamuelBrito",
+    "desenvolvedor full stack",
+    "portfólio",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "ASP.NET Core",
+    "C#",
+    "PostgreSQL",
+    "Prisma",
+    "Tailwind CSS",
   ],
-
+  authors: [{ name: "Samuel Brito", url: siteUrl }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Samuel | Desenvolvedor Full-Stack",
-    description: "Portfólio de Samuel, desenvolvedor full-stack. Conheça meus projetos e minha trajetória na área de tecnologia.",
+    title: "Samuel Brito | Desenvolvedor Full Stack",
+    description:
+      "Conheça os projetos e a trajetória de Samuel Brito, desenvolvedor full stack.",
     type: "website",
-    images: [{ url: imageUrl, width: 1200, height: 600, alt: "Samuel | Desenvolvedor Full-Stack" }],
-    url: "https://www.devsamuelbrito.com.br/"
+    url: siteUrl,
+    images: [{ url: imageUrl, width: 1200, height: 600, alt: "Samuel Brito | Desenvolvedor Full Stack" }],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false
-    }
-  }
+    googleBot: { index: true, follow: true },
+  },
 };
 
-export default function RootLayout({
+export const viewport: Viewport = {
+  themeColor: "#050505",
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // O idioma vem do cookie no servidor: a página já renderiza no idioma certo
+  // e o atributo lang do <html> fica correto para SEO e acessibilidade.
+  const cookieStore = await cookies();
+  const saved = cookieStore.get(LANGUAGE_COOKIE)?.value;
+  const language = isLanguage(saved) ? saved : DEFAULT_LANGUAGE;
+
   return (
-    <html lang="pt-br" suppressHydrationWarning>
+    <html
+      lang={language === "en" ? "en" : "pt-BR"}
+      className={`dark ${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <LanguageProvider initialLanguage={language}>{children}</LanguageProvider>
         <Analytics />
       </body>
     </html>
   );
 }
-

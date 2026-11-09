@@ -1,32 +1,40 @@
 {
   "navbar": {
     "experience": "Experiência",
-    "about": "Sobre mim",
+    "about": "Sobre",
     "projects": "Projetos",
-    "certifications": "Graduações e Certificações",
+    "certifications": "Certificações",
     "stack": "Tecnologias",
-    "contact": "Contato"
+    "contact": "Contato",
+    "home": "Início",
+    "cta": "Vamos conversar",
+    "openMenu": "Abrir menu de navegação",
+    "closeMenu": "Fechar menu de navegação",
+    "switchLanguage": "Trocar idioma"
   },
   "hero": {
-    "hello": "Olá, eu sou",
-    "role": "Desenvolvedor Full Stack",
-    "cv": "Baixar Curriculo",
-    "introducation": "Sou desenvolvedor Full Stack com foco em aplicações web modernas, atuando no front-end com {{ React, Next.js e TypeScript }} e no back-end com {{ ASP.NET Core }}, bancos de dados {{ PostgreSQL, Prisma e Firebird}}. Formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto }}.",
-    "introducation2": "Tenho experiência prática no desenvolvimento de {{ APIs REST}}, integração entre sistemas e {{ migração de aplicações desktop para web}}, atuando em projetos reais e ambientes de produção alinhados às boas práticas."
+    "cv": "Baixar currículo",
+    "greeting": "Sou",
+    "title": "Construindo aplicações web de ponta a ponta.",
+    "description": "Desenvolvedor Full Stack formado pela {{ Fatec Rio Preto }}, criando aplicações com {{ React, Next.js e TypeScript }} no front-end e {{ ASP.NET Core }} no back-end.",
+    "projectsCta": "Ver projetos",
+    "codeComment": "Construindo soluções de ponta a ponta",
+    "codeFooter": "Next.js + ASP.NET Core"
   },
   "projects": {
-    "title": "Projetos",
     "showMore": "Ver mais projetos",
     "showLess": "Ver menos",
     "checkPost": "Verificar Post",
     "buttonGithub": "Acessar Repositorio",
     "websiteLink": "Acessar Website",
-    "close": "Fechar"
+    "close": "Fechar",
+    "eyebrow": "Projetos",
+    "heading": "Trabalhos",
+    "highlight": "selecionados",
+    "subtitle": "Aplicações web, ferramentas e projetos pessoais que construí.",
+    "details": "Detalhes"
   },
   "experience": {
-    "title": "Experiência",
-    "showMore": "Veja mais",
-    "showLess": "Veja menos",
     "data": [
       {
         "role": "Desenvolvedor Full Stack",
@@ -138,7 +146,11 @@
           "AutoCAD"
         ]
       }
-    ]
+    ],
+    "eyebrow": "Carreira",
+    "heading": "Experiência",
+    "highlight": "profissional",
+    "technologies": "Tecnologias"
   },
   "certifications": {
     "title": "Certificações",
@@ -196,27 +208,37 @@
         "date": "Dez 2024",
         "link": ""
       }
-    ]
+    ],
+    "eyebrow": "Formação",
+    "heading": "Graduação e",
+    "highlight": "certificações"
   },
   "stack": {
-    "title": "Tecnologias",
-    "column": "Ferramentas & DevOps"
+    "column": "Ferramentas & DevOps",
+    "eyebrow": "Stack",
+    "heading": "Tecnologias que",
+    "highlight": "eu uso"
   },
   "about": {
-    "title": "Sobre mim",
     "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto}}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
     "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, Prisma e Firebird}}, sempre com foco em performance, escalabilidade e qualidade de código.",
     "about3": "Tenho experiência na criação de {{ APIs REST}}, integração entre sistemas e {{ migração de aplicações desktop para web}}, participando ativamente de todas as etapas do desenvolvimento, desde o levantamento de requisitos até a entrega em produção.",
-    "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio."
+    "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio.",
+    "eyebrow": "Sobre",
+    "heading": "Do requisito ao",
+    "highlight": "deploy",
+    "resume": "Baixar currículo completo"
   },
   "contact": {
-    "title": "Contato",
     "description": "Estou sempre aberto a novas conexões e oportunidades. Se você tem alguma dúvida, gostaria de discutir uma ideia ou está em busca de uma parceria, ficarei feliz em conversar. Sinta-se à vontade para me mandar uma mensagem pelas minhas redes sociais abaixo, e farei o possível para responder rapidamente.",
     "location": "Localização",
-    "description2": "Adoro aprender com novas experiências e desafios. Seja para compartilhar ideias, pedir conselhos ou discutir projetos futuros, estou à disposição. Vamos trocar ideias e explorar novas possibilidades juntos!",
     "description3": "Fique a Vontade para explorar meus repositorios, contribuir  com novas feautures, se conectar comigo no Linkedin, me mandar um email ou até mesmo me chamar para um café virtual.",
     "developer": "Desenvolvido por Samuel Brito",
-    "rights": "© 2025 Samuel Brito. Todos os direitos reservado.",
-    "title2": "Entre em contato comigo"
+    "rights": "Todos os direitos reservados.",
+    "eyebrow": "Contato",
+    "heading": "Vamos",
+    "highlight": "conversar?",
+    "email": "Enviar e-mail",
+    "whatsapp": "Chamar no WhatsApp"
   }
 }
