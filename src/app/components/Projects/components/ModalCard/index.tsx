@@ -1,173 +1,160 @@
-//react
-import { useEffect, useState } from "react";
+"use client";
 
-//next
-import Link from "next/link";
+//react
+import { useEffect, useRef } from "react";
 
 //icons
-import { IoCloseCircle } from "react-icons/io5";
+import { X } from "lucide-react";
 
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import { TbWorld } from "react-icons/tb";
 
-//providers
-import { useLanguage } from "@/providers/LanguageContext";
+//animation
+import { motion } from "framer-motion";
 
 //components
 import { ImageCarousel } from "./components/ImageCarousel";
 
-//types
-import type { Project } from "../../types";
-
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
+//types
+import type { Project } from "../../types";
+
 interface ModalCardProps {
-    isOpen: boolean;
-    onClose: () => void;
-    data: Project;
+  onClose: () => void;
+  data: Project;
 }
 
-export default function ModalCard({ isOpen, onClose, data }: ModalCardProps) {
+const LINK_CLASS = "btn-secondary flex-1 !px-4 !py-2.5 text-sm";
 
-    const { t } = useTranslation();
+/**
+ * Modal de detalhes do projeto. É renderizado só quando há um projeto
+ * selecionado (o controle fica na seção Projects).
+ */
+export default function ModalCard({ onClose, data }: ModalCardProps) {
+  const { t, language } = useTranslation();
 
-    const { language } = useLanguage();
-    const [mounted, setMounted] = useState(false);
+  const closeButton = useRef<HTMLButtonElement>(null);
 
-    const description = language === "en" ? data.descriptionEn : data.descriptionBr;
-    const title = language === "en" ? data.titleEn : data.titleBr;
+  const description = language === "en" ? data.descriptionEn : data.descriptionBr;
 
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
+  const title = language === "en" ? data.titleEn : data.titleBr;
 
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [isOpen]);
+  // Trava a rolagem da página, fecha com ESC e leva o foco para o botão de fechar
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    document.body.style.overflow = "hidden";
 
+    closeButton.current?.focus();
 
-    useEffect(() => {
-        // Fechar o modal quando pressionar ESC
-        const handleEscKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                onClose();
-            }
-        };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
 
-        // Fechar o modal ao clicar fora dele
-        const handleClickOutside = (e: MouseEvent) => {
-            const modalElement = document.getElementById("modal-container");
-            if (modalElement && !modalElement.contains(e.target as Node)) {
-                onClose();
-            }
-        };
+    window.addEventListener("keydown", onKeyDown);
 
-        if (isOpen) {
-            // Adicionar event listeners
-            window.addEventListener("keydown", handleEscKey);
-            window.addEventListener("mousedown", handleClickOutside);
-        }
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
 
-        // Limpar os event listeners quando o modal for fechado ou o componente for desmontado
-        return () => {
-            window.removeEventListener("keydown", handleEscKey);
-            window.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isOpen, onClose]);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        initial={{ opacity: 0, scale: 0.95, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 16 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="relative flex max-h-[90vh] w-full max-w-6xl flex-col rounded-2xl border border-neutral-800 bg-neutral-950 p-5 shadow-2xl sm:p-8"
+      >
+        <button
+          ref={closeButton}
+          type="button"
+          onClick={onClose}
+          aria-label={t.projects.close}
+          className="absolute right-3 top-3 z-10 rounded-full border border-neutral-800 bg-neutral-900 p-2 text-neutral-300 transition-colors hover:text-white"
+        >
+          <X size={18} />
+        </button>
 
-    if (!mounted) return null;
+        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto md:flex-row md:overflow-hidden">
+          {/* Coluna esquerda: imagens e links */}
+          <div className="flex w-full flex-shrink-0 flex-col justify-center gap-5 md:w-1/2">
+            <ImageCarousel
+              images={data.images && data.images.length > 0 ? data.images : [data.src]}
+              alt={title}
+              priority={data.index <= 2}
+            />
 
-    return (
-        <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4 
-            ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'} 
-            transition-all duration-300 ease-in-out`}>
+            <div className="flex flex-wrap gap-3">
+              {data.repository && (
+                <a href={data.repository} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                  <FaGithub size={16} />
+                  {t.projects.buttonGithub}
+                </a>
+              )}
 
-            <div className={`bg-white p-8 rounded-lg shadow-lg max-w-6xl xl:max-w-7xl w-full max-h-[90vh] relative flex flex-col
-                ${isOpen ? 'transform scale-100' : 'transform scale-90'} 
-                transition-all duration-300 ease-in-out`}>
+              {data.post && (
+                <a href={data.post} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                  <FaExternalLinkAlt size={14} />
+                  {t.projects.checkPost}
+                </a>
+              )}
 
-                <button onClick={onClose} className="absolute top-5 right-3 hover:text-gray-500 text-red-700" aria-label={t.projects.close}>
-                    <IoCloseCircle size={34} />
-                </button>
-
-                <div className="flex flex-col md:flex-row gap-5 flex-1 overflow-hidden">
-
-                    {/* Coluna esquerda — fixa */}
-                    <div className="flex flex-col items-center md:w-6/12 w-full flex-shrink-0 gap-6 justify-center">
-
-                        <ImageCarousel
-                            images={data.images && data.images.length > 0 ? data.images : [data.src]}
-                            alt={title}
-                            priority={data.index <= 2}
-                        />
-
-                        <div className="flex gap-7 justify-center w-full">
-                            {data.repository && (
-                                <Link href={data.repository}
-                                    target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                    <FaGithub size={18} />
-                                    {t.projects.buttonGithub}
-                                </Link>
-                            )}
-
-                            {data.post && (
-                                <Link href={data.post}
-                                    target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                    <FaExternalLinkAlt size={16} />
-                                    {t.projects.checkPost}
-                                </Link>
-                            )}
-                            {
-                                data.website && (
-                                    <Link href={data.website}
-                                        target="_blank" className="flex border-blue-500 bg-white text-blue-500 items-center justify-center w-1/2 rounded-md border-2 py-2 px-2 gap-2 transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white">
-                                        <TbWorld size={16} />
-                                        {t.projects.websiteLink}
-                                    </Link>
-                                )
-                            }
-                        </div>
-                    </div>
-
-                    {/* Coluna direita — título fixo, descrição rola, stack fixo */}
-                    <div className="flex flex-col pl-5 md:w-6/12 flex-1 min-h-0">
-
-                        {/* Título fixo */}
-                        <h1 className="text-xl font-semibold pb-3 text-gray-800 md:text-xl xl:text-2xl flex-shrink-0 border-b border-gray-200">
-                            {title}
-                        </h1>
-
-                        {/* Descrição com scroll */}
-                        <div className="flex-1 overflow-y-auto min-h-0 pr-2">
-                            <div className="min-h-full flex flex-col justify-center space-y-4 text-gray-500 text-base break-words xl:text-xl">
-                                {description.map((paragraph, index) => (
-                                    <p key={index} className="whitespace-pre-line">
-                                        {paragraph}
-                                    </p>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Stack fixo no rodapé */}
-                        <div className="flex items-center gap-2 pt-3 mt-2 border-t border-gray-200 flex-shrink-0">
-                            {data.stack.map((Icon, i) => (
-                                <Icon key={i} size={24} className="text-blue-500" />
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
+              {data.website && (
+                <a href={data.website} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                  <TbWorld size={16} />
+                  {t.projects.websiteLink}
+                </a>
+              )}
             </div>
+          </div>
+
+          {/* Coluna direita: título, descrição com rolagem e stack */}
+          <div className="flex min-h-0 flex-1 flex-col md:w-1/2">
+            <h2 className="flex-shrink-0 border-b border-neutral-800 pb-3 pr-10 text-2xl font-bold text-white">
+              {title}
+            </h2>
+
+            <div className="min-h-0 flex-1 overflow-y-auto py-4 pr-2">
+              <div className="space-y-4 break-words text-base leading-relaxed text-neutral-400">
+                {description.map((paragraph, index) => (
+                  <p key={index} className="whitespace-pre-line">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <ul className="flex flex-shrink-0 flex-wrap items-center gap-2 border-t border-neutral-800 pt-4">
+              {data.stack.map((Icon, i) => (
+                <li
+                  key={i}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 text-blue-400"
+                >
+                  <Icon size={18} aria-hidden />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-    );
+      </motion.div>
+    </motion.div>
+  );
 }

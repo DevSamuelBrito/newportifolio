@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
 //react
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 //icons
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-//framer-motion
-import { motion } from "framer-motion";
+//animation
+import { AnimatePresence } from "framer-motion";
 
 //data
 import { ProjectsData } from "./data/projectsData";
@@ -15,73 +15,61 @@ import { ProjectsData } from "./data/projectsData";
 //components
 import { ProjectCard } from "./components/ProjectCard";
 
+import ModalCard from "./components/ModalCard";
+
+import { Section } from "@/components/shared/Section";
+
+import { SectionHeading } from "@/components/shared/SectionHeading";
+
+import { Reveal } from "@/components/shared/Reveal";
+
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
-//components
-import DefaultSection from "@/components/shared/DefaultSection";
+//types
+import type { Project } from "./types";
+
+const INITIAL_VISIBLE = 6;
 
 export function Projects() {
+  const { t } = useTranslation();
 
   const [showAll, setShowAll] = useState(false);
 
-  const { t } = useTranslation();
+  const [selected, setSelected] = useState<Project | null>(null);
 
-  const projectsData = ProjectsData;
+  const closeModal = useCallback(() => setSelected(null), []);
 
-  const sortedProjects = [...projectsData].sort((a, b) => b.index - a.index);
+  // Mais recentes primeiro
+  const sortedProjects = useMemo(() => [...ProjectsData].sort((a, b) => b.index - a.index), []);
 
-  const displayedProjects = showAll
-    ? sortedProjects.map((project, i) => (
-        <ProjectCard key={project.id} data={project}  index={i} />
-      ))
-    : sortedProjects.slice(0, 6).map((project, i) => (
-        <ProjectCard key={project.id} data={project}  index={i}/>
-      ));
+  const visibleProjects = showAll ? sortedProjects : sortedProjects.slice(0, INITIAL_VISIBLE);
 
   return (
+    <Section id="projects">
+      <SectionHeading
+        eyebrow={t.projects.eyebrow}
+        title={t.projects.heading}
+        highlight={t.projects.highlight}
+        subtitle={t.projects.subtitle}
+      />
 
-    <DefaultSection section="projects" >
-      <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit" >
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white relative inline-block">
-            {t.projects.title}
-            <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
-          </h2>
-        </div>
-
-
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:px-4">
-          {displayedProjects}
-        </div>
-
-        {projectsData.length > 6 && (
-          <motion.div
-            key={projectsData.length}
-            className="flex justify-center mt-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 flex items-center gap-2"
-            >
-              {showAll ? t.projects.showLess : t.projects.showMore}
-              {showAll ? (
-                <ChevronUp size={20} className="text-current" />
-              ) : (
-                <ChevronDown size={20} className="text-current" />
-              )}
-
-            </button>
-          </motion.div>
-        )}
-
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {visibleProjects.map((project, position) => (
+          <ProjectCard key={project.id} data={project} position={position} onOpen={setSelected} />
+        ))}
       </div>
-    </DefaultSection>
 
+      {sortedProjects.length > INITIAL_VISIBLE && (
+        <Reveal className="mt-12 flex justify-center">
+          <button type="button" onClick={() => setShowAll((value) => !value)} className="btn-secondary">
+            {showAll ? t.projects.showLess : t.projects.showMore}
+            {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </button>
+        </Reveal>
+      )}
 
+      <AnimatePresence>{selected && <ModalCard key={selected.id} data={selected} onClose={closeModal} />}</AnimatePresence>
+    </Section>
   );
 }

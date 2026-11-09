@@ -1,84 +1,110 @@
-"use client"
-
-//react
-import { useState } from "react";
+"use client";
 
 //next
 import Image from "next/image";
 
-//framer-motion
-import { motion } from "framer-motion";
+//icons
+import { ArrowUpRight } from "lucide-react";
 
-//providers
-import { useLanguage } from "@/providers/LanguageContext";
+import { FaGithub } from "react-icons/fa";
+
+import { TbWorld } from "react-icons/tb";
 
 //components
-import ModalCard from "../ModalCard";
+import { Reveal } from "@/components/shared/Reveal";
+
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
 
 //types
 import type { Project } from "../../types";
 
 interface ProjectCardProps {
-    data: Project;
-    index: number;
+  data: Project;
+  /** Posição do card na grade, usada para escalonar a animação */
+  position: number;
+  onOpen: (project: Project) => void;
 }
 
-export function ProjectCard({ data, index }: ProjectCardProps) {
+export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
+  const { t, language } = useTranslation();
 
-    const translation = {
-        en: {
-            button: "Details",
-            description: data.descriptionEn,
-        }, pt: {
-            button: "Detalhes",
-            description: data.descriptionBr
-        }
-    }
+  const title = language === "en" ? data.titleEn : data.titleBr;
 
-    const [isOpen, setIsOpen] = useState(false);
+  const description = (language === "en" ? data.descriptionEn : data.descriptionBr)[0];
 
-    const { language } = useLanguage();
-
-    const title = language === "en" ? data.titleEn : data.titleBr;
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="h-full"
+  return (
+    <Reveal delay={(position % 3) * 0.1} className="h-full">
+      <article className="glass glass-hover group flex h-full flex-col overflow-hidden">
+        <button
+          type="button"
+          onClick={() => onOpen(data)}
+          aria-label={`${t.projects.details}: ${title}`}
+          className="relative block aspect-[16/10] w-full overflow-hidden bg-neutral-900 text-left"
         >
+          <Image
+            src={data.src}
+            alt={title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <span className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent" aria-hidden />
+        </button>
 
-            <div
-                className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative h-full flex flex-col justify-between"
+        <div className="flex flex-1 flex-col p-5">
+          <h3 className="text-xl font-bold text-white">{title}</h3>
+
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-neutral-400">{description}</p>
+
+          <ul className="mb-5 mt-4 flex flex-wrap items-center gap-2">
+            {data.stack.map((Icon, i) => (
+              <li
+                key={i}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 text-blue-400"
+              >
+                <Icon size={16} aria-hidden />
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-auto flex min-h-[3.25rem] items-center justify-between border-t border-neutral-800/60 pt-3">
+            <button
+              type="button"
+              onClick={() => onOpen(data)}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 transition-all hover:gap-2.5 hover:text-blue-300"
             >
-                <Image
-                    src={data.src}
-                    alt={title}
-                    className="w-full h-48 object-cover rounded-lg"
-                    width={400}
-                    height={300}
-                />
-                <h3 className="text-xl font-semibold text-white mt-3">{title}</h3>
+              {t.projects.details}
+              <ArrowUpRight size={16} />
+            </button>
 
-                <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
-                    {
-                        data.stack.map((Icon, i) => (
-                            <Icon key={i} size={24} className="text-blue-500" />
-                        ))
-                    }
-                </div>
-                <button className="hidden sm:block absolute bottom-5 right-5 bg-blue-500 px-2 py-2 text-white rounded-lg opacity-0  duration-300 hover:opacity-100 group-hover:opacity-100 hover:bg-blue-700 hover:scale-105 hover:transition-all font-bold" onClick={() => setIsOpen(!isOpen)}>
-                    {translation[language].button}
-                </button>
+            <div className="flex items-center gap-1">
+              {data.repository && (
+                <a
+                  href={data.repository}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t.projects.buttonGithub}
+                  className="rounded-lg p-2 text-neutral-400 transition-colors hover:text-white"
+                >
+                  <FaGithub size={18} />
+                </a>
+              )}
+              {data.website && (
+                <a
+                  href={data.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t.projects.websiteLink}
+                  className="rounded-lg p-2 text-neutral-400 transition-colors hover:text-white"
+                >
+                  <TbWorld size={18} />
+                </a>
+              )}
             </div>
-            <ModalCard
-                isOpen={isOpen}
-                onClose={() => setIsOpen(!isOpen)}
-                data={data}
-            />
-        </motion.div>
-    )
+          </div>
+        </div>
+      </article>
+    </Reveal>
+  );
 }
-

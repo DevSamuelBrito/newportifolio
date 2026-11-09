@@ -61,7 +61,7 @@ export function ImageCarousel({ images, alt, priority }: ImageCarouselProps) {
 
     return (
         <div
-            className="w-full h-[240px] sm:h-[280px] md:h-[420px] xl:h-[500px] relative flex-shrink-0 overflow-hidden"
+            className="relative h-[240px] w-full flex-shrink-0 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 sm:h-[280px] md:h-[380px] xl:h-[440px]"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
@@ -113,7 +113,7 @@ export function ImageCarousel({ images, alt, priority }: ImageCarouselProps) {
                                 type="button"
                                 onClick={() => goTo(i, i > current ? 1 : -1)}
                                 aria-label={`Go to image ${i + 1}`}
-                                className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-4 bg-blue-500" : "w-2 bg-gray-300"
+                                className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-4 bg-blue-500" : "w-2 bg-neutral-500"
                                     }`}
                             />
                         ))}
