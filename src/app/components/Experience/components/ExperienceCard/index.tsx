@@ -1,70 +1,69 @@
+"use client";
+
+//components
+import { Reveal } from "@/components/shared/Reveal";
+
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
-//animation
-import { motion } from "framer-motion";
-
 interface ExperienceCardProps {
-    role: string;
-    company: string;
-    period: string;
-    index: number;
-    activities: string[];
-    technologies: string[];
+  role: string;
+  company: string;
+  period: string;
+  activities: string[];
+  technologies: string[];
 }
 
-const ExperienceCard = ({ role, company, period, activities, technologies, index }: ExperienceCardProps) => {
+const ExperienceCard = ({ role, company, period, activities, technologies }: ExperienceCardProps) => {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
+  return (
+    <li className="relative pl-8 sm:pl-10">
+      {/* Bolinha na linha do tempo */}
+      <span
+        aria-hidden
+        className="absolute -left-[7px] top-7 h-3.5 w-3.5 rounded-full bg-blue-500 shadow-[0_0_12px_2px_rgba(59,130,246,0.6)] ring-4 ring-[#050505]"
+      />
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="w-full"
-        >
+      <Reveal>
+        <article className="glass glass-hover p-6 sm:p-7">
+          <p className="flex flex-wrap items-center gap-x-2 text-sm text-neutral-400">
+            <span>{period}</span>
+            <span aria-hidden className="text-neutral-600">
+              •
+            </span>
+            <span>{role}</span>
+          </p>
 
-            <div className="experience-card group">
+          <h3 className="mt-1 text-2xl font-bold text-white">{company}</h3>
 
-                {/* Cabeçalho */}
-                <div className="mb-4">
-                    <h3 className="experience-card-title text-xl font-semibold text-white">
-                        {role}
-                    </h3>
-                    <p className="text-sm text-gray-400">
-                        {company} • {period}
-                    </p>
-                </div>
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+            {activities.map((activity, index) => (
+              <li
+                key={index}
+                className="rounded-xl border border-neutral-800/70 bg-neutral-950/60 p-3.5 text-sm leading-relaxed text-neutral-300 [&:last-child:nth-child(odd)]:sm:col-span-2"
+              >
+                {activity}
+              </li>
+            ))}
+          </ul>
 
-                {/* Atividades */}
-                <ul className="text-gray-200 text-sm space-y-2 mb-4 list-disc list-inside">
-                    {activities.map((activity, index) => (
-                        <li key={index}>{activity}</li>
-                    ))}
-                </ul>
-
-                {/* Tecnologias */}
-                <div>
-                    <p className="text-sm font-semibold text-white mb-2">
-                        {t.stack.title}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                        {technologies.map((tech) => (
-                            <span
-                                key={tech}
-                                className="tech-pill px-3 py-1 text-xs bg-gray-700 text-gray-200 rounded-full"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
+          <div className="mt-5">
+            <p className="mb-2 text-xs font-medium uppercase tracking-widest text-neutral-500">
+              {t.experience.technologies}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {technologies.map((tech) => (
+                <span key={tech} className="tag">
+                  {tech}
+                </span>
+              ))}
             </div>
-        </motion.div>
-    );
-}
+          </div>
+        </article>
+      </Reveal>
+    </li>
+  );
+};
 
 export default ExperienceCard;

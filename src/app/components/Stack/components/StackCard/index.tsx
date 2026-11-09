@@ -1,36 +1,39 @@
 "use client";
-import { motion } from "framer-motion";
-import { IconType } from "react-icons";
+
+//react-icons
+import type { IconType } from "react-icons";
+
+//components
+import { Reveal } from "@/components/shared/Reveal";
 
 interface StackCardProps {
-    area: string;
-    technologies: {
-        icon: IconType;
-        name: string;
-    }[];
+  area: string;
+  technologies: {
+    icon: IconType;
+    name: string;
+  }[];
+  /** Atraso da animação de entrada, para escalonar os cards */
+  delay?: number;
 }
 
-export function StackCard({ area, technologies }: StackCardProps) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1.0, ease: "linear" }} 
-            viewport={{once: true}}
-            className="bg-gray-800 p-6 rounded-lg shadow-lg"
-        >
-            <h3 className="text-xl font-semibold text-blue-500">{area}</h3>
-            <span className="block w-24 h-1 bg-blue-500 mt-2 rounded-full"></span>
-            <ul className="mt-6 text-white grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {
-                    technologies.map(({ icon: Icon, name }) => (
-                        <li key={name} className="text-lg text-white pt-1 flex flex-col items-center hover:text-blue-500 transition-all duration-300">
-                            <Icon size={48} className="sm:size-16 md:size-16" />
-                            <p className="text-center">{name}</p>
-                        </li>
-                    ))
-                }
-            </ul>
-        </motion.div>
-    );
+export function StackCard({ area, technologies, delay = 0 }: StackCardProps) {
+  return (
+    <Reveal delay={delay} className="h-full">
+      <div className="glass h-full p-6">
+        <h3 className="font-mono text-sm font-medium uppercase tracking-widest text-blue-400">{area}</h3>
+
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {technologies.map(({ icon: Icon, name }) => (
+            <li
+              key={name}
+              className="group flex flex-col items-center gap-2 rounded-xl border border-neutral-800/70 bg-neutral-950/50 px-2 py-4 text-neutral-300 transition-colors duration-300 hover:border-blue-500/40 hover:text-blue-400"
+            >
+              <Icon size={32} aria-hidden />
+              <span className="text-center text-xs leading-tight">{name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Reveal>
+  );
 }
