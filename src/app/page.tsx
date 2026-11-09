@@ -1,9 +1,6 @@
-"use client"
-
-//react
-import { useState } from "react";
-
 //components
+import { Background } from "@/components/shared/Background";
+
 import { Hero } from "./components/Hero";
 
 import { Navbar } from "./components/Navbar";
@@ -20,28 +17,26 @@ import { Certifications } from "./components/Certifications";
 
 import { Contact } from "./components/Contact";
 
+import { Footer } from "./components/Footer";
+
 import ScrollToTopButton from "./components/ScrollTopButton";
 
-import DownloadNotification from "./components/DownloadNotification/page";
-
 export default function App() {
-
-  const [showAlert, setShowAlert] = useState(false)
-
   return (
     <>
+      <Background />
       <Navbar />
-      <Hero
-        setShowAlert={setShowAlert}
-      />
-      <Projects />
-      <Stack />
-      <Experience />
-      <Certifications />
-      <About />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Stack />
+        <Projects />
+        <Certifications />
+        <Contact />
+      </main>
+      <Footer />
       <ScrollToTopButton />
-     <DownloadNotification showAlert={showAlert} />
     </>
   );
 }

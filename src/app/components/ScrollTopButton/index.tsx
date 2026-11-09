@@ -1,42 +1,45 @@
-"use client"
-import { useState, useEffect } from "react";
+"use client";
+
+//react
+import { useEffect, useState } from "react";
+
+//icons
+import { ArrowUp } from "lucide-react";
+
+//animation
+import { AnimatePresence, motion } from "framer-motion";
 
 const ScrollToTopButton = () => {
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => setIsVisible(window.scrollY > 400);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 300) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
+    handleScroll();
 
-        window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    return (
-        isVisible && (
-            <button
-                onClick={scrollToTop}
-                aria-label="Scroll to top"
-                className="motion-safe:animate-[bounce_5s_infinite] fixed bottom-4 right-4 p-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-700 w-12 h-12 flex items-center justify-center"
-            >
-                <span className="text-2xl">↑</span>
-            </button>
-
-        )
-    );
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          type="button"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Scroll to top"
+          className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900/90 text-blue-400 shadow-lg backdrop-blur transition-colors hover:border-blue-500/50 hover:text-blue-300"
+        >
+          <ArrowUp size={20} />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default ScrollToTopButton;
