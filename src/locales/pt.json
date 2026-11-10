@@ -16,7 +16,7 @@
     "cv": "Baixar currículo",
     "greeting": "Sou",
     "title": "Construindo aplicações web de ponta a ponta.",
-    "description": "Full Stack formado pela {{ Fatec Rio Preto }}. Desenho, construo e coloco em produção sistemas com {{ React, Next.js e TypeScript }} no front e {{ ASP.NET Core e NestJS }} no back.",
+    "description": "Desenvolvedor Full Stack formado pela {{ Fatec Rio Preto }}. Desenho, construo e coloco em produção sistemas com {{ React, Next.js e TypeScript }} no front e {{ ASP.NET Core e NestJS }} no back.",
     "projectsCta": "Ver projetos",
     "codeComment": "Construindo soluções de ponta a ponta"
   },
