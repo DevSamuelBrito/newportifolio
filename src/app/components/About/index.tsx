@@ -1,15 +1,11 @@
 "use client";
 
-//next
-import Image from "next/image";
-
 //icons
 import { ArrowUpRight } from "lucide-react";
 
-//images
-import photo from "@/assets/images/iconHero.png";
-
 //components
+import { PhotoStage } from "./components/PhotoStage";
+
 import { Section } from "@/components/shared/Section";
 
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -37,20 +33,8 @@ export function About() {
       <SectionHeading eyebrow={t.about.eyebrow} title={t.about.heading} highlight={t.about.highlight} />
 
       <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
-        <Reveal className="flex justify-center lg:col-span-4">
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-full bg-blue-500/20 blur-2xl" aria-hidden />
-            <div className="relative h-64 w-64 overflow-hidden rounded-full border border-blue-500/40 bg-neutral-900 sm:h-72 sm:w-72">
-              <Image
-                src={photo}
-                alt="Samuel Brito"
-                fill
-                sizes="(max-width: 640px) 256px, 288px"
-                className="object-cover"
-                priority={false}
-              />
-            </div>
-          </div>
+        <Reveal className="flex justify-center overflow-x-clip pt-6 lg:col-span-4 lg:overflow-x-visible lg:pt-0">
+          <PhotoStage />
         </Reveal>
 
         <Reveal delay={0.1} className="lg:col-span-8">
