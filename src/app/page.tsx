@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 //components
 import { Background } from "@/components/shared/Background";
 
+import { ScrollProgress } from "@/components/shared/ScrollProgress";
+
 import { StackedSections } from "@/components/shared/StackedSections";
 
 import { Hero } from "./components/Hero";
@@ -44,6 +46,7 @@ export default function App() {
   return (
     <>
       <Background />
+      <ScrollProgress />
       <Navbar />
       {/* Cada seção é uma "folha": a próxima sobe por cima da anterior ao rolar */}
       <StackedSections sections={SECTION_ORDER.map((id) => ({ id, node: SECTIONS[id] }))} />

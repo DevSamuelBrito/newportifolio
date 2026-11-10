@@ -11,6 +11,8 @@ import { Analytics } from "@vercel/analytics/next";
 //context providers
 import { LanguageProvider } from "../providers/LanguageContext";
 
+import { MotionProvider } from "../providers/MotionProvider";
+
 import { DEFAULT_LANGUAGE, LANGUAGE_COOKIE, isLanguage } from "@/lib/language";
 
 //css
@@ -87,7 +89,9 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <LanguageProvider initialLanguage={language}>{children}</LanguageProvider>
+        <LanguageProvider initialLanguage={language}>
+          <MotionProvider>{children}</MotionProvider>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
