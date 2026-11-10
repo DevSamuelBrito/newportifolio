@@ -3,6 +3,8 @@
 //react
 import { useEffect, useRef, useState } from "react";
 
+import { createPortal } from "react-dom";
+
 //icons
 import { ArrowUpRight, Download } from "lucide-react";
 
@@ -24,6 +26,9 @@ import { useTranslation } from "@/hooks/useTranslation";
 //utils
 import { parseHighlight } from "@/utils/parseHighlight";
 
+//lib
+import { scrollToSection } from "@/lib/sheets";
+
 //data
 import { getBrandColor } from "@/data/brandColors";
 
@@ -41,6 +46,12 @@ export function Hero() {
   const { t, language } = useTranslation();
 
   const [showAlert, setShowAlert] = useState(false);
+
+  // O alerta é "fixed": precisa sair de dentro da seção (que é uma folha empilhada),
+  // senão a próxima folha o cobriria.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const alertTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -99,7 +110,7 @@ export function Hero() {
               href="#projects"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                scrollToSection("projects");
               }}
               className="btn-primary"
             >
@@ -138,7 +149,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <DownloadNotification showAlert={showAlert} />
+      {mounted && createPortal(<DownloadNotification showAlert={showAlert} />, document.body)}
     </section>
   );
 }

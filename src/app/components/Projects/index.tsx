@@ -1,7 +1,9 @@
 "use client";
 
 //react
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { createPortal } from "react-dom";
 
 //icons
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -37,6 +39,12 @@ export function Projects() {
   const [showAll, setShowAll] = useState(false);
 
   const [selected, setSelected] = useState<Project | null>(null);
+
+  // O modal vai para o <body>: dentro da seção (uma folha empilhada com z-index próprio)
+  // as folhas seguintes o cobririam.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const closeModal = useCallback(() => setSelected(null), []);
 
@@ -87,21 +95,25 @@ export function Projects() {
         </Reveal>
       )}
 
-      <AnimatePresence>
-        {selected && (
-          // A chave é fixa: trocar de projeto só troca o conteúdo, sem remontar o modal
-          <ModalCard
-            key="project-modal"
-            data={selected}
-            onClose={closeModal}
-            onNavigate={navigate}
-            position={selectedIndex + 1}
-            total={visibleProjects.length}
-            previous={neighbor(-1)}
-            next={neighbor(1)}
-          />
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {selected && (
+              // A chave é fixa: trocar de projeto só troca o conteúdo, sem remontar o modal
+              <ModalCard
+                key="project-modal"
+                data={selected}
+                onClose={closeModal}
+                onNavigate={navigate}
+                position={selectedIndex + 1}
+                total={visibleProjects.length}
+                previous={neighbor(-1)}
+                next={neighbor(1)}
+              />
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </Section>
   );
 }

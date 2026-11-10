@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 //components
 import { Background } from "@/components/shared/Background";
 
+import { StackedSections } from "@/components/shared/StackedSections";
+
 import { Hero } from "./components/Hero";
 
 import { Navbar } from "./components/Navbar";
@@ -43,11 +45,8 @@ export default function App() {
     <>
       <Background />
       <Navbar />
-      <main>
-        {SECTION_ORDER.map((id) => (
-          <div key={id}>{SECTIONS[id]}</div>
-        ))}
-      </main>
+      {/* Cada seção é uma "folha": a próxima sobe por cima da anterior ao rolar */}
+      <StackedSections sections={SECTION_ORDER.map((id) => ({ id, node: SECTIONS[id] }))} />
       <Footer />
       <ScrollToTopButton />
     </>

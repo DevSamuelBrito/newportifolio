@@ -6,32 +6,15 @@ import { useEffect, useRef, useState } from "react";
 //animation
 import { motion, useMotionValue, useMotionValueEvent, useSpring } from "framer-motion";
 
+//lib
+import { softGlow } from "@/lib/softGlow";
+
 const GLOW_SIZE = 1000;
 
 const TRAIL_SIZE = 1400;
 
 /** Raio (px) em que a grade de pontos "acende" em volta do cursor */
 const GRID_REVEAL_RADIUS = 340;
-
-/**
- * Degradê radial com queda gaussiana (curva em sino). Diferente de um degradê
- * com poucas paradas, não forma faixas nem contorno visível: a cor some aos
- * poucos e chega a zero exatamente na borda.
- */
-function softGlow(rgb: string, maxAlpha: number, steps = 16) {
-  const stops = Array.from({ length: steps + 1 }, (_, i) => {
-    const t = i / steps;
-
-    // curva em sino, com um fade final para garantir alpha 0 na borda
-    const edgeFade = t < 0.7 ? 1 : 1 - ((t - 0.7) / 0.3) ** 2 * (3 - 2 * ((t - 0.7) / 0.3));
-
-    const alpha = maxAlpha * Math.exp(-3.6 * t * t) * edgeFade;
-
-    return `rgba(${rgb},${alpha.toFixed(4)}) ${(t * 100).toFixed(1)}%`;
-  });
-
-  return `radial-gradient(circle closest-side, ${stops.join(", ")})`;
-}
 
 const GLOW_BACKGROUND = softGlow("59,130,246", 0.17);
 
@@ -41,7 +24,8 @@ const TRAIL_BACKGROUND = softGlow("139,92,246", 0.08);
 const GRID_MASK = `radial-gradient(circle ${GRID_REVEAL_RADIUS}px at var(--mx, -999px) var(--my, -999px), black 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 80%, transparent 100%)`;
 
 /**
- * Efeito de luz que acompanha o mouse no fundo da página. Três camadas:
+ * Efeito de luz que acompanha o mouse, por cima das seções (mix-blend screen: só
+ * ilumina, não cobre o conteúdo). Três camadas:
  *  1. brilho azul bem suave e grande;
  *  2. um rastro violeta ainda mais fraco e mais lento, que desalinha do brilho
  *     e tira o aspecto de "círculo perfeito";
@@ -112,7 +96,7 @@ export function CursorGlow() {
       aria-hidden
       animate={{ opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.9, ease: "easeInOut" }}
-      className="pointer-events-none absolute inset-0"
+      className="pointer-events-none fixed inset-0 z-20 mix-blend-screen"
     >
       {/* 2. Rastro violeta: mais lento e mais fraco que o brilho principal */}
       <motion.div
@@ -147,7 +131,7 @@ export function CursorGlow() {
         ref={gridRef}
         className="absolute inset-0"
         style={{
-          opacity: 0.32,
+          opacity: 0.2,
           backgroundImage: "radial-gradient(circle at center, #fff 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: GRID_MASK,

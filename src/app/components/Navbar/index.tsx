@@ -22,9 +22,8 @@ import { SOCIAL_LINKS } from "@/data/links";
 
 import { SECTION_ORDER, type SectionId } from "@/data/sections";
 
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
+//lib
+import { getActiveSheetId, scrollToSection } from "@/lib/sheets";
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -39,23 +38,23 @@ export const Navbar = () => {
     (id) => ({ id, label: t.navbar[id] })
   );
 
-  // Destaca o link da seção que está cruzando o meio da tela
+  // Destaca o link da seção atual. Com as seções empilhadas (sticky), o que vale é a
+  // posição natural de cada folha, não onde ela aparece na tela (veja lib/sheets.ts).
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id as SectionId);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
+    const update = () => {
+      const id = getActiveSheetId();
+      if (id) setActiveSection(id as SectionId);
+    };
 
-    SECTION_ORDER.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    update();
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   // Reforça o fundo da navbar depois que a página começa a rolar
@@ -176,10 +175,12 @@ export const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              // Sem animar "height: auto": para medi-la, o framer-motion chama window.scrollTo(0, 0),
+              // o que cancelaria a rolagem suave iniciada ao clicar num link do menu.
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="overflow-hidden lg:hidden"
             >
               <ul className="flex flex-col gap-1 border-t border-neutral-800 px-4 py-3">
