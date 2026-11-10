@@ -6,9 +6,19 @@ import { useEffect, useState } from "react";
 //animation
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const GLOW_SIZE = 460;
+const GLOW_SIZE = 680;
 
-const CORE_SIZE = 180;
+const CORE_SIZE = 300;
+
+/**
+ * Degradê radial: a cor vai sumindo aos poucos até ficar transparente, sem
+ * nenhuma borda. É mais suave que um círculo sólido com blur.
+ */
+const GLOW_BACKGROUND =
+  "radial-gradient(circle, rgba(59,130,246,0.26) 0%, rgba(59,130,246,0.14) 30%, rgba(59,130,246,0.05) 55%, transparent 72%)";
+
+const CORE_BACKGROUND =
+  "radial-gradient(circle, rgba(34,211,238,0.14) 0%, rgba(34,211,238,0.06) 40%, transparent 70%)";
 
 /**
  * Brilho azul desfocado que acompanha o mouse no fundo da página.
@@ -24,10 +34,10 @@ export function CursorGlow() {
 
   const y = useMotionValue(-GLOW_SIZE);
 
-  // O brilho "persegue" o cursor com um atraso suave, em vez de grudar nele
-  const smoothX = useSpring(x, { stiffness: 90, damping: 22, mass: 0.7 });
+  // O brilho "flutua" atrás do cursor, com um atraso longo e macio
+  const smoothX = useSpring(x, { stiffness: 55, damping: 20, mass: 1 });
 
-  const smoothY = useSpring(y, { stiffness: 90, damping: 22, mass: 0.7 });
+  const smoothY = useSpring(y, { stiffness: 55, damping: 20, mass: 1 });
 
   useEffect(() => {
     const hasMouse = window.matchMedia("(pointer: fine)").matches;
@@ -62,26 +72,36 @@ export function CursorGlow() {
     <motion.div
       aria-hidden
       animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.9, ease: "easeInOut" }}
       className="pointer-events-none absolute inset-0"
     >
       {/* Brilho grande e suave */}
       <motion.div
-        style={{ x: smoothX, y: smoothY, marginLeft: -GLOW_SIZE / 2, marginTop: -GLOW_SIZE / 2 }}
-        className="absolute left-0 top-0 rounded-full bg-blue-500/40 blur-3xl"
-        initial={false}
-      >
-        <div style={{ width: GLOW_SIZE, height: GLOW_SIZE }} />
-      </motion.div>
+        style={{
+          x: smoothX,
+          y: smoothY,
+          width: GLOW_SIZE,
+          height: GLOW_SIZE,
+          marginLeft: -GLOW_SIZE / 2,
+          marginTop: -GLOW_SIZE / 2,
+          background: GLOW_BACKGROUND,
+        }}
+        className="absolute left-0 top-0 rounded-full"
+      />
 
-      {/* Núcleo menor e mais claro, para dar o ponto de luz */}
+      {/* Núcleo menor, um tom mais claro, para dar profundidade */}
       <motion.div
-        style={{ x: smoothX, y: smoothY, marginLeft: -CORE_SIZE / 2, marginTop: -CORE_SIZE / 2 }}
-        className="absolute left-0 top-0 rounded-full bg-cyan-400/30 blur-2xl"
-        initial={false}
-      >
-        <div style={{ width: CORE_SIZE, height: CORE_SIZE }} />
-      </motion.div>
+        style={{
+          x: smoothX,
+          y: smoothY,
+          width: CORE_SIZE,
+          height: CORE_SIZE,
+          marginLeft: -CORE_SIZE / 2,
+          marginTop: -CORE_SIZE / 2,
+          background: CORE_BACKGROUND,
+        }}
+        className="absolute left-0 top-0 rounded-full"
+      />
     </motion.div>
   );
 }
