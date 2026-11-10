@@ -1,6 +1,8 @@
+import { CursorGlow } from "./CursorGlow";
+
 /**
- * Fundo fixo da página: manchas azuis desfocadas e uma grade sutil de pontos.
- * Fica atrás de todo o conteúdo e não recebe cliques.
+ * Fundo fixo da página: manchas azuis desfocadas, uma grade sutil de pontos
+ * e um brilho que acompanha o mouse. Fica atrás de todo o conteúdo e não recebe cliques.
  */
 export function Background() {
   return (
@@ -17,6 +19,7 @@ export function Background() {
           backgroundSize: "28px 28px",
         }}
       />
+      <CursorGlow />
     </div>
   );
 }
