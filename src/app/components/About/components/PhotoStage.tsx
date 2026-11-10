@@ -98,8 +98,8 @@ function DashedRing({ inset, dashes, width, className, seconds, reverse, animate
 }
 
 /**
- * Foto sem fundo cercada por anéis de traços azuis animados. Tem um leve efeito 3D: o conjunto
- * inclina na direção do mouse e a pessoa fica "mais perto" que os anéis (paralaxe).
+ * Foto sem fundo cercada por uma borda de traços azuis animada. Tem um leve efeito 3D: o conjunto
+ * inclina na direção do mouse e a pessoa fica "mais perto" que a borda (paralaxe).
  */
 export function PhotoStage() {
   const reduce = useReducedMotion();
@@ -129,8 +129,6 @@ export function PhotoStage() {
   const personY = useTransform(y, (value) => value * 5);
 
   const mainDashes = useMemo(() => dashPattern(7, 0.7, 6.5, 1.6, 4.4).join(" "), []);
-
-  const fineDashes = useMemo(() => dashPattern(21, 0.4, 1.8, 1.1, 2.6).join(" "), []);
 
   useEffect(() => {
     if (reduce) return;
@@ -179,9 +177,9 @@ export function PhotoStage() {
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div className="absolute inset-0" style={{ transformStyle: "preserve-3d", rotateX, rotateY }}>
-          {/* anéis atrás da pessoa */}
+          {/* borda atrás da pessoa */}
           <div className="absolute inset-0" style={{ transform: "translateZ(-24px)" }}>
-            {/* anel principal: traços azuis de tamanhos diferentes */}
+            {/* borda: traços azuis de tamanhos diferentes */}
             <DashedRing
               inset="-1.2%"
               dashes={mainDashes}
@@ -191,18 +189,7 @@ export function PhotoStage() {
               className="stroke-blue-500"
             />
 
-            {/* anel fino, mais fraco, girando ao contrário */}
-            <DashedRing
-              inset="-7%"
-              dashes={fineDashes}
-              width={1.4}
-              seconds={55}
-              reverse
-              animated={animated}
-              className="stroke-cyan-300/50"
-            />
-
-            {/* um traço mais claro que corre pelo anel principal */}
+            {/* um traço mais claro que corre pela borda */}
             <DashedRing
               inset="-1.2%"
               dashes="7 93"
