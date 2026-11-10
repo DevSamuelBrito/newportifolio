@@ -3,7 +3,7 @@
 //react
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { createPortal } from "react-dom";
+import { createPortal, flushSync } from "react-dom";
 
 //icons
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -27,6 +27,9 @@ import { Reveal } from "@/components/shared/Reveal";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
+
+//lib
+import { scrollToSection } from "@/lib/sheets";
 
 //types
 import type { Project } from "./types";
@@ -66,6 +69,20 @@ export function Projects() {
     if (target) setSelected(target);
   };
 
+  const toggleShowAll = () => {
+    if (!showAll) {
+      setShowAll(true);
+      return;
+    }
+
+    // Recolher encurta a seção em ~2000px: sem isto, a rolagem ficaria no mesmo número
+    // e o usuário cairia no meio da seção seguinte. flushSync aplica a mudança agora,
+    // para medir a posição já com a seção menor e voltar ao título dos projetos.
+    flushSync(() => setShowAll(false));
+
+    scrollToSection("projects", "instant");
+  };
+
   return (
     <Section id="projects">
       <SectionHeading
@@ -88,7 +105,7 @@ export function Projects() {
 
       {sortedProjects.length > INITIAL_VISIBLE && (
         <Reveal className="mt-12 flex justify-center">
-          <button type="button" onClick={() => setShowAll((value) => !value)} className="btn-secondary">
+          <button type="button" onClick={toggleShowAll} className="btn-secondary">
             {showAll ? t.projects.showLess : t.projects.showMore}
             {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </button>

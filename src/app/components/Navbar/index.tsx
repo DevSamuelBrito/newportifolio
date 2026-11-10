@@ -51,9 +51,18 @@ export const Navbar = () => {
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
 
+    // Uma seção que muda de altura sem rolagem (ex.: "Ver menos" nos projetos) também
+    // muda qual é a seção atual.
+    const observer = new ResizeObserver(update);
+
+    const main = document.querySelector("main");
+
+    if (main) observer.observe(main);
+
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      observer.disconnect();
     };
   }, []);
 

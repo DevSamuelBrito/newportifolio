@@ -31,14 +31,14 @@ export function getSheetTop(id: string): number | null {
   return null;
 }
 
-/** Rola suavemente até o começo da seção. */
-export function scrollToSection(id: string) {
+/** Rola até o começo da seção (suave por padrão; "instant" para voltar sem animação). */
+export function scrollToSection(id: string, behavior: ScrollBehavior = "smooth") {
   const top = getSheetTop(id);
 
   if (top === null) return;
 
   // ceil: se sobrar fração, a folha fica 1px acima do topo, nunca com uma linha da anterior à mostra
-  window.scrollTo({ top: Math.ceil(top), behavior: "smooth" });
+  window.scrollTo({ top: Math.ceil(top), behavior });
 }
 
 /** Seção "atual": a última cujo começo já passou de ~45% da altura da tela. */
