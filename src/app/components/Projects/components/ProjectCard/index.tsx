@@ -24,18 +24,17 @@ import { getBrandColor } from "@/data/brandColors";
 //types
 import type { Project } from "../../types";
 
+/** Segundos com o mouse em cima até a tremidinha começar */
+const WOBBLE_DELAY = 1.5;
+
 interface ProjectCardProps {
   data: Project;
   /** Posição do card na grade, usada para escalonar a animação */
   position: number;
-  /** Outro card está com o mouse em cima: este fica desfocado ao fundo */
-  dimmed: boolean;
   onOpen: (project: Project) => void;
-  /** Avisa a seção qual card está em destaque (null = nenhum) */
-  onHoverChange: (id: string | null) => void;
 }
 
-export function ProjectCard({ data, position, dimmed, onOpen, onHoverChange }: ProjectCardProps) {
+export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
   const { t, language } = useTranslation();
 
   const reduceMotion = useReducedMotion();
@@ -46,7 +45,8 @@ export function ProjectCard({ data, position, dimmed, onOpen, onHoverChange }: P
 
   const images = data.images && data.images.length > 0 ? data.images : [data.src];
 
-  // Tremidinha suave, em loop, só enquanto o mouse está em cima: convida ao clique
+  // O card cresce e sobe na hora. A tremidinha suave só começa depois de um tempo
+  // com o mouse parado em cima (WOBBLE_DELAY) e repete com pausas: convida ao clique.
   const hoverAnimation = reduceMotion
     ? undefined
     : {
@@ -56,23 +56,20 @@ export function ProjectCard({ data, position, dimmed, onOpen, onHoverChange }: P
         transition: {
           scale: { duration: 0.3, ease: "easeOut" as const },
           y: { duration: 0.3, ease: "easeOut" as const },
-          rotate: { duration: 1.4, ease: "easeInOut" as const, repeat: Infinity, repeatDelay: 0.5 },
+          rotate: {
+            duration: 1.4,
+            ease: "easeInOut" as const,
+            delay: WOBBLE_DELAY,
+            repeat: Infinity,
+            repeatDelay: 1.2,
+          },
         },
       };
 
   return (
     // z-20 no hover: o card em destaque fica por cima dos vizinhos
     <Reveal delay={(position % 3) * 0.1} className="relative h-full hover:z-20 focus-within:z-20">
-      {/* O desfoque fica neste wrapper (e não no Reveal) porque o Reveal controla a opacidade */}
-      <div
-        onMouseEnter={() => onHoverChange(data.id)}
-        onMouseLeave={() => onHoverChange(null)}
-        onFocusCapture={() => onHoverChange(data.id)}
-        onBlurCapture={() => onHoverChange(null)}
-        className={`h-full transition-[filter,opacity] duration-300 ${
-          dimmed ? "opacity-40 blur-[3px]" : "opacity-100 blur-0"
-        }`}
-      >
+      <div className="h-full">
         <motion.article
           whileHover={hoverAnimation}
           onClick={() => onOpen(data)}
