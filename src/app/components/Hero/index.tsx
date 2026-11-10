@@ -25,14 +25,16 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { parseHighlight } from "@/utils/parseHighlight";
 
 //data
+import { getBrandColor } from "@/data/brandColors";
+
 import { RESUME_FILES } from "@/data/links";
 
-const HERO_STACK: { icon: IconType; name: string; color: string }[] = [
-  { icon: SiReact, name: "React", color: "#61DAFB" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#FFFFFF" },
-  { icon: SiTypescript, name: "TypeScript", color: "#3B82F6" },
-  { icon: SiDotnet, name: ".NET", color: "#9B7BFF" },
-  { icon: SiPostgresql, name: "PostgreSQL", color: "#5B8DEF" },
+const HERO_STACK: { icon: IconType; name: string }[] = [
+  { icon: SiReact, name: "React" },
+  { icon: SiNextdotjs, name: "Next.js" },
+  { icon: SiTypescript, name: "TypeScript" },
+  { icon: SiDotnet, name: ".NET" },
+  { icon: SiPostgresql, name: "PostgreSQL" },
 ];
 
 export function Hero() {
@@ -117,9 +119,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
             className="mt-12 flex flex-wrap gap-x-8 gap-y-5"
           >
-            {HERO_STACK.map(({ icon: Icon, name, color }) => (
+            {HERO_STACK.map(({ icon: Icon, name }) => (
               <li key={name} className="flex flex-col items-center gap-2 text-neutral-400">
-                <Icon size={34} style={{ color }} aria-hidden />
+                <Icon size={34} style={{ color: getBrandColor(Icon) }} aria-hidden />
                 <span className="text-sm">{name}</span>
               </li>
             ))}

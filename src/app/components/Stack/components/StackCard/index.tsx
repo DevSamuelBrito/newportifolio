@@ -6,6 +6,9 @@ import type { IconType } from "react-icons";
 //components
 import { Reveal } from "@/components/shared/Reveal";
 
+//data
+import { getBrandColor } from "@/data/brandColors";
+
 interface StackCardProps {
   area: string;
   technologies: {
@@ -26,9 +29,9 @@ export function StackCard({ area, technologies, delay = 0 }: StackCardProps) {
           {technologies.map(({ icon: Icon, name }) => (
             <li
               key={name}
-              className="group flex flex-col items-center gap-2 rounded-xl border border-neutral-800/70 bg-neutral-950/50 px-2 py-4 text-neutral-300 transition-colors duration-300 hover:border-blue-500/40 hover:text-blue-400"
+              className="group flex flex-col items-center gap-2 rounded-xl border border-neutral-800/70 bg-neutral-950/50 px-2 py-4 text-neutral-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-neutral-600 hover:text-neutral-200"
             >
-              <Icon size={32} aria-hidden />
+              <Icon size={32} style={{ color: getBrandColor(Icon) }} aria-hidden />
               <span className="text-center text-xs leading-tight">{name}</span>
             </li>
           ))}

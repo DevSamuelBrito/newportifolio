@@ -19,6 +19,9 @@ import { ImageCarousel } from "./components/ImageCarousel";
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
+//data
+import { getBrandColor } from "@/data/brandColors";
+
 //types
 import type { Project } from "../../types";
 
@@ -146,9 +149,9 @@ export default function ModalCard({ onClose, data }: ModalCardProps) {
               {data.stack.map((Icon, i) => (
                 <li
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 text-blue-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900"
                 >
-                  <Icon size={18} aria-hidden />
+                  <Icon size={18} style={{ color: getBrandColor(Icon) }} aria-hidden />
                 </li>
               ))}
             </ul>
