@@ -78,14 +78,14 @@ export const Navbar = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
+      className="fixed inset-x-0 top-0 z-50 pt-4"
     >
+      {/* Mesmo container das seções (max-w-7xl + padding), para alinhar com o conteúdo */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
       <nav
         aria-label="Principal"
-        className={`mx-auto max-w-7xl rounded-2xl border backdrop-blur-xl transition-colors duration-300 ${
-          scrolled || isOpen
-            ? "border-neutral-800 bg-neutral-950/85"
-            : "border-neutral-800/60 bg-neutral-950/50"
+        className={`rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-2xl backdrop-saturate-150 transition-colors duration-300 ${
+          isOpen ? "bg-neutral-950/90" : scrolled ? "bg-neutral-950/50" : "bg-neutral-950/25"
         }`}
       >
         <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
@@ -229,6 +229,7 @@ export const Navbar = () => {
           )}
         </AnimatePresence>
       </nav>
+      </div>
     </motion.header>
   );
 };
