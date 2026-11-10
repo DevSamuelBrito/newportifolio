@@ -1,43 +1,82 @@
 "use client";
 
 //react
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //animation
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useMotionValueEvent, useSpring } from "framer-motion";
 
-const GLOW_SIZE = 680;
+const GLOW_SIZE = 1000;
 
-const CORE_SIZE = 300;
+const TRAIL_SIZE = 1400;
+
+/** Raio (px) em que a grade de pontos "acende" em volta do cursor */
+const GRID_REVEAL_RADIUS = 340;
 
 /**
- * Degradê radial: a cor vai sumindo aos poucos até ficar transparente, sem
- * nenhuma borda. É mais suave que um círculo sólido com blur.
+ * Degradê radial com queda gaussiana (curva em sino). Diferente de um degradê
+ * com poucas paradas, não forma faixas nem contorno visível: a cor some aos
+ * poucos e chega a zero exatamente na borda.
  */
-const GLOW_BACKGROUND =
-  "radial-gradient(circle, rgba(59,130,246,0.26) 0%, rgba(59,130,246,0.14) 30%, rgba(59,130,246,0.05) 55%, transparent 72%)";
+function softGlow(rgb: string, maxAlpha: number, steps = 16) {
+  const stops = Array.from({ length: steps + 1 }, (_, i) => {
+    const t = i / steps;
 
-const CORE_BACKGROUND =
-  "radial-gradient(circle, rgba(34,211,238,0.14) 0%, rgba(34,211,238,0.06) 40%, transparent 70%)";
+    // curva em sino, com um fade final para garantir alpha 0 na borda
+    const edgeFade = t < 0.7 ? 1 : 1 - ((t - 0.7) / 0.3) ** 2 * (3 - 2 * ((t - 0.7) / 0.3));
+
+    const alpha = maxAlpha * Math.exp(-3.6 * t * t) * edgeFade;
+
+    return `rgba(${rgb},${alpha.toFixed(4)}) ${(t * 100).toFixed(1)}%`;
+  });
+
+  return `radial-gradient(circle closest-side, ${stops.join(", ")})`;
+}
+
+const GLOW_BACKGROUND = softGlow("59,130,246", 0.17);
+
+const TRAIL_BACKGROUND = softGlow("139,92,246", 0.08);
+
+/** Máscara da grade: aparece perto do cursor e some gradualmente */
+const GRID_MASK = `radial-gradient(circle ${GRID_REVEAL_RADIUS}px at var(--mx, -999px) var(--my, -999px), black 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 80%, transparent 100%)`;
 
 /**
- * Brilho azul desfocado que acompanha o mouse no fundo da página.
- * Só aparece em dispositivos com mouse (não em telas de toque) e é
- * desativado quando o usuário prefere menos animação.
+ * Efeito de luz que acompanha o mouse no fundo da página. Três camadas:
+ *  1. brilho azul bem suave e grande;
+ *  2. um rastro violeta ainda mais fraco e mais lento, que desalinha do brilho
+ *     e tira o aspecto de "círculo perfeito";
+ *  3. a grade de pontos do fundo "acende" perto do cursor.
+ *
+ * Só aparece em dispositivos com mouse e é desligado com prefers-reduced-motion.
  */
 export function CursorGlow() {
   const [enabled, setEnabled] = useState(false);
 
   const [visible, setVisible] = useState(false);
 
+  const gridRef = useRef<HTMLDivElement>(null);
+
   const x = useMotionValue(-GLOW_SIZE);
 
   const y = useMotionValue(-GLOW_SIZE);
 
-  // O brilho "flutua" atrás do cursor, com um atraso longo e macio
-  const smoothX = useSpring(x, { stiffness: 55, damping: 20, mass: 1 });
+  // Cada camada persegue o cursor com um atraso diferente
+  const glowX = useSpring(x, { stiffness: 55, damping: 20, mass: 1 });
 
-  const smoothY = useSpring(y, { stiffness: 55, damping: 20, mass: 1 });
+  const glowY = useSpring(y, { stiffness: 55, damping: 20, mass: 1 });
+
+  const trailX = useSpring(x, { stiffness: 22, damping: 18, mass: 1.2 });
+
+  const trailY = useSpring(y, { stiffness: 22, damping: 18, mass: 1.2 });
+
+  const gridX = useSpring(x, { stiffness: 140, damping: 24, mass: 0.6 });
+
+  const gridY = useSpring(y, { stiffness: 140, damping: 24, mass: 0.6 });
+
+  // A grade acompanha o cursor de perto, por variáveis CSS lidas pela máscara
+  useMotionValueEvent(gridX, "change", (value) => gridRef.current?.style.setProperty("--mx", `${value}px`));
+
+  useMotionValueEvent(gridY, "change", (value) => gridRef.current?.style.setProperty("--my", `${value}px`));
 
   useEffect(() => {
     const hasMouse = window.matchMedia("(pointer: fine)").matches;
@@ -75,32 +114,45 @@ export function CursorGlow() {
       transition={{ duration: 0.9, ease: "easeInOut" }}
       className="pointer-events-none absolute inset-0"
     >
-      {/* Brilho grande e suave */}
+      {/* 2. Rastro violeta: mais lento e mais fraco que o brilho principal */}
       <motion.div
         style={{
-          x: smoothX,
-          y: smoothY,
+          x: trailX,
+          y: trailY,
+          width: TRAIL_SIZE,
+          height: TRAIL_SIZE,
+          marginLeft: -TRAIL_SIZE / 2,
+          marginTop: -TRAIL_SIZE / 2,
+          background: TRAIL_BACKGROUND,
+        }}
+        className="absolute left-0 top-0"
+      />
+
+      {/* 1. Brilho azul principal */}
+      <motion.div
+        style={{
+          x: glowX,
+          y: glowY,
           width: GLOW_SIZE,
           height: GLOW_SIZE,
           marginLeft: -GLOW_SIZE / 2,
           marginTop: -GLOW_SIZE / 2,
           background: GLOW_BACKGROUND,
         }}
-        className="absolute left-0 top-0 rounded-full"
+        className="absolute left-0 top-0"
       />
 
-      {/* Núcleo menor, um tom mais claro, para dar profundidade */}
-      <motion.div
+      {/* 3. A mesma grade de pontos do fundo, mais forte, revelada por uma máscara em volta do cursor */}
+      <div
+        ref={gridRef}
+        className="absolute inset-0"
         style={{
-          x: smoothX,
-          y: smoothY,
-          width: CORE_SIZE,
-          height: CORE_SIZE,
-          marginLeft: -CORE_SIZE / 2,
-          marginTop: -CORE_SIZE / 2,
-          background: CORE_BACKGROUND,
+          opacity: 0.32,
+          backgroundImage: "radial-gradient(circle at center, #fff 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: GRID_MASK,
+          WebkitMaskImage: GRID_MASK,
         }}
-        className="absolute left-0 top-0 rounded-full"
       />
     </motion.div>
   );
