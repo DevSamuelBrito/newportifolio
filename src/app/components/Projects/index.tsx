@@ -38,7 +38,15 @@ export function Projects() {
 
   const [selected, setSelected] = useState<Project | null>(null);
 
+  // Card com o mouse em cima (os outros ficam desfocados ao fundo)
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   const closeModal = useCallback(() => setSelected(null), []);
+
+  const openProject = useCallback((project: Project) => {
+    setHoveredId(null);
+    setSelected(project);
+  }, []);
 
   // Mais recentes primeiro
   const sortedProjects = useMemo(() => [...ProjectsData].sort((a, b) => b.index - a.index), []);
@@ -56,7 +64,14 @@ export function Projects() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visibleProjects.map((project, position) => (
-          <ProjectCard key={project.id} data={project} position={position} onOpen={setSelected} />
+          <ProjectCard
+            key={project.id}
+            data={project}
+            position={position}
+            dimmed={hoveredId !== null && hoveredId !== project.id}
+            onOpen={openProject}
+            onHoverChange={setHoveredId}
+          />
         ))}
       </div>
 
