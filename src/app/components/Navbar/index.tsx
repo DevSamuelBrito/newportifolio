@@ -22,6 +22,10 @@ import { SOCIAL_LINKS } from "@/data/links";
 
 import { SECTION_ORDER, type SectionId } from "@/data/sections";
 
+/** Ruído fractal em SVG embutido (sem arquivo extra), usado como grão do vidro fosco. */
+const FROST_NOISE =
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
+
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
@@ -82,11 +86,18 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
       <nav
         aria-label="Principal"
-        className={`rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-2xl backdrop-saturate-150 transition-colors duration-300 ${
-          isOpen ? "bg-neutral-950/90" : scrolled ? "bg-neutral-950/50" : "bg-neutral-950/25"
+        className={`relative isolate overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-3xl backdrop-saturate-[1.2] transition-colors duration-300 ${
+          isOpen ? "bg-neutral-950/95" : scrolled ? "bg-neutral-900/65" : "bg-neutral-900/40"
         }`}
       >
-        <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        {/* Grão fino por cima do vidro: dá o aspecto fosco (jateado) */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0 opacity-[0.08] mix-blend-overlay"
+          style={{ backgroundImage: FROST_NOISE }}
+        />
+
+        <div className="relative z-10 flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <a
             href="#home"
             onClick={(e) => {
@@ -179,7 +190,7 @@ export const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="overflow-hidden lg:hidden"
+              className="relative z-10 overflow-hidden lg:hidden"
             >
               <ul className="flex flex-col gap-1 border-t border-neutral-800 px-4 py-3">
                 {[...links, { id: "contact" as SectionId, label: t.navbar.contact }].map(({ id, label }) => (
