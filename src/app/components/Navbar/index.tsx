@@ -120,11 +120,29 @@ export const Navbar = () => {
                     handleNavigate(id);
                   }}
                   aria-current={activeSection === id ? "true" : undefined}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  className={`group relative block rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     activeSection === id ? "text-white" : "text-neutral-300 hover:text-white"
                   }`}
                 >
                   {label}
+
+                  {/* Linha da seção atual: aparece embaixo do link e desliza até o próximo ao mudar de seção */}
+                  {activeSection === id && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      aria-hidden
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 shadow-[0_0_10px_rgba(59,130,246,0.7)]"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
+                  )}
+
+                  {/* Prévia no hover: linha discreta que cresce do centro nos links que não são o atual */}
+                  {activeSection !== id && (
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-center scale-x-0 rounded-full bg-white/30 transition-transform duration-300 group-hover:scale-x-100"
+                    />
+                  )}
                 </a>
               </li>
             ))}
