@@ -230,7 +230,7 @@
   "about": {
     "about": "I am a Full Stack Developer with a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto}}, with experience building web applications and enterprise systems used in production environments.",
     "about2": "I develop end-to-end solutions using {{ TypeScript, React, and Next.js }} on the front end and {{ ASP.NET Core }} on the back end, integrating databases such as {{ PostgreSQL, SQL Server, Prisma, and Firebird}}, applying {{ Clean Architecture }} with a strong focus on performance, scalability, and clean code.",
-    "about3": "I have experience building {{ REST APIs}}, {{ role-based access control (RBAC)}}, N8N automations, system integrations, and {{ migrating desktop applications to the web}}. Today, at Gráfica Canastra, I look after the ERP, CRM, gatehouse app and internal portal, taking part in every stage from requirements gathering to production deployment.",
+    "about3": "I have experience building {{ REST APIs}}, {{ role-based access control (RBAC)}}, N8N automations, system integrations, and {{ migrating desktop applications to the web}}. Today I am responsible for the {{ mission-critical systems }} behind the company's operation, driving their evolution, security and availability, and I take part in every stage from requirements gathering to production deployment.",
     "about4": "My {{ career goal }} is to continuously grow as a Full Stack Developer by working on challenging projects that create real business impact while expanding my technical expertise.",
     "eyebrow": "About",
     "heading": "From requirements to",

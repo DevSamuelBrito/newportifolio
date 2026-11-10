@@ -233,7 +233,7 @@
   "about": {
     "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto}}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
     "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, SQL Server, Prisma e Firebird}}, aplicando {{ Clean Architecture }} e sempre com foco em performance, escalabilidade e qualidade de código.",
-    "about3": "Tenho experiência na criação de {{ APIs REST}}, {{ controle de acessos (RBAC)}}, automações com N8N, integração entre sistemas e {{ migração de aplicações desktop para web}}. Hoje, na Gráfica Canastra, cuido de ERP, CRM, portaria e portal interno, participando de todas as etapas, do levantamento de requisitos ao deploy em produção.",
+    "about3": "Tenho experiência na criação de {{ APIs REST}}, {{ controle de acessos (RBAC)}}, automações com N8N, integração entre sistemas e {{ migração de aplicações desktop para web}}. Hoje sou responsável por {{ sistemas críticos }} da operação da empresa, cuidando da evolução, da segurança e da disponibilidade deles, e participo de todas as etapas, do levantamento de requisitos ao deploy em produção.",
     "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio.",
     "eyebrow": "Sobre",
     "heading": "Do requisito ao",
