@@ -3,9 +3,9 @@
 //components
 import CertificationsCard from "./components/CertificationsCard";
 
-import { PixelPanel } from "@/components/shared/PixelDisplay/PixelPanel";
+import { PixelDisplay } from "@/components/shared/PixelDisplay";
 
-import { BRANCH_SHAPES } from "@/components/shared/PixelDisplay/shapes";
+import { MEDAL_SHAPES } from "@/components/shared/PixelDisplay/shapes";
 
 import { Section } from "@/components/shared/Section";
 
@@ -17,9 +17,6 @@ import { useTranslation } from "@/hooks/useTranslation";
 export function Certifications() {
   const { t } = useTranslation();
 
-  // cada formação conta como um "commit" no grafo do painel
-  const total = t.certifications.graduation.length + t.certifications.data.length;
-
   return (
     <Section id="certifications">
       <SectionHeading
@@ -29,15 +26,11 @@ export function Certifications() {
       />
 
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-        {/* Painel fixo (só em telas grandes): grafo de commits em pontos; clique para "commitar" */}
+        {/* Painel fixo (só em telas grandes): medalha em pontos; clique para espalhar os pontos */}
         <aside className="hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:self-start">
-          <PixelPanel
-            sources={BRANCH_SHAPES}
-            initialHash="a3f9c21"
-            counter={(extra) => `${total + extra} commits`}
-            prefix="merge:"
-            message={t.certifications.merge}
-          />
+          <div className="glass p-5">
+            <PixelDisplay sources={MEDAL_SHAPES} />
+          </div>
         </aside>
 
         <div className="lg:col-span-7">

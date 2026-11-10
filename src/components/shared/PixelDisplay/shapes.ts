@@ -61,6 +61,33 @@ function createCanvas() {
         for (let dx = 0; dx < thickness; dx++) for (let dy = 0; dy < thickness; dy++) set(x + dx, y + dy, value);
       }
     },
+    ring(cx: number, cy: number, inner: number, outer: number, value: number) {
+      for (let y = Math.floor(cy - outer); y <= cy + outer; y++) {
+        for (let x = Math.floor(cx - outer); x <= cx + outer; x++) {
+          const distance = Math.hypot(x - cx, y - cy);
+
+          if (distance >= inner && distance <= outer) set(x, y, value);
+        }
+      }
+    },
+    /** Preenche o polígono (lista de pontos [x, y]) usando o teste de "ponto dentro" */
+    polygon(points: [number, number][], value: number) {
+      for (let y = 0; y < GRID; y++) {
+        for (let x = 0; x < GRID; x++) {
+          let inside = false;
+
+          for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+            const [xi, yi] = points[i];
+
+            const [xj, yj] = points[j];
+
+            if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+          }
+
+          if (inside) set(x, y, value);
+        }
+      }
+    },
     disc(cx: number, cy: number, radius: number, value: number) {
       for (let y = Math.floor(cy - radius); y <= cy + radius; y++) {
         for (let x = Math.floor(cx - radius); x <= cx + radius; x++) {
@@ -71,29 +98,54 @@ function createCanvas() {
   };
 }
 
-/** Grafo de commits: um tronco, um desvio (branch) que volta a se juntar (merge) e os commits como bolinhas */
-function branchGraph(): Float32Array {
+/** Medalha: fitas em V, disco com aro e uma estrela de cinco pontas no meio */
+function medal(): Float32Array {
   const canvas = createCanvas();
 
-  // tronco e desvio
-  canvas.rect(8, 3, 2, 21, 0.5);
-  canvas.line(10, 8, 17, 12, 0.5, 2);
-  canvas.rect(17, 12, 2, 6, 0.5);
-  canvas.line(17, 17, 10, 21, 0.5, 2);
+  // fitas em V (terminam antes do disco, para não aparecerem por cima dele)
+  canvas.polygon(
+    [
+      [7, 0],
+      [11.5, 0],
+      [14.5, 7],
+      [10, 7],
+    ],
+    0.7
+  );
 
-  // commit mais recente (HEAD): maior e com halo
-  canvas.disc(9, 4.5, 4, 0.28);
-  canvas.disc(9, 4.5, 2.6, 1);
+  canvas.polygon(
+    [
+      [19, 0],
+      [14.5, 0],
+      [11.5, 7],
+      [16, 7],
+    ],
+    0.7
+  );
 
-  // commits do tronco e do desvio
-  canvas.disc(9, 13, 2.3, 0.75);
-  canvas.disc(9, 22, 2.3, 0.75);
-  canvas.disc(18, 15, 2.3, 1);
+  // disco: miolo suave e aro mais forte
+  const cx = 13;
+
+  const cy = 15.5;
+
+  canvas.disc(cx, cy, 10, 0.3);
+  canvas.ring(cx, cy, 8.6, 10.4, 0.85);
+
+  // estrela de 5 pontas no meio
+  const star: [number, number][] = Array.from({ length: 10 }, (_, point) => {
+    const angle = -Math.PI / 2 + (point * Math.PI) / 5;
+
+    const radius = point % 2 === 0 ? 6.4 : 2.7;
+
+    return [cx + radius * Math.cos(angle), cy + 0.5 + radius * Math.sin(angle)];
+  });
+
+  canvas.polygon(star, 1);
 
   return canvas.grid;
 }
 
-export const BRANCH_SHAPES: ShapeSource[] = [branchGraph];
+export const MEDAL_SHAPES: ShapeSource[] = [medal];
 
 /** Gráfico de barras dentro de uma moldura (atividade no GitHub) */
 function barsChart(): Float32Array {

@@ -168,7 +168,6 @@
     "eyebrow": "GitHub",
     "heading": "Atividade no",
     "highlight": "GitHub",
-    "source": "dados reais · API do GitHub",
     "total": "contribuições no último ano",
     "activeDays": "dias ativos",
     "currentStreak": "sequência atual",
@@ -178,14 +177,10 @@
     "contributionsOn": "contribuições em",
     "reposTitle": "Repositórios atualizados recentemente",
     "allRepos": "Ver todos no GitHub",
-    "messageStreak": "sequência de {{n}} dias",
-    "messageStreakOne": "sequência de 1 dia",
-    "messageSynced": "sincronizado com o GitHub",
     "unavailable": "Não foi possível carregar os dados do GitHub agora.",
     "visit": "Ver perfil no GitHub"
   },
   "certifications": {
-    "merge": "graduação + certificações",
     "title": "Certificações",
     "button": "Ver Certificação",
     "data": [

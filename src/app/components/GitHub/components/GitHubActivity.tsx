@@ -4,7 +4,7 @@
 import { ArrowUpRight } from "lucide-react";
 
 //components
-import { PixelPanel } from "@/components/shared/PixelDisplay/PixelPanel";
+import { PixelDisplay } from "@/components/shared/PixelDisplay";
 
 import { BARS_SHAPES } from "@/components/shared/PixelDisplay/shapes";
 
@@ -44,10 +44,6 @@ export function GitHubActivity({ data }: GitHubActivityProps) {
 
   const { calendar, repos } = data;
 
-  const streak = calendar?.currentStreak ?? 0;
-
-  const message = !calendar || streak === 0 ? t.github.messageSynced : streak === 1 ? t.github.messageStreakOne : t.github.messageStreak.replace("{{n}}", String(streak));
-
   const stats = calendar
     ? [
         { value: calendar.activeDays.toLocaleString(locale), label: t.github.activeDays },
@@ -69,20 +65,12 @@ export function GitHubActivity({ data }: GitHubActivityProps) {
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Painel fixo (só em telas grandes): gráfico de barras em pontos; clique para "commitar" */}
         <aside className="hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:self-start">
-          <PixelPanel
-            sources={BARS_SHAPES}
-            initialHash="e41b9aa"
-            counter={() => "main"}
-            prefix="chore(github):"
-            message={message}
-          />
+          <div className="glass p-5">
+            <PixelDisplay sources={BARS_SHAPES} />
+          </div>
         </aside>
 
         <div className="min-w-0 lg:col-span-7">
-          <p className="mb-6 inline-block rounded-md border border-dashed border-neutral-700 px-2.5 py-1 font-mono text-xs text-neutral-400">
-            {t.github.source}
-          </p>
-
           {calendar ? (
             <>
               <Reveal className="grid items-end gap-6 sm:grid-cols-[auto_1fr]">
