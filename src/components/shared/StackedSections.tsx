@@ -21,12 +21,20 @@ interface SheetProps {
   index: number;
   /** false = layout normal, sem fixar nem recuar (prefers-reduced-motion) */
   stacked: boolean;
+  /** última seção: não precisa de pausa depois dela */
+  isLast: boolean;
   refs: MutableRefObject<(HTMLDivElement | null)[]>;
   children: ReactNode;
 }
 
 // useLayoutEffect no navegador (mede antes de pintar), useEffect no servidor
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+/**
+ * Pausa depois de cada seção: a seção fica parada e 100% visível enquanto esse
+ * trecho de rolagem passa, e só então a próxima começa a subir e a dissolvê-la.
+ */
+const HOLD = "60svh";
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
@@ -52,7 +60,7 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function Sheet({ id, index, stacked: stackingEnabled, refs, children }: SheetProps) {
+function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: SheetProps) {
   // A primeira seção (hero) rola normalmente para dentro da segunda; o efeito de
   // empilhar e dissolver começa a partir da segunda seção.
   const stacked = stackingEnabled && index > 0;
@@ -149,7 +157,7 @@ function Sheet({ id, index, stacked: stackingEnabled, refs, children }: SheetPro
         refs.current[index] = element;
       }}
       data-sheet={id}
-      style={stacked ? { position: "sticky", top, zIndex: index + 1 } : undefined}
+      style={stacked ? { position: "sticky", top, zIndex: index + 1, marginBottom: isLast ? 0 : HOLD } : undefined}
       className="relative"
     >
       {/* Só o conteúdo se dissolve quando a próxima folha sobe; o fundo é global e fica parado */}
@@ -177,7 +185,14 @@ export function StackedSections({ sections }: StackedSectionsProps) {
   return (
     <main>
       {sections.map((section, index) => (
-        <Sheet key={section.id} id={section.id} index={index} stacked={stacked} refs={refs}>
+        <Sheet
+          key={section.id}
+          id={section.id}
+          index={index}
+          stacked={stacked}
+          isLast={index === sections.length - 1}
+          refs={refs}
+        >
           {section.node}
         </Sheet>
       ))}

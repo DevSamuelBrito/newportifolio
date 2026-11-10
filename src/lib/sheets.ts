@@ -24,7 +24,8 @@ export function getSheetTop(id: string): number | null {
     if (sheet.dataset.sheet === id) return top;
 
     // altura fracionária (offsetHeight arredonda e o erro se acumula entre as folhas)
-    top += sheet.getBoundingClientRect().height;
+    // + a pausa (margem) que cada folha tem depois de si
+    top += sheet.getBoundingClientRect().height + (parseFloat(getComputedStyle(sheet).marginBottom) || 0);
   }
 
   return null;
