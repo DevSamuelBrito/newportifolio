@@ -20,9 +20,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 //data
 import { SOCIAL_LINKS } from "@/data/links";
 
-const SECTION_IDS = ["home", "about", "experience", "stack", "projects", "certifications", "contact"] as const;
-
-type SectionId = (typeof SECTION_IDS)[number];
+import { SECTION_ORDER, type SectionId } from "@/data/sections";
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -37,7 +35,7 @@ export const Navbar = () => {
 
   const [scrolled, setScrolled] = useState(false);
 
-  const links: { id: SectionId; label: string }[] = SECTION_IDS.filter((id) => id !== "contact").map(
+  const links: { id: SectionId; label: string }[] = SECTION_ORDER.filter((id) => id !== "contact").map(
     (id) => ({ id, label: t.navbar[id] })
   );
 
@@ -52,7 +50,7 @@ export const Navbar = () => {
       { rootMargin: "-45% 0px -50% 0px" }
     );
 
-    SECTION_IDS.forEach((id) => {
+    SECTION_ORDER.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });

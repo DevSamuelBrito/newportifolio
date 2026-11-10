@@ -1,3 +1,6 @@
+//react
+import type { ReactNode } from "react";
+
 //components
 import { Background } from "@/components/shared/Background";
 
@@ -21,19 +24,29 @@ import { Footer } from "./components/Footer";
 
 import ScrollToTopButton from "./components/ScrollTopButton";
 
+//data
+import { SECTION_ORDER, type SectionId } from "@/data/sections";
+
+// A ordem em que as seções aparecem é definida em src/data/sections.ts
+const SECTIONS: Record<SectionId, ReactNode> = {
+  home: <Hero />,
+  projects: <Projects />,
+  experience: <Experience />,
+  stack: <Stack />,
+  about: <About />,
+  certifications: <Certifications />,
+  contact: <Contact />,
+};
+
 export default function App() {
   return (
     <>
       <Background />
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Stack />
-        <Projects />
-        <Certifications />
-        <Contact />
+        {SECTION_ORDER.map((id) => (
+          <div key={id}>{SECTIONS[id]}</div>
+        ))}
       </main>
       <Footer />
       <ScrollToTopButton />
