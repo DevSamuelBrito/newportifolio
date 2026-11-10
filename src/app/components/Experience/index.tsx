@@ -9,7 +9,9 @@ import { AnimatePresence, motion } from "framer-motion";
 //components
 import ExperienceCard from "./components/ExperienceCard";
 
-import { PixelDisplay } from "./components/PixelDisplay";
+import { PixelDisplay } from "@/components/shared/PixelDisplay";
+
+import { EXPERIENCE_SHAPES } from "@/components/shared/PixelDisplay/shapes";
 
 import { Section } from "@/components/shared/Section";
 
@@ -79,7 +81,7 @@ export function Experience() {
         {/* Painel fixo (só em telas grandes): ícone em pontos da experiência atual + resumo */}
         <aside className="hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:self-start">
           <div className="glass p-5">
-            <PixelDisplay icon={active} />
+            <PixelDisplay sources={EXPERIENCE_SHAPES} index={active} />
           </div>
 
           <div className="glass mt-3 px-5 py-4 font-mono text-xs">
