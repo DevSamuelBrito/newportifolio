@@ -16,7 +16,7 @@
     "cv": "Get resume",
     "greeting": "I'm",
     "title": "Building web applications end to end.",
-    "description": "Full Stack Developer graduated from {{ Fatec Rio Preto }}, building applications with {{ React, Next.js and TypeScript }} on the front end and {{ ASP.NET Core }} on the back end.",
+    "description": "Full Stack Developer graduated from {{ Fatec Rio Preto }}, building applications with {{ React, Next.js and TypeScript }} on the front end and {{ ASP.NET Core and NestJS }} on the back end.",
     "projectsCta": "View projects",
     "codeComment": "Building solutions end to end",
     "codeFooter": "Next.js + ASP.NET Core"
@@ -229,7 +229,7 @@
   },
   "about": {
     "about": "I am a Full Stack Developer with a degree in {{ Systems Analysis and Development }} from {{ Fatec Rio Preto}}, with experience building web applications and enterprise systems used in production environments.",
-    "about2": "I develop end-to-end solutions using {{ TypeScript, React, and Next.js }} on the front end and {{ ASP.NET Core }} on the back end, integrating databases such as {{ PostgreSQL, SQL Server, Prisma, and Firebird}}, applying {{ Clean Architecture }} with a strong focus on performance, scalability, and clean code.",
+    "about2": "I develop end-to-end solutions using {{ TypeScript, React, and Next.js }} on the front end and {{ ASP.NET Core and NestJS }} on the back end, integrating databases such as {{ PostgreSQL, SQL Server, Prisma, and Firebird}}, applying {{ Clean Architecture }} with a strong focus on performance, scalability, and clean code.",
     "about3": "I have experience building {{ REST APIs}}, {{ role-based access control (RBAC)}}, N8N automations, system integrations, and {{ migrating desktop applications to the web}}. Today I am responsible for the {{ mission-critical systems }} behind the company's operation, driving their evolution, security and availability, and I take part in every stage from requirements gathering to production deployment.",
     "about4": "My {{ career goal }} is to continuously grow as a Full Stack Developer by working on challenging projects that create real business impact while expanding my technical expertise.",
     "eyebrow": "About",

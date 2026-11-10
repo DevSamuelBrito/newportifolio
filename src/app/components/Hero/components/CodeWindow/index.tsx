@@ -44,7 +44,7 @@ export function CodeWindow() {
       [tok(`// ${t.hero.codeComment}`, "comment")],
       [tok("class ", "keyword"), tok("Samuel", "name"), tok(" {", "plain")],
       arrayLine("frontend", ["TypeScript", "React", "Next.js"]),
-      arrayLine("backend", ["C#", "ASP.NET Core", "EF Core"]),
+      arrayLine("backend", ["C#", "ASP.NET Core", "NestJS"]),
       arrayLine("database", ["PostgreSQL", "Firebird"]),
       arrayLine("devops", ["Docker", "Git", "Azure DevOps"]),
       [tok("}", "plain")],

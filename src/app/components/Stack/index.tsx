@@ -8,6 +8,7 @@ import {
   SiGithub,
   SiJest,
   SiLinux,
+  SiNestjs,
   SiNextdotjs,
   SiPostgresql,
   SiPrisma,
@@ -61,6 +62,7 @@ export function Stack() {
           technologies={[
             { icon: CSharpIcon, name: "C#" },
             { icon: SiDotnet, name: ".NET" },
+            { icon: SiNestjs, name: "NestJS" },
             { icon: SiPrisma, name: "Prisma" },
             { icon: SiPostgresql, name: "PostgreSQL" },
           ]}

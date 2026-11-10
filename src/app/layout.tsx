@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     "React",
     "TypeScript",
     "ASP.NET Core",
+    "NestJS",
     "C#",
     "PostgreSQL",
     "Prisma",

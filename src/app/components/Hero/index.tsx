@@ -8,7 +8,7 @@ import { createPortal } from "react-dom";
 //icons
 import { ArrowUpRight, Download } from "lucide-react";
 
-import { SiDotnet, SiNextdotjs, SiPostgresql, SiReact, SiTypescript } from "react-icons/si";
+import { SiDotnet, SiNestjs, SiNextdotjs, SiPostgresql, SiReact, SiTypescript } from "react-icons/si";
 
 import type { IconType } from "react-icons";
 
@@ -39,6 +39,7 @@ const HERO_STACK: { icon: IconType; name: string }[] = [
   { icon: SiNextdotjs, name: "Next.js" },
   { icon: SiTypescript, name: "TypeScript" },
   { icon: SiDotnet, name: ".NET" },
+  { icon: SiNestjs, name: "NestJS" },
   { icon: SiPostgresql, name: "PostgreSQL" },
 ];
 
