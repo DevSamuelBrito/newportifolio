@@ -20,6 +20,8 @@ import { CodeWindow } from "./components/CodeWindow";
 
 import DownloadNotification from "../DownloadNotification";
 
+import { DOWNLOAD_ALERT_MS } from "../DownloadNotification/AlertDownload";
+
 import { DecryptText } from "@/components/shared/DecryptText";
 
 //hooks
@@ -60,10 +62,19 @@ export function Hero() {
 
   const resume = RESUME_FILES[language];
 
+  // Muda a cada clique para a barra de progresso do aviso recomeçar
+  const [alertId, setAlertId] = useState(0);
+
+  const closeAlert = () => {
+    if (alertTimeout.current) clearTimeout(alertTimeout.current);
+    setShowAlert(false);
+  };
+
   const handleDownloadClick = () => {
     setShowAlert(true);
+    setAlertId((id) => id + 1);
     if (alertTimeout.current) clearTimeout(alertTimeout.current);
-    alertTimeout.current = setTimeout(() => setShowAlert(false), 5000);
+    alertTimeout.current = setTimeout(() => setShowAlert(false), DOWNLOAD_ALERT_MS);
   };
 
   useEffect(() => {
@@ -152,7 +163,10 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {mounted && createPortal(<DownloadNotification showAlert={showAlert} />, document.body)}
+      {mounted && createPortal(
+          <DownloadNotification showAlert={showAlert} fileName={resume.name} triggerId={alertId} onClose={closeAlert} />,
+          document.body
+        )}
     </section>
   );
 }
