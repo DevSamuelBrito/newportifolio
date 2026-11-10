@@ -144,9 +144,21 @@ function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: 
 
     window.addEventListener("resize", update);
 
+    // Se uma seção muda de altura sem rolagem (ex.: "Ver menos" nos projetos), a posição da
+    // próxima folha muda e nenhum evento de scroll acontece: sem isto, o progresso ficaria
+    // velho e as duas seções apareceriam sobrepostas.
+    const observer = new ResizeObserver(update);
+
+    const container = ref.current?.parentElement;
+
+    if (container) observer.observe(container);
+
+    [ref.current, refs.current[index + 1]].forEach((element) => element && observer.observe(element));
+
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      observer.disconnect();
     };
   }, [stacked, index, refs, progress]);
 
