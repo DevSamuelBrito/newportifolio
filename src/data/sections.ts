@@ -8,6 +8,7 @@ export const SECTION_ORDER = [
   "home",
   "projects",
   "experience",
+  "github",
   "stack",
   "about",
   "certifications",

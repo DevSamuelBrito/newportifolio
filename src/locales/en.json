@@ -5,6 +5,7 @@
     "projects": "Projects",
     "certifications": "Certifications",
     "stack": "Stack",
+    "github": "GitHub",
     "contact": "Contact",
     "home": "Home",
     "cta": "Let's talk",
@@ -160,7 +161,28 @@
     "highlight": "experience",
     "technologies": "Technologies"
   },
+  "github": {
+    "eyebrow": "GitHub",
+    "heading": "Activity on",
+    "highlight": "GitHub",
+    "source": "real data · GitHub API",
+    "total": "contributions in the last year",
+    "activeDays": "active days",
+    "currentStreak": "current streak",
+    "longestStreak": "longest streak",
+    "bestDay": "best day",
+    "today": "today",
+    "contributionsOn": "contributions on",
+    "reposTitle": "Recently updated repositories",
+    "allRepos": "See all on GitHub",
+    "messageStreak": "{{n}}-day streak",
+    "messageStreakOne": "1-day streak",
+    "messageSynced": "synced with GitHub",
+    "unavailable": "Could not load GitHub data right now.",
+    "visit": "View GitHub profile"
+  },
   "certifications": {
+    "merge": "degree + certifications",
     "title": "Certifications",
     "button": "View Certification",
     "data": [

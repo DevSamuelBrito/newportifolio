@@ -14,6 +14,8 @@ import { Navbar } from "./components/Navbar";
 
 import { Projects } from "./components/Projects";
 
+import { GitHub } from "./components/GitHub";
+
 import { Stack } from "./components/Stack";
 
 import { About } from "./components/About";
@@ -36,6 +38,7 @@ const SECTIONS: Record<SectionId, ReactNode> = {
   home: <Hero />,
   projects: <Projects />,
   experience: <Experience />,
+  github: <GitHub />,
   stack: <Stack />,
   about: <About />,
   certifications: <Certifications />,

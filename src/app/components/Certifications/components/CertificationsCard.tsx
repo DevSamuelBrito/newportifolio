@@ -28,7 +28,7 @@ const CertificationsCard = ({ index, name, issuer, date, description, link, grad
   const Icon = graduation ? GraduationCap : Award;
 
   return (
-    <Reveal delay={(index % 3) * 0.1} className="h-full">
+    <Reveal delay={(index % 2) * 0.1} className="h-full">
       <article className="glass glass-hover flex h-full flex-col p-6">
         <div className="flex items-start justify-between gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/10 text-blue-400">
