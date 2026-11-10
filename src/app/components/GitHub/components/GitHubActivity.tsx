@@ -60,7 +60,12 @@ export function GitHubActivity({ data }: GitHubActivityProps) {
 
   return (
     <Section id="github">
-      <SectionHeading eyebrow={t.github.eyebrow} title={t.github.heading} highlight={t.github.highlight} />
+      <SectionHeading
+        eyebrow={t.github.eyebrow}
+        title={t.github.heading}
+        highlight={t.github.highlight}
+        subtitle={t.github.subtitle}
+      />
 
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Painel fixo (só em telas grandes): gráfico de barras em pontos; clique para "commitar" */}
