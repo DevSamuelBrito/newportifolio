@@ -52,7 +52,11 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function Sheet({ id, index, stacked, refs, children }: SheetProps) {
+function Sheet({ id, index, stacked: stackingEnabled, refs, children }: SheetProps) {
+  // A primeira seção (hero) rola normalmente para dentro da segunda; o efeito de
+  // empilhar e dissolver começa a partir da segunda seção.
+  const stacked = stackingEnabled && index > 0;
+
   const ref = useRef<HTMLDivElement | null>(null);
 
   // Quanto a próxima folha já cobriu esta (0 = nada, 1 = cobriu toda a tela)
@@ -161,7 +165,7 @@ function Sheet({ id, index, stacked, refs, children }: SheetProps) {
 }
 
 /**
- * Seções "empilhadas": cada seção fica fixa e a próxima sobe por cima dela. As seções
+ * Seções "empilhadas": a partir da segunda, cada seção fica fixa e a próxima sobe por cima dela. As seções
  * são transparentes e o fundo é global e parado (veja Background): a anterior se
  * dissolve enquanto a próxima sobe, sem nenhum "cartão" no meio.
  */
