@@ -20,6 +20,8 @@ import { CodeWindow } from "./components/CodeWindow";
 
 import DownloadNotification from "../DownloadNotification";
 
+import { DecryptText } from "@/components/shared/DecryptText";
+
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -89,7 +91,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             className="mt-6 text-2xl font-medium text-neutral-200 sm:text-3xl"
           >
-            {t.hero.greeting} <span className="text-gradient font-semibold">Samuel Brito</span>
+            {t.hero.greeting} <DecryptText text="Samuel Brito" delay={500} className="text-gradient font-semibold" />
           </motion.p>
 
           <motion.p
