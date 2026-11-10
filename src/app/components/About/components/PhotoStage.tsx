@@ -1,7 +1,7 @@
 "use client";
 
 //react
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 //next
 import Image from "next/image";
@@ -13,41 +13,98 @@ import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } fro
 import photo from "@/assets/images/iconHero.png";
 
 /** Distância (px) da câmera: quanto menor, mais forte o efeito 3D */
-const PERSPECTIVE = 1100;
+const PERSPECTIVE = 1000;
 
 /** Quanto a pessoa "sai" da tela, em px (translateZ) */
-const PERSON_DEPTH = 70;
-
-/**
- * Máscara do "pop-out": acima do centro do disco a pessoa aparece inteira (a cabeça passa da borda);
- * abaixo do centro ela é cortada pelo círculo do disco. --d é o diâmetro do disco.
- */
-const POP_OUT_MASK =
-  "linear-gradient(#000 0 0) top / 100% calc(var(--d) * 0.75) no-repeat, " +
-  "radial-gradient(circle calc(var(--d) / 2) at 50% calc(var(--d) * 0.75), #000 calc(var(--d) / 2 - 1.5px), transparent calc(var(--d) / 2))";
+const PERSON_DEPTH = 50;
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
-/** Anel girando em volta de si mesmo */
-function Spinner({ seconds, reverse, className }: { seconds: number; reverse?: boolean; className: string }) {
-  const reduce = useReducedMotion();
+/**
+ * Padrão de traços irregulares (traço, vazio, traço, vazio...) que soma exatamente 100,
+ * para o anel fechar sem emenda quando usado com pathLength={100}. Determinístico (mesma
+ * semente), então o servidor e o navegador desenham o mesmo anel.
+ */
+function dashPattern(seed: number, min: number, max: number, gapMin: number, gapMax: number) {
+  let state = seed;
 
+  const random = () => {
+    // gerador simples e repetível (mulberry32)
+    state = (state + 0x6d2b79f5) | 0;
+
+    let t = Math.imul(state ^ (state >>> 15), 1 | state);
+
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const parts: number[] = [];
+
+  let total = 0;
+
+  while (total < 96) {
+    const dash = min + random() * (max - min);
+
+    const gap = gapMin + random() * (gapMax - gapMin);
+
+    parts.push(dash, gap);
+
+    total += dash + gap;
+  }
+
+  // ajusta a escala para somar exatamente 100
+  return parts.map((part) => (part * 100) / total);
+}
+
+interface RingProps {
+  /** Quanto o anel passa da borda da foto (em % do tamanho) */
+  inset: string;
+  /** strokeDasharray já pronto (em unidades de pathLength=100) */
+  dashes: string;
+  width: number;
+  className: string;
+  seconds: number;
+  reverse?: boolean;
+  /** Anima o anel girando (desligado com prefers-reduced-motion) */
+  animated: boolean;
+}
+
+/** Anel de traços que gira devagar */
+function DashedRing({ inset, dashes, width, className, seconds, reverse, animated }: RingProps) {
   return (
-    <motion.div
+    <motion.svg
       aria-hidden
-      className={className}
-      animate={reduce ? undefined : { rotate: reverse ? -360 : 360 }}
+      viewBox="0 0 100 100"
+      className="absolute overflow-visible"
+      style={{ inset }}
+      animate={animated ? { rotate: reverse ? -360 : 360 } : undefined}
       transition={{ duration: seconds, repeat: Infinity, ease: "linear" }}
-    />
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="49"
+        fill="none"
+        pathLength={100}
+        strokeWidth={width}
+        strokeLinecap="round"
+        strokeDasharray={dashes}
+        className={className}
+        vectorEffect="non-scaling-stroke"
+      />
+    </motion.svg>
   );
 }
 
 /**
- * Foto com profundidade: um disco de vidro com anéis em órbita atrás e a pessoa "saindo" dele.
- * O conjunto inclina na direção do mouse e cada camada se move numa velocidade diferente (paralaxe).
+ * Foto sem fundo cercada por anéis de traços azuis animados. Tem um leve efeito 3D: o conjunto
+ * inclina na direção do mouse e a pessoa fica "mais perto" que os anéis (paralaxe).
  */
 export function PhotoStage() {
   const reduce = useReducedMotion();
+
+  const animated = !reduce;
 
   const stageRef = useRef<HTMLDivElement | null>(null);
 
@@ -62,14 +119,18 @@ export function PhotoStage() {
 
   const y = useSpring(pointerY, spring);
 
-  const rotateY = useTransform(x, (value) => value * 16);
+  const rotateY = useTransform(x, (value) => value * 12);
 
-  const rotateX = useTransform(y, (value) => value * -12);
+  const rotateX = useTransform(y, (value) => value * -9);
 
-  // a pessoa desliza um pouco no sentido oposto da inclinação: parece mais perto da tela
-  const personX = useTransform(x, (value) => value * 10);
+  // a pessoa desliza um pouco: parece mais perto da tela que os anéis
+  const personX = useTransform(x, (value) => value * 8);
 
-  const personY = useTransform(y, (value) => value * 6);
+  const personY = useTransform(y, (value) => value * 5);
+
+  const mainDashes = useMemo(() => dashPattern(7, 0.7, 6.5, 1.6, 4.4).join(" "), []);
+
+  const fineDashes = useMemo(() => dashPattern(21, 0.4, 1.8, 1.1, 2.6).join(" "), []);
 
   useEffect(() => {
     if (reduce) return;
@@ -108,87 +169,54 @@ export function PhotoStage() {
   return (
     <div
       ref={stageRef}
-      className="relative h-[var(--d)] w-[var(--d)] [--d:17rem] sm:[--d:20rem]"
+      className="relative h-[var(--d)] w-[var(--d)] [--d:16rem] sm:[--d:19rem]"
       style={{ perspective: PERSPECTIVE }}
     >
       {/* flutua devagar, mesmo sem mouse */}
       <motion.div
         className="absolute inset-0"
-        animate={reduce ? undefined : { y: [0, -9, 0] }}
+        animate={animated ? { y: [0, -7, 0] } : undefined}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.div className="absolute inset-0" style={{ transformStyle: "preserve-3d", rotateX, rotateY }}>
-          {/* brilho de fundo */}
-          <div
-            aria-hidden
-            className="absolute -inset-[10%] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.38)_0%,rgba(34,211,238,0.1)_45%,transparent_70%)] blur-xl sm:-inset-[22%]"
-            style={{ transform: "translateZ(-60px)" }}
-          />
-
-          {/* sombra no chão */}
-          <div
-            aria-hidden
-            className="absolute -bottom-7 left-1/2 h-7 w-3/4 -translate-x-1/2 rounded-full bg-blue-500/40 blur-xl"
-            style={{ transform: "translateZ(-20px)" }}
-          />
-
-          {/* linhas em volta: anel fino fixo, anel com varredura de luz e anel tracejado */}
-          <div
-            aria-hidden
-            className="absolute -inset-[7%] rounded-full border border-blue-400/30"
-            style={{ transform: "translateZ(-30px)" }}
-          />
-
-          <div className="absolute inset-0" style={{ transform: "translateZ(-30px)" }}>
-            <Spinner
-              seconds={9}
-              className="absolute -inset-[7%] rounded-full [background:conic-gradient(from_0deg,transparent_0deg,transparent_215deg,rgba(34,211,238,0.95)_360deg)] [mask:radial-gradient(farthest-side,transparent_calc(100%-2px),#000_calc(100%-1px))] [-webkit-mask:radial-gradient(farthest-side,transparent_calc(100%-2px),#000_calc(100%-1px))]"
+          {/* anéis atrás da pessoa */}
+          <div className="absolute inset-0" style={{ transform: "translateZ(-24px)" }}>
+            {/* anel principal: traços azuis de tamanhos diferentes */}
+            <DashedRing
+              inset="-1.2%"
+              dashes={mainDashes}
+              width={3}
+              seconds={38}
+              animated={animated}
+              className="stroke-blue-500"
             />
-          </div>
 
-          <div className="absolute inset-0" style={{ transform: "translateZ(-45px)" }}>
-            <Spinner
-              seconds={70}
+            {/* anel fino, mais fraco, girando ao contrário */}
+            <DashedRing
+              inset="-7%"
+              dashes={fineDashes}
+              width={1.4}
+              seconds={55}
               reverse
-              className="absolute -inset-[12%] rounded-full border border-dashed border-cyan-300/35 sm:-inset-[18%]"
+              animated={animated}
+              className="stroke-cyan-300/50"
+            />
+
+            {/* um traço mais claro que corre pelo anel principal */}
+            <DashedRing
+              inset="-1.2%"
+              dashes="7 93"
+              width={3.2}
+              seconds={7}
+              animated={animated}
+              className="stroke-cyan-300 [filter:drop-shadow(0_0_5px_rgba(34,211,238,0.9))]"
             />
           </div>
 
-          {/* órbita inclinada: o ponto de luz passa atrás e na frente da pessoa */}
+          {/* pessoa, na frente dos anéis (profundidade fixa + paralaxe com o mouse em elementos separados) */}
           <div
-            aria-hidden
-            className="absolute -inset-[14%] sm:-inset-[30%]"
-            style={{ transform: "rotateX(72deg) translateZ(0px)", transformStyle: "preserve-3d" }}
-          >
-            <div className="absolute inset-0 rounded-full border border-blue-400/35" />
-
-            <motion.div
-              className="absolute inset-0"
-              animate={reduce ? undefined : { rotate: 360 }}
-              transition={{ duration: 11, repeat: Infinity, ease: "linear" }}
-            >
-              <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_14px_4px_rgba(34,211,238,0.8)]" />
-            </motion.div>
-          </div>
-
-          {/* disco de vidro */}
-          <div
-            aria-hidden
-            className="absolute inset-0 rounded-full border border-blue-400/30 bg-[radial-gradient(circle_at_50%_32%,rgba(59,130,246,0.45),rgba(17,36,92,0.72)_80%)] shadow-[inset_0_0_40px_rgba(59,130,246,0.25),0_0_50px_rgba(37,99,235,0.25)]"
-          />
-
-          {/* pessoa: sai do disco (máscara) e fica na frente, em profundidade */}
-          <div
-            className="absolute"
-            style={{
-              left: "calc(var(--d) * -0.1)",
-              top: "calc(var(--d) * -0.25)",
-              width: "calc(var(--d) * 1.2)",
-              height: "calc(var(--d) * 1.25)",
-              transform: `translateZ(${PERSON_DEPTH}px) scale(${PERSPECTIVE / (PERSPECTIVE + PERSON_DEPTH)})`,
-              WebkitMask: POP_OUT_MASK,
-              mask: POP_OUT_MASK,
-            }}
+            className="absolute inset-0"
+            style={{ transform: `translateZ(${PERSON_DEPTH}px) scale(${PERSPECTIVE / (PERSPECTIVE + PERSON_DEPTH)})` }}
           >
             <motion.div className="absolute inset-0" style={{ x: personX, y: personY }}>
               <Image
@@ -196,8 +224,8 @@ export function PhotoStage() {
                 alt="Samuel Brito"
                 width={384}
                 height={384}
-                sizes="(max-width: 640px) 245px, 288px"
-                className="absolute bottom-0 left-0 h-auto w-full drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                sizes="(max-width: 640px) 256px, 304px"
+                className="h-full w-full drop-shadow-[0_0_6px_rgba(59,130,246,0.35)]"
                 priority={false}
               />
             </motion.div>
