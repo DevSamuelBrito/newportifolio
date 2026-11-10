@@ -90,7 +90,7 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
       <nav
         aria-label="Principal"
-        className={`rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl backdrop-saturate-150 transition-colors duration-300 ${
+        className={`rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl transition-colors duration-300 ${
           isOpen ? "bg-neutral-950/90" : scrolled ? "bg-neutral-950/25" : "bg-neutral-950/10"
         }`}
       >

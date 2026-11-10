@@ -4,7 +4,10 @@
 import { useEffect, useLayoutEffect, useRef, useState, type MutableRefObject, type ReactNode } from "react";
 
 //animation
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, type MotionValue } from "framer-motion";
+
+//lib
+import { getSheetLayout } from "@/lib/sheets";
 
 export interface SheetItem {
   /** id da seção (usado pela navbar para navegar e marcar a seção ativa) */
@@ -16,6 +19,15 @@ interface StackedSectionsProps {
   sections: SheetItem[];
 }
 
+/** O que o controlador de rolagem precisa saber de cada folha para atualizá-la */
+interface SheetController {
+  /** Quanto a próxima folha já cobriu esta (0 = nada, 1 = cobriu toda a tela) */
+  progress: MotionValue<number>;
+  setCovered: (covered: boolean) => void;
+  /** Último valor enviado a setCovered (evita renderizar à toa) */
+  covered: boolean;
+}
+
 interface SheetProps {
   id: string;
   index: number;
@@ -23,7 +35,7 @@ interface SheetProps {
   stacked: boolean;
   /** última seção: não precisa de pausa depois dela */
   isLast: boolean;
-  refs: MutableRefObject<(HTMLDivElement | null)[]>;
+  controllers: MutableRefObject<(SheetController | null)[]>;
   children: ReactNode;
 }
 
@@ -60,14 +72,15 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: SheetProps) {
+function Sheet({ id, index, stacked: stackingEnabled, isLast, controllers, children }: SheetProps) {
   // A primeira seção (hero) rola normalmente para dentro da segunda; o efeito de
   // empilhar e dissolver começa a partir da segunda seção.
   const stacked = stackingEnabled && index > 0;
 
   const ref = useRef<HTMLDivElement | null>(null);
 
-  // Quanto a próxima folha já cobriu esta (0 = nada, 1 = cobriu toda a tela)
+  // Quanto a próxima folha já cobriu esta (0 = nada, 1 = cobriu toda a tela).
+  // Quem atualiza é o StackedSections, com uma única escuta de rolagem para todas as folhas.
   const progress = useMotionValue(0);
 
   // A folha anterior se dissolve cedo (some quando a próxima ainda está na metade de baixo da tela)
@@ -110,7 +123,7 @@ function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: 
     };
   }, [stacked]);
 
-  // Acompanha a rolagem para saber quanto a próxima folha já subiu por cima desta
+  // Entrega ao StackedSections o que ele precisa para atualizar esta folha na rolagem
   useEffect(() => {
     if (!stacked) {
       progress.set(0);
@@ -118,65 +131,18 @@ function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: 
       return;
     }
 
-    const update = () => {
-      const next = refs.current[index + 1];
+    const controller: SheetController = { progress, setCovered, covered: false };
 
-      if (!next) {
-        progress.set(0);
-        return;
-      }
-
-      const viewport = window.innerHeight;
-
-      const value = clamp((viewport - next.getBoundingClientRect().top) / viewport, 0, 1);
-
-      progress.set(value);
-
-      // já invisível (opacity 0 a partir de 0.45): sai do teclado e dos leitores de tela
-      const isCovered = value >= 0.45;
-
-      setCovered((previous) => (previous === isCovered ? previous : isCovered));
-    };
-
-    update();
-
-    window.addEventListener("scroll", update, { passive: true });
-
-    window.addEventListener("resize", update);
-
-    // Se uma seção muda de altura sem rolagem (ex.: "Ver menos" nos projetos), a posição da
-    // próxima folha muda e nenhum evento de scroll acontece: sem isto, o progresso ficaria
-    // velho e as duas seções apareceriam sobrepostas.
-    // Roda de novo no quadro seguinte: a posição "fixa" (top) das folhas é atualizada por
-    // estado do React, que só assenta depois da primeira medição.
-    let frame = 0;
-
-    const observer = new ResizeObserver(() => {
-      update();
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    });
-
-    const container = ref.current?.parentElement;
-
-    if (container) observer.observe(container);
-
-    [ref.current, refs.current[index + 1]].forEach((element) => element && observer.observe(element));
+    controllers.current[index] = controller;
 
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-      observer.disconnect();
-      cancelAnimationFrame(frame);
+      if (controllers.current[index] === controller) controllers.current[index] = null;
     };
-  }, [stacked, index, refs, progress]);
+  }, [stacked, index, controllers, progress]);
 
   return (
     <div
-      ref={(element) => {
-        ref.current = element;
-        refs.current[index] = element;
-      }}
+      ref={ref}
       data-sheet={id}
       style={stacked ? { position: "sticky", top, zIndex: index + 1, marginBottom: isLast ? 0 : HOLD } : undefined}
       className="relative"
@@ -201,7 +167,73 @@ function Sheet({ id, index, stacked: stackingEnabled, isLast, refs, children }: 
 export function StackedSections({ sections }: StackedSectionsProps) {
   const stacked = !usePrefersReducedMotion();
 
-  const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const controllers = useRef<(SheetController | null)[]>([]);
+
+  // Uma única escuta de rolagem para todas as folhas. Só faz conta (com as posições em cache),
+  // sem medir o layout: medir a cada rolagem, para cada folha, era o que travava a página.
+  useEffect(() => {
+    if (!stacked) return;
+
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+
+      const layout = getSheetLayout();
+
+      if (!layout) return;
+
+      const viewport = window.innerHeight;
+
+      const scrollY = window.scrollY;
+
+      controllers.current.forEach((controller, index) => {
+        if (!controller) return;
+
+        const nextTop = layout.tops[index + 1];
+
+        // Quanto da tela a próxima folha já cobriu. Quando ela já passou do topo (ou está "presa"),
+        // o valor passa de 1 e é cortado em 1, então a posição natural basta para a conta.
+        const value = nextTop === undefined ? 0 : clamp((viewport - (nextTop - scrollY)) / viewport, 0, 1);
+
+        controller.progress.set(value);
+
+        // já invisível (opacity 0 a partir de 0.45): sai do teclado e dos leitores de tela
+        const isCovered = value >= 0.45;
+
+        if (isCovered !== controller.covered) {
+          controller.covered = isCovered;
+          controller.setCovered(isCovered);
+        }
+      });
+    };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    // a primeira medição também cria o observador de tamanho de lib/sheets (que renova o cache)
+    update();
+
+    window.addEventListener("scroll", schedule, { passive: true });
+
+    window.addEventListener("resize", schedule);
+
+    // se uma seção muda de altura sem rolagem (ex.: "Ver menos" nos projetos), a posição da
+    // próxima folha muda e nenhum evento de scroll acontece: refaz a conta quando o <main> muda
+    const main = document.querySelector("main");
+
+    const observer = new ResizeObserver(schedule);
+
+    if (main) observer.observe(main);
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [stacked]);
 
   return (
     <main>
@@ -212,7 +244,7 @@ export function StackedSections({ sections }: StackedSectionsProps) {
           index={index}
           stacked={stacked}
           isLast={index === sections.length - 1}
-          refs={refs}
+          controllers={controllers}
         >
           {section.node}
         </Sheet>

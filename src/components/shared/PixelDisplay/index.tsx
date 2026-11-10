@@ -18,6 +18,43 @@ const RIPPLE_SPEED = 0.85;
 /** Largura (px) do "anel" da onda que acende os pontos */
 const RIPPLE_WIDTH = 50;
 
+/** Quantos níveis de cor o desenho usa: pontos parecidos são pintados juntos (muito mais rápido) */
+const LEVEL_STEPS = 10;
+
+const GLOW_STEPS = 5;
+
+const SHIMMER_STEPS = 3;
+
+const BUCKETS = (LEVEL_STEPS + 1) * (GLOW_STEPS + 1) * SHIMMER_STEPS;
+
+/** Cor de cada "lote": azul mais escuro nas bordas do desenho, azul-celeste nos pontos cheios; o brilho clareia */
+const FILL_STYLES: string[] = Array.from({ length: BUCKETS }, (_, key) => {
+  const shimmerStep = key % SHIMMER_STEPS;
+
+  const glowStep = Math.floor(key / SHIMMER_STEPS) % (GLOW_STEPS + 1);
+
+  const levelStep = Math.floor(key / (SHIMMER_STEPS * (GLOW_STEPS + 1)));
+
+  const power = levelStep / LEVEL_STEPS;
+
+  const glow = glowStep / GLOW_STEPS;
+
+  const shimmer = power > 0.04 ? 0.8 + 0.2 * ((shimmerStep + 0.5) / SHIMMER_STEPS) : 1;
+
+  const red = 37 + power * 88 + (190 - (37 + power * 88)) * glow * 0.8;
+
+  const green = 99 + power * 112 + (235 - (99 + power * 112)) * glow * 0.8;
+
+  const blue = 235 + power * 17 + (255 - (235 + power * 17)) * glow * 0.8;
+
+  const alpha = Math.min(1, (0.07 + power * 0.93) * shimmer + glow * 0.35);
+
+  return `rgba(${Math.round(red)}, ${Math.round(green)}, ${Math.round(blue)}, ${alpha.toFixed(3)})`;
+});
+
+/** Intervalo (ms) entre repinturas quando o display está parado */
+const IDLE_FRAME_MS = 66;
+
 const CELLS = GRID * GRID;
 
 /** Distância de cada ponto ao centro da grade (usada para a onda da troca de forma) */
@@ -130,6 +167,16 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
     let last = 0;
 
+    let lastPaint = 0;
+
+    const paths: (Path2D | undefined)[] = new Array(BUCKETS);
+
+    const used: number[] = [];
+
+    let wasCovered = false;
+
+    let busy = true;
+
     const pointer = { x: -1e4, y: -1e4 };
 
     let ripples: Ripple[] = [];
@@ -179,7 +226,10 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
       }
     };
 
-    const paint = (now: number, elapsed: number) => {
+    // devolve true se ainda há movimento (entrada, mola, brilho do mouse, onda ou troca de forma)
+    const paint = (now: number, elapsed: number): boolean => {
+      let busy = false;
+
       const rect = canvas.getBoundingClientRect();
 
       const levelEase = reduceMotion ? 1 : 1 - Math.exp(-elapsed / EASE_TIME);
@@ -193,6 +243,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
         appear += (wanted - appear) * (1 - Math.exp(-elapsed / 320));
 
         if (Math.abs(appear - wanted) < 5e-4) appear = wanted;
+
+        if (appear !== wanted) busy = true;
       }
 
       const localX = pointer.x - rect.left;
@@ -201,6 +253,10 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
       const reach = Math.max(74, pitch * 4.6);
 
+      if (localX > -reach * 2 && localX < size + reach * 2 && localY > -reach * 2 && localY < size + reach * 2) busy = true;
+
+      if (ripples.length > 0) busy = true;
+
       ripples = ripples.filter((ripple) => (now - ripple.time) * RIPPLE_SPEED < size * 1.6);
 
       context.clearRect(0, 0, size, size);
@@ -208,11 +264,15 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
       for (let cell = 0; cell < CELLS; cell++) {
         if (now >= readyAt[cell]) level[cell] += (target[cell] - level[cell]) * levelEase;
 
+        if (Math.abs(target[cell] - level[cell]) > 0.004) busy = true;
+
         const entering = reduceMotion ? 1 : clamp01((appear - threshold[cell]) / 0.3);
 
         if (entering <= 0) continue;
 
         const arrived = easeOutCubic(entering);
+
+        if (entering < 1) busy = true;
 
         let heated = heat[cell];
 
@@ -265,33 +325,43 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
           heated *= 0.955;
 
           heat[cell] = heated;
+
+          if (heated > 0.02 || Math.abs(forceX) + Math.abs(forceY) > 0.05) busy = true;
         }
 
         const power = level[cell];
 
-        const glow = Math.min(1, heated * 1.4);
-
-        // azul mais escuro nas bordas do desenho, azul-celeste nos pontos mais cheios; o brilho clareia
-        const red = 37 + power * 88 + (190 - (37 + power * 88)) * glow * 0.8;
-
-        const green = 99 + power * 112 + (235 - (99 + power * 112)) * glow * 0.8;
-
-        const blue = 235 + power * 17 + (255 - (235 + power * 17)) * glow * 0.8;
-
+        // agrupa os pontos por cor: em vez de um preenchimento por ponto, um por cor
         const shimmer = power > 0.04 ? 0.9 + 0.1 * Math.sin(now / 650 + (cell % GRID) * 0.5 + Math.floor(cell / GRID) * 0.5) : 1;
 
-        const alpha = Math.min(1, (0.07 + power * 0.93) * shimmer + glow * 0.35);
+        const key =
+          (Math.round(power * LEVEL_STEPS) * (GLOW_STEPS + 1) + Math.round(Math.min(1, heated * 1.4) * GLOW_STEPS)) * SHIMMER_STEPS +
+          Math.min(SHIMMER_STEPS - 1, Math.max(0, Math.floor(((shimmer - 0.8) / 0.2) * SHIMMER_STEPS)));
 
         const square = dot * (0.3 + 0.7 * arrived) * (1 + Math.min(heated, 1) * 0.22);
 
-        context.fillStyle = `rgba(${Math.round(red)}, ${Math.round(green)}, ${Math.round(blue)}, ${alpha})`;
+        let path = paths[key];
 
-        context.beginPath();
+        if (!path) {
+          path = new Path2D();
 
-        context.roundRect(posX[cell] - square / 2, posY[cell] - square / 2, square, square, square * 0.22);
+          paths[key] = path;
 
-        context.fill();
+          used.push(key);
+        }
+
+        path.roundRect(posX[cell] - square / 2, posY[cell] - square / 2, square, square, square * 0.22);
       }
+
+      for (const key of used) {
+        context.fillStyle = FILL_STYLES[key];
+
+        context.fill(paths[key] as Path2D);
+
+        paths[key] = undefined;
+      }
+
+      used.length = 0;
 
       // de vez em quando um ponto do desenho "pisca" sozinho
       if (!reduceMotion && appear > 0.9) {
@@ -299,6 +369,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
         if (target[pick] > 0 && heat[pick] < 0.3) heat[pick] = 0.3;
       }
+
+      return busy;
     };
 
     const step = (now: number) => {
@@ -310,7 +382,29 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
       last = now;
 
-      paint(now, elapsed);
+      // seção coberta pela seguinte (invisível e inerte): não há o que pintar
+      const covered = canvas.closest("[inert]") !== null;
+
+      if (covered) {
+        wasCovered = true;
+
+        frame = requestAnimationFrame(step);
+
+        return;
+      }
+
+      if (wasCovered) {
+        wasCovered = false;
+
+        busy = true;
+      }
+
+      // parado (só o brilho lento, que quase não muda): repinta a ~15 quadros por segundo, não a 60
+      if (busy || now - lastPaint >= IDLE_FRAME_MS) {
+        busy = paint(now, now - (lastPaint || now) > 64 ? 64 : now - (lastPaint || now));
+
+        lastPaint = now;
+      }
 
       // brilho, mola e piscadas continuam enquanto o display estiver na tela
       frame = requestAnimationFrame(step);
@@ -329,7 +423,7 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
       if (rect.width === 0) return;
 
-      const ratio = window.devicePixelRatio || 1;
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
 
       size = rect.width;
 
@@ -352,6 +446,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
       const now = performance.now();
 
       target = bitmap;
+
+      busy = true;
 
       for (let cell = 0; cell < CELLS; cell++) readyAt[cell] = now + DISTANCE[cell] * WAVE_DELAY;
 
@@ -408,6 +504,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
       ripples.push({ x, y, time: performance.now(), power: 1 });
 
+      busy = true;
+
       pressRef.current?.();
     };
 
@@ -418,6 +516,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
     const intersection = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
+
+        busy = true;
 
         if (inView) {
           start();
@@ -433,7 +533,7 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
           context.clearRect(0, 0, size, size);
         }
       },
-      { rootMargin: "40% 0px" }
+      { rootMargin: "0px" }
     );
 
     intersection.observe(canvas);

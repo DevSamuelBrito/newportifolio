@@ -20,8 +20,34 @@ const GLOW_BACKGROUND = softGlow("59,130,246", 0.17);
 
 const TRAIL_BACKGROUND = softGlow("139,92,246", 0.08);
 
-/** Máscara da grade: aparece perto do cursor e some gradualmente */
-const GRID_MASK = `radial-gradient(circle ${GRID_REVEAL_RADIUS}px at var(--mx, -999px) var(--my, -999px), black 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 80%, transparent 100%)`;
+/** Mesmo espaçamento da grade de pontos do fundo (Background) */
+const GRID_SIZE = 28;
+
+/** Opacidade dos pontos "acesos" no centro do brilho */
+const GRID_OPACITY = 0.32;
+
+/** Força dos pontos conforme a distância ao cursor (0 = no cursor, 1 = na borda): some gradualmente */
+const GRID_FALLOFF: [number, number][] = [
+  [0, 1],
+  [0.25, 0.7],
+  [0.55, 0.3],
+  [0.8, 0.08],
+  [1, 0],
+];
+
+function gridStrength(ratio: number) {
+  for (let i = 1; i < GRID_FALLOFF.length; i++) {
+    const [to, toValue] = GRID_FALLOFF[i];
+
+    if (ratio <= to) {
+      const [from, fromValue] = GRID_FALLOFF[i - 1];
+
+      return fromValue + ((toValue - fromValue) * (ratio - from)) / (to - from);
+    }
+  }
+
+  return 0;
+}
 
 /**
  * Efeito de luz que acompanha o mouse, no fundo fixo da página (atrás do conteúdo).
@@ -38,7 +64,7 @@ export function CursorGlow() {
 
   const [visible, setVisible] = useState(false);
 
-  const gridRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLCanvasElement>(null);
 
   const x = useMotionValue(-GLOW_SIZE);
 
@@ -57,10 +83,71 @@ export function CursorGlow() {
 
   const gridY = useSpring(y, { stiffness: 140, damping: 24, mass: 0.6 });
 
-  // A grade acompanha o cursor de perto, por variáveis CSS lidas pela máscara
-  useMotionValueEvent(gridX, "change", (value) => gridRef.current?.style.setProperty("--mx", `${value}px`));
+  // A grade de pontos acesos é um canvas pequeno (só em volta do cursor) que se move por transform.
+  // Antes era uma camada do tamanho da tela com mask-image, que obrigava a GPU a refazer uma
+  // superfície inteira a cada quadro da rolagem e deixava a página pesada.
+  const drawFrame = useRef(0);
 
-  useMotionValueEvent(gridY, "change", (value) => gridRef.current?.style.setProperty("--my", `${value}px`));
+  const drawGrid = () => {
+    drawFrame.current = 0;
+
+    const canvas = gridRef.current;
+
+    const context = canvas?.getContext("2d");
+
+    if (!canvas || !context) return;
+
+    const radius = GRID_REVEAL_RADIUS;
+
+    const cursorX = gridX.get();
+
+    const cursorY = gridY.get();
+
+    // o canvas só anda em pixels inteiros; os pontos são desenhados com o resto, para continuarem
+    // exatamente sobre a grade do fundo
+    const originX = Math.round(cursorX - radius);
+
+    const originY = Math.round(cursorY - radius);
+
+    canvas.style.transform = `translate3d(${originX}px, ${originY}px, 0)`;
+
+    context.clearRect(0, 0, radius * 2, radius * 2);
+
+    const firstColumn = Math.floor(originX / GRID_SIZE);
+
+    const firstRow = Math.floor(originY / GRID_SIZE);
+
+    const columns = Math.ceil((radius * 2) / GRID_SIZE) + 1;
+
+    for (let row = 0; row <= columns; row++) {
+      for (let column = 0; column <= columns; column++) {
+        // centro do ponto no espaço da página (o "circle at center" de cada ladrilho de 28px)
+        const worldX = (firstColumn + column) * GRID_SIZE + GRID_SIZE / 2;
+
+        const worldY = (firstRow + row) * GRID_SIZE + GRID_SIZE / 2;
+
+        const strength = gridStrength(Math.hypot(worldX - cursorX, worldY - cursorY) / radius);
+
+        if (strength <= 0.01) continue;
+
+        context.fillStyle = `rgba(255,255,255,${(strength * GRID_OPACITY).toFixed(3)})`;
+
+        context.beginPath();
+
+        context.arc(worldX - originX, worldY - originY, 1, 0, Math.PI * 2);
+
+        context.fill();
+      }
+    }
+  };
+
+  const scheduleGrid = () => {
+    if (!drawFrame.current) drawFrame.current = requestAnimationFrame(drawGrid);
+  };
+
+  useMotionValueEvent(gridX, "change", scheduleGrid);
+
+  useMotionValueEvent(gridY, "change", scheduleGrid);
 
   useEffect(() => {
     const hasMouse = window.matchMedia("(pointer: fine)").matches;
@@ -126,17 +213,13 @@ export function CursorGlow() {
         className="absolute left-0 top-0"
       />
 
-      {/* 3. A mesma grade de pontos do fundo, mais forte, revelada por uma máscara em volta do cursor */}
-      <div
+      {/* 3. A mesma grade de pontos do fundo, mais forte, desenhada só em volta do cursor */}
+      <canvas
         ref={gridRef}
-        className="absolute inset-0"
-        style={{
-          opacity: 0.32,
-          backgroundImage: "radial-gradient(circle at center, #fff 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage: GRID_MASK,
-          WebkitMaskImage: GRID_MASK,
-        }}
+        width={GRID_REVEAL_RADIUS * 2}
+        height={GRID_REVEAL_RADIUS * 2}
+        className="absolute left-0 top-0 will-change-transform"
+        style={{ width: GRID_REVEAL_RADIUS * 2, height: GRID_REVEAL_RADIUS * 2 }}
       />
     </motion.div>
   );

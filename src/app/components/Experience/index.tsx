@@ -49,21 +49,34 @@ export function Experience() {
       setActive((previous) => (previous === current ? previous : current));
     };
 
+    // no máximo uma medição por quadro, mesmo que cheguem vários eventos de rolagem
+    let frame = 0;
+
+    const schedule = () => {
+      if (!frame) {
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          update();
+        });
+      }
+    };
+
     update();
 
-    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("scroll", schedule, { passive: true });
 
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", schedule);
 
     // os cards mudam de altura sem rolagem (troca de idioma, fontes...)
-    const observer = new ResizeObserver(update);
+    const observer = new ResizeObserver(schedule);
 
     observer.observe(list);
 
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
       observer.disconnect();
+      cancelAnimationFrame(frame);
     };
   }, []);
 

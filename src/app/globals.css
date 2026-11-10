@@ -56,9 +56,11 @@
 }
 
 @layer components {
-  /* Card de vidro: fundo translúcido, borda fina e blur */
+  /* Card de vidro: fundo translúcido e borda fina. Sem backdrop-blur de propósito: desfocar o fundo atrás
+     de dezenas de cards, enquanto a página rola, era um dos maiores custos de desempenho (e quase não
+     aparecia, pois o fundo já é escuro e suave). */
   .glass {
-    @apply rounded-2xl border border-neutral-800/70 bg-gradient-to-b from-neutral-900/60 to-neutral-900/30 backdrop-blur-xl;
+    @apply rounded-2xl border border-neutral-800/70 bg-gradient-to-b from-neutral-900/80 to-neutral-900/55;
   }
 
   .glass-hover {
