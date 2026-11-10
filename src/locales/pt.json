@@ -47,11 +47,13 @@
         "company": "Gráfica Canastra",
         "period": "Jun 2025 – Atual",
         "activities": [
-          "Arquitetei e entreguei sozinho um módulo de manutenção industrial completo, do zero ao deploy em produção",
+          "Arquitetei e entreguei sozinho o módulo de manutenção industrial, do zero à produção: planos, ordens de serviço com máquina de estados, kanban, dashboard, relatórios em PDF e geração automática de OS",
+          "Implantei controle de acessos (RBAC) no ERP interno, com permissões por módulo e operação, proteção de endpoints, rotas e telas e auditoria de acessos negados",
           "Liderei a migração do ERP interno de React/Vite para Next.js, padronizando toda a base de código",
-          "Projetei dezenas de endpoints RESTful em Clean Architecture, incluindo módulo de OS com máquina de estados",
-          "Refatorei o backend e otimizei queries críticas, reduzindo tempo de resposta de 2,8s para ~150ms",
-          "Automatizei relatórios operacionais integrando o sistema corporativo com N8N via API própria"
+          "Evoluo o CRM da empresa, incluindo a versão multi-tenant, com deploys automatizados por CI/CD no Azure DevOps",
+          "Criei o app de portaria (Supabase, WhatsApp e e-mail de alerta) e o Portal Canastra, com indicadores de compras; a otimização de imagens reduziu o tráfego de dados em ~95%",
+          "Projetei dezenas de endpoints RESTful em Clean Architecture e otimizei queries críticas, reduzindo o tempo de resposta de ~2,8s para ~150ms em chamadas subsequentes",
+          "Automatizei relatórios operacionais integrando o sistema corporativo com N8N via APIs próprias e cuido dos deploys em servidor com Docker e PM2"
         ],
         "technologies": [
           "TypeScript",
@@ -66,7 +68,10 @@
           "EF Core",
           "Firebird",
           "SQL Server",
+          "Supabase",
+          "QuestPDF",
           "Docker",
+          "PM2",
           "Azure Blob Storage",
           "Nginx",
           "Azure DevOps",
@@ -227,8 +232,8 @@
   },
   "about": {
     "about": "Sou desenvolvedor Full Stack formado em {{ Análise e Desenvolvimento de Sistemas }} pela {{ Fatec Rio Preto}}, com experiência no desenvolvimento de aplicações web e sistemas corporativos utilizados em ambientes de produção.",
-    "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, Prisma e Firebird}}, sempre com foco em performance, escalabilidade e qualidade de código.",
-    "about3": "Tenho experiência na criação de {{ APIs REST}}, integração entre sistemas e {{ migração de aplicações desktop para web}}, participando ativamente de todas as etapas do desenvolvimento, desde o levantamento de requisitos até a entrega em produção.",
+    "about2": "Atuo no desenvolvimento de soluções completas, utilizando {{ TypeScript, React e Next.js }} no front-end e {{ ASP.NET Core }} no back-end, com integração a bancos de dados como {{ PostgreSQL, SQL Server, Prisma e Firebird}}, aplicando {{ Clean Architecture }} e sempre com foco em performance, escalabilidade e qualidade de código.",
+    "about3": "Tenho experiência na criação de {{ APIs REST}}, {{ controle de acessos (RBAC)}}, automações com N8N, integração entre sistemas e {{ migração de aplicações desktop para web}}. Hoje, na Gráfica Canastra, cuido de ERP, CRM, portaria e portal interno, participando de todas as etapas, do levantamento de requisitos ao deploy em produção.",
     "about4": "Meu {{ objetivo }} profissional é evoluir continuamente como desenvolvedor full stack, atuando em projetos desafiadores que gerem impacto real e contribuam para o crescimento do negócio.",
     "eyebrow": "Sobre",
     "heading": "Do requisito ao",
