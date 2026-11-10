@@ -45,6 +45,19 @@ export function Projects() {
 
   const visibleProjects = showAll ? sortedProjects : sortedProjects.slice(0, INITIAL_VISIBLE);
 
+  // Navegação anterior/próximo dentro do modal (circular, só entre os projetos visíveis)
+  const selectedIndex = selected ? visibleProjects.findIndex((project) => project.id === selected.id) : -1;
+
+  const neighbor = (offset: -1 | 1) =>
+    selectedIndex === -1
+      ? null
+      : visibleProjects[(selectedIndex + offset + visibleProjects.length) % visibleProjects.length];
+
+  const navigate = (direction: -1 | 1) => {
+    const target = neighbor(direction);
+    if (target) setSelected(target);
+  };
+
   return (
     <Section id="projects">
       <SectionHeading
@@ -74,7 +87,21 @@ export function Projects() {
         </Reveal>
       )}
 
-      <AnimatePresence>{selected && <ModalCard key={selected.id} data={selected} onClose={closeModal} />}</AnimatePresence>
+      <AnimatePresence>
+        {selected && (
+          // A chave é fixa: trocar de projeto só troca o conteúdo, sem remontar o modal
+          <ModalCard
+            key="project-modal"
+            data={selected}
+            onClose={closeModal}
+            onNavigate={navigate}
+            position={selectedIndex + 1}
+            total={visibleProjects.length}
+            previous={neighbor(-1)}
+            next={neighbor(1)}
+          />
+        )}
+      </AnimatePresence>
     </Section>
   );
 }

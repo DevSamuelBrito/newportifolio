@@ -19,7 +19,7 @@ import { Reveal } from "@/components/shared/Reveal";
 import { useTranslation } from "@/hooks/useTranslation";
 
 //data
-import { getBrandColor } from "@/data/brandColors";
+import { getBrandColor, getBrandName } from "@/data/brandColors";
 
 //types
 import type { Project } from "../../types";
@@ -96,6 +96,7 @@ export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
               {data.stack.map((Icon, i) => (
                 <li
                   key={i}
+                  title={getBrandName(Icon)}
                   className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900"
                 >
                   <Icon size={16} style={{ color: getBrandColor(Icon) }} aria-hidden />

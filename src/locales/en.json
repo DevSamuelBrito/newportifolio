@@ -32,7 +32,13 @@
     "heading": "Selected",
     "highlight": "work",
     "subtitle": "Web apps, tools and personal projects I've built.",
-    "details": "Details"
+    "details": "Details",
+    "technologies": "Technologies",
+    "previous": "Previous",
+    "next": "Next",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "goToImage": "View image"
   },
   "experience": {
     "data": [

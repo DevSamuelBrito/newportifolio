@@ -32,7 +32,13 @@
     "heading": "Trabalhos",
     "highlight": "selecionados",
     "subtitle": "Aplicações web, ferramentas e projetos pessoais que construí.",
-    "details": "Detalhes"
+    "details": "Detalhes",
+    "technologies": "Tecnologias",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "previousImage": "Imagem anterior",
+    "nextImage": "Próxima imagem",
+    "goToImage": "Ver imagem"
   },
   "experience": {
     "data": [
