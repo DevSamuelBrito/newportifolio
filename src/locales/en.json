@@ -18,8 +18,7 @@
     "title": "Building web applications end to end.",
     "description": "Full Stack Developer graduated from {{ Fatec Rio Preto }}, building applications with {{ React, Next.js and TypeScript }} on the front end and {{ ASP.NET Core and NestJS }} on the back end.",
     "projectsCta": "View projects",
-    "codeComment": "Building solutions end to end",
-    "codeFooter": "Next.js + ASP.NET Core"
+    "codeComment": "Building solutions end to end"
   },
   "projects": {
     "showMore": "Show more projects",

@@ -18,8 +18,7 @@
     "title": "Construindo aplicações web de ponta a ponta.",
     "description": "Desenvolvedor Full Stack formado pela {{ Fatec Rio Preto }}, criando aplicações com {{ React, Next.js e TypeScript }} no front-end e {{ ASP.NET Core e NestJS }} no back-end.",
     "projectsCta": "Ver projetos",
-    "codeComment": "Construindo soluções de ponta a ponta",
-    "codeFooter": "Next.js + ASP.NET Core"
+    "codeComment": "Construindo soluções de ponta a ponta"
   },
   "projects": {
     "showMore": "Ver mais projetos",

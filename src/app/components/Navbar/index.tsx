@@ -106,13 +106,11 @@ export const Navbar = () => {
             aria-label="Samuel Brito"
           >
             <span className="font-mono text-blue-500">&gt;_</span>
-            <span>
-              SB<span className="text-blue-500">.</span>
-            </span>
+            <span className="whitespace-nowrap">Samuel Brito</span>
           </a>
 
           {/* Links (desktop) */}
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-1 xl:flex">
             {links.map(({ id, label }) => (
               <li key={id}>
                 <a
@@ -133,7 +131,7 @@ export const Navbar = () => {
           </ul>
 
           {/* Ações (desktop) */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <LanguageSwitch />
 
             <a
@@ -161,7 +159,7 @@ export const Navbar = () => {
                 e.preventDefault();
                 handleNavigate("contact");
               }}
-              className="btn-primary !px-5 !py-2 text-sm"
+              className="btn-primary whitespace-nowrap !px-5 !py-2 text-sm"
             >
               {t.navbar.cta}
               <ArrowUpRight size={16} />
@@ -174,7 +172,7 @@ export const Navbar = () => {
             onClick={() => setIsOpen((open) => !open)}
             aria-label={isOpen ? t.navbar.closeMenu : t.navbar.openMenu}
             aria-expanded={isOpen}
-            className="rounded-lg p-2 text-neutral-300 transition-colors hover:text-white lg:hidden"
+            className="rounded-lg p-2 text-neutral-300 transition-colors hover:text-white xl:hidden"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -190,7 +188,7 @@ export const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="overflow-hidden lg:hidden"
+              className="overflow-hidden xl:hidden"
             >
               <ul className="flex flex-col gap-1 border-t border-neutral-800 px-4 py-3">
                 {[...links, { id: "contact" as SectionId, label: t.navbar.contact }].map(({ id, label }) => (

@@ -134,14 +134,6 @@ export function CodeWindow() {
       <pre className="h-56 overflow-x-auto overflow-y-hidden rounded-xl bg-black/60 p-4 font-mono text-[12px] leading-6 sm:h-60 sm:text-[13px]">
         <code>{rendered}</code>
       </pre>
-
-      <div className="mt-4 flex items-center justify-between font-mono text-xs text-neutral-400">
-        <span>TypeScript</span>
-        <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-blue-400" />
-          {t.hero.codeFooter}
-        </span>
-      </div>
     </div>
   );
 }
