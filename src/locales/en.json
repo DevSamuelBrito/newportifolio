@@ -61,6 +61,7 @@
           "Redux",
           "React Query",
           "Zod",
+          "Vitest",
           "MUI",
           "C#",
           "ASP.NET Core",
@@ -222,6 +223,7 @@
   },
   "stack": {
     "column": "Tools & DevOps",
+    "tests": "Testing",
     "eyebrow": "Stack",
     "heading": "Technologies I",
     "highlight": "work with"

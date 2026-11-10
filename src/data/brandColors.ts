@@ -31,12 +31,17 @@ import {
   SiTypescript,
   SiVercel,
   SiVite,
+  SiVitest,
   SiZod,
 } from "react-icons/si";
 
 import { VscAzureDevops } from "react-icons/vsc";
 
 import { CSharpIcon } from "@/app/components/Stack/components/Icons/csharpIcon";
+
+import { PlaywrightIcon } from "@/app/components/Stack/components/Icons/playwrightIcon";
+
+import { XUnitIcon } from "@/app/components/Stack/components/Icons/xunitIcon";
 
 /** Cor usada quando o ícone não está no mapa (azul do tema). */
 const FALLBACK_COLOR = "#60A5FA";
@@ -60,6 +65,9 @@ const BRAND_INFO = new Map<IconType, { color: string; name: string }>([
   [SiZod, { color: "#4F7BD0", name: "Zod" }],
   [SiReacthookform, { color: "#EC5990", name: "React Hook Form" }],
   [SiJest, { color: "#E0384A", name: "Jest" }],
+  [SiVitest, { color: "#8DC63F", name: "Vitest" }],
+  [XUnitIcon, { color: "#9B7BFF", name: "xUnit" }],
+  [PlaywrightIcon, { color: "#45BA4B", name: "Playwright" }],
   [SiNodedotjs, { color: "#5FA04E", name: "Node.js" }],
   [SiNestjs, { color: "#E0234E", name: "NestJS" }],
   [SiDotnet, { color: "#8B6CFF", name: ".NET" }],

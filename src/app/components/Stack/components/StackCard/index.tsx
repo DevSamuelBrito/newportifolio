@@ -25,7 +25,7 @@ export function StackCard({ area, technologies, delay = 0 }: StackCardProps) {
       <div className="glass h-full p-6">
         <h3 className="font-mono text-sm font-medium uppercase tracking-widest text-blue-400">{area}</h3>
 
-        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {technologies.map(({ icon: Icon, name }) => (
             <li
               key={name}

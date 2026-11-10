@@ -17,12 +17,17 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVite,
+  SiVitest,
   SiZod,
 } from "react-icons/si";
 
 import { VscAzureDevops } from "react-icons/vsc";
 
 import { CSharpIcon } from "./components/Icons/csharpIcon";
+
+import { PlaywrightIcon } from "./components/Icons/playwrightIcon";
+
+import { XUnitIcon } from "./components/Icons/xunitIcon";
 
 //components
 import { StackCard } from "./components/StackCard";
@@ -41,7 +46,7 @@ export function Stack() {
     <Section id="stack">
       <SectionHeading eyebrow={t.stack.eyebrow} title={t.stack.heading} highlight={t.stack.highlight} />
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <StackCard
           area="Front-end"
           technologies={[
@@ -52,7 +57,6 @@ export function Stack() {
             { icon: SiTailwindcss, name: "Tailwind CSS" },
             { icon: SiZod, name: "Zod" },
             { icon: SiReacthookform, name: "React Hook Form" },
-            { icon: SiJest, name: "Jest" },
           ]}
         />
 
@@ -77,6 +81,17 @@ export function Stack() {
             { icon: SiDocker, name: "Docker" },
             { icon: SiLinux, name: "Linux / WSL2" },
             { icon: VscAzureDevops, name: "Azure DevOps" },
+          ]}
+        />
+
+        <StackCard
+          area={t.stack.tests}
+          delay={0.3}
+          technologies={[
+            { icon: SiVitest, name: "Vitest" },
+            { icon: SiJest, name: "Jest" },
+            { icon: XUnitIcon, name: "xUnit" },
+            { icon: PlaywrightIcon, name: "Playwright" },
           ]}
         />
       </div>
