@@ -24,8 +24,8 @@ const TRAIL_BACKGROUND = softGlow("139,92,246", 0.08);
 const GRID_MASK = `radial-gradient(circle ${GRID_REVEAL_RADIUS}px at var(--mx, -999px) var(--my, -999px), black 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 80%, transparent 100%)`;
 
 /**
- * Efeito de luz que acompanha o mouse, por cima das seções (mix-blend screen: só
- * ilumina, não cobre o conteúdo). Três camadas:
+ * Efeito de luz que acompanha o mouse, no fundo fixo da página (atrás do conteúdo).
+ * Três camadas:
  *  1. brilho azul bem suave e grande;
  *  2. um rastro violeta ainda mais fraco e mais lento, que desalinha do brilho
  *     e tira o aspecto de "círculo perfeito";
@@ -96,7 +96,7 @@ export function CursorGlow() {
       aria-hidden
       animate={{ opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.9, ease: "easeInOut" }}
-      className="pointer-events-none fixed inset-0 z-20 mix-blend-screen"
+      className="pointer-events-none absolute inset-0"
     >
       {/* 2. Rastro violeta: mais lento e mais fraco que o brilho principal */}
       <motion.div
@@ -131,7 +131,7 @@ export function CursorGlow() {
         ref={gridRef}
         className="absolute inset-0"
         style={{
-          opacity: 0.2,
+          opacity: 0.32,
           backgroundImage: "radial-gradient(circle at center, #fff 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: GRID_MASK,

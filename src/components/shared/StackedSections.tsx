@@ -6,9 +6,6 @@ import { useEffect, useLayoutEffect, useRef, useState, type MutableRefObject, ty
 //animation
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-//components
-import { SheetBackground } from "./SheetBackground";
-
 export interface SheetItem {
   /** id da seção (usado pela navbar para navegar e marcar a seção ativa) */
   id: string;
@@ -61,13 +58,15 @@ function Sheet({ id, index, stacked, refs, children }: SheetProps) {
   // Quanto a próxima folha já cobriu esta (0 = nada, 1 = cobriu toda a tela)
   const progress = useMotionValue(0);
 
-  const scale = useTransform(progress, [0, 1], [1, 0.94]);
+  // A folha anterior se dissolve cedo (some quando a próxima ainda está na metade de baixo da tela)
+  // para os textos das duas não ficarem sobrepostos; o fundo fixo continua igual.
+  const scale = useTransform(progress, [0, 1], [1, 0.96]);
 
-  const opacity = useTransform(progress, [0, 1], [1, 0.3]);
+  const opacity = useTransform(progress, [0, 0.45], [1, 0]);
 
   const [top, setTop] = useState(0);
 
-  // Folha totalmente coberta pela próxima: sai do teclado e dos leitores de tela (inert).
+  // Folha já dissolvida pela próxima: sai do teclado e dos leitores de tela (inert).
   // Sem isso, o Tab poderia cair em links invisíveis por baixo da folha de cima.
   const [covered, setCovered] = useState(false);
 
@@ -121,7 +120,8 @@ function Sheet({ id, index, stacked, refs, children }: SheetProps) {
 
       progress.set(value);
 
-      const isCovered = value >= 0.995;
+      // já invisível (opacity 0 a partir de 0.45): sai do teclado e dos leitores de tela
+      const isCovered = value >= 0.45;
 
       setCovered((previous) => (previous === isCovered ? previous : isCovered));
     };
@@ -146,15 +146,9 @@ function Sheet({ id, index, stacked, refs, children }: SheetProps) {
       }}
       data-sheet={id}
       style={stacked ? { position: "sticky", top, zIndex: index + 1 } : undefined}
-      className={`relative bg-[#050505] ${
-        index > 0
-          ? "rounded-t-[2rem] border-t border-white/10 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)] sm:rounded-t-[3rem]"
-          : ""
-      }`}
+      className="relative"
     >
-      <SheetBackground index={index} />
-
-      {/* Só o conteúdo recua (menor e mais escuro) quando a próxima folha chega; o fundo não */}
+      {/* Só o conteúdo se dissolve quando a próxima folha sobe; o fundo é global e fica parado */}
       <motion.div
         style={stacked ? { scale, opacity, transformOrigin: "50% 100%" } : undefined}
         inert={covered}
@@ -167,8 +161,9 @@ function Sheet({ id, index, stacked, refs, children }: SheetProps) {
 }
 
 /**
- * Seções "empilhadas": cada seção fica fixa e a próxima sobe por cima dela,
- * como folhas de papel. A anterior recua (diminui e escurece) enquanto é coberta.
+ * Seções "empilhadas": cada seção fica fixa e a próxima sobe por cima dela. As seções
+ * são transparentes e o fundo é global e parado (veja Background): a anterior se
+ * dissolve enquanto a próxima sobe, sem nenhum "cartão" no meio.
  */
 export function StackedSections({ sections }: StackedSectionsProps) {
   const stacked = !usePrefersReducedMotion();
