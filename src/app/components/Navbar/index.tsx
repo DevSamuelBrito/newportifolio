@@ -1,7 +1,7 @@
 "use client";
 
 //react
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //icons
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -24,6 +24,8 @@ import { SECTION_ORDER, type SectionId } from "@/data/sections";
 
 //lib
 import { getActiveSheetId, scrollToSection } from "@/lib/sheets";
+
+import { playSound } from "@/lib/sound";
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -65,6 +67,17 @@ export const Navbar = () => {
       observer.disconnect();
     };
   }, []);
+
+  // Som suave sempre que a seção atual muda, rolando ou pelo menu (a primeira não conta)
+  const previousSection = useRef(activeSection);
+
+  useEffect(() => {
+    if (previousSection.current === activeSection) return;
+
+    previousSection.current = activeSection;
+
+    playSound("section");
+  }, [activeSection]);
 
   // Reforça o fundo da navbar depois que a página começa a rolar
   useEffect(() => {

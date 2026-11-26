@@ -3,6 +3,9 @@
 //react
 import { useEffect, useRef, useState } from "react";
 
+//lib
+import { playSound } from "@/lib/sound";
+
 interface DecryptTextProps {
   /** Texto final que aparece depois de "decifrado" */
   text: string;
@@ -53,6 +56,9 @@ export function DecryptText({ text, delay = 0, duration = 1400, className }: Dec
 
     let startedAt = 0;
 
+    // quantas letras já foram "decifradas": cada nova letra revelada toca um tique bem baixo
+    let revealed = 0;
+
     let current = letters.map((char) => (char === " " ? " " : randomGlyph()));
 
     setDisplay(current.join(""));
@@ -74,6 +80,14 @@ export function DecryptText({ text, delay = 0, duration = 1400, className }: Dec
         });
 
         setDisplay(current.join(""));
+
+        const done = letters.filter((char, index) => char !== " " && elapsed >= revealAt[index] + 180).length;
+
+        if (done > revealed) {
+          revealed = done;
+
+          playSound("decrypt");
+        }
       }
 
       if (elapsed < duration + 180) {

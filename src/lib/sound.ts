@@ -7,7 +7,19 @@
  * - Sons repetidos em sequência rápida são limitados (THROTTLE_MS) para não virar ruído.
  */
 
-export type SoundName = "click" | "tick" | "hover" | "thump" | "open" | "close" | "confirm" | "up" | "on" | "off";
+export type SoundName =
+  | "click"
+  | "tick"
+  | "hover"
+  | "thump"
+  | "open"
+  | "close"
+  | "confirm"
+  | "up"
+  | "on"
+  | "off"
+  | "decrypt"
+  | "section";
 
 const STORAGE_KEY = "sound-muted";
 
@@ -15,7 +27,7 @@ const STORAGE_KEY = "sound-muted";
 const MASTER_VOLUME = 0.55;
 
 /** Intervalo mínimo (ms) entre dois sons do mesmo tipo */
-const THROTTLE_MS: Partial<Record<SoundName, number>> = { hover: 140, tick: 45, click: 45 };
+const THROTTLE_MS: Partial<Record<SoundName, number>> = { hover: 140, tick: 45, click: 45, decrypt: 40, section: 320 };
 
 const DEFAULT_THROTTLE_MS = 60;
 
@@ -247,6 +259,18 @@ const RECIPES: Record<SoundName, (ctx: AudioContext, out: AudioNode) => void> = 
   up: (ctx, out) => {
     tone(ctx, out, { from: 280, to: 1000, duration: 0.24, volume: 0.12 });
     noise(ctx, out, { duration: 0.22, volume: 0.05, filter: "bandpass", frequency: 1800 });
+  },
+
+  // letra "decifrada" no nome: pinguinho digital bem baixo, com o tom variando um pouco a cada letra
+  decrypt: (ctx, out) => {
+    tone(ctx, out, { type: "triangle", from: 1700 + Math.random() * 900, duration: 0.035, volume: 0.035 });
+  },
+
+  // troca de seção: "folha" passando (sopro filtrado) com duas notas suaves subindo
+  section: (ctx, out) => {
+    noise(ctx, out, { duration: 0.2, volume: 0.06, filter: "bandpass", frequency: 900 });
+    tone(ctx, out, { from: 392, to: 440, duration: 0.2, volume: 0.07 });
+    tone(ctx, out, { from: 587, to: 659, at: 0.06, duration: 0.22, volume: 0.05 });
   },
 
   on: (ctx, out) => {
