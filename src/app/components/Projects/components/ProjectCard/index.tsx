@@ -25,7 +25,16 @@ import { getBrandColor, getBrandName } from "@/data/brandColors";
 import type { Project } from "../../types";
 
 /** Segundos com o mouse em cima até o balanço começar (só o tempo do card terminar de subir) */
-const WOBBLE_DELAY = 0.2;
+const WOBBLE_DELAY = 0.15;
+
+/**
+ * Um ciclo do balanço (graus): começa forte, acalma no meio e volta a ficar forte.
+ * Termina em 0 e o ciclo se repete sem pausa enquanto o mouse estiver em cima.
+ */
+const WOBBLE_ROTATE = [0, -1.6, 1.6, -1.3, 1.3, -0.7, 0.7, -0.3, 0.3, -0.7, 0.7, -1.3, 1.3, -1.6, 0];
+
+/** Duração (s) de um ciclo completo do balanço */
+const WOBBLE_DURATION = 3.6;
 
 interface ProjectCardProps {
   data: Project;
@@ -45,23 +54,22 @@ export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
 
   const images = data.images && data.images.length > 0 ? data.images : [data.src];
 
-  // O card cresce e sobe na hora e logo em seguida dá um balanço leve (WOBBLE_DELAY),
-  // que se repete com pausas enquanto o mouse estiver em cima: convida ao clique.
+  // O card cresce e sobe na hora e logo em seguida balança em loop enquanto o mouse
+  // estiver em cima: forte no começo, mais calmo no meio e forte de novo (WOBBLE_ROTATE).
   const hoverAnimation = reduceMotion
     ? undefined
     : {
         scale: 1.05,
         y: -10,
-        rotate: [0, -1, 1, -0.7, 0.7, 0],
+        rotate: WOBBLE_ROTATE,
         transition: {
           scale: { duration: 0.3, ease: "easeOut" as const },
           y: { duration: 0.3, ease: "easeOut" as const },
           rotate: {
-            duration: 1.4,
+            duration: WOBBLE_DURATION,
             ease: "easeInOut" as const,
             delay: WOBBLE_DELAY,
             repeat: Infinity,
-            repeatDelay: 1.2,
           },
         },
       };
