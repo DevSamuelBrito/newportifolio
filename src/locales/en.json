@@ -13,6 +13,10 @@
     "closeMenu": "Close navigation menu",
     "switchLanguage": "Switch language"
   },
+  "sound": {
+    "mute": "Mute sounds",
+    "unmute": "Turn sounds on"
+  },
   "hero": {
     "cv": "Get resume",
     "greeting": "Nice to meet you, I'm",

@@ -28,7 +28,9 @@ import { Contact } from "./components/Contact";
 
 import { Footer } from "./components/Footer";
 
-import ScrollToTopButton from "./components/ScrollTopButton";
+import { FloatingControls } from "./components/FloatingControls";
+
+import { SoundEffects } from "@/components/shared/SoundEffects";
 
 //data
 import { SECTION_ORDER, type SectionId } from "@/data/sections";
@@ -54,7 +56,8 @@ export default function App() {
       {/* Cada seção é uma "folha": a próxima sobe por cima da anterior ao rolar */}
       <StackedSections sections={SECTION_ORDER.map((id) => ({ id, node: SECTIONS[id] }))} />
       <Footer />
-      <ScrollToTopButton />
+      <FloatingControls />
+      <SoundEffects />
     </>
   );
 }

@@ -32,8 +32,10 @@ const ScrollToTopButton = () => {
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.25 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          data-sound="up"
           aria-label="Scroll to top"
-          className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900/90 text-blue-400 shadow-lg backdrop-blur transition-colors hover:border-blue-500/50 hover:text-blue-300"
+          // a posição fixa fica no FloatingControls, que também abriga o botão de som
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900/90 text-blue-400 shadow-lg backdrop-blur transition-colors hover:border-blue-500/50 hover:text-blue-300"
         >
           <ArrowUp size={20} />
         </motion.button>

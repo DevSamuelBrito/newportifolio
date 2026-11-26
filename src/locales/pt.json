@@ -13,6 +13,10 @@
     "closeMenu": "Fechar menu de navegação",
     "switchLanguage": "Trocar idioma"
   },
+  "sound": {
+    "mute": "Desligar sons",
+    "unmute": "Ligar sons"
+  },
   "hero": {
     "cv": "Baixar currículo",
     "greeting": "Prazer, eu sou",
