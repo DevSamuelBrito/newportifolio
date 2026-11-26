@@ -28,6 +28,7 @@ export function LanguageSwitch() {
           key={value}
           type="button"
           onClick={() => setLanguage(value)}
+          data-sound="tick"
           aria-pressed={language === value}
           className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors duration-200 ${
             language === value ? "bg-blue-500 text-white" : "text-neutral-400 hover:text-white"

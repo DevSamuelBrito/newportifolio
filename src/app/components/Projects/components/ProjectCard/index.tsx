@@ -81,10 +81,14 @@ export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
         <motion.article
           whileHover={hoverAnimation}
           onClick={() => onOpen(data)}
+          // o som de abrir toca no próprio modal; aqui só o suave de "passar o mouse"
+          data-sound="none"
+          data-sound-hover
           className="glass group flex h-full cursor-pointer flex-col overflow-hidden transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20"
         >
           <button
             type="button"
+            data-sound="none"
             aria-label={`${t.projects.details}: ${title}`}
             className="relative block aspect-[16/10] w-full overflow-hidden bg-neutral-900 text-left"
           >

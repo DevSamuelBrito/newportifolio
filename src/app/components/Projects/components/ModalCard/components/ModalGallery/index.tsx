@@ -133,6 +133,7 @@ export function ModalGallery({ images, alt }: ModalGalleryProps) {
             <button
               type="button"
               onClick={goPrev}
+              data-sound="tick"
               aria-label={t.projects.previousImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur transition-colors hover:bg-black/70"
             >
@@ -142,6 +143,7 @@ export function ModalGallery({ images, alt }: ModalGalleryProps) {
             <button
               type="button"
               onClick={goNext}
+              data-sound="tick"
               aria-label={t.projects.nextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-black/50 p-2 text-white backdrop-blur transition-colors hover:bg-black/70"
             >
@@ -166,6 +168,7 @@ export function ModalGallery({ images, alt }: ModalGalleryProps) {
                   ref={isActive ? activeThumb : undefined}
                   type="button"
                   onClick={() => goTo(index, index > current ? 1 : -1)}
+                  data-sound="tick"
                   aria-label={`${t.projects.goToImage} ${index + 1}`}
                   aria-current={isActive}
                   className={`relative block h-14 w-24 overflow-hidden rounded-lg border-2 bg-neutral-900 transition-all duration-200 ${

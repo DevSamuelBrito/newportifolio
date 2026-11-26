@@ -21,6 +21,9 @@ import { ModalGallery } from "./components/ModalGallery";
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
+//lib
+import { playSound } from "@/lib/sound";
+
 //data
 import { getBrandColor, getBrandName } from "@/data/brandColors";
 
@@ -61,6 +64,14 @@ export default function ModalCard({ data, onClose, onNavigate, position, total, 
   const description = isEn ? data.descriptionEn : data.descriptionBr;
 
   const images = data.images && data.images.length > 0 ? data.images : [data.src];
+
+  // Som de abrir ao aparecer e de fechar ao sair, qualquer que seja o jeito de fechar
+  // (X, ESC ou clique fora). Efeito à parte, sem dependências, para não tocar ao re-renderizar.
+  useEffect(() => {
+    playSound("open");
+
+    return () => playSound("close");
+  }, []);
 
   // Trava a rolagem da página, fecha com ESC, prende o foco (Tab) dentro do modal
   // e devolve o foco ao elemento anterior quando fecha.
@@ -142,6 +153,7 @@ export default function ModalCard({ data, onClose, onNavigate, position, total, 
           ref={closeButton}
           type="button"
           onClick={onClose}
+          data-sound="none"
           aria-label={t.projects.close}
           className="absolute right-3 top-3 z-20 rounded-full border border-neutral-700 bg-neutral-900/90 p-2 text-neutral-300 backdrop-blur transition-colors hover:text-white"
         >
@@ -237,6 +249,7 @@ export default function ModalCard({ data, onClose, onNavigate, position, total, 
             <button
               type="button"
               onClick={() => onNavigate(-1)}
+              data-sound="tick"
               className="group flex min-w-0 items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
             >
               <ChevronLeft size={18} className="shrink-0 transition-transform group-hover:-translate-x-0.5" />
@@ -253,6 +266,7 @@ export default function ModalCard({ data, onClose, onNavigate, position, total, 
             <button
               type="button"
               onClick={() => onNavigate(1)}
+              data-sound="tick"
               className="group flex min-w-0 items-center justify-end gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
             >
               <span className="truncate">

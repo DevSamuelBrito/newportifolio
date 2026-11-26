@@ -3,6 +3,9 @@
 //react
 import { useEffect, useRef } from "react";
 
+//lib
+import { playSound } from "@/lib/sound";
+
 //data
 import { GRID, rasterize, type ShapeSource } from "./shapes";
 
@@ -529,6 +532,9 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
     };
 
     const onPress = (event: PointerEvent) => {
+      // o canvas não é botão, então o som não vem do SoundEffects: batida grave do impacto
+      playSound("thump");
+
       if (reduceMotion) {
         pressRef.current?.();
         return;
