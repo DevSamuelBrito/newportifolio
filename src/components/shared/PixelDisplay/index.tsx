@@ -15,11 +15,17 @@ const EASE_TIME = 110;
 /** Tempo (ms) que o "buraco" do mouse leva para chegar a ~63% do caminho até o cursor: maior = mais atraso */
 const POINTER_LAG = 90;
 
-/** Velocidade (px/ms) com que a onda do clique se espalha */
-const RIPPLE_SPEED = 0.85;
+/** Velocidade (px/ms) com que a onda do clique se espalha: menor = onda mais lenta */
+const RIPPLE_SPEED = 0.45;
 
 /** Largura (px) do "anel" da onda que acende os pontos */
-const RIPPLE_WIDTH = 50;
+const RIPPLE_WIDTH = 110;
+
+/** Força do empurrão da onda no ponto mais perto do clique */
+const RIPPLE_PUSH = 24;
+
+/** Quão rápido o empurrão perde força com a distância (maior = fica mais concentrado perto do clique) */
+const RIPPLE_FALLOFF = 1.3;
 
 /** Quantos níveis de cor o desenho usa: pontos parecidos são pintados juntos (muito mais rápido) */
 const LEVEL_STEPS = 10;
@@ -85,6 +91,10 @@ interface Ripple {
   time: number;
   /** força da onda (0 a 1) */
   power: number;
+  /** até onde (px) a onda ainda empurra os pontos */
+  reach: number;
+  /** pontos que a onda já empurrou: cada um leva o empurrão uma vez, quando o anel passa por ele */
+  pushed: Uint8Array;
 }
 
 interface PixelDisplayProps {
@@ -331,13 +341,35 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
             forceY += (awayY / distance) * closeness * 0.8;
           }
 
-          // a onda do clique acende o ponto quando o "anel" passa por ele
+          // a onda do clique empurra e acende o ponto quando o "anel" passa por ele
           for (const ripple of ripples) {
             const front = (now - ripple.time) * RIPPLE_SPEED;
 
-            const gap = front - Math.hypot(posX[cell] - ripple.x, posY[cell] - ripple.y);
+            const awayX = posX[cell] - ripple.x;
 
-            if (gap > 0 && gap < RIPPLE_WIDTH) heated = Math.max(heated, Math.sin((gap / RIPPLE_WIDTH) * Math.PI) * ripple.power);
+            const awayY = posY[cell] - ripple.y;
+
+            const distance = Math.hypot(awayX, awayY) || 1;
+
+            const gap = front - distance;
+
+            if (gap <= 0) continue;
+
+            // o empurrão chega junto com o anel, então o impacto se espalha do clique para as bordas
+            if (!ripple.pushed[cell] && distance < ripple.reach) {
+              ripple.pushed[cell] = 1;
+
+              const strength = (1 - distance / ripple.reach) ** RIPPLE_FALLOFF;
+
+              forceX += (awayX / distance) * strength * RIPPLE_PUSH + (Math.random() - 0.5) * strength * 5;
+              forceY += (awayY / distance) * strength * RIPPLE_PUSH + (Math.random() - 0.5) * strength * 5;
+            }
+
+            if (gap < RIPPLE_WIDTH) {
+              const fade = 1 - 0.45 * Math.min(1, distance / ripple.reach);
+
+              heated = Math.max(heated, Math.sin((gap / RIPPLE_WIDTH) * Math.PI) * ripple.power * fade);
+            }
           }
 
           velX[cell] = forceX;
@@ -508,25 +540,8 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
       const y = event.clientY - rect.top;
 
-      const radius = Math.max(160, pitch * 14);
-
-      // empurra os pontos para longe do clique (quanto mais perto, mais forte)
-      for (let cell = 0; cell < CELLS; cell++) {
-        const awayX = posX[cell] - x;
-
-        const awayY = posY[cell] - y;
-
-        const distance = Math.sqrt(awayX * awayX + awayY * awayY) || 1;
-
-        if (distance < radius) {
-          const strength = (1 - distance / radius) ** 1.5;
-
-          velX[cell] += (awayX / distance) * strength * 16 + (Math.random() - 0.5) * strength * 4;
-          velY[cell] += (awayY / distance) * strength * 16 + (Math.random() - 0.5) * strength * 4;
-        }
-      }
-
-      ripples.push({ x, y, time: performance.now(), power: 1 });
+      // o empurrão em si é aplicado no paint, ponto a ponto, quando o anel da onda chega nele
+      ripples.push({ x, y, time: performance.now(), power: 1, reach: Math.max(300, size * 1.1), pushed: new Uint8Array(CELLS) });
 
       busy = true;
 
