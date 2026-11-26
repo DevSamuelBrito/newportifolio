@@ -91,18 +91,23 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl xl:text-7xl"
+            className="leading-[1.05] tracking-tight"
           >
-            {t.hero.title}
+            <span className="block text-2xl font-medium text-neutral-300 sm:text-3xl">{t.hero.greeting}</span>
+            <DecryptText
+              text="Samuel Brito"
+              delay={500}
+              className="text-gradient mt-1 block text-5xl font-extrabold sm:text-6xl xl:text-7xl"
+            />
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="mt-6 text-2xl font-medium text-neutral-200 sm:text-3xl"
+            className="mt-6 max-w-2xl text-2xl font-bold leading-snug tracking-tight text-white sm:text-3xl xl:text-4xl"
           >
-            {t.hero.greeting} <DecryptText text="Samuel Brito" delay={500} className="text-gradient font-semibold" />
+            {t.hero.title}
           </motion.p>
 
           <motion.p
