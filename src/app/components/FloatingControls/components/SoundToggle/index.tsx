@@ -6,9 +6,6 @@ import { useSyncExternalStore } from "react";
 //icons
 import { Volume2, VolumeX } from "lucide-react";
 
-//animation
-import { motion } from "framer-motion";
-
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -23,9 +20,7 @@ export function SoundToggle() {
   const muted = useSyncExternalStore(subscribeMuted, isMuted, () => false);
 
   return (
-    <motion.button
-      // `layout`: quando a seta de subir aparece embaixo, este botão sobe suavemente em vez de pular
-      layout
+    <button
       type="button"
       // o botão cuida do próprio som (ligar/desligar): sem o clique padrão por cima
       data-sound="none"
@@ -38,6 +33,6 @@ export function SoundToggle() {
       }`}
     >
       {muted ? <VolumeX size={19} /> : <Volume2 size={19} />}
-    </motion.button>
+    </button>
   );
 }
