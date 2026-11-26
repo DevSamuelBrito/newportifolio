@@ -12,6 +12,9 @@ const WAVE_DELAY = 16;
 /** Tempo (ms) que cada ponto leva para chegar a ~63% do nível novo */
 const EASE_TIME = 110;
 
+/** Tempo (ms) que o "buraco" do mouse leva para chegar a ~63% do caminho até o cursor: maior = mais atraso */
+const POINTER_LAG = 90;
+
 /** Velocidade (px/ms) com que a onda do clique se espalha */
 const RIPPLE_SPEED = 0.85;
 
@@ -179,6 +182,9 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
 
     const pointer = { x: -1e4, y: -1e4 };
 
+    // posição que de fato empurra os pontos: segue o cursor com um pequeno atraso
+    const follow = { x: -1e4, y: -1e4 };
+
     let ripples: Ripple[] = [];
 
     const scatter = () => {
@@ -247,9 +253,27 @@ export function PixelDisplay({ sources, index = 0, onPress }: PixelDisplayProps)
         if (appear !== wanted) busy = true;
       }
 
-      const localX = pointer.x - rect.left;
+      // o buraco desliza até o cursor; se o cursor chegou de fora (ou saiu), pula direto, sem varrer o display
+      if (reduceMotion || pointer.x < -5e3 || follow.x < -5e3) {
+        follow.x = pointer.x;
+        follow.y = pointer.y;
+      } else {
+        const lag = 1 - Math.exp(-elapsed / POINTER_LAG);
 
-      const localY = pointer.y - rect.top;
+        follow.x += (pointer.x - follow.x) * lag;
+        follow.y += (pointer.y - follow.y) * lag;
+
+        if (Math.abs(pointer.x - follow.x) + Math.abs(pointer.y - follow.y) < 0.3) {
+          follow.x = pointer.x;
+          follow.y = pointer.y;
+        } else {
+          busy = true;
+        }
+      }
+
+      const localX = follow.x - rect.left;
+
+      const localY = follow.y - rect.top;
 
       const reach = Math.max(74, pitch * 4.6);
 
