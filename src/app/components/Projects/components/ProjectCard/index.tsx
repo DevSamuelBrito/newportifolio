@@ -24,8 +24,8 @@ import { getBrandColor, getBrandName } from "@/data/brandColors";
 //types
 import type { Project } from "../../types";
 
-/** Segundos com o mouse em cima até a tremidinha começar */
-const WOBBLE_DELAY = 1.5;
+/** Segundos com o mouse em cima até o balanço começar (só o tempo do card terminar de subir) */
+const WOBBLE_DELAY = 0.2;
 
 interface ProjectCardProps {
   data: Project;
@@ -45,14 +45,14 @@ export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
 
   const images = data.images && data.images.length > 0 ? data.images : [data.src];
 
-  // O card cresce e sobe na hora. A tremidinha suave só começa depois de um tempo
-  // com o mouse parado em cima (WOBBLE_DELAY) e repete com pausas: convida ao clique.
+  // O card cresce e sobe na hora e logo em seguida dá um balanço leve (WOBBLE_DELAY),
+  // que se repete com pausas enquanto o mouse estiver em cima: convida ao clique.
   const hoverAnimation = reduceMotion
     ? undefined
     : {
         scale: 1.05,
         y: -10,
-        rotate: [0, -0.7, 0.7, -0.5, 0.5, 0],
+        rotate: [0, -1, 1, -0.7, 0.7, 0],
         transition: {
           scale: { duration: 0.3, ease: "easeOut" as const },
           y: { duration: 0.3, ease: "easeOut" as const },
