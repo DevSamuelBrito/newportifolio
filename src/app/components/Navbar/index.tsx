@@ -1,119 +1,273 @@
 "use client";
 
 //react
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //icons
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
-//flags
-import brasilFlag from "@/assets/images/BR-flag.png";
-
-import usaFlag from "@/assets/images/USA-flag.png";
-
-//components
-import { HeroItem, NavBarItem } from "./components/NavBarItem";
-
-import { ButtonTranslate } from "./components/ButtonTranslate";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 //animation
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
+//components
+import { LanguageSwitch } from "./components/LanguageSwitch";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
+//data
+import { SOCIAL_LINKS } from "@/data/links";
+
+import { SECTION_ORDER, type SectionId } from "@/data/sections";
+
+//lib
+import { getActiveSheetId, scrollToSection } from "@/lib/sheets";
+
+import { playSound } from "@/lib/sound";
+
 export const Navbar = () => {
+  const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
 
-  const { t } = useTranslation();
+  const [scrolled, setScrolled] = useState(false);
 
-  const [activeSection, setActiveSection] = useState<string>("");
+  const links: { id: SectionId; label: string }[] = SECTION_ORDER.filter((id) => id !== "contact").map(
+    (id) => ({ id, label: t.navbar[id] })
+  );
 
+  // Destaca o link da seção atual. Com as seções empilhadas (sticky), o que vale é a
+  // posição natural de cada folha, não onde ela aparece na tela (veja lib/sheets.ts).
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
+    const update = () => {
+      const id = getActiveSheetId();
+      if (id) setActiveSection(id as SectionId);
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
+    update();
 
-    sections.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    // Uma seção que muda de altura sem rolagem (ex.: "Ver menos" nos projetos) também
+    // muda qual é a seção atual.
+    const observer = new ResizeObserver(update);
+
+    const main = document.querySelector("main");
+
+    if (main) observer.observe(main);
 
     return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
       observer.disconnect();
     };
   }, []);
 
-  const renderFlags = () => {
-    if (isOpen) {
-      return (
-        <li className="flex flex-row  gap-2">
-          <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English" />
-          <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português" />
-        </li>
-      );
-    }
-    return null;
-  }
+  // Som suave sempre que a seção atual muda, rolando ou pelo menu (a primeira não conta)
+  const previousSection = useRef(activeSection);
+
+  useEffect(() => {
+    if (previousSection.current === activeSection) return;
+
+    previousSection.current = activeSection;
+
+    playSound("section");
+  }, [activeSection]);
+
+  // Reforça o fundo da navbar depois que a página começa a rolar
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavigate = (id: string) => {
+    setIsOpen(false);
+    scrollToSection(id);
+  };
 
   return (
-
-    <motion.header initial={{ y: -100, opacity: 0 }}
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-0 w-full z-50 h-14 lg:h-auto shadow-lg">
-
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="fixed inset-x-0 top-0 z-50 pt-4"
+    >
+      {/* Mesmo container das seções (max-w-7xl + padding), para alinhar com o conteúdo */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
       <nav
-        className="border-gray-200 px-4 lg:px-6 py-2.5 bg-[#13202e]"
+        aria-label="Principal"
+        className={`rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl transition-colors duration-300 ${
+          isOpen ? "bg-neutral-950/90" : scrolled ? "bg-neutral-950/25" : "bg-neutral-950/10"
+        }`}
       >
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
 
-          <HeroItem />
+        <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigate("home");
+            }}
+            className="flex items-center gap-2 text-lg font-bold text-white"
+            aria-label="Samuel Brito"
+          >
+            <span className="font-mono text-blue-500">&gt;_</span>
+            <span className="whitespace-nowrap">Samuel Brito</span>
+          </a>
 
+          {/* Links (desktop) */}
+          <ul className="hidden items-center gap-1 xl:flex">
+            {links.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate(id);
+                  }}
+                  aria-current={activeSection === id ? "true" : undefined}
+                  className={`group relative block rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    activeSection === id ? "text-white" : "text-neutral-300 hover:text-white"
+                  }`}
+                >
+                  {label}
+
+                  {/* Linha da seção atual: aparece embaixo do link e desliza até o próximo ao mudar de seção */}
+                  {activeSection === id && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      aria-hidden
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 shadow-[0_0_10px_rgba(59,130,246,0.7)]"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
+                  )}
+
+                  {/* Prévia no hover: linha discreta que cresce do centro nos links que não são o atual */}
+                  {activeSection !== id && (
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-center scale-x-0 rounded-full bg-white/30 transition-transform duration-300 group-hover:scale-x-100"
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Ações (desktop) */}
+          <div className="hidden items-center gap-3 xl:flex">
+            <LanguageSwitch />
+
+            <a
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="p-2 text-neutral-400 transition-colors hover:text-white"
+            >
+              <FaLinkedin size={18} />
+            </a>
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="p-2 text-neutral-400 transition-colors hover:text-white"
+            >
+              <FaGithub size={18} />
+            </a>
+
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigate("contact");
+              }}
+              className="btn-primary whitespace-nowrap !px-5 !py-2 text-sm"
+            >
+              {t.navbar.cta}
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
+
+          {/* Botão do menu (mobile) */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="lg:hidden p-2 text-gray-500 rounded-lg focus:outline-none"
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? t.navbar.closeMenu : t.navbar.openMenu}
+            aria-expanded={isOpen}
+            className="rounded-lg p-2 text-neutral-300 transition-colors hover:text-white xl:hidden"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
-
-          <div
-            className={`${isOpen ? "block" : "hidden"
-              } lg:flex justify-between items-center w-full lg:w-auto`}
-          >
-            <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 font-medium ">
-
-              <NavBarItem href="#projects" id="projects" label={t.navbar.projects} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#stack" id="stack" label={t.navbar.stack} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#experience" id="experience" label={t.navbar.experience} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#certifications" id="certifications" label={t.navbar.certifications} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#about" id="about" label={t.navbar.about} activeSection={activeSection} setActiveSection={setActiveSection} />
-              <NavBarItem href="#contact" id="contact" label={t.navbar.contact} activeSection={activeSection} setActiveSection={setActiveSection} />
-
-              {renderFlags()}
-
-            </ul>
-          </div>
-
-
-          <div className="hidden lg:flex items-center">
-            <ButtonTranslate languageDefault={"en"} src={usaFlag} title="Switch to English" />
-            <ButtonTranslate languageDefault={"pt"} src={brasilFlag} title="Trocar para o Português" />
-          </div>
-
         </div>
+
+        {/* Menu (mobile) */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              // Sem animar "height: auto": para medi-la, o framer-motion chama window.scrollTo(0, 0),
+              // o que cancelaria a rolagem suave iniciada ao clicar num link do menu.
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="overflow-hidden xl:hidden"
+            >
+              <ul className="flex flex-col gap-1 border-t border-neutral-800 px-4 py-3">
+                {[...links, { id: "contact" as SectionId, label: t.navbar.contact }].map(({ id, label }) => (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigate(id);
+                      }}
+                      className={`block rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
+                        activeSection === id ? "bg-blue-500/10 text-blue-400" : "text-neutral-300 hover:text-white"
+                      }`}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center justify-between border-t border-neutral-800 px-4 py-3">
+                <LanguageSwitch />
+                <div className="flex items-center gap-1">
+                  <a
+                    href={SOCIAL_LINKS.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="p-2 text-neutral-400 hover:text-white"
+                  >
+                    <FaLinkedin size={20} />
+                  </a>
+                  <a
+                    href={SOCIAL_LINKS.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="p-2 text-neutral-400 hover:text-white"
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-
+      </div>
     </motion.header>
-
   );
 };

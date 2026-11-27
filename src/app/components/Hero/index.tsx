@@ -1,129 +1,177 @@
-"use client"
+"use client";
 
 //react
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { createPortal } from "react-dom";
 
 //icons
-import { Download } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiDotnet, SiNestjs, SiNextdotjs, SiPostgresql, SiReact, SiTypescript } from "react-icons/si";
 
-//context
-import { useLanguage } from "@/providers/LanguageContext";
-
-//typewriter
-import { Typewriter } from "react-simple-typewriter";
+import type { IconType } from "react-icons";
 
 //animation
 import { motion } from "framer-motion";
 
 //components
-import { SocialMediaButton } from "../Navbar/components/SocialMediaButton";
+import { CodeWindow } from "./components/CodeWindow";
 
-import DefaultSection from "@/components/shared/DefaultSection";
+import DownloadNotification from "../DownloadNotification";
 
-import { Photo } from "./components/Photo";
+import { DOWNLOAD_ALERT_MS } from "../DownloadNotification/AlertDownload";
 
-//utils
-import { parseHighlight } from "@/utils/parseHighlight";
+import { DecryptText } from "@/components/shared/DecryptText";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
+//utils
+import { parseHighlight } from "@/utils/parseHighlight";
 
-interface HeroProps {
-  setShowAlert: (show: boolean) => void;
-}
+//lib
+import { scrollToSection } from "@/lib/sheets";
 
-export function Hero({ setShowAlert }: HeroProps) {
+//data
+import { getBrandColor } from "@/data/brandColors";
 
-  const { language } = useLanguage();
-  const [key, setKey] = useState(0);
-  const { t } = useTranslation();
-  const downloadFile = language === "en"
-    ? "/samuel-brito-resume.pdf"
-    : "/samuel-brito-curriculo.pdf"
-  const downloadName = language === "en"
-    ? "samuel-brito-resume.pdf"
-    : "samuel-brito-curriculo.pdf"
+import { RESUME_FILES } from "@/data/links";
+
+const HERO_STACK: { icon: IconType; name: string }[] = [
+  { icon: SiReact, name: "React" },
+  { icon: SiNextdotjs, name: "Next.js" },
+  { icon: SiTypescript, name: "TypeScript" },
+  { icon: SiDotnet, name: ".NET" },
+  { icon: SiNestjs, name: "NestJS" },
+  { icon: SiPostgresql, name: "PostgreSQL" },
+];
+
+export function Hero() {
+  const { t, language } = useTranslation();
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  // O alerta é "fixed": precisa sair de dentro da seção (que é uma folha empilhada),
+  // senão a próxima folha o cobriria.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const alertTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resume = RESUME_FILES[language];
+
+  // Muda a cada clique para a barra de progresso do aviso recomeçar
+  const [alertId, setAlertId] = useState(0);
+
+  const closeAlert = () => {
+    if (alertTimeout.current) clearTimeout(alertTimeout.current);
+    setShowAlert(false);
+  };
 
   const handleDownloadClick = () => {
-    setShowAlert(true)
-    setTimeout(() => setShowAlert(false), 5000)
-  }
+    setShowAlert(true);
+    setAlertId((id) => id + 1);
+    if (alertTimeout.current) clearTimeout(alertTimeout.current);
+    alertTimeout.current = setTimeout(() => setShowAlert(false), DOWNLOAD_ALERT_MS);
+  };
 
   useEffect(() => {
-    setKey(prevKey => prevKey + 1);
-  }, [language]);
+    return () => {
+      if (alertTimeout.current) clearTimeout(alertTimeout.current);
+    };
+  }, []);
 
   return (
+    <section id="home" className="relative flex min-h-screen items-center pb-16 pt-32 lg:pt-28">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-12 lg:gap-8 lg:px-12">
+        <div className="min-w-0 lg:col-span-7">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="leading-[1.05] tracking-tight"
+          >
+            <span className="block text-2xl font-medium text-neutral-300 sm:text-3xl">{t.hero.greeting}</span>
+            <DecryptText
+              text="Samuel Brito"
+              delay={500}
+              className="text-gradient mt-1 block text-5xl font-extrabold sm:text-6xl xl:text-7xl"
+            />
+          </motion.h1>
 
-    <DefaultSection section="hero" paddingTop="16">
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="mt-6 max-w-2xl text-2xl font-bold leading-snug tracking-tight text-white sm:text-3xl xl:text-4xl"
+          >
+            {t.hero.title}
+          </motion.p>
 
-      <div className="grid px-4 md:px-0 max-w-screen-xl  lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]  py-8 mx-auto lg:grid-cols-12 w-full">
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="mt-4 max-w-xl text-lg leading-relaxed text-neutral-400"
+          >
+            {parseHighlight(t.hero.description)}
+          </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="lg:col-span-6 flex flex-col justify-center lg:mb-0 sm:px-2 md:px-4 xl:px-0"
-        >
-
-          <p className="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-5xl text-white">
-            {t.hero.hello} <br />
-            <span className="text-blue-500">
-
-              <Typewriter key={key} words={["Samuel Brito", t.hero.role]} loop={true} cursor
-                cursorStyle="|" typeSpeed={50} delaySpeed={2000} deleteSpeed={100} />
-
-            </span>
-          </p>
-          <p className="mt-4 text-lg text-gray-400 2xl:text-xl ">
-            {parseHighlight(t.hero.introducation)}
-          </p>
-          <p className="mt-2 text-lg text-gray-400 2xl:text-xl">
-            {parseHighlight(t.hero.introducation2)}
-          </p>
-          <div className="flex flex-row mt-6 items-center gap-3">
-
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <a
-              href={downloadFile}
-              download={downloadName}
-              className="border-blue-500 border-2 rounded-full px-4 py-3 text-lg  inline-flex items-center justify-center text-blue-500 font-bold
-      hover:bg-blue-500 hover:text-gray-900 transition-all duration-300 hover:scale-105"
-              onClick={handleDownloadClick}
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("projects");
+              }}
+              className="btn-primary"
             >
-              {t.hero.cv}<Download size={18} className="ml-2" />
+              {t.hero.projectsCta}
+              <ArrowUpRight size={18} />
             </a>
 
-            <SocialMediaButton
-              href="https://github.com/DevSamuelBrito"
-              Icon={FaGithub}
-              ariaLabel="Open GitHub profile"
-            />
-            <SocialMediaButton
-              href="https://www.linkedin.com/in/samuel-fava-de-brito/"
-              Icon={FaLinkedin}
-              ariaLabel="Open LinkedIn profile"
-            />
+            <a href={resume.href} download={resume.name} onClick={handleDownloadClick} className="btn-secondary">
+              {t.hero.cv}
+              <Download size={18} />
+            </a>
+          </motion.div>
 
-          </div>
-
-        </motion.div>
+          <motion.ul
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            className="mt-12 flex flex-wrap gap-x-8 gap-y-5"
+          >
+            {HERO_STACK.map(({ icon: Icon, name }) => (
+              <li key={name} className="flex flex-col items-center gap-2 text-neutral-400">
+                <Icon size={34} style={{ color: getBrandColor(Icon) }} aria-hidden />
+                <span className="text-sm">{name}</span>
+              </li>
+            ))}
+          </motion.ul>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, x: +100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="hidden lg:col-span-6 lg:flex justify-center items-center xl:justify-end"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="min-w-0 lg:col-span-5"
         >
-          <Photo />
+          <CodeWindow />
         </motion.div>
-
       </div>
-    </DefaultSection>
 
+      {mounted && createPortal(
+          <DownloadNotification showAlert={showAlert} fileName={resume.name} triggerId={alertId} onClose={closeAlert} />,
+          document.body
+        )}
+    </section>
   );
 }

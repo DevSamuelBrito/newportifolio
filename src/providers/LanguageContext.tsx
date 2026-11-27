@@ -1,45 +1,43 @@
 "use client";
-import { createContext, useState, useEffect, ReactNode, useContext } from "react";
 
-// Criando tipagem para provedor
-export type Language = "en" | "pt";
+import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
+
+import { DEFAULT_LANGUAGE, LANGUAGE_COOKIE, type Language } from "@/lib/language";
+
+export type { Language };
 
 interface LanguageContextProps {
   language: Language;
   setLanguage: (lang: Language) => void;
 }
 
-// Criando o contexto
-const LanguageContext = createContext<LanguageContextProps | undefined>(
-  undefined
-);
+const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
-// Criando o Provider
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("pt");
+interface LanguageProviderProps {
+  children: ReactNode;
+  /** Idioma lido do cookie no servidor, para a página já abrir no idioma certo. */
+  initialLanguage?: Language;
+}
 
-  // Recupera a linguagem do localStorage ao carregar o site
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
+export const LanguageProvider = ({
+  children,
+  initialLanguage = DEFAULT_LANGUAGE,
+}: LanguageProviderProps) => {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
+
+  const setLanguage = useCallback((lang: Language) => {
+    setLanguageState(lang);
+
+    // Cookie lido pelo servidor na próxima visita (evita "piscar" no idioma errado)
+    document.cookie = `${LANGUAGE_COOKIE}=${lang}; path=/; max-age=31536000; samesite=lax`;
+    document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
   }, []);
 
-  // Salva a linguagem no localStorage quando for alterada
-  const changeLanguage = (lang: Language) => {
-    setLanguage(lang);
-    localStorage.setItem("language", lang);
-  };
+  const value = useMemo(() => ({ language, setLanguage }), [language, setLanguage]);
 
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
-// Criando um Hook personalizado para facilitar o uso 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {

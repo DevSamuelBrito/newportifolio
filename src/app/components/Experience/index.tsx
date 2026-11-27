@@ -1,119 +1,145 @@
-"use client"
+"use client";
 
 //react
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-//icons
-import { ChevronDown, ChevronUp } from "lucide-react";
+//animation
+import { AnimatePresence, motion } from "framer-motion";
 
 //components
 import ExperienceCard from "./components/ExperienceCard";
 
-import DefaultSection from "@/components/shared/DefaultSection";
+import { PixelDisplay } from "@/components/shared/PixelDisplay";
+
+import { EXPERIENCE_SHAPES } from "@/components/shared/PixelDisplay/shapes";
+
+import { Section } from "@/components/shared/Section";
+
+import { SectionHeading } from "@/components/shared/SectionHeading";
 
 //hooks
 import { useTranslation } from "@/hooks/useTranslation";
 
-//animation
-import { motion } from "framer-motion";
-
+const pad = (value: number) => String(value).padStart(2, "0");
 
 export function Experience() {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
+  const items = t.experience.data;
 
-    const [showAll, setShowAll] = useState(false);
+  const listRef = useRef<HTMLOListElement | null>(null);
 
-    const dataToRender = showAll ? t.experience.data : t.experience.data.slice(0, 3);
+  // Experiência que está no meio da tela: é a que o display da esquerda mostra
+  const [active, setActive] = useState(0);
 
-    return (
+  useEffect(() => {
+    const list = listRef.current;
 
-        <DefaultSection section="experience">
-            <div className="px-4 md:px-0 w-full max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit  ">
-                <div className="text-center">
-                    <p className="text-3xl font-bold text-white relative inline-block">
-                        {t.experience.title}
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
-                    </p>
-                </div>
+    if (!list) return;
 
-                {/* Timeline Container */}
-                <div className="relative w-full mt-12">
-                    {/* Linha Vertical Central */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-blue-500/30 to-transparent hidden md:block" />
+    const update = () => {
+      const line = window.innerHeight * 0.5;
 
-                    {/* Timeline Items */}
-                    <div className="space-y-12">
-                        {dataToRender.map((item, index) => (
-                            <div
-                                key={index}
-                                className={` relative flex items-center ${index % 2 === 0
-                                    ? 'md:flex-row flex-col'
-                                    : 'md:flex-row-reverse flex-col'
-                                    }`}
-                            >
-                                <div className="w-full md:w-5/12 px-4 md:px-4">
-                                    <ExperienceCard
-                                        index={index}
-                                        role={item.role}
-                                        company={item.company}
-                                        period={item.period}
-                                        activities={item.activities}
-                                        technologies={item.technologies}
-                                    />
-                                </div>
+      let current = 0;
 
-                                {/* Bolinha Central */}
-                                <div className="w-full md:w-2/12 justify-center my-4 md:my-0 hidden md:flex">
-                                    <div className="relative flex items-center justify-center w-full">
-                                        {/* Linha para a esquerda (quando card está à esquerda) */}
-                                        {index % 2 === 0 && (
-                                            <div className="absolute right-1/2 w-[calc(50%-12px)] h-0.5 bg-gradient-to-l from-blue-500/60 to-transparent mr-3" />
-                                        )}
+      [...list.children].forEach((child, index) => {
+        if (child.getBoundingClientRect().top <= line) current = index;
+      });
 
-                                        {/* Bolinha */}
-                                        <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-gray-900 z-10 shadow-lg shadow-blue-500/50" />
+      setActive((previous) => (previous === current ? previous : current));
+    };
 
-                                        {/* Linha para a direita (quando card está à direita) */}
-                                        {index % 2 !== 0 && (
-                                            <div className="absolute left-1/2 w-[calc(50%-12px)] h-0.5 bg-gradient-to-r from-blue-500/60 to-transparent ml-3" />
-                                        )}
-                                    </div>
-                                </div>
+    // no máximo uma medição por quadro, mesmo que cheguem vários eventos de rolagem
+    let frame = 0;
 
-                                {/* Espaço vazio do outro lado (apenas desktop) */}
-                                <div className="hidden md:block md:w-5/12" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+    const schedule = () => {
+      if (!frame) {
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          update();
+        });
+      }
+    };
 
-                {t.experience.data.length > 3 && (
-                    <motion.div
-                        key={t.experience.data.length}
-                        className="flex justify-center mt-10"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                    >
-                        <button
-                            onClick={() => setShowAll(!showAll)}
-                            className="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 flex items-center gap-2"
-                        >
-                            {showAll ? t.experience.showLess : t.experience.showMore}
-                            {showAll ? (
-                                <ChevronUp size={20} className="text-current" />
-                            ) : (
-                                <ChevronDown size={20} className="text-current" />
-                            )}
+    update();
 
-                        </button>
-                    </motion.div>
-                )}
+    window.addEventListener("scroll", schedule, { passive: true });
 
-            </div>
-        </DefaultSection>
-    );
-};
+    window.addEventListener("resize", schedule);
 
+    // os cards mudam de altura sem rolagem (troca de idioma, fontes...)
+    const observer = new ResizeObserver(schedule);
+
+    observer.observe(list);
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const current = items[active] ?? items[0];
+
+  return (
+    <Section id="experience">
+      <SectionHeading
+        eyebrow={t.experience.eyebrow}
+        title={t.experience.heading}
+        highlight={t.experience.highlight}
+      />
+
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* Painel fixo (só em telas grandes): ícone em pontos da experiência atual + resumo */}
+        <aside className="hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:self-start">
+          <div className="glass p-5">
+            <PixelDisplay sources={EXPERIENCE_SHAPES} index={active} />
+          </div>
+
+          <div className="glass mt-3 px-5 py-4 font-mono text-xs">
+            <p className="flex items-center justify-between text-neutral-500">
+              <span className="uppercase tracking-widest text-blue-400">{t.experience.eyebrow}</span>
+              <span>
+                {pad(active + 1)} / {pad(items.length)}
+              </span>
+            </p>
+
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22 }}
+                className="mt-2 space-y-0.5"
+              >
+                <p className="text-sm font-semibold text-white">{current.company}</p>
+                <p className="text-neutral-400">{current.role}</p>
+                <p className="text-neutral-500">{current.period}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </aside>
+
+        {/* Linha do tempo: a borda esquerda é a "linha" e cada card tem uma bolinha sobre ela */}
+        <ol
+          ref={listRef}
+          className="mx-auto w-full max-w-4xl space-y-8 border-l border-neutral-800 lg:col-span-7 lg:max-w-none"
+        >
+          {items.map((item, index) => (
+            <ExperienceCard
+              key={`${item.company}-${item.period}`}
+              active={index === active}
+              role={item.role}
+              company={item.company}
+              period={item.period}
+              activities={item.activities}
+              technologies={item.technologies}
+            />
+          ))}
+        </ol>
+      </div>
+    </Section>
+  );
+}

@@ -1,76 +1,77 @@
-//hooks
-import { useTranslation } from "@/hooks/useTranslation";
+"use client";
 
 //components
 import CertificationsCard from "./components/CertificationsCard";
 
-import DefaultSection from "@/components/shared/DefaultSection";
+import { PixelDisplay } from "@/components/shared/PixelDisplay";
+
+import { MEDAL_SHAPES } from "@/components/shared/PixelDisplay/shapes";
+
+import { Section } from "@/components/shared/Section";
+
+import { SectionHeading } from "@/components/shared/SectionHeading";
+
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
 
 export function Certifications() {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
+  return (
+    <Section id="certifications">
+      <SectionHeading
+        eyebrow={t.certifications.eyebrow}
+        title={t.certifications.heading}
+        highlight={t.certifications.highlight}
+      />
 
-    return (
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* Painel fixo (só em telas grandes): medalha em pontos; clique para espalhar os pontos */}
+        <aside className="hidden lg:sticky lg:top-28 lg:col-span-5 lg:block lg:self-start">
+          <div className="glass p-5">
+            <PixelDisplay sources={MEDAL_SHAPES} />
+          </div>
+        </aside>
 
+        <div className="lg:col-span-7">
+          <h3 className="mb-5 text-sm font-medium uppercase tracking-widest text-neutral-400">
+            {t.certifications.graduationTitle}
+          </h3>
 
-        <DefaultSection section="certifications" >
-            <div className="px-4 md:px-0 max-w-screen-xl lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-8 mx-auto min-h-fit" >
-                <div className="text-center">
-                    <p className="text-3xl font-bold text-white relative inline-block">
-                        {t.certifications.graduationTitle}
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
-                    </p>
-                </div>
+          <div className="grid grid-cols-1 gap-6">
+            {t.certifications.graduation.map((item, index) => (
+              <CertificationsCard
+                key={item.name}
+                index={index}
+                name={item.name}
+                issuer={item.institution}
+                description={item.description}
+                date={item.date}
+                link={item.link}
+                graduation
+              />
+            ))}
+          </div>
 
-                <div className="w-full mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                    {t.certifications.graduation.map((certification, index) => (
-                        <div
-                            key={index}
-                            className={
-                                t.certifications.graduation.length === 1
-                                    ? "lg:col-start-2"
-                                    : ""
-                            }
-                        >
-                            <CertificationsCard
-                                index={index}
-                                name={certification.name}
-                                issuer={certification.institution}
-                                description={certification.description}
-                                date={certification.date}
-                                link={certification.link}
-                            />
-                        </div>
-                    ))}
-                </div>
+          <h3 className="mb-5 mt-14 text-sm font-medium uppercase tracking-widest text-neutral-400">
+            {t.certifications.title}
+          </h3>
 
-
-                <div className="text-center">
-                    <p className="text-3xl font-bold text-white relative inline-block">
-                        {t.certifications.title}
-                        <span className="block w-24 h-1 bg-blue-500 mt-2 mx-auto rounded-full"></span>
-                    </p>
-                </div>
-
-                <div className="w-full mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-4">
-                    {
-                        t.certifications.data.map((certification, index) => (
-                            <CertificationsCard
-                                key={index}
-                                index={index}
-                                name={certification.name}
-                                issuer={certification.issuer}
-                                description={certification.description}
-                                date={certification.date}
-                                link={certification.link}
-                            />
-                        ))
-                    }
-                </div>
-
-            </div>
-        </DefaultSection>
-
-    );
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {t.certifications.data.map((item, index) => (
+              <CertificationsCard
+                key={item.name}
+                index={index}
+                name={item.name}
+                issuer={item.issuer}
+                description={item.description}
+                date={item.date}
+                link={item.link}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
 }
-

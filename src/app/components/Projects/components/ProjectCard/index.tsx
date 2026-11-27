@@ -1,84 +1,157 @@
-"use client"
+"use client";
 
-//react
-import { useState } from "react";
+//icons
+import { ArrowUpRight } from "lucide-react";
 
-//next
-import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
 
-//framer-motion
-import { motion } from "framer-motion";
+import { TbWorld } from "react-icons/tb";
 
-//providers
-import { useLanguage } from "@/providers/LanguageContext";
+//animation
+import { motion, useReducedMotion } from "framer-motion";
 
 //components
-import ModalCard from "../ModalCard";
+import { CardImageSlider } from "../CardImageSlider";
+
+import { Reveal } from "@/components/shared/Reveal";
+
+//hooks
+import { useTranslation } from "@/hooks/useTranslation";
+
+//data
+import { getBrandColor, getBrandName } from "@/data/brandColors";
 
 //types
 import type { Project } from "../../types";
 
+/** Segundos com o mouse em cima até o balanço começar (só o tempo do card terminar de subir) */
+const WOBBLE_DELAY = 0.15;
+
+/**
+ * Um ciclo do balanço (graus): começa forte, acalma no meio e volta a ficar forte.
+ * Termina em 0 e o ciclo se repete sem pausa enquanto o mouse estiver em cima.
+ */
+const WOBBLE_ROTATE = [0, -1.6, 1.6, -1.3, 1.3, -0.7, 0.7, -0.3, 0.3, -0.7, 0.7, -1.3, 1.3, -1.6, 0];
+
+/** Duração (s) de um ciclo completo do balanço */
+const WOBBLE_DURATION = 3.6;
+
 interface ProjectCardProps {
-    data: Project;
-    index: number;
+  data: Project;
+  /** Posição do card na grade, usada para escalonar a animação */
+  position: number;
+  onOpen: (project: Project) => void;
 }
 
-export function ProjectCard({ data, index }: ProjectCardProps) {
+export function ProjectCard({ data, position, onOpen }: ProjectCardProps) {
+  const { t, language } = useTranslation();
 
-    const translation = {
-        en: {
-            button: "Details",
-            description: data.descriptionEn,
-        }, pt: {
-            button: "Detalhes",
-            description: data.descriptionBr
-        }
-    }
+  const reduceMotion = useReducedMotion();
 
-    const [isOpen, setIsOpen] = useState(false);
+  const title = language === "en" ? data.titleEn : data.titleBr;
 
-    const { language } = useLanguage();
+  const description = (language === "en" ? data.descriptionEn : data.descriptionBr)[0];
 
-    const title = language === "en" ? data.titleEn : data.titleBr;
+  const images = data.images && data.images.length > 0 ? data.images : [data.src];
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="h-full"
+  // O card cresce e sobe na hora e logo em seguida balança em loop enquanto o mouse
+  // estiver em cima: forte no começo, mais calmo no meio e forte de novo (WOBBLE_ROTATE).
+  const hoverAnimation = reduceMotion
+    ? undefined
+    : {
+        scale: 1.05,
+        y: -10,
+        rotate: WOBBLE_ROTATE,
+        transition: {
+          scale: { duration: 0.3, ease: "easeOut" as const },
+          y: { duration: 0.3, ease: "easeOut" as const },
+          rotate: {
+            duration: WOBBLE_DURATION,
+            ease: "easeInOut" as const,
+            delay: WOBBLE_DELAY,
+            repeat: Infinity,
+          },
+        },
+      };
+
+  return (
+    // z-20 no hover: o card em destaque fica por cima dos vizinhos
+    <Reveal delay={(position % 3) * 0.1} className="relative h-full hover:z-20 focus-within:z-20">
+      <div className="h-full">
+        <motion.article
+          whileHover={hoverAnimation}
+          onClick={() => onOpen(data)}
+          // o som de abrir toca no próprio modal; aqui só o suave de "passar o mouse"
+          data-sound="none"
+          data-sound-hover
+          className="glass group flex h-full cursor-pointer flex-col overflow-hidden transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20"
         >
-
-            <div
-                className="bg-gray-800 border border-gray-700 p-5 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:border-blue-500 group relative h-full flex flex-col justify-between"
-            >
-                <Image
-                    src={data.src}
-                    alt={title}
-                    className="w-full h-48 object-cover rounded-lg"
-                    width={400}
-                    height={300}
-                />
-                <h3 className="text-xl font-semibold text-white mt-3">{title}</h3>
-
-                <div className="flex items-center gap-2 mt-2 text-gray-300 py-2">
-                    {
-                        data.stack.map((Icon, i) => (
-                            <Icon key={i} size={24} className="text-blue-500" />
-                        ))
-                    }
-                </div>
-                <button className="hidden sm:block absolute bottom-5 right-5 bg-blue-500 px-2 py-2 text-white rounded-lg opacity-0  duration-300 hover:opacity-100 group-hover:opacity-100 hover:bg-blue-700 hover:scale-105 hover:transition-all font-bold" onClick={() => setIsOpen(!isOpen)}>
-                    {translation[language].button}
-                </button>
-            </div>
-            <ModalCard
-                isOpen={isOpen}
-                onClose={() => setIsOpen(!isOpen)}
-                data={data}
+          <button
+            type="button"
+            data-sound="none"
+            aria-label={`${t.projects.details}: ${title}`}
+            className="relative block aspect-[16/10] w-full overflow-hidden bg-neutral-900 text-left"
+          >
+            <CardImageSlider images={images} alt={title} intervalMs={3800 + position * 450} />
+            <span
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent"
+              aria-hidden
             />
-        </motion.div>
-    )
-}
+          </button>
 
+          <div className="flex flex-1 flex-col p-5">
+            <h3 className="text-xl font-bold text-white">{title}</h3>
+
+            <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-neutral-400">{description}</p>
+
+            <ul className="mb-5 mt-4 flex flex-wrap items-center gap-2">
+              {data.stack.map((Icon, i) => (
+                <li
+                  key={i}
+                  title={getBrandName(Icon)}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900"
+                >
+                  <Icon size={16} style={{ color: getBrandColor(Icon) }} aria-hidden />
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto flex min-h-[3.25rem] items-center justify-between border-t border-neutral-800/60 pt-3">
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 transition-all group-hover:gap-2.5 group-hover:text-blue-300">
+                {t.projects.details}
+                <ArrowUpRight size={16} />
+              </span>
+
+              <div className="flex items-center gap-1">
+                {data.repository && (
+                  <a
+                    href={data.repository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t.projects.buttonGithub}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-lg p-2 text-neutral-400 transition-colors hover:text-white"
+                  >
+                    <FaGithub size={18} />
+                  </a>
+                )}
+                {data.website && (
+                  <a
+                    href={data.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t.projects.websiteLink}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-lg p-2 text-neutral-400 transition-colors hover:text-white"
+                  >
+                    <TbWorld size={18} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.article>
+      </div>
+    </Reveal>
+  );
+}
